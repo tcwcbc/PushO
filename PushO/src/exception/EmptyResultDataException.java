@@ -6,5 +6,6 @@ public class EmptyResultDataException extends Exception{
 		// TODO Auto-generated constructor stub
 		super(msg);
 		//
+		//나도 풀리퀘 고고 - 최병철
 	}
 }
