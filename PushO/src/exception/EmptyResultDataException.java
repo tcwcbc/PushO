@@ -7,5 +7,6 @@ public class EmptyResultDataException extends Exception{
 		super(msg);
 		//
 		//나도 풀리퀘 고고 - 최병철
+		//브랜치?
 	}
 }
