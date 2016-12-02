@@ -48,7 +48,6 @@ public class OIOClient {
 				bw.flush();
 			}
 			
-			
 //			autoPingPong(3);
 //			text = br.readLine();
 //			autoPingPong(3);
