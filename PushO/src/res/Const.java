@@ -1,6 +1,11 @@
 package res;
 import java.io.File;
 
+/**
+ * @author		최병철
+ * @Description 모든 클래스에서 사용되는 상수 값들을 정리, 한글은 별도의 파일로 관리해야 함
+ * TODO			
+ */
 public interface Const {
 	/**
 	 * Socket Connection
@@ -45,5 +50,6 @@ public interface Const {
 	String JSON_VALUE_PUSH = "push";
 	
 	String END_LINE = "\n";
+	int HEADER_LENTH = 4;
 	
 }

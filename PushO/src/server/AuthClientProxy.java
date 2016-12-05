@@ -12,6 +12,12 @@ import exception.EmptyResultDataException;
 import res.Const;
 import util.Utils;
 
+/**
+ * @author		최병철
+ * @Description	인증을 위한 프록시 클래스로 싱글톤으로 구현 됨
+ * TODO			싱글톤으로 구현시 멀티쓰레드 환경에서의 동시성 문제 제고
+ * 				인증을 위한 DB입출력 Blocking 시간 고려
+ */
 public class AuthClientProxy {
 
 	private static AuthClientProxy instance = null;
@@ -23,7 +29,14 @@ public class AuthClientProxy {
 		return instance;
 	}
 
-	public synchronized ProcessCilentRequest getClientSocketThread(Socket socket) throws EmptyResultDataException {
+	/**
+	 * 실제로 인증을 수행하는 메소드
+	 * @param socket	인증 메시지를 위한 Stream을 얻을 목적의 socket
+	 * @return			클라이언트 요청처리 쓰레드
+	 * @throws EmptyResultDataException	등록된 사용자가 아님(인증X)
+	 */
+	public synchronized ProcessCilentRequest getClientSocketThread(Socket socket) 
+													throws EmptyResultDataException {
 		ProcessCilentRequest thread = null;
 		BufferedReader br = null;
 
@@ -48,6 +61,11 @@ public class AuthClientProxy {
 		return thread;
 	}
 
+	/**
+	 * {@link JDBCTemplate}을 활용한 사용자 인증
+	 * @param name		인증을 위한 사용자 이름
+	 * @throws EmptyResultDataException	인증이 안되었을 경우 발생
+	 */
 	private void checkAuthorization(String name) throws EmptyResultDataException {
 		new JDBCTemplate().executeQuery("select * from user_auth where name = ?", 
 				new SetPrepareStatement() {

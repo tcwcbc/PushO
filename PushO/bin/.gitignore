@@ -1,4 +1,5 @@
 /client/
+<<<<<<< HEAD
 /dao/
 /exception/
 /model/
@@ -6,3 +7,12 @@
 /server/
 /test/
 /util/
+=======
+/server/
+/test/
+/util/
+/res/
+/dao/
+/exception/
+/model/
+>>>>>>> refs/remotes/origin/master
