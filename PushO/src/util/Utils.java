@@ -14,6 +14,13 @@ import org.json.simple.parser.ParseException;
 
 import res.Const;
 
+/**
+ * @author		최병철
+ * @Description	모든 클래스에서 공통적으로 사용되는 메소드들을 정의
+ * TODO			File 읽기 및 쓰기에 대한 부분 수정필요
+ * 				멀티쓰레드 환경에서의 활용을 고려하여 동시성 제고
+ * 				메시지 전문의 형식이 Fix되지 않았음으로 메시지를 만들고 파싱하는 부분 수정 가능
+ */
 public class Utils {
 	public static String readFile(String filePath) {
 		String ret = "";
@@ -61,36 +68,50 @@ public class Utils {
 		}
 	}
 
-	public static byte[] makeMessageStringToByte(String msg){
+	/**
+	 * JSON형식으로 만들어진 msg를 byte[]로 변환하여 그 길이를 헤더에 붙여 ret에 담아 반환하는 메소드
+	 * @param ret	결과 값이 담길 바이트 배열, 길이는 4(int의 바이트)+메시지 바이트의 길이
+	 * 				ex)new byte[](4+msg.getBytes().length);
+	 * @param msg	JSON형식으로 만들어진 본문
+	 * @return		merge(byte[] header + byte[] body)
+	 */
+	public static byte[] makeMessageStringToByte(byte[] ret ,String msg){
 		return mergeBytearrays(
+				ret,
 				intTobyte(msg.getBytes().length),
 				msg.getBytes());
 	}
 	
-//	public static String parseMessageByteToString(byte[] bytes){
-//		return null
-//				;
-//	}
-	
-	public static String makeJSONMessageForAuth(String name, String passwd) {
-		JSONObject jsonObject = new JSONObject();
+	/**
+	 * 이름과 비밀번호를 통해 인증을 위한 JSON메시지를 만드는 메소드
+	 * @param name			사용자 이름
+	 * @param passwd		사용자 비밀번호
+	 * @param parent		최상위 JSONObject
+	 * @param childData		실질적인 data를 담고 있는 JSONObject
+	 * @return				JSON형식의 String data
+	 */
+	public static String makeJSONMessageForAuth(String name, String passwd,
+												JSONObject parent, JSONObject childData) {
 		// getLong
-		jsonObject.put(Const.JSON_KEY_SEND_TIME, System.currentTimeMillis());
+		parent.put(Const.JSON_KEY_SEND_TIME, System.currentTimeMillis());
 		// auth, pp, push getString
-		jsonObject.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_AUTH);
-		JSONObject object = new JSONObject();
+		parent.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_AUTH);
 		// id, getString
-		object.put(Const.JSON_KEY_AUTH_ID, name);
+		childData.put(Const.JSON_KEY_AUTH_ID, name);
 		// passwd, getString
-		object.put(Const.JSON_KEY_AUTH_PASSWD, passwd);
+		childData.put(Const.JSON_KEY_AUTH_PASSWD, passwd);
 		// data (JSONObject)getObjcet
-		jsonObject.put(Const.JSON_KEY_DATA, object);
+		parent.put(Const.JSON_KEY_DATA, childData);
 		
-		return jsonObject.toString()+Const.END_LINE;
+		return parent.toString();
 	}
 
-	public static String makeJSONMessageForPingPong(boolean isPing) {
-		JSONObject jsonObject = new JSONObject();
+	/**
+	 * 연결유지 확인을 위한 PingPong 메시지를 만드는 메소드
+	 * @param isPing	true - Ping만들기, false - Pong만들기
+	 * @return			"ping"이나 "pong"
+	 */
+	public static String makeJSONMessageForPingPong(JSONObject jsonObject, boolean isPing) {
 		// getLong
 		jsonObject.put(Const.JSON_KEY_SEND_TIME, System.currentTimeMillis());
 		// auth, pp, push getString
@@ -99,11 +120,17 @@ public class Utils {
 		} else {
 			jsonObject.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_PONG);
 		}
-		return jsonObject.toString()+Const.END_LINE;
+		return jsonObject.toString();
 	}
 
-	public static String parseJSONMessage(String msg) {
-		JSONParser jsonParser = new JSONParser();
+	/**
+	 * String 타입으로 받은 JSON문자열을 파싱하여 특정 데이터를 추출하는 메소드
+	 * @param jsonParser	JSON 파싱을 위한 Parser 객체
+	 * @param msg			String 타입의 JSON문자열
+	 * @return				받은 메시지의 카테고리가 auth일 경우 id값, 
+	 * 						받은 메시지의 카테고리가 ping일 경우 pong, pong일 경우 ping을 반환
+	 */
+	public static String parseJSONMessage(JSONParser jsonParser, String msg) {
 		String category = null;
 		String result = null;
 		try {
@@ -130,11 +157,11 @@ public class Utils {
 
 	/**
 	 * int형을 byte배열로 바꿈
-	 * @param integer
+	 * @param integer	바이트 배열로 변환할 정수
 	 * 
 	 * order : ByteOrder.LITTLE_ENDIAN
 	 * 			ByteOrder.BIG_ENDIAN
-	 * @return
+	 * @return	결과 바이트 배열
 	 */
 	public static byte[] intTobyte(int integer) {
 		ByteBuffer buff = ByteBuffer.allocate(Integer.SIZE/8);
@@ -146,10 +173,10 @@ public class Utils {
 	
 	/**
 	 * byte배열을 int형로 바꿈
-	 * @param bytes
-	 * @param order : ByteOrder.LITTLE_ENDIAN
+	 * @param bytes		정수로 변환할 바이트 배열		
+	 * order : ByteOrder.LITTLE_ENDIAN
 	 * 					ByteOrder.BIG_ENDIAN
-	 * @return
+	 * @return			변환 된 정수
 	 */
 	public static int byteToInt(byte[] bytes) {
 		ByteBuffer buff = ByteBuffer.allocate(Integer.SIZE/8);
@@ -162,17 +189,31 @@ public class Utils {
 		return buff.getInt(); // position위치(0)에서 부터 4바이트를 int로 변경하여 반환
 	}
 	
-	public static byte[] mergeBytearrays(byte[] header, byte[] body){
-		byte[] retMerge = new byte[header.length+body.length];
-		System.arraycopy(header, 0, retMerge, 0, header.length);
-		System.arraycopy(body, 0, retMerge, header.length, body.length);
-		return retMerge;
+	/**
+	 * header 바이트 열과 body 바이트 배열을 merge하여 ret배열에 담아 반환하는 메소드
+	 * @param ret		결과 값이 담길 바이트 배열, 이 배열의 길이는 header의 길이와 body의 길이의 합
+	 * 					ex) new byte[header.length+body.length];
+	 * @param header	header 바이트 배열
+	 * @param body		body 바이트 배열
+	 * @return			merge 결과를 ret 바이트 배열에 담아 반환
+	 */
+	public static byte[] mergeBytearrays(byte[] ret, byte[] header, byte[] body){
+		System.arraycopy(header, 0, ret, 0, header.length);
+		System.arraycopy(body, 0, ret, header.length, body.length);
+		return ret;
 	}
 	
-	public static byte[] divideBytearrays(int headerLength, byte[] bArr){
-		byte[] retDiv = new byte[bArr.length-headerLength];
-		System.arraycopy(bArr, headerLength, retDiv, 0, bArr.length-headerLength);
-		return retDiv;
+	/**
+	 * 전체 바이트 배열에서 header를 제외한 body 부분을 추출하여 반환하는 메소드
+	 * @param ret			결과 값이 담길 바이트 배열, 이 배열의 길이는 전체 바이트 배열에서 헤더의 길이를 뺀 값
+	 * 						ex) new byte[bArr.length-headerLength];
+	 * @param headerLength	header의 길이
+	 * @param bArr			전체 바이트 배열
+	 * @return				divide 결과를 ret 바이트 배열에 담아 반환
+	 */
+	public static byte[] divideBytearrays(byte[] ret, int headerLength, byte[] bArr){
+		System.arraycopy(bArr, headerLength, ret, 0, bArr.length-headerLength);
+		return ret;
 	}
 	
 }
