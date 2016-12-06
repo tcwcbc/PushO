@@ -43,10 +43,9 @@ public class DBThread extends Thread {
 					ob.msgPush("푸쉬 데이터 있음");
 					
 					for (PushInfo ordrNum : pushList) {
-						pushList.get(0).setOrder_list(db.executeQuery_ORDER_LIST(getQuery(ordrNum.getOrder_num())));;
+						ordrNum.setOrder_list(db.executeQuery_ORDER_LIST(getQuery(ordrNum.getOrder_num())));
+						ordrNum.showInfo();
 					}
-					pushList.get(0).showInfo();
-					
 				}
 			} catch (InterruptedException e) {
 				System.out.println(e.getMessage());

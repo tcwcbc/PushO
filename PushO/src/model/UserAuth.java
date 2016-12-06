@@ -1,28 +1,34 @@
 package model;
 
+/**
+ * @author		최병철
+ * @Description	테스트 테이블의 필드값들을 담을 Model
+ * TODO			추후 인증에 대한 필드가 변경될 경우 수정
+ */
 public class UserAuth {
-	private int id;
+	private String id;
 	private String name;
-	private String ip;
-	private int port;
+	private String passwd;
 	
-	public UserAuth(int id, String name, String ip, int port) {
-		// TODO Auto-generated constructor stub
+	public UserAuth() {
+	}
+	
+	public UserAuth(String id, String name, String passwd) {
 		this.id = id;
 		this.name = name;
-		this.ip = ip;
-		this.port = port;
+		this.passwd = passwd;
 	}
 
-	public UserAuth() {
-		// TODO Auto-generated constructor stub
+	@Override
+	public String toString() {
+		return "[ 유저 정보 : "+this.id+" , "+this.name+" , "+this.passwd+" ]";
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -34,26 +40,13 @@ public class UserAuth {
 		this.name = name;
 	}
 
-	public String getIp() {
-		return ip;
+	public String getPasswd() {
+		return passwd;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
-	public int getPort() {
-		return port;
-	}
-
-	public void setPort(int port) {
-		this.port = port;
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "[ 유저 정보 : "+this.id+" , "+this.name+" , "+this.ip+" , "+this.port+" ]";
-	}
-	
+
 }

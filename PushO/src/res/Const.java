@@ -1,13 +1,18 @@
 package res;
 import java.io.File;
 
+/**
+ * @author		최병철
+ * @Description 모든 클래스에서 사용되는 상수 값들을 정리, 한글은 별도의 파일로 관리해야 함
+ * TODO			
+ */
 public interface Const {
 	/**
 	 * Socket Connection
 	 */
 	String SERVER_IP ="127.0.0.1";
 	int PORT_NUM = 9999;
-	int STREAM_TIME_OUT = 3000;
+	int STREAM_TIME_OUT = 30000;
 	int SEND_WATING_TIME = 1000;
 	
 	/**
@@ -25,7 +30,11 @@ public interface Const {
 	 */
 	String CLASS_FOR_NAME = "com.mysql.jdbc.Driver";
 	String JDBC_URL = "jdbc:mysql://175.115.95.32:3306/";
+<<<<<<< HEAD
 	String DB_NAME = "push_o";
+=======
+	String DB_NAME = "push_o?useUnicode=true&characterEncoding=UTF-8";
+>>>>>>> chio/master
 	String DB_USER_ID = "wodn4131";
 	String DB_USER_PASSWORD = "wogud00";
 	

@@ -1,12 +1,11 @@
 package exception;
 
-public class EmptyResultDataException extends Exception{
-
+/**
+ * @author		최병철
+ * @Description	DB의 검색 결과가 없을 경우 발생하는 사용자 정의 예외
+ */
+public class EmptyResultDataException extends RuntimeException{
 	public EmptyResultDataException(String msg) {
-		// TODO Auto-generated constructor stub
 		super(msg);
-		//
-		//나도 풀리퀘 고고 - 최병철
-		//브랜치?
 	}
 }

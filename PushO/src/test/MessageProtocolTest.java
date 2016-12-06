@@ -20,9 +20,6 @@ public class MessageProtocolTest {
 //			byteTest();
 		}
 		
-		
-		
-		
 		private void byteTest() {
 			byte[] bName = name.getBytes();
 			byte[] bPasswd = passwd.getBytes();

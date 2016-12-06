@@ -1,0 +1,18 @@
+/client/
+<<<<<<< HEAD
+/dao/
+/exception/
+/model/
+/res/
+/server/
+/test/
+/util/
+=======
+/server/
+/test/
+/util/
+/res/
+/dao/
+/exception/
+/model/
+>>>>>>> refs/remotes/origin/master
