@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -20,7 +22,6 @@ import util.Utils;
  * 				이벤트를 발생시키거나 데이터를 수신 후 가시적으로 보여줄 View
  */
 public class OIOClient {
-	
 	public static void main(String[] args) {
 		new OIOClient();
 	}
@@ -95,6 +96,7 @@ public class OIOClient {
 				System.out.println("Ping 전송");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 				try {
 					bis.close();
@@ -107,6 +109,7 @@ public class OIOClient {
 			}
 			
 		} catch (IOException e) {
+			
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
