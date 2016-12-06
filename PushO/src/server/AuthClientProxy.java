@@ -1,11 +1,12 @@
 package server;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.json.simple.parser.JSONParser;
 
 import dao.JDBCTemplate;
 import exception.EmptyResultDataException;
@@ -38,13 +39,27 @@ public class AuthClientProxy {
 	public synchronized ProcessCilentRequest getClientSocketThread(Socket socket) 
 													throws EmptyResultDataException {
 		ProcessCilentRequest thread = null;
-		BufferedReader br = null;
+		BufferedInputStream bis = null;
 
 		try {
-			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			String text = br.readLine();
+			bis = new BufferedInputStream(socket.getInputStream());
+			byte[] buf = new byte[Const.HEADER_LENTH];
+			int readCount = 0;
+			int length = 0;
+			int bodylength = 0;
+			System.out.println("바이트 읽기 시작");
+			
+			readCount = bis.read(buf);
+			length = Utils.byteToInt(buf);
+			byte[] body = new byte[length];
+			bodylength = bis.read(body);
+			String text = new String(body);
+			System.out.println(text);
+			
 			if (text.contains(Const.JSON_VALUE_AUTH)) {
-				checkAuthorization(Utils.parseJSONMessage(text));
+				String name = Utils.parseJSONMessage(new JSONParser(), new String(body));
+				System.out.println(name);
+				checkAuthorization(name);
 
 				thread = new ProcessCilentRequest(socket);
 			}
@@ -52,7 +67,7 @@ public class AuthClientProxy {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			try {
-				br.close();
+				bis.close();
 			} catch (IOException closeE) {
 				// TODO Auto-generated catch block
 				closeE.printStackTrace();
@@ -67,11 +82,11 @@ public class AuthClientProxy {
 	 * @throws EmptyResultDataException	인증이 안되었을 경우 발생
 	 */
 	private void checkAuthorization(String name) throws EmptyResultDataException {
-		new JDBCTemplate().executeQuery("select * from user_auth where name = ?", 
+		new JDBCTemplate().executeQuery("select * from pj_member where mem_name = ?", 
 				new SetPrepareStatement() {
 					@Override
 					public void setFields(PreparedStatement pstm) throws SQLException {
-						// TODO Auto-generated method stub
+						System.out.println("디비접속");
 						pstm.setString(1, name);
 					}
 				});

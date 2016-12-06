@@ -11,12 +11,12 @@ public class DBTest {
 	public static void main(String[] args) {
 		JDBCTemplate template = new JDBCTemplate();
 		try {
-			UserAuth auth = template.executeQuery("select * from user_auth where id = ?", 
+			UserAuth auth = template.executeQuery("select * from pj_member where mem_name = ?", 
 					new SetPrepareStatement() {
 						@Override
 						public void setFields(PreparedStatement pstm) throws SQLException {
 							// TODO Auto-generated method stub
-							pstm.setInt(1, 3);
+							pstm.setString(1, "root");
 						}
 					});
 			System.out.println(auth.toString());

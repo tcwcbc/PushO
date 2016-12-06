@@ -55,7 +55,6 @@ public class JDBCTemplate {
 		UserAuth userAuthResult = null;
 		try {
 			ps = con.prepareStatement(sql);
-			
 			//콜백 인터페이스 호출
 			pstm.setFields(ps);
 
@@ -63,12 +62,8 @@ public class JDBCTemplate {
 			
 			//결과 값이 없다면 다음의 문장은 수행되지 않는다.
 			if (rs.next()) {
-				userAuthResult = new UserAuth();
-				userAuthResult.setId(rs.getInt("id"));
-				userAuthResult.setName(rs.getString("name"));
-				userAuthResult.setIp(rs.getString("ip"));
-				userAuthResult.setPort(rs.getInt("port"));
-				
+				userAuthResult = new UserAuth(rs.getString("mem_id"),
+						rs.getString("mem_name"),rs.getString("mem_pwd"));
 			}
 			
 		} catch (SQLException e) {

@@ -1,4 +1,6 @@
 package server;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,6 +10,9 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import dao.JDBCTemplate;
 import exception.EmptyResultDataException;
@@ -25,8 +30,10 @@ import util.Utils;
 public class ProcessCilentRequest extends Thread {
 
 	private Socket connectedSocketWithClient;
-	private BufferedReader br;
-	private BufferedWriter bw;
+	private byte[] msgPingByte;
+	private byte[] msgPongByte;
+	private BufferedOutputStream bos;
+	private BufferedInputStream bis;
 	
 	public ProcessCilentRequest(Socket socket) {
 		this.connectedSocketWithClient = socket;
@@ -35,76 +42,70 @@ public class ProcessCilentRequest extends Thread {
 	@Override
 	public void run(){
 		try {
-			br = new BufferedReader(new InputStreamReader(
-					connectedSocketWithClient.getInputStream()));
-			bw = new BufferedWriter(new OutputStreamWriter(
-					connectedSocketWithClient.getOutputStream()));
+			bos = new BufferedOutputStream(
+					connectedSocketWithClient.getOutputStream());
+			bis = new BufferedInputStream(
+					connectedSocketWithClient.getInputStream());
 			
-			bw.write(Utils.makeJSONMessageForPingPong(true));
-			System.out.println("시작을 위한 Ping 전송");
-			bw.flush();
-			
-			//핑퐁릴레이
-			String text = null;
-			while((text = br.readLine())!=null){
-				Thread.sleep(Const.SEND_WATING_TIME);
-				String pp = Utils.parseJSONMessage(text);
-				if(pp.equals(Const.JSON_VALUE_PING)){
-					bw.write(Utils.makeJSONMessageForPingPong(false));
-					System.out.println("Pong 전송");
-				}
-				if(pp.equals(Const.JSON_VALUE_PONG)){
-					bw.write(Utils.makeJSONMessageForPingPong(true));
-					System.out.println("Ping 전송");
-				}
-				bw.flush();
-			}
+			/**
+			 * 실제 데이터를 주고 받는 부분
+			 * TODO : 핑퐁뿐만 아니라 실제 데이터를 주고받는 로직
+			 */
+			startPingPong();
 		}catch (SocketTimeoutException timeoutE){
 			//TODO 타임아웃 발생 시에 자원회수 및 처리 매커니즘
 			timeoutE.printStackTrace();
 			try {
-				bw.write(Utils.makeJSONMessageForPingPong(true));
+				bos.write(msgPingByte);
 				System.out.println("Ping 전송");
 				
 			} catch (IOException e) {
 				e.printStackTrace();
 				try {
-					br.close();
-					bw.close();
+					bis.close();
+					bos.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			}
 			
-		} catch (IOException e) {
+		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} 
+		}
 	}
 
-	/**
-	 * 테스트를 위한 PingPong 메시지 송수신 메소드
-	 * 
-	 * @param time					메시지를 수신하고 응답을 보낼 횟수
-	 * @throws IOException			
-	 * @throws InterruptedException
-	 */
-	private void autoPingPong(int time) throws IOException, InterruptedException {
-		String text;
-		for(int i = 0; i<time; i++){
-			text = br.readLine();
-			Thread.sleep(Const.SEND_WATING_TIME);
-			String pp = Utils.parseJSONMessage(text);
+	private void startPingPong() throws IOException, InterruptedException {
+		String msgPingString = Utils.makeJSONMessageForPingPong(new JSONObject(), true);
+		msgPingByte = Utils.makeMessageStringToByte(
+				new byte[Const.HEADER_LENTH+msgPingString.getBytes().length], msgPingString);
+		String msgPongString = Utils.makeJSONMessageForPingPong(new JSONObject(), false);
+		msgPongByte = Utils.makeMessageStringToByte(
+				new byte[Const.HEADER_LENTH+msgPongString.getBytes().length], msgPongString);
+		
+		byte[] buf = new byte[Const.HEADER_LENTH];
+		byte[] body;
+		int readCount = 0;
+		int length = 0;
+		int bodylength = 0;
+		
+		bos.write(msgPingByte);
+		bos.flush();
+		System.out.println("시작을 위한 Ping 전송");
+		
+		while((readCount=bis.read(buf))!=-1){
+			length = Utils.byteToInt(buf);
+			body = new byte[length];
+			bodylength = bis.read(body);
+			String pp = Utils.parseJSONMessage(new JSONParser(), new String(body));
 			if(pp.equals(Const.JSON_VALUE_PING)){
-				bw.write(Utils.makeJSONMessageForPingPong(false));
+				bos.write(msgPongByte);
 				System.out.println("Pong 전송");
 			}
 			if(pp.equals(Const.JSON_VALUE_PONG)){
-				bw.write(Utils.makeJSONMessageForPingPong(true));
+				bos.write(msgPingByte);
 				System.out.println("Ping 전송");
 			}
-			bw.flush();
+			bos.flush();
 		}
 	}
 }

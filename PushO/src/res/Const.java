@@ -12,7 +12,7 @@ public interface Const {
 	 */
 	String SERVER_IP ="127.0.0.1";
 	int PORT_NUM = 9999;
-	int STREAM_TIME_OUT = 3000;
+	int STREAM_TIME_OUT = 30000;
 	int SEND_WATING_TIME = 1000;
 	
 	/**
@@ -29,10 +29,10 @@ public interface Const {
 	 * DB Connection
 	 */
 	String CLASS_FOR_NAME = "com.mysql.jdbc.Driver";
-	String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/";
-	String DB_NAME = "test";
-	String DB_USER_ID = "test";
-	String DB_USER_PASSWORD = "1234";
+	String JDBC_URL = "jdbc:mysql://175.115.95.32:3306/";
+	String DB_NAME = "push_o?useUnicode=true&characterEncoding=UTF-8";
+	String DB_USER_ID = "wodn4131";
+	String DB_USER_PASSWORD = "wogud00";
 	
 	/**
 	 * JSON
