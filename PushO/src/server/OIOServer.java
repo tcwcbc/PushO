@@ -43,9 +43,10 @@ public class OIOServer {
 				//블로킹 구간
 				socket = serverSocket.accept();
 				//스트림에 대한 타임아웃 설정
-				socket.setSoTimeout(Const.STREAM_TIME_OUT);
+//				socket.setSoTimeout(Const.STREAM_TIME_OUT);
 				try {
 					//인증을 실행(DB조회) 후 성공한다면 클라이언트 요청처리 쓰레드 시작
+					System.out.println("서버쪽 소켓 연결");
 					ProcessCilentRequest thread = authProxy.getClientSocketThread(socket);
 					thread.start();
 					//리스트로 관리
