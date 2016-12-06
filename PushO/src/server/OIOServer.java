@@ -1,14 +1,16 @@
 package server;
 
 import java.io.IOException;
-import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
 import exception.EmptyResultDataException;
+import observer.DBObserver;
+import observer.DBThread;
 import res.Const;
 
+public class OIOServer implements DBObserver {
 /**
  * @author 		최병철
  * @Description	서버 프로그램, OIO방식의 Socket통신, 일종의 Controller 클래스
@@ -21,13 +23,13 @@ import res.Const;
  * 				클라이언트와 연결이 되었을 때의 초기화 작업(인증, 암호화 등)
  * 				타임아웃이 발생하였을 경우 자원관리 매커니즘
  */
-public class OIOServer {
 	
 	public static void main(String[] args) {
 		new OIOServer();
 	}
 	private ServerSocket serverSocket;
 	private Socket socket;
+	private DBThread dbThread;
 	
 	ArrayList<Socket> socketList = new ArrayList<Socket>();
 
@@ -36,6 +38,9 @@ public class OIOServer {
 			
 			serverSocket = new ServerSocket(Const.PORT_NUM);
 			System.out.println("서버시작...");
+			
+			dbThread = new DBThread(this);
+			dbThread.start();
 			
 			//인증을 위한 프록시 클래스의 인스턴스 획득
 			AuthClientProxy authProxy = AuthClientProxy.getInstance();
@@ -68,6 +73,7 @@ public class OIOServer {
 			try {
 				socket.close();
 				serverSocket.close();
+				dbThread.obserberStop();
 				socketList = null;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -75,4 +81,10 @@ public class OIOServer {
 			}
 		}
 	}
+
+	@Override
+	public void msgPush(String msg) {
+		System.out.println(msg);
+	}
 }
+
