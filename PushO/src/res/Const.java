@@ -24,10 +24,10 @@ public interface Const {
 	 * DB Connection
 	 */
 	String CLASS_FOR_NAME = "com.mysql.jdbc.Driver";
-	String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/";
-	String DB_NAME = "test";
-	String DB_USER_ID = "test";
-	String DB_USER_PASSWORD = "1234";
+	String JDBC_URL = "jdbc:mysql://175.115.95.32:3306/";
+	String DB_NAME = "push_o";
+	String DB_USER_ID = "wodn4131";
+	String DB_USER_PASSWORD = "wogud00";
 	
 	/**
 	 * JSON
@@ -45,5 +45,6 @@ public interface Const {
 	String JSON_VALUE_PUSH = "push";
 	
 	String END_LINE = "\n";
+	int HEADER_LENTH = 4;
 	
 }

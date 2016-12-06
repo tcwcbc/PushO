@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,6 +17,26 @@ import org.json.simple.parser.ParseException;
 import res.Const;
 
 public class Utils {
+	
+	public static boolean isEmpty(Object s) {
+		if (s == null) {
+			return true;
+		}
+		if ((s instanceof String) && (((String) s).trim().length() == 0)) {
+			return true;
+		}
+		if (s instanceof Map) {
+			return ((Map<?, ?>) s).isEmpty();
+		}
+		if (s instanceof List) {
+			return ((List<?>) s).isEmpty();
+		}
+		if (s instanceof Object[]) {
+			return (((Object[]) s).length == 0);
+		}
+		return false;
+	}
+	
 	public static String readFile(String filePath) {
 		String ret = "";
 		String temp = "";

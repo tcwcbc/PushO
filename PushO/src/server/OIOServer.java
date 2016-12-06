@@ -7,9 +7,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import exception.EmptyResultDataException;
+import observer.DBObserver;
+import observer.DBThread;
 import res.Const;
 
-public class OIOServer {
+public class OIOServer implements DBObserver {
 	
 	public static void main(String[] args) {
 		new OIOServer();
@@ -18,9 +20,13 @@ public class OIOServer {
 	ArrayList<Socket> socketList = new ArrayList<Socket>();
 	private ServerSocket serverSocket;
 	private Socket socket;
+	private DBThread dbThread;
 
 	public OIOServer() {
 		try {
+			dbThread = new DBThread(this);
+			dbThread.start();
+			
 			serverSocket = new ServerSocket(Const.PORT_NUM);
 			System.out.println("서버시작...");
 			AuthClientProxy authProxy = AuthClientProxy.getInstance();
@@ -48,11 +54,17 @@ public class OIOServer {
 			try {
 				socket.close();
 				serverSocket.close();
+				dbThread.obserberStop();
 				socketList = null;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	public void msgPush(String msg) {
+		System.out.println(msg);
 	}
 }
