@@ -36,6 +36,7 @@ public class OIOClient {
 			bos.write(msgAuthByte);
 			bos.flush();
 			System.out.println("인증 보냄");
+			processMsg();
 			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -116,8 +117,10 @@ public class OIOClient {
 					// 서버가 죽은 경우
 					boolean flag = true;
 					while (flag) {
-						if (connectServer())
+						if (connectServer()) {
+							processMsg();
 							flag = false;
+						}
 					}
 
 				}
