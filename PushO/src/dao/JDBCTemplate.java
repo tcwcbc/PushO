@@ -41,7 +41,7 @@ public class JDBCTemplate {
 			Class.forName(Const.CLASS_FOR_NAME);
 			con = DriverManager.getConnection(Const.JDBC_URL+Const.DB_NAME,
 					Const.DB_USER_ID, Const.DB_USER_PASSWORD);
-			System.out.println("DB연결 완료");
+
 		} catch (SQLException | ClassNotFoundException e) {
 
 			e.printStackTrace();
@@ -89,6 +89,11 @@ public class JDBCTemplate {
 		return userAuthResult;
 	}
 	
+	/**
+	 * TB_USER_ORDER 테이블을 SELECT하고 주문정보를 반환하는 메소드
+	 * @param          주문테이블에서 order_push 속성이 N 인것을 SELECT한다.
+	 * @return         상품 상세목록을 제외한 데이터를 반환한다.
+	 */
 	public List<PushInfo> executeQuery_ORDER(String sql) {
 		pushList.clear();
 		try {
@@ -108,6 +113,12 @@ public class JDBCTemplate {
 		return pushList;
 	}
 	
+	/**
+	 * TB_USER_ODER_LIST 와 TB_PRODUCT 테이블을 INNER JOIN하여 주문 번호에 따른
+	 * 상품 이름과 수량을 구하는 메소드
+	 * @param sql
+	 * @return 상품이름과 갯수가 하나의 스트링으로 반환된다.
+	 */
 	public String executeQuery_ORDER_LIST(String sql) {
 		String orderList = "";
 		try {
@@ -115,7 +126,8 @@ public class JDBCTemplate {
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				orderList += "(" + rs.getString("orderlist_count") + "/" + rs.getString("product_name") + ")";
+				orderList += "{\"count\":" + "\""+ rs.getString("orderlist_count") + "\"," + 
+							"\"product\":" + "\""+ rs.getString("product_name") + "\"}/";
 			} 
 			
 		} catch (SQLException e) {

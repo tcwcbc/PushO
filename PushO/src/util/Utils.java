@@ -7,24 +7,34 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import model.PushInfo;
 import res.Const;
 
 /**
- * @author		최병철
- * @Description	모든 클래스에서 공통적으로 사용되는 메소드들을 정의
- * TODO			File 읽기 및 쓰기에 대한 부분 수정필요
- * 				멀티쓰레드 환경에서의 활용을 고려하여 동시성 제고
- * 				메시지 전문의 형식이 Fix되지 않았음으로 메시지를 만들고 파싱하는 부분 수정 가능
+ * @author 최병철
+ * @Description 모든 클래스에서 공통적으로 사용되는 메소드들을 정의 TODO File 읽기 및 쓰기에 대한 부분 수정필요 멀티쓰레드
+ *              환경에서의 활용을 고려하여 동시성 제고 메시지 전문의 형식이 Fix되지 않았음으로 메시지를 만들고 파싱하는 부분
+ *              수정 가능
  */
 public class Utils {
+
 	
+	/**
+	 * 오브젝트가 비었는지 확인하는 메소드
+	 * @param 오브젝트
+	 * @return 비어있으면 true 데이터가 있으면 false
+	 */
 	public static boolean isEmpty(Object s) {
 		if (s == null) {
 			return true;
@@ -43,7 +53,7 @@ public class Utils {
 		}
 		return false;
 	}
-	
+
 	public static String readFile(String filePath) {
 		String ret = "";
 		String temp = "";
@@ -92,30 +102,34 @@ public class Utils {
 
 	/**
 	 * JSON형식으로 만들어진 msg를 byte[]로 변환하여 그 길이를 헤더에 붙여 ret에 담아 반환하는 메소드
-	 * @param ret	결과 값이 담길 바이트 배열, 길이는 4(int의 바이트)+메시지 바이트의 길이
-	 * 				ex)new byte[](4+msg.getBytes().length);
-	 * @param msg	JSON형식으로 만들어진 본문
-	 * @return		merge(byte[] header + byte[] body)
+	 * 
+	 * @param ret
+	 *            결과 값이 담길 바이트 배열, 길이는 4(int의 바이트)+메시지 바이트의 길이 ex)new
+	 *            byte[](4+msg.getBytes().length);
+	 * @param msg
+	 *            JSON형식으로 만들어진 본문
+	 * @return merge(byte[] header + byte[] body)
 	 */
-	public static byte[] makeMessageStringToByte(byte[] ret ,String msg){
-		return mergeBytearrays(
-				ret,
-				intTobyte(msg.getBytes().length),
-				msg.getBytes());
+	public static byte[] makeMessageStringToByte(byte[] ret, String msg) {
+		return mergeBytearrays(ret, intTobyte(msg.getBytes().length), msg.getBytes());
 	}
-	
+
 	/**
 	 * 이름과 비밀번호를 통해 인증을 위한 JSON메시지를 만드는 메소드
-	 * @param name			사용자 이름
-	 * @param passwd		사용자 비밀번호
-	 * @param parent		최상위 JSONObject
-	 * @param childData		실질적인 data를 담고 있는 JSONObject
-	 * @return				JSON형식의 String data
+	 * 
+	 * @param name
+	 *            사용자 이름
+	 * @param passwd
+	 *            사용자 비밀번호
+	 * @param parent
+	 *            최상위 JSONObject
+	 * @param childData
+	 *            실질적인 data를 담고 있는 JSONObject
+	 * @return JSON형식의 String data
 	 */
-	public static String makeJSONMessageForAuth(String name, String passwd,
-												JSONObject parent, JSONObject childData) {
+	public static String makeJSONMessageForAuth(String name, String passwd, JSONObject parent, JSONObject childData) {
 		// getLong
-		parent.put(Const.JSON_KEY_SEND_TIME, System.currentTimeMillis());
+		parent.put(Const.JSON_KEY_SEND_TIME, getTime());
 		// auth, pp, push getString
 		parent.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_AUTH);
 		// id, getString
@@ -124,18 +138,20 @@ public class Utils {
 		childData.put(Const.JSON_KEY_AUTH_PASSWD, passwd);
 		// data (JSONObject)getObjcet
 		parent.put(Const.JSON_KEY_DATA, childData);
-		
+
 		return parent.toString();
 	}
 
 	/**
 	 * 연결유지 확인을 위한 PingPong 메시지를 만드는 메소드
-	 * @param isPing	true - Ping만들기, false - Pong만들기
-	 * @return			"ping"이나 "pong"
+	 * 
+	 * @param isPing
+	 *            true - Ping만들기, false - Pong만들기
+	 * @return "ping"이나 "pong"
 	 */
 	public static String makeJSONMessageForPingPong(JSONObject jsonObject, boolean isPing) {
 		// getLong
-		jsonObject.put(Const.JSON_KEY_SEND_TIME, System.currentTimeMillis());
+		jsonObject.put(Const.JSON_KEY_SEND_TIME, getTime());
 		// auth, pp, push getString
 		if (isPing) {
 			jsonObject.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_PING);
@@ -146,11 +162,46 @@ public class Utils {
 	}
 
 	/**
+	 * 푸시 데이터들을 Json포멧으로 변환
+	 * 
+	 * @param data 
+	 * 				주문정보가 담긴 데이터 배열
+	 * @param parent 
+	 * 				상위 Object
+	 * @param childData 
+	 * 				하위 Object
+	 * @return JSON형식의 String data
+	 */
+	public static String makeJSONMessageForPush(String[] data, JSONObject parent, JSONObject childData) {
+	
+		parent.put(Const.JSON_KEY_SEND_TIME, getTime());
+		parent.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_PUSH);
+		childData.put(Const.JSON_KEY_ORDER_NUM, data[0]);
+		childData.put(Const.JSON_KEY_ORDER_DATE, data[1]);
+		childData.put(Const.JSON_KEY_ORDER_USER, data[2]);
+		childData.put(Const.JSON_KEY_ORDER_SELLER, data[3]);
+		childData.put(Const.JSON_KEY_ORDER_PRICE, data[4]);
+		
+		JSONArray array = new JSONArray();
+	
+		for (int num = 5; num < data.length; num++) {
+			array.add(data[num]);
+		}
+		childData.put(Const.JSON_KEY_ORDER_LIST, array);
+		parent.put(Const.JSON_KEY_DATA, childData);
+
+		return parent.toString();
+	}
+
+	/**
 	 * String 타입으로 받은 JSON문자열을 파싱하여 특정 데이터를 추출하는 메소드
-	 * @param jsonParser	JSON 파싱을 위한 Parser 객체
-	 * @param msg			String 타입의 JSON문자열
-	 * @return				받은 메시지의 카테고리가 auth일 경우 id값, 
-	 * 						받은 메시지의 카테고리가 ping일 경우 pong, pong일 경우 ping을 반환
+	 * 
+	 * @param jsonParser
+	 *            JSON 파싱을 위한 Parser 객체
+	 * @param msg
+	 *            String 타입의 JSON문자열
+	 * @return 받은 메시지의 카테고리가 auth일 경우 id값, 받은 메시지의 카테고리가 ping일 경우 pong, pong일 경우
+	 *         ping을 반환
 	 */
 	public static String parseJSONMessage(JSONParser jsonParser, String msg) {
 		String category = null;
@@ -166,8 +217,10 @@ public class Utils {
 				JSONObject object = (JSONObject) jsonObject.get(Const.JSON_KEY_DATA);
 				String id = (String) object.get(Const.JSON_KEY_AUTH_ID);
 				String passwd = (String) object.get(Const.JSON_KEY_AUTH_PASSWD);
-//				result = id + "," + passwd;
+				// result = id + "," + passwd;
 				result = id;
+			} else if (category.equals(Const.JSON_VALUE_PUSH)) {
+				result = Const.JSON_VALUE_PUSH;
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -176,32 +229,65 @@ public class Utils {
 		}
 		return result;
 	}
+	
+	public static List<PushInfo> parsePushMessage(JSONParser jsonParser, String msg) {
+		List<PushInfo> pushList = new ArrayList<>();
+		try {
+			/*JSONArray array = new JSONArray();
+			array.add(new JSONObject());
+			array.add(new JSONObject());
+			array.add(new JSONObject());
+			array.add(new JSONObject());
+			for(int i = 0; i<array.size();i++){
+				productmodel.set = ((JSONObject)array.get(i)).get(product_name);
+				JSONObject jsonObject = ((JSONObject)array.get(i)).get(product_num);
+			}*/
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
+			JSONObject object = (JSONObject) jsonObject.get(Const.JSON_KEY_DATA);
+			
+			pushList.add(new PushInfo(
+					object.get(Const.JSON_KEY_ORDER_NUM).toString(), 
+					object.get(Const.JSON_KEY_ORDER_DATE).toString(),
+					object.get(Const.JSON_KEY_ORDER_USER).toString(), 
+					object.get(Const.JSON_KEY_ORDER_SELLER).toString(), 
+					object.get(Const.JSON_KEY_ORDER_PRICE).toString(),
+					object.get(Const.JSON_KEY_ORDER_LIST).toString()));
+	
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("JSON 파싱 에러");
+		}
+		return pushList;
+	}
 
 	/**
 	 * int형을 byte배열로 바꿈
-	 * @param integer	바이트 배열로 변환할 정수
 	 * 
-	 * order : ByteOrder.LITTLE_ENDIAN
-	 * 			ByteOrder.BIG_ENDIAN
-	 * @return	결과 바이트 배열
+	 * @param integer
+	 *            바이트 배열로 변환할 정수
+	 * 
+	 *            order : ByteOrder.LITTLE_ENDIAN ByteOrder.BIG_ENDIAN
+	 * @return 결과 바이트 배열
 	 */
 	public static byte[] intTobyte(int integer) {
-		ByteBuffer buff = ByteBuffer.allocate(Integer.SIZE/8);
+		ByteBuffer buff = ByteBuffer.allocate(Integer.SIZE / 8);
 		buff.order(ByteOrder.LITTLE_ENDIAN);
 		// 인수로 넘어온 integer을 putInt로설정
 		buff.putInt(integer);
 		return buff.array();
 	}
-	
+
 	/**
 	 * byte배열을 int형로 바꿈
-	 * @param bytes		정수로 변환할 바이트 배열		
-	 * order : ByteOrder.LITTLE_ENDIAN
-	 * 					ByteOrder.BIG_ENDIAN
-	 * @return			변환 된 정수
+	 * 
+	 * @param bytes
+	 *            정수로 변환할 바이트 배열 order : ByteOrder.LITTLE_ENDIAN
+	 *            ByteOrder.BIG_ENDIAN
+	 * @return 변환 된 정수
 	 */
 	public static int byteToInt(byte[] bytes) {
-		ByteBuffer buff = ByteBuffer.allocate(Integer.SIZE/8);
+		ByteBuffer buff = ByteBuffer.allocate(Integer.SIZE / 8);
 		buff.order(ByteOrder.LITTLE_ENDIAN);
 		// buff사이즈는 4인 상태임
 		// bytes를 put하면 position과 limit는 같은 위치가 됨.
@@ -210,32 +296,48 @@ public class Utils {
 		buff.flip();
 		return buff.getInt(); // position위치(0)에서 부터 4바이트를 int로 변경하여 반환
 	}
-	
+
 	/**
 	 * header 바이트 열과 body 바이트 배열을 merge하여 ret배열에 담아 반환하는 메소드
-	 * @param ret		결과 값이 담길 바이트 배열, 이 배열의 길이는 header의 길이와 body의 길이의 합
-	 * 					ex) new byte[header.length+body.length];
-	 * @param header	header 바이트 배열
-	 * @param body		body 바이트 배열
-	 * @return			merge 결과를 ret 바이트 배열에 담아 반환
+	 * 
+	 * @param ret
+	 *            결과 값이 담길 바이트 배열, 이 배열의 길이는 header의 길이와 body의 길이의 합 ex) new
+	 *            byte[header.length+body.length];
+	 * @param header
+	 *            header 바이트 배열
+	 * @param body
+	 *            body 바이트 배열
+	 * @return merge 결과를 ret 바이트 배열에 담아 반환
 	 */
-	public static byte[] mergeBytearrays(byte[] ret, byte[] header, byte[] body){
+	public static byte[] mergeBytearrays(byte[] ret, byte[] header, byte[] body) {
 		System.arraycopy(header, 0, ret, 0, header.length);
 		System.arraycopy(body, 0, ret, header.length, body.length);
 		return ret;
 	}
-	
+
 	/**
 	 * 전체 바이트 배열에서 header를 제외한 body 부분을 추출하여 반환하는 메소드
-	 * @param ret			결과 값이 담길 바이트 배열, 이 배열의 길이는 전체 바이트 배열에서 헤더의 길이를 뺀 값
-	 * 						ex) new byte[bArr.length-headerLength];
-	 * @param headerLength	header의 길이
-	 * @param bArr			전체 바이트 배열
-	 * @return				divide 결과를 ret 바이트 배열에 담아 반환
+	 * 
+	 * @param ret
+	 *            결과 값이 담길 바이트 배열, 이 배열의 길이는 전체 바이트 배열에서 헤더의 길이를 뺀 값 ex) new
+	 *            byte[bArr.length-headerLength];
+	 * @param headerLength
+	 *            header의 길이
+	 * @param bArr
+	 *            전체 바이트 배열
+	 * @return divide 결과를 ret 바이트 배열에 담아 반환
 	 */
-	public static byte[] divideBytearrays(byte[] ret, int headerLength, byte[] bArr){
-		System.arraycopy(bArr, headerLength, ret, 0, bArr.length-headerLength);
+	public static byte[] divideBytearrays(byte[] ret, int headerLength, byte[] bArr) {
+		System.arraycopy(bArr, headerLength, ret, 0, bArr.length - headerLength);
 		return ret;
 	}
 	
+	public static String getTime() {
+		long time = System.currentTimeMillis();
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMddhhmmss");
+		String str = dayTime.format(new Date(time));
+
+		return str;
+	}
+
 }
