@@ -7,14 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.Util;
-
 import exception.EmptyResultDataException;
 import model.PushInfo;
 import model.UserAuth;
 import res.Const;
 import server.SetPrepareStatement;
-import util.Utils;
 
 /**
  * @author		최병철
@@ -43,14 +40,10 @@ public class JDBCTemplate {
 		try {
 			Class.forName(Const.CLASS_FOR_NAME);
 			con = DriverManager.getConnection(Const.JDBC_URL+Const.DB_NAME,
-									Const.DB_USER_ID, Const.DB_USER_PASSWORD);
-<<<<<<< HEAD
+					Const.DB_USER_ID, Const.DB_USER_PASSWORD);
 			System.out.println("DB연결 완료");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-=======
 		} catch (SQLException | ClassNotFoundException e) {
->>>>>>> chio/master
+
 			e.printStackTrace();
 		}
 	}

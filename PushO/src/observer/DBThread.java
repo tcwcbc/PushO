@@ -1,8 +1,5 @@
 package observer;
 
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +7,13 @@ import java.util.List;
 import dao.JDBCTemplate;
 import model.PushInfo;
 import util.Utils;
+
+/**
+ * 
+ * @author       김재우
+ * @Description  별도의 쓰레드를 생성하여 사용자 주문테이블을 항상 감시하고
+ *               사용자에게 PUSH 해야 할 데이터를 return하고있다.
+ */
 
 public class DBThread extends Thread {
 	

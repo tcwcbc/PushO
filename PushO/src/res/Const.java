@@ -30,11 +30,7 @@ public interface Const {
 	 */
 	String CLASS_FOR_NAME = "com.mysql.jdbc.Driver";
 	String JDBC_URL = "jdbc:mysql://175.115.95.32:3306/";
-<<<<<<< HEAD
-	String DB_NAME = "push_o";
-=======
 	String DB_NAME = "push_o?useUnicode=true&characterEncoding=UTF-8";
->>>>>>> chio/master
 	String DB_USER_ID = "wodn4131";
 	String DB_USER_PASSWORD = "wogud00";
 	
