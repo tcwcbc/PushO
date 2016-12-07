@@ -90,7 +90,7 @@ public class OIOServer implements DBObserver {
 
 	@Override
 	public void msgPush(String msg) {
-		System.out.println("푸쉬데이터 : " + msg);
+		//System.out.println("푸쉬데이터 : " + msg);
 		keySetIterator = socketList.keySet().iterator();
 		while (keySetIterator.hasNext()) {
 		    String userID = keySetIterator.next();

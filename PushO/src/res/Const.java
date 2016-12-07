@@ -49,6 +49,8 @@ public interface Const {
 	String JSON_KEY_ORDER_SELLER = "order_seller";
 	String JSON_KEY_ORDER_PRICE = "order_price";
 	String JSON_KEY_ORDER_LIST = "order_list";
+	String JSON_KEY_ORDER_PRODUCT = "product";
+	String JSON_KEY_ORDER_PRODUCT_COUNT = "product_count";
 	
 	String JSON_VALUE_AUTH = "auth";
 	String JSON_VALUE_PING = "ping";

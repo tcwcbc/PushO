@@ -26,18 +26,18 @@ public class OIOClient {
 	private BufferedOutputStream bos;
 	private BufferedInputStream bis;
 
-	private List<PushInfo> pushList = new ArrayList<>();
+	private PushInfo pushData;
 	
 	// 서버에 연결 작업
 	public boolean connectServer() {
 		try {
 			socket = new Socket(Const.SERVER_IP, Const.PORT_NUM);
 			// 입력스트림에 대한 타임아웃 설정
-			socket.setSoTimeout(Const.STREAM_TIME_OUT);
+			//socket.setSoTimeout(Const.STREAM_TIME_OUT);
 
 			bis = new BufferedInputStream(socket.getInputStream());
 			bos = new BufferedOutputStream(socket.getOutputStream());
-			String msgAuthString = Utils.makeJSONMessageForAuth("다우마트사장", "비밀번호~?", new JSONObject(), new JSONObject());
+			String msgAuthString = Utils.makeJSONMessageForAuth("root", "root", new JSONObject(), new JSONObject());
 			byte[] msgAuthByte = Utils.makeMessageStringToByte(
 					new byte[Const.HEADER_LENTH + msgAuthString.getBytes().length], msgAuthString);
 			bos.write(msgAuthByte);
@@ -64,7 +64,7 @@ public class OIOClient {
 		while (status) {
 			try {
 				// timeout 설정
-				socket.setSoTimeout(Const.SEND_WATING_TIME);
+				//socket.setSoTimeout(Const.SEND_WATING_TIME);
 				while ((readCount = bis.read(header)) != -1) {
 
 					// 수신된 메시지 DATASIZE
@@ -72,6 +72,7 @@ public class OIOClient {
 					// DATA 길이만큼 byte배열 선언
 					byte[] body = new byte[headerLength];
 					bodyLength = bis.read(body);
+					System.out.println(new String(body));
 					String msg = Utils.parseJSONMessage(new JSONParser(), new String(body));
 
 					// Ping 메시지 일 경우
@@ -84,8 +85,8 @@ public class OIOClient {
 					}
 					// Push 메시지 일 경우
 					else if (msg.equals(Const.JSON_VALUE_PUSH)) {
-						pushList = Utils.parsePushMessage(new JSONParser(), new String(body));
-						pushList.get(0).showInfo();
+						pushData = Utils.parsePushMessage(new JSONParser(), new String(body), pushData);
+						System.out.println(pushData.getOrder_list().get(0).getProduct().toString());
 					}
 				} // end of while
 
