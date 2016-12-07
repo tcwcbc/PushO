@@ -4,8 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -32,21 +30,24 @@ public class OIOClient {
 	public boolean connectServer() {
 		try {
 			socket = new Socket(Const.SERVER_IP, Const.PORT_NUM);
-			// 입력스트림에 대한 타임아웃 설정
-			//socket.setSoTimeout(Const.STREAM_TIME_OUT);
 
 			bis = new BufferedInputStream(socket.getInputStream());
 			bos = new BufferedOutputStream(socket.getOutputStream());
-			String msgAuthString = Utils.makeJSONMessageForAuth("root", "root", new JSONObject(), new JSONObject());
+
+			// 인증을 위한 JSON 메세지 생성
+			String msgAuthString = Utils.makeJSONMessageForAuth("다우마트사장", "비밀번호~?", new JSONObject(), new JSONObject());
 			byte[] msgAuthByte = Utils.makeMessageStringToByte(
 					new byte[Const.HEADER_LENTH + msgAuthString.getBytes().length], msgAuthString);
 			bos.write(msgAuthByte);
 			bos.flush();
 			System.out.println("인증 보냄");
+
+			// 메시지 송수신위한 메소드 호출
 			processMsg();
+			
 			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("connectServer() Exception 발생!!");
 			return false;
 		}
 	}
@@ -56,6 +57,7 @@ public class OIOClient {
 		int readCount = 0;
 		int headerLength = 0;
 		int bodyLength = 0;
+		
 		// 수신된 메시지 DATASIZE
 		byte[] header = new byte[Const.HEADER_LENTH];
 		/**
@@ -63,8 +65,8 @@ public class OIOClient {
 		 */
 		while (status) {
 			try {
-				// timeout 설정
-				//socket.setSoTimeout(Const.SEND_WATING_TIME);
+				// 입력스트림에 대한 타임아웃 설정
+				socket.setSoTimeout(Const.SEND_WATING_TIME);
 				while ((readCount = bis.read(header)) != -1) {
 
 					// 수신된 메시지 DATASIZE
@@ -72,7 +74,6 @@ public class OIOClient {
 					// DATA 길이만큼 byte배열 선언
 					byte[] body = new byte[headerLength];
 					bodyLength = bis.read(body);
-					System.out.println(new String(body));
 					String msg = Utils.parseJSONMessage(new JSONParser(), new String(body));
 
 					// Ping 메시지 일 경우
@@ -89,7 +90,6 @@ public class OIOClient {
 						System.out.println(pushData.getOrder_list().get(0).getProduct().toString());
 					}
 				} // end of while
-
 			} catch (IOException e) {
 				try {
 					// Ping 메시지 전송
@@ -100,24 +100,19 @@ public class OIOClient {
 					bos.write(msgPingByte);
 					bos.flush();
 					System.out.println("ping 전송");
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
 
-				try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-
-				try {
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+					
 					// 수신된 메시지 DATASIZE
 					headerLength = Utils.byteToInt(header);
 					// DATA 길이만큼 byte배열 선언
 					byte[] body = new byte[headerLength];
 					bodyLength = bis.read(body);
 					String msg = Utils.parseJSONMessage(new JSONParser(), new String(body));
-
 					// Pong 메시지 일 경우
 					if (msg.equals(Const.JSON_VALUE_PONG)) {
 						System.out.println("Pong 도착");
@@ -133,14 +128,8 @@ public class OIOClient {
 
 				}
 			}
-
-		}
-
-		// 클라이언트가 죽은 경우
-		System.out.println("[MultiChatClient]" + "종료됨!");
-		status = false;
-
-	}
+		} // end of while
+	} // end of processMsg() 
 
 	public static void main(String[] args) {
 		OIOClient mcc = new OIOClient();
