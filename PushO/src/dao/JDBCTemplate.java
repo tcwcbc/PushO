@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exception.EmptyResultDataException;
+import model.ProductList;
 import model.PushInfo;
 import model.UserAuth;
 import res.Const;
@@ -29,7 +30,8 @@ public class JDBCTemplate {
 	private ResultSet rs;
 	
 	private List<PushInfo> pushList = new ArrayList<>();
-
+	private List<ProductList> productList = new ArrayList<>();
+	
 	public JDBCTemplate() {
 		if (con == null) {
 			connectDB();
@@ -119,15 +121,14 @@ public class JDBCTemplate {
 	 * @param sql
 	 * @return 상품이름과 갯수가 하나의 스트링으로 반환된다.
 	 */
-	public String executeQuery_ORDER_LIST(String sql) {
-		String orderList = "";
+	public List<ProductList> executeQuery_ORDER_LIST(String sql) {
+		productList.clear();
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				orderList += "{\"count\":" + "\""+ rs.getString("orderlist_count") + "\"," + 
-							"\"product\":" + "\""+ rs.getString("product_name") + "\"}/";
+				productList.add(new ProductList(rs.getString("product_name"), rs.getString("orderlist_count")));
 			} 
 			
 		} catch (SQLException e) {
@@ -135,7 +136,7 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		} 
 		
-		return orderList;
+		return productList;
 		
 	}
 	

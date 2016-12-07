@@ -1,8 +1,9 @@
 package model;
 
+import java.sql.Array;
 import java.util.ArrayList;
-
-import org.json.simple.JSONArray;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author		김재우
@@ -15,8 +16,7 @@ public class PushInfo {
 	private String order_user;
 	private String order_seller;
 	private String order_price;
-	private String order_list;
-	//private ArrayList<Product> order_list;
+	private List<ProductList> order_list;
 	private String result_info;
 	
 	
@@ -29,7 +29,7 @@ public class PushInfo {
 	}
 	
 	public PushInfo(String order_num, String order_date, String order_user, 
-			String order_seller, String order_price, String order_list) {
+			String order_seller, String order_price, List<ProductList> order_list) {
 		this.order_num = order_num;
 		this.order_date = order_date;
 		this.order_user = order_user;
@@ -40,7 +40,7 @@ public class PushInfo {
 	
 	public void showInfo() {
 		System.out.println("주문번호:" + order_num + "/" + "주문날짜:" + order_date + "/" + "구매자" + order_user + "/"
-				+ "판매자:" + order_seller + "총 금액:" + order_price + "/" + "믈품리스트:" + order_list);
+				+ "판매자:" + order_seller + "총 금액:" + order_price + "/" + "믈품리스트:" + order_list.toString());
 	}
 	
 	/**
@@ -93,14 +93,11 @@ public class PushInfo {
 		this.order_price = order_price;
 	}
 
-	public String getOrder_list() {
+	public List<ProductList> getOrder_list() {
 		return order_list;
 	}
 
-	public void setOrder_list(String order_list) {
+	public void setOrder_list(List<ProductList> order_list) {
 		this.order_list = order_list;
 	}
-	
-	
-	
 }

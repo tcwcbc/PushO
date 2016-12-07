@@ -18,6 +18,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import model.ProductList;
 import model.PushInfo;
 import res.Const;
 
@@ -29,9 +30,9 @@ import res.Const;
  */
 public class Utils {
 
-	
 	/**
 	 * 오브젝트가 비었는지 확인하는 메소드
+	 * 
 	 * @param 오브젝트
 	 * @return 비어있으면 true 데이터가 있으면 false
 	 */
@@ -164,28 +165,31 @@ public class Utils {
 	/**
 	 * 푸시 데이터들을 Json포멧으로 변환
 	 * 
-	 * @param data 
-	 * 				주문정보가 담긴 데이터 배열
-	 * @param parent 
-	 * 				상위 Object
-	 * @param childData 
-	 * 				하위 Object
+	 * @param data
+	 *            주문정보가 담긴 데이터 배열
+	 * @param parent
+	 *            상위 Object
+	 * @param childData
+	 *            하위 Object
 	 * @return JSON형식의 String data
 	 */
-	public static String makeJSONMessageForPush(String[] data, JSONObject parent, JSONObject childData) {
-	
+	public static String makeJSONMessageForPush(PushInfo msg, JSONObject parent, JSONObject childData) {
+
 		parent.put(Const.JSON_KEY_SEND_TIME, getTime());
 		parent.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_PUSH);
-		childData.put(Const.JSON_KEY_ORDER_NUM, data[0]);
-		childData.put(Const.JSON_KEY_ORDER_DATE, data[1]);
-		childData.put(Const.JSON_KEY_ORDER_USER, data[2]);
-		childData.put(Const.JSON_KEY_ORDER_SELLER, data[3]);
-		childData.put(Const.JSON_KEY_ORDER_PRICE, data[4]);
-		
+		childData.put(Const.JSON_KEY_ORDER_NUM, msg.getOrder_num());
+		childData.put(Const.JSON_KEY_ORDER_DATE, msg.getOrder_date());
+		childData.put(Const.JSON_KEY_ORDER_USER, msg.getOrder_user());
+		childData.put(Const.JSON_KEY_ORDER_SELLER, msg.getOrder_seller());
+		childData.put(Const.JSON_KEY_ORDER_PRICE, msg.getOrder_price());
+
 		JSONArray array = new JSONArray();
-	
-		for (int num = 5; num < data.length; num++) {
-			array.add(data[num]);
+
+		for (int num = 0; num < msg.getOrder_list().size(); num++) {
+			JSONObject jo = new JSONObject();
+			jo.put(Const.JSON_KEY_ORDER_PRODUCT, msg.getOrder_list().get(num).getProduct());
+			jo.put(Const.JSON_KEY_ORDER_PRODUCT_COUNT, msg.getOrder_list().get(num).getCount());
+			array.add(jo);
 		}
 		childData.put(Const.JSON_KEY_ORDER_LIST, array);
 		parent.put(Const.JSON_KEY_DATA, childData);
@@ -229,36 +233,33 @@ public class Utils {
 		}
 		return result;
 	}
-	
-	public static List<PushInfo> parsePushMessage(JSONParser jsonParser, String msg) {
-		List<PushInfo> pushList = new ArrayList<>();
+
+	public static PushInfo parsePushMessage(JSONParser jsonParser, String msg, PushInfo pushData) {
 		try {
-			/*JSONArray array = new JSONArray();
-			array.add(new JSONObject());
-			array.add(new JSONObject());
-			array.add(new JSONObject());
-			array.add(new JSONObject());
-			for(int i = 0; i<array.size();i++){
-				productmodel.set = ((JSONObject)array.get(i)).get(product_name);
-				JSONObject jsonObject = ((JSONObject)array.get(i)).get(product_num);
-			}*/
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
 			JSONObject object = (JSONObject) jsonObject.get(Const.JSON_KEY_DATA);
+			JSONArray array = (JSONArray) object.get(Const.JSON_KEY_ORDER_LIST);
 			
-			pushList.add(new PushInfo(
-					object.get(Const.JSON_KEY_ORDER_NUM).toString(), 
-					object.get(Const.JSON_KEY_ORDER_DATE).toString(),
+			List<ProductList> pt = new ArrayList<>();
+			for (int i = 0; i < array.size(); i++) {
+				JSONObject order = (JSONObject) array.get(i);
+				pt.add(new ProductList(order.get(Const.JSON_KEY_ORDER_PRODUCT).toString(),
+						order.get(Const.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
+			}
+			
+			pushData = new PushInfo(object.get(Const.JSON_KEY_ORDER_NUM).toString(), 
+					object.get(Const.JSON_KEY_ORDER_DATE).toString(), 
 					object.get(Const.JSON_KEY_ORDER_USER).toString(), 
 					object.get(Const.JSON_KEY_ORDER_SELLER).toString(), 
 					object.get(Const.JSON_KEY_ORDER_PRICE).toString(),
-					object.get(Const.JSON_KEY_ORDER_LIST).toString()));
-	
+					pt);
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("JSON 파싱 에러");
 		}
-		return pushList;
+		return pushData;
 	}
 
 	/**
@@ -331,7 +332,7 @@ public class Utils {
 		System.arraycopy(bArr, headerLength, ret, 0, bArr.length - headerLength);
 		return ret;
 	}
-	
+
 	public static String getTime() {
 		long time = System.currentTimeMillis();
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMddhhmmss");
