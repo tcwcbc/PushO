@@ -30,14 +30,15 @@ public class OIOClient {
 	public boolean connectServer() {
 		try {
 			socket = new Socket(Const.SERVER_IP, Const.PORT_NUM);
-
+			
 			bis = new BufferedInputStream(socket.getInputStream());
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			// 인증을 위한 JSON 메세지 생성
-			String msgAuthString = Utils.makeJSONMessageForAuth("다우마트사장", "비밀번호~?", new JSONObject(), new JSONObject());
+			String msgAuthString = Utils.makeJSONMessageForAuth("다우마트구매자", "비밀번호~?", new JSONObject(), new JSONObject());
 			byte[] msgAuthByte = Utils.makeMessageStringToByte(
-					new byte[Const.HEADER_LENTH + msgAuthString.getBytes().length], msgAuthString);
+					new byte[Const.HEADER_LENTH + msgAuthString.getBytes(Const.CHARSET).length],
+					msgAuthString);
 			bos.write(msgAuthByte);
 			bos.flush();
 			System.out.println("인증 보냄");
@@ -66,7 +67,7 @@ public class OIOClient {
 		while (status) {
 			try {
 				// 입력스트림에 대한 타임아웃 설정
-				socket.setSoTimeout(Const.SEND_WATING_TIME);
+//				socket.setSoTimeout(Const.SEND_WATING_TIME);
 				while ((readCount = bis.read(header)) != -1) {
 
 					// 수신된 메시지 DATASIZE
@@ -74,19 +75,22 @@ public class OIOClient {
 					// DATA 길이만큼 byte배열 선언
 					byte[] body = new byte[headerLength];
 					bodyLength = bis.read(body);
-					String msg = Utils.parseJSONMessage(new JSONParser(), new String(body));
+					String msg = Utils.parseJSONMessage(new JSONParser(),
+							new String(body,Const.CHARSET));
 
 					// Ping 메시지 일 경우
 					if (msg.equals(Const.JSON_VALUE_PING)) {
 						String msgPongString = Utils.makeJSONMessageForPingPong(new JSONObject(), false);
 						byte[] msgPongByte = Utils.makeMessageStringToByte(
-								new byte[Const.HEADER_LENTH + msgPongString.getBytes().length], msgPongString);
+								new byte[Const.HEADER_LENTH + msgPongString.getBytes(Const.CHARSET).length],
+								msgPongString);
 						bos.write(msgPongByte);
 						System.out.println("Pong 전송");
 					}
 					// Push 메시지 일 경우
 					else if (msg.equals(Const.JSON_VALUE_PUSH)) {
-						pushData = Utils.parsePushMessage(new JSONParser(), new String(body), pushData);
+						pushData = Utils.parsePushMessage(new JSONParser(), 
+								new String(body,Const.CHARSET), pushData);
 						System.out.println(pushData.getOrder_list().get(0).getProduct().toString());
 					}
 				} // end of while
@@ -96,7 +100,7 @@ public class OIOClient {
 					System.out.println("Time out 발생...");
 					String msgPingString = Utils.makeJSONMessageForPingPong(new JSONObject(), true);
 					byte[] msgPingByte = Utils.makeMessageStringToByte(
-							new byte[Const.HEADER_LENTH + msgPingString.getBytes().length], msgPingString);
+							new byte[Const.HEADER_LENTH + msgPingString.getBytes(Const.CHARSET).length], msgPingString);
 					bos.write(msgPingByte);
 					bos.flush();
 					System.out.println("ping 전송");
@@ -112,7 +116,7 @@ public class OIOClient {
 					// DATA 길이만큼 byte배열 선언
 					byte[] body = new byte[headerLength];
 					bodyLength = bis.read(body);
-					String msg = Utils.parseJSONMessage(new JSONParser(), new String(body));
+					String msg = Utils.parseJSONMessage(new JSONParser(), new String(body,Const.CHARSET));
 					// Pong 메시지 일 경우
 					if (msg.equals(Const.JSON_VALUE_PONG)) {
 						System.out.println("Pong 도착");

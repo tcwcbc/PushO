@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -112,7 +113,8 @@ public class Utils {
 	 * @return merge(byte[] header + byte[] body)
 	 */
 	public static byte[] makeMessageStringToByte(byte[] ret, String msg) {
-		return mergeBytearrays(ret, intTobyte(msg.getBytes().length), msg.getBytes());
+		return mergeBytearrays(ret, intTobyte(msg.getBytes(Const.CHARSET).length),
+				msg.getBytes(Const.CHARSET));
 	}
 
 	/**

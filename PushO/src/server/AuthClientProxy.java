@@ -46,6 +46,7 @@ public class AuthClientProxy {
 
 		try {
 			bis = new BufferedInputStream(socket.getInputStream());
+			
 			byte[] buf = new byte[Const.HEADER_LENTH];
 			int readCount = 0;
 			int length = 0;
@@ -56,11 +57,12 @@ public class AuthClientProxy {
 			length = Utils.byteToInt(buf);
 			byte[] body = new byte[length];
 			bodylength = bis.read(body);
-			String text = new String(body);
+			String text = new String(body,Const.CHARSET);
 			System.out.println(text);
 
 			if (text.contains(Const.JSON_VALUE_AUTH)) {
-				String name = Utils.parseJSONMessage(new JSONParser(), new String(body));
+				String name = Utils.parseJSONMessage(new JSONParser(),
+						new String(body,Const.CHARSET));
 				// HashMap에 담을 사용자 정보 셋팅
 				ob.setUser(name);
 				checkAuthorization(name);
@@ -89,7 +91,7 @@ public class AuthClientProxy {
 	 *             인증이 안되었을 경우 발생
 	 */
 	private void checkAuthorization(String name) throws EmptyResultDataException {
-		new JDBCTemplate().executeQuery("select * from pj_member where mem_id = ?", new SetPrepareStatement() {
+		new JDBCTemplate().executeQuery("select * from pj_member where mem_name = ?", new SetPrepareStatement() {
 			@Override
 			public void setFields(PreparedStatement pstm) throws SQLException {
 				System.out.println("디비접속");

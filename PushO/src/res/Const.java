@@ -1,5 +1,6 @@
 package res;
 import java.io.File;
+import java.nio.charset.Charset;
 
 /**
  * @author		√÷∫¥√∂
@@ -10,7 +11,7 @@ public interface Const {
 	/**
 	 * Socket Connection
 	 */
-	String SERVER_IP ="127.0.0.1";
+	String SERVER_IP ="175.115.95.32";
 	int PORT_NUM = 9999;
 	int STREAM_TIME_OUT = 30000;
 	int SEND_WATING_TIME = 1000;
@@ -60,4 +61,8 @@ public interface Const {
 	String END_LINE = "\n";
 	int HEADER_LENTH = 4;
 	
+	/**
+	 * IO Stream
+	 */
+	Charset CHARSET = Charset.forName("UTF-8");
 }

@@ -16,7 +16,7 @@ public class DBTest {
 						@Override
 						public void setFields(PreparedStatement pstm) throws SQLException {
 							// TODO Auto-generated method stub
-							pstm.setString(1, "root");
+							pstm.setString(1, "다우마트사장");
 						}
 					});
 			System.out.println(auth.toString());
