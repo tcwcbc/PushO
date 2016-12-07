@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import exception.EmptyResultDataException;
 import observer.DBObserver;
@@ -31,8 +33,11 @@ public class OIOServer implements DBObserver {
 	private Socket socket;
 	private DBThread dbThread;
 	
-	ArrayList<Socket> socketList = new ArrayList<Socket>();
-
+	public HashMap<String, ProcessCilentRequest> socketList = new HashMap<String, ProcessCilentRequest>();
+	private Iterator<String> keySetIterator;
+	
+	private String userName;
+	
 	public OIOServer() {
 		try {
 			
@@ -41,6 +46,7 @@ public class OIOServer implements DBObserver {
 			
 			dbThread = new DBThread(this);
 			dbThread.start();
+			
 			
 			//인증을 위한 프록시 클래스의 인스턴스 획득
 			AuthClientProxy authProxy = AuthClientProxy.getInstance();
@@ -52,16 +58,16 @@ public class OIOServer implements DBObserver {
 				try {
 					//인증을 실행(DB조회) 후 성공한다면 클라이언트 요청처리 쓰레드 시작
 					System.out.println("서버쪽 소켓 연결");
-					ProcessCilentRequest thread = authProxy.getClientSocketThread(socket);
+					ProcessCilentRequest thread = authProxy.getClientSocketThread(socket, this);
 					thread.start();
 					//리스트로 관리
-					socketList.add(socket);
+					socketList.put(userName, thread);
 					System.out.println("Client 연결처리 스레드 : " + thread.getId() + " , " + thread.getName());
 				} catch (EmptyResultDataException e) {
 					// TODO 인증이 되지 않은 사용자일 경우 처리 로직
 					e.printStackTrace();
 					socket.close();
-					socketList.remove(socket);
+					//socketList.remove(thread);
 					System.out.println("인증 실패, 소켓 닫힘");
 				}
 			}
@@ -84,7 +90,17 @@ public class OIOServer implements DBObserver {
 
 	@Override
 	public void msgPush(String msg) {
-		System.out.println(msg);
+		System.out.println("푸쉬데이터 : " + msg);
+		keySetIterator = socketList.keySet().iterator();
+		while (keySetIterator.hasNext()) {
+		    String userID = keySetIterator.next();
+		    socketList.get(userID).setPush(msg); 
+		}
+	}
+
+	@Override
+	public void setUser(String id) {
+		userName = id;
 	}
 }
 

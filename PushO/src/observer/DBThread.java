@@ -14,7 +14,6 @@ import util.Utils;
  * @Description  별도의 쓰레드를 생성하여 사용자 주문테이블을 항상 감시하고
  *               사용자에게 PUSH 해야 할 데이터를 return하고있다.
  */
-
 public class DBThread extends Thread {
 	
 	private DBObserver ob;
@@ -37,18 +36,16 @@ public class DBThread extends Thread {
 
 		while (DBThread_flag) {
 			try {
+				
 				Thread.sleep(5000);
 				pushList = db.executeQuery_ORDER(sql);
 				
 				if (Utils.isEmpty(pushList)) {
-					ob.msgPush("푸쉬 데이터 없음");
+					System.out.println("푸쉬 데이터 없음");
 				} else {
-				
-					ob.msgPush("푸쉬 데이터 있음");
-					
-					for (PushInfo ordrNum : pushList) {
-						ordrNum.setOrder_list(db.executeQuery_ORDER_LIST(getQuery(ordrNum.getOrder_num())));
-						ordrNum.showInfo();
+					for (PushInfo orderNum : pushList) {
+						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(getQuery(orderNum.getOrder_num())));
+						ob.msgPush(orderNum.getInfo());
 					}
 				}
 			} catch (InterruptedException e) {
@@ -69,7 +66,7 @@ public class DBThread extends Thread {
 		return sql;		
 	}
 	
-	//Thread Stop
+	//쓰레드 종료
 	public void obserberStop() {
 		try {
 			DBThread_flag = false;
