@@ -43,6 +43,12 @@ public interface Const {
 	String JSON_KEY_DATA_SIZE = "data_size";
 	String JSON_KEY_AUTH_ID = "id";
 	String JSON_KEY_AUTH_PASSWD = "passwd";
+	String JSON_KEY_ORDER_NUM = "order_num";
+	String JSON_KEY_ORDER_DATE = "order_date";
+	String JSON_KEY_ORDER_USER = "order_user";
+	String JSON_KEY_ORDER_SELLER = "order_seller";
+	String JSON_KEY_ORDER_PRICE = "order_price";
+	String JSON_KEY_ORDER_LIST = "order_list";
 	
 	String JSON_VALUE_AUTH = "auth";
 	String JSON_VALUE_PING = "ping";

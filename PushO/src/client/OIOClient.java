@@ -4,8 +4,13 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import model.PushInfo;
 import res.Const;
 import util.Utils;
 
@@ -21,6 +26,8 @@ public class OIOClient {
 	private BufferedOutputStream bos;
 	private BufferedInputStream bis;
 
+	private List<PushInfo> pushList = new ArrayList<>();
+	
 	// 서버에 연결 작업
 	public boolean connectServer() {
 		try {
@@ -77,7 +84,8 @@ public class OIOClient {
 					}
 					// Push 메시지 일 경우
 					else if (msg.equals(Const.JSON_VALUE_PUSH)) {
-						System.out.println("push 메시지");
+						pushList = Utils.parsePushMessage(new JSONParser(), new String(body));
+						pushList.get(0).showInfo();
 					}
 				} // end of while
 
