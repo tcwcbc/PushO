@@ -49,7 +49,7 @@ public class OIOServer implements DBObserver {
 			
 			
 			//인증을 위한 프록시 클래스의 인스턴스 획득
-			AuthClientProxy authProxy = AuthClientProxy.getInstance();
+			AuthClientHandler authHandler = AuthClientHandler.getInstance();
 			while (true) {
 				//블로킹 구간
 				socket = serverSocket.accept();
@@ -58,7 +58,7 @@ public class OIOServer implements DBObserver {
 				try {
 					//인증을 실행(DB조회) 후 성공한다면 클라이언트 요청처리 쓰레드 시작
 					System.out.println("서버쪽 소켓 연결");
-					ProcessCilentRequest thread = authProxy.getClientSocketThread(socket, this);
+					ProcessCilentRequest thread = authHandler.getClientSocketThread(socket, this);
 					thread.start();
 					//리스트로 관리
 					socketList.put(userName, thread);

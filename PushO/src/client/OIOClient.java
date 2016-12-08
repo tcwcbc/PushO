@@ -30,12 +30,10 @@ public class OIOClient {
 	public boolean connectServer() {
 		try {
 			socket = new Socket(Const.SERVER_IP, Const.PORT_NUM);
-			
 			bis = new BufferedInputStream(socket.getInputStream());
 			bos = new BufferedOutputStream(socket.getOutputStream());
-
 			// 인증을 위한 JSON 메세지 생성
-			String msgAuthString = Utils.makeJSONMessageForAuth("다우마트구매자", "비밀번호~?", new JSONObject(), new JSONObject());
+			String msgAuthString = Utils.makeJSONMessageForAuth("판매자3", "비밀번호~?", new JSONObject(), new JSONObject());
 			byte[] msgAuthByte = Utils.makeMessageStringToByte(
 					new byte[Const.HEADER_LENTH + msgAuthString.getBytes(Const.CHARSET).length],
 					msgAuthString);
@@ -44,7 +42,7 @@ public class OIOClient {
 			System.out.println("인증 보냄");
 
 			// 메시지 송수신위한 메소드 호출
-			processMsg();
+//			processMsg();
 			
 			return true;
 		} catch (IOException e) {
@@ -67,7 +65,7 @@ public class OIOClient {
 		while (status) {
 			try {
 				// 입력스트림에 대한 타임아웃 설정
-//				socket.setSoTimeout(Const.SEND_WATING_TIME);
+				socket.setSoTimeout(Const.STREAM_TIME_OUT);
 				while ((readCount = bis.read(header)) != -1) {
 
 					// 수신된 메시지 DATASIZE
@@ -137,7 +135,9 @@ public class OIOClient {
 
 	public static void main(String[] args) {
 		OIOClient mcc = new OIOClient();
+		//1 7 15
 		mcc.connectServer();
+		//2 3 4 5 6 8 9 10 11 12 13 14
 		mcc.processMsg();
 	}
 }

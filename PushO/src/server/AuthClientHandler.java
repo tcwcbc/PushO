@@ -19,13 +19,13 @@ import util.Utils;
  * @Description 인증을 위한 프록시 클래스로 싱글톤으로 구현 됨 TODO 싱글톤으로 구현시 멀티쓰레드 환경에서의 동시성 문제 제고
  *              인증을 위한 DB입출력 Blocking 시간 고려
  */
-public class AuthClientProxy {
+public class AuthClientHandler {
 
-	private static AuthClientProxy instance = null;
+	private static AuthClientHandler instance = null;
 
-	public static AuthClientProxy getInstance() {
+	public static AuthClientHandler getInstance() {
 		if (instance == null) {
-			instance = new AuthClientProxy();
+			instance = new AuthClientHandler();
 		}
 		return instance;
 	}
