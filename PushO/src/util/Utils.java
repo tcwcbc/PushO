@@ -113,8 +113,7 @@ public class Utils {
 	 * @return merge(byte[] header + byte[] body)
 	 */
 	public static byte[] makeMessageStringToByte(byte[] ret, String msg) {
-		return mergeBytearrays(ret, intTobyte(msg.getBytes(Const.CHARSET).length),
-				msg.getBytes(Const.CHARSET));
+		return mergeBytearrays(ret, intTobyte(msg.getBytes(Const.CHARSET).length), msg.getBytes(Const.CHARSET));
 	}
 
 	/**
@@ -241,20 +240,18 @@ public class Utils {
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
 			JSONObject object = (JSONObject) jsonObject.get(Const.JSON_KEY_DATA);
 			JSONArray array = (JSONArray) object.get(Const.JSON_KEY_ORDER_LIST);
-			
+
 			List<ProductList> pt = new ArrayList<>();
 			for (int i = 0; i < array.size(); i++) {
 				JSONObject order = (JSONObject) array.get(i);
 				pt.add(new ProductList(order.get(Const.JSON_KEY_ORDER_PRODUCT).toString(),
 						order.get(Const.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
 			}
-			
-			pushData = new PushInfo(object.get(Const.JSON_KEY_ORDER_NUM).toString(), 
-					object.get(Const.JSON_KEY_ORDER_DATE).toString(), 
-					object.get(Const.JSON_KEY_ORDER_USER).toString(), 
-					object.get(Const.JSON_KEY_ORDER_SELLER).toString(), 
-					object.get(Const.JSON_KEY_ORDER_PRICE).toString(),
-					pt);
+
+			pushData = new PushInfo(object.get(Const.JSON_KEY_ORDER_NUM).toString(),
+					object.get(Const.JSON_KEY_ORDER_DATE).toString(), object.get(Const.JSON_KEY_ORDER_USER).toString(),
+					object.get(Const.JSON_KEY_ORDER_SELLER).toString(),
+					object.get(Const.JSON_KEY_ORDER_PRICE).toString(), pt);
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
