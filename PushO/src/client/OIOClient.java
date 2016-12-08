@@ -124,7 +124,7 @@ public class OIOClient {
 							processMsg();
 							flag = false;
 						} else {
-							System.out.println("서버 오작동중 ...");
+							System.out.println("서버 오작동중 ....");
 						}
 					}
 
