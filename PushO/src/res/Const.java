@@ -11,10 +11,10 @@ public interface Const {
 	/**
 	 * Socket Connection
 	 */
-	String SERVER_IP ="175.115.95.32";
+	String SERVER_IP ="localhost";
 	int PORT_NUM = 9999;
 	int STREAM_TIME_OUT = 30000;
-	int SEND_WATING_TIME = 1000;
+	int SEND_WATING_TIME = 7000;
 	
 	/**
 	 * File Read & Write
