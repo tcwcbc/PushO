@@ -115,14 +115,13 @@ public class ProcessCilentRequest extends Thread {
 	 */
 	public void setPush(String msg) {
 		try {
-			msgPushByte = Utils.makeMessageStringToByte(new byte[Const.HEADER_LENTH + msg.getBytes().length],
-					msg);
+			msgPushByte = Utils.makeMessageStringToByte(new byte[Const.HEADER_LENTH + msg.getBytes().length], msg);
 
 			bos.write(msgPushByte);
 			bos.flush();
 			System.out.println("푸쉬완료:" + this.getName());
 		} catch (IOException e) {
-			// 상대 클라이언트 접속이 끊어지면 발생 
+			// 상대 클라이언트 접속이 끊어지면 발생
 			// 그에 따라 HashMap에 저장되어있는 현재 Thread를 지우는 작업이 필요함
 			System.out.println("setPush() 푸쉬발송중 오류" + e.getMessage());
 		}

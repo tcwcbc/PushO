@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 
 import model.PushInfo;
 import res.Const;
+import server.OIOServer;
 import util.Utils;
 
 /**
@@ -19,13 +20,12 @@ import util.Utils;
  *              발생시키거나 데이터를 수신 후 가시적으로 보여줄 View
  */
 public class OIOClient {
-
 	private Socket socket;
 	private BufferedOutputStream bos;
 	private BufferedInputStream bis;
 
 	private PushInfo pushData;
-	
+
 	// 서버에 연결 작업
 	public boolean connectServer() {
 		try {
@@ -35,15 +35,10 @@ public class OIOClient {
 			// 인증을 위한 JSON 메세지 생성
 			String msgAuthString = Utils.makeJSONMessageForAuth("판매자3", "비밀번호~?", new JSONObject(), new JSONObject());
 			byte[] msgAuthByte = Utils.makeMessageStringToByte(
-					new byte[Const.HEADER_LENTH + msgAuthString.getBytes(Const.CHARSET).length],
-					msgAuthString);
+					new byte[Const.HEADER_LENTH + msgAuthString.getBytes(Const.CHARSET).length], msgAuthString);
 			bos.write(msgAuthByte);
 			bos.flush();
 			System.out.println("인증 보냄");
-
-			// 메시지 송수신위한 메소드 호출
-//			processMsg();
-			
 			return true;
 		} catch (IOException e) {
 			System.out.println("connectServer() Exception 발생!!");
@@ -51,30 +46,28 @@ public class OIOClient {
 		}
 	}
 
+	// 메시지 송수신 메소드
 	public void processMsg() {
 		boolean status = true;
 		int readCount = 0;
 		int headerLength = 0;
 		int bodyLength = 0;
-		
+
 		// 수신된 메시지 DATASIZE
 		byte[] header = new byte[Const.HEADER_LENTH];
-		/**
-		 * 실제 데이터를 주고 받는 부분 TODO : 핑퐁뿐만 아니라 실제 데이터를 주고받는 로직
-		 */
+
+		// 실제 데이터를 주고 받는 부분 TODO : 핑퐁뿐만 아니라 실제 데이터를 주고받는 로직
 		while (status) {
 			try {
 				// 입력스트림에 대한 타임아웃 설정
 				socket.setSoTimeout(Const.STREAM_TIME_OUT);
 				while ((readCount = bis.read(header)) != -1) {
-
 					// 수신된 메시지 DATASIZE
 					headerLength = Utils.byteToInt(header);
 					// DATA 길이만큼 byte배열 선언
 					byte[] body = new byte[headerLength];
 					bodyLength = bis.read(body);
-					String msg = Utils.parseJSONMessage(new JSONParser(),
-							new String(body,Const.CHARSET));
+					String msg = Utils.parseJSONMessage(new JSONParser(), new String(body, Const.CHARSET));
 
 					// Ping 메시지 일 경우
 					if (msg.equals(Const.JSON_VALUE_PING)) {
@@ -87,8 +80,7 @@ public class OIOClient {
 					}
 					// Push 메시지 일 경우
 					else if (msg.equals(Const.JSON_VALUE_PUSH)) {
-						pushData = Utils.parsePushMessage(new JSONParser(), 
-								new String(body,Const.CHARSET), pushData);
+						pushData = Utils.parsePushMessage(new JSONParser(), new String(body, Const.CHARSET), pushData);
 						System.out.println(pushData.getOrder_list().get(0).getProduct().toString());
 					}
 				} // end of while
@@ -104,17 +96,19 @@ public class OIOClient {
 					System.out.println("ping 전송");
 
 					try {
-						Thread.sleep(5000);
+						Thread.sleep(2000);
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-					
+
+					readCount = bis.read(header);
+
 					// 수신된 메시지 DATASIZE
 					headerLength = Utils.byteToInt(header);
 					// DATA 길이만큼 byte배열 선언
 					byte[] body = new byte[headerLength];
 					bodyLength = bis.read(body);
-					String msg = Utils.parseJSONMessage(new JSONParser(), new String(body,Const.CHARSET));
+					String msg = Utils.parseJSONMessage(new JSONParser(), new String(body, Const.CHARSET));
 					// Pong 메시지 일 경우
 					if (msg.equals(Const.JSON_VALUE_PONG)) {
 						System.out.println("Pong 도착");
@@ -123,15 +117,18 @@ public class OIOClient {
 					// 서버가 죽은 경우
 					boolean flag = true;
 					while (flag) {
-						if (connectServer()) {
+						if (connectServer() && !OIOServer.isSurvival()) {
+							processMsg();
 							flag = false;
+						} else {
+							System.out.println("서버 오작동중 ...");
 						}
 					}
 
 				}
 			}
 		} // end of while
-	} // end of processMsg() 
+	} // end of processMsg()
 
 	public static void main(String[] args) {
 		OIOClient mcc = new OIOClient();
