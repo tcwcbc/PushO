@@ -46,7 +46,7 @@ public class AuthClientHandler {
 
 		try {
 			bis = new BufferedInputStream(socket.getInputStream());
-			
+
 			byte[] buf = new byte[Const.HEADER_LENTH];
 			int readCount = 0;
 			int length = 0;
@@ -57,12 +57,11 @@ public class AuthClientHandler {
 			length = Utils.byteToInt(buf);
 			byte[] body = new byte[length];
 			bodylength = bis.read(body);
-			String text = new String(body,Const.CHARSET);
+			String text = new String(body, Const.CHARSET);
 			System.out.println(text);
 
 			if (text.contains(Const.JSON_VALUE_AUTH)) {
-				String name = Utils.parseJSONMessage(new JSONParser(),
-						new String(body,Const.CHARSET));
+				String name = Utils.parseJSONMessage(new JSONParser(), new String(body, Const.CHARSET));
 				// HashMap에 담을 사용자 정보 셋팅
 				ob.setUser(name);
 				checkAuthorization(name);
