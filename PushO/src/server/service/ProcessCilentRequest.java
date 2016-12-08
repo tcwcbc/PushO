@@ -107,7 +107,7 @@ public class ProcessCilentRequest extends Thread {
 	 */
 	public void setPush(String msg) {
 		try {
-			msgPushByte = ServerUtils.makeMessageStringToByte(new byte[ServerConst.HEADER_LENTH + msg.getBytes().length], msg);
+			msgPushByte = ServerUtils.makeMessageStringToByte(new byte[ServerConst.HEADER_LENTH + msg.getBytes(ServerConst.CHARSET).length], msg);
 
 			bos.write(msgPushByte);
 			bos.flush();
