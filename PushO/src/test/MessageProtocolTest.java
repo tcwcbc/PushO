@@ -2,7 +2,7 @@ package test;
 
 import java.nio.ByteOrder;
 
-import util.Utils;
+import server.util.ServerUtils;
 
 public class MessageProtocolTest {
 	public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class MessageProtocolTest {
 			System.arraycopy(bName, 0, ret, bPasswd.length, bName.length);
 			
 			System.out.println(
-					Utils.intTobyte(1202012312).length
+					ServerUtils.intTobyte(1202012312).length
 					);
 		}
 	}

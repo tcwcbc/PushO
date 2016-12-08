@@ -1,4 +1,4 @@
-package model;
+package server.model;
 
 import java.sql.Array;
 import java.util.ArrayList;

@@ -1,36 +1,34 @@
 package test;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import res.Const;
-import util.Utils;
+import server.res.ServerConst;
+import server.util.ServerUtils;
 
 public class StreamTestClient {
 	public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
-		Socket socket = new Socket(Const.SERVER_IP, Const.PORT_NUM);
+		Socket socket = new Socket(ServerConst.SERVER_IP, ServerConst.PORT_NUM);
 		BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
 //		BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
 		
-		String msg1Str = Utils.makeJSONMessageForAuth("이름", "비밀번호",
+		String msg1Str = ServerUtils.makeJSONMessageForAuth("이름", "비밀번호",
 				new JSONObject(), new JSONObject());
-		byte[] msg1 = Utils.makeMessageStringToByte(
-				new byte[Const.HEADER_LENTH+msg1Str.getBytes().length], msg1Str);
+		byte[] msg1 = ServerUtils.makeMessageStringToByte(
+				new byte[ServerConst.HEADER_LENTH+msg1Str.getBytes().length], msg1Str);
 		
-		String msg2Str = Utils.makeJSONMessageForAuth("이름입니다.", "비밀번호입니다.",
+		String msg2Str = ServerUtils.makeJSONMessageForAuth("이름입니다.", "비밀번호입니다.",
 				new JSONObject(), new JSONObject());
-		byte[] msg2 = Utils.makeMessageStringToByte(
-				new byte[Const.HEADER_LENTH+msg2Str.getBytes().length], msg2Str);
+		byte[] msg2 = ServerUtils.makeMessageStringToByte(
+				new byte[ServerConst.HEADER_LENTH+msg2Str.getBytes().length], msg2Str);
 		
-		String msg3Str = Utils.makeJSONMessageForPingPong(new JSONObject(), true);
-		byte[] msg3 = Utils.makeMessageStringToByte(
-				new byte[Const.HEADER_LENTH+msg3Str.getBytes().length], msg3Str);
+		String msg3Str = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), true);
+		byte[] msg3 = ServerUtils.makeMessageStringToByte(
+				new byte[ServerConst.HEADER_LENTH+msg3Str.getBytes().length], msg3Str);
 		
 		
 		System.out.println(msg1.length);
@@ -48,14 +46,14 @@ public class StreamTestClient {
 		bos.write(msg3);
 		bos.flush();
 		Thread.sleep(1000);
-		String msgPingString = Utils.makeJSONMessageForPingPong(new JSONObject(), true);
-		byte[] msgPingByte = Utils.makeMessageStringToByte(
-				new byte[Const.HEADER_LENTH+msgPingString.getBytes().length], msgPingString);
-		String msgPongString = Utils.makeJSONMessageForPingPong(new JSONObject(), false);
-		byte[] msgPongByte = Utils.makeMessageStringToByte(
-				new byte[Const.HEADER_LENTH+msgPongString.getBytes().length], msgPongString);
+		String msgPingString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), true);
+		byte[] msgPingByte = ServerUtils.makeMessageStringToByte(
+				new byte[ServerConst.HEADER_LENTH+msgPingString.getBytes().length], msgPingString);
+		String msgPongString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), false);
+		byte[] msgPongByte = ServerUtils.makeMessageStringToByte(
+				new byte[ServerConst.HEADER_LENTH+msgPongString.getBytes().length], msgPongString);
 		
-		byte[] buf = new byte[Const.HEADER_LENTH];
+		byte[] buf = new byte[ServerConst.HEADER_LENTH];
 		int readCount = 0;
 		int length = 0;
 		int bodylength = 0;

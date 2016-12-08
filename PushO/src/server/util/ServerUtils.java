@@ -1,4 +1,4 @@
-package util;
+package server.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,9 +18,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import model.ProductList;
-import model.PushInfo;
-import res.Const;
+import server.model.ProductList;
+import server.model.PushInfo;
+import server.res.ServerConst;
 
 /**
  * @author 최병철
@@ -29,7 +28,7 @@ import res.Const;
  *              환경에서의 활용을 고려하여 동시성 제고 메시지 전문의 형식이 Fix되지 않았음으로 메시지를 만들고 파싱하는 부분
  *              수정 가능
  */
-public class Utils {
+public class ServerUtils {
 
 	/**
 	 * 오브젝트가 비었는지 확인하는 메소드
@@ -63,7 +62,7 @@ public class Utils {
 		try {
 			br = new BufferedReader(new FileReader(filePath));
 			while ((temp = br.readLine()) != null) {
-				ret = ret + temp + Const.END_LINE;
+				ret = ret + temp + ServerConst.END_LINE;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -113,7 +112,7 @@ public class Utils {
 	 * @return merge(byte[] header + byte[] body)
 	 */
 	public static byte[] makeMessageStringToByte(byte[] ret, String msg) {
-		return mergeBytearrays(ret, intTobyte(msg.getBytes(Const.CHARSET).length), msg.getBytes(Const.CHARSET));
+		return mergeBytearrays(ret, intTobyte(msg.getBytes(ServerConst.CHARSET).length), msg.getBytes(ServerConst.CHARSET));
 	}
 
 	/**
@@ -131,15 +130,15 @@ public class Utils {
 	 */
 	public static String makeJSONMessageForAuth(String name, String passwd, JSONObject parent, JSONObject childData) {
 		// getLong
-		parent.put(Const.JSON_KEY_SEND_TIME, getTime());
+		parent.put(ServerConst.JSON_KEY_SEND_TIME, getTime());
 		// auth, pp, push getString
-		parent.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_AUTH);
+		parent.put(ServerConst.JSON_KEY_DATA_CATEGORY, ServerConst.JSON_VALUE_AUTH);
 		// id, getString
-		childData.put(Const.JSON_KEY_AUTH_ID, name);
+		childData.put(ServerConst.JSON_KEY_AUTH_ID, name);
 		// passwd, getString
-		childData.put(Const.JSON_KEY_AUTH_PASSWD, passwd);
+		childData.put(ServerConst.JSON_KEY_AUTH_PASSWD, passwd);
 		// data (JSONObject)getObjcet
-		parent.put(Const.JSON_KEY_DATA, childData);
+		parent.put(ServerConst.JSON_KEY_DATA, childData);
 
 		return parent.toString();
 	}
@@ -153,12 +152,12 @@ public class Utils {
 	 */
 	public static String makeJSONMessageForPingPong(JSONObject jsonObject, boolean isPing) {
 		// getLong
-		jsonObject.put(Const.JSON_KEY_SEND_TIME, getTime());
+		jsonObject.put(ServerConst.JSON_KEY_SEND_TIME, getTime());
 		// auth, pp, push getString
 		if (isPing) {
-			jsonObject.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_PING);
+			jsonObject.put(ServerConst.JSON_KEY_DATA_CATEGORY, ServerConst.JSON_VALUE_PING);
 		} else {
-			jsonObject.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_PONG);
+			jsonObject.put(ServerConst.JSON_KEY_DATA_CATEGORY, ServerConst.JSON_VALUE_PONG);
 		}
 		return jsonObject.toString();
 	}
@@ -176,24 +175,24 @@ public class Utils {
 	 */
 	public static String makeJSONMessageForPush(PushInfo msg, JSONObject parent, JSONObject childData) {
 
-		parent.put(Const.JSON_KEY_SEND_TIME, getTime());
-		parent.put(Const.JSON_KEY_DATA_CATEGORY, Const.JSON_VALUE_PUSH);
-		childData.put(Const.JSON_KEY_ORDER_NUM, msg.getOrder_num());
-		childData.put(Const.JSON_KEY_ORDER_DATE, msg.getOrder_date());
-		childData.put(Const.JSON_KEY_ORDER_USER, msg.getOrder_user());
-		childData.put(Const.JSON_KEY_ORDER_SELLER, msg.getOrder_seller());
-		childData.put(Const.JSON_KEY_ORDER_PRICE, msg.getOrder_price());
+		parent.put(ServerConst.JSON_KEY_SEND_TIME, getTime());
+		parent.put(ServerConst.JSON_KEY_DATA_CATEGORY, ServerConst.JSON_VALUE_PUSH);
+		childData.put(ServerConst.JSON_KEY_ORDER_NUM, msg.getOrder_num());
+		childData.put(ServerConst.JSON_KEY_ORDER_DATE, msg.getOrder_date());
+		childData.put(ServerConst.JSON_KEY_ORDER_USER, msg.getOrder_user());
+		childData.put(ServerConst.JSON_KEY_ORDER_SELLER, msg.getOrder_seller());
+		childData.put(ServerConst.JSON_KEY_ORDER_PRICE, msg.getOrder_price());
 
 		JSONArray array = new JSONArray();
 
 		for (int num = 0; num < msg.getOrder_list().size(); num++) {
 			JSONObject jo = new JSONObject();
-			jo.put(Const.JSON_KEY_ORDER_PRODUCT, msg.getOrder_list().get(num).getProduct());
-			jo.put(Const.JSON_KEY_ORDER_PRODUCT_COUNT, msg.getOrder_list().get(num).getCount());
+			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT, msg.getOrder_list().get(num).getProduct());
+			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT_COUNT, msg.getOrder_list().get(num).getCount());
 			array.add(jo);
 		}
-		childData.put(Const.JSON_KEY_ORDER_LIST, array);
-		parent.put(Const.JSON_KEY_DATA, childData);
+		childData.put(ServerConst.JSON_KEY_ORDER_LIST, array);
+		parent.put(ServerConst.JSON_KEY_DATA, childData);
 
 		return parent.toString();
 	}
@@ -213,19 +212,19 @@ public class Utils {
 		String result = null;
 		try {
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
-			category = (String) jsonObject.get(Const.JSON_KEY_DATA_CATEGORY);
-			if (category.equals(Const.JSON_VALUE_PING)) {
-				result = Const.JSON_VALUE_PING;
-			} else if (category.equals(Const.JSON_VALUE_PONG)) {
-				result = Const.JSON_VALUE_PONG;
-			} else if (category.equals(Const.JSON_VALUE_AUTH)) {
-				JSONObject object = (JSONObject) jsonObject.get(Const.JSON_KEY_DATA);
-				String id = (String) object.get(Const.JSON_KEY_AUTH_ID);
-				String passwd = (String) object.get(Const.JSON_KEY_AUTH_PASSWD);
+			category = (String) jsonObject.get(ServerConst.JSON_KEY_DATA_CATEGORY);
+			if (category.equals(ServerConst.JSON_VALUE_PING)) {
+				result = ServerConst.JSON_VALUE_PING;
+			} else if (category.equals(ServerConst.JSON_VALUE_PONG)) {
+				result = ServerConst.JSON_VALUE_PONG;
+			} else if (category.equals(ServerConst.JSON_VALUE_AUTH)) {
+				JSONObject object = (JSONObject) jsonObject.get(ServerConst.JSON_KEY_DATA);
+				String id = (String) object.get(ServerConst.JSON_KEY_AUTH_ID);
+				String passwd = (String) object.get(ServerConst.JSON_KEY_AUTH_PASSWD);
 				// result = id + "," + passwd;
 				result = id;
-			} else if (category.equals(Const.JSON_VALUE_PUSH)) {
-				result = Const.JSON_VALUE_PUSH;
+			} else if (category.equals(ServerConst.JSON_VALUE_PUSH)) {
+				result = ServerConst.JSON_VALUE_PUSH;
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -238,20 +237,20 @@ public class Utils {
 	public static PushInfo parsePushMessage(JSONParser jsonParser, String msg, PushInfo pushData) {
 		try {
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
-			JSONObject object = (JSONObject) jsonObject.get(Const.JSON_KEY_DATA);
-			JSONArray array = (JSONArray) object.get(Const.JSON_KEY_ORDER_LIST);
+			JSONObject object = (JSONObject) jsonObject.get(ServerConst.JSON_KEY_DATA);
+			JSONArray array = (JSONArray) object.get(ServerConst.JSON_KEY_ORDER_LIST);
 
 			List<ProductList> pt = new ArrayList<>();
 			for (int i = 0; i < array.size(); i++) {
 				JSONObject order = (JSONObject) array.get(i);
-				pt.add(new ProductList(order.get(Const.JSON_KEY_ORDER_PRODUCT).toString(),
-						order.get(Const.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
+				pt.add(new ProductList(order.get(ServerConst.JSON_KEY_ORDER_PRODUCT).toString(),
+						order.get(ServerConst.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
 			}
 
-			pushData = new PushInfo(object.get(Const.JSON_KEY_ORDER_NUM).toString(),
-					object.get(Const.JSON_KEY_ORDER_DATE).toString(), object.get(Const.JSON_KEY_ORDER_USER).toString(),
-					object.get(Const.JSON_KEY_ORDER_SELLER).toString(),
-					object.get(Const.JSON_KEY_ORDER_PRICE).toString(), pt);
+			pushData = new PushInfo(object.get(ServerConst.JSON_KEY_ORDER_NUM).toString(),
+					object.get(ServerConst.JSON_KEY_ORDER_DATE).toString(), object.get(ServerConst.JSON_KEY_ORDER_USER).toString(),
+					object.get(ServerConst.JSON_KEY_ORDER_SELLER).toString(),
+					object.get(ServerConst.JSON_KEY_ORDER_PRICE).toString(), pt);
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

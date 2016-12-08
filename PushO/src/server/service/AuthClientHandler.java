@@ -1,4 +1,4 @@
-package server;
+package server.service;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 import org.json.simple.parser.JSONParser;
 
-import dao.JDBCTemplate;
-import exception.EmptyResultDataException;
-import observer.DBObserver;
-import res.Const;
-import util.Utils;
+import server.dao.JDBCTemplate;
+import server.exception.EmptyResultDataException;
+import server.observer.DBObserver;
+import server.res.ServerConst;
+import server.util.ServerUtils;
 
 /**
  * @author 최병철
@@ -47,21 +47,21 @@ public class AuthClientHandler {
 		try {
 			bis = new BufferedInputStream(socket.getInputStream());
 
-			byte[] buf = new byte[Const.HEADER_LENTH];
+			byte[] buf = new byte[ServerConst.HEADER_LENTH];
 			int readCount = 0;
 			int length = 0;
 			int bodylength = 0;
 			System.out.println("바이트 읽기 시작");
 
 			readCount = bis.read(buf);
-			length = Utils.byteToInt(buf);
+			length = ServerUtils.byteToInt(buf);
 			byte[] body = new byte[length];
 			bodylength = bis.read(body);
-			String text = new String(body, Const.CHARSET);
+			String text = new String(body, ServerConst.CHARSET);
 			System.out.println(text);
 
-			if (text.contains(Const.JSON_VALUE_AUTH)) {
-				String name = Utils.parseJSONMessage(new JSONParser(), new String(body, Const.CHARSET));
+			if (text.contains(ServerConst.JSON_VALUE_AUTH)) {
+				String name = ServerUtils.parseJSONMessage(new JSONParser(), new String(body, ServerConst.CHARSET));
 				// HashMap에 담을 사용자 정보 셋팅
 				ob.setUser(name);
 				checkAuthorization(name);

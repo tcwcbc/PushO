@@ -1,16 +1,15 @@
-package server;
+package server.service;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import exception.EmptyResultDataException;
-import observer.DBObserver;
-import observer.DBThread;
-import res.Const;
+import server.exception.EmptyResultDataException;
+import server.observer.DBObserver;
+import server.observer.DBThread;
+import server.res.ServerConst;
 
 /**
  * @author 최병철
@@ -42,7 +41,7 @@ public class OIOServer implements DBObserver {
 	public OIOServer() {
 		try {
 
-			serverSocket = new ServerSocket(Const.PORT_NUM);
+			serverSocket = new ServerSocket(ServerConst.PORT_NUM);
 			survival = true;
 			System.out.println("서버시작...");
 

@@ -9,8 +9,8 @@ import java.net.Socket;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import res.Const;
-import util.Utils;
+import server.res.ServerConst;
+import server.util.ServerUtils;
 
 public class StreamTestServer {
 	public static void main(String[] args)  {
@@ -24,13 +24,13 @@ public class StreamTestServer {
 		socket =  serverSocket.accept();
 		bis = new BufferedInputStream(socket.getInputStream());
 //		bos = new BufferedOutputStream(socket.getOutputStream());
-		byte[] buf = new byte[Const.HEADER_LENTH];
+		byte[] buf = new byte[ServerConst.HEADER_LENTH];
 		int readCount = 0;
 		int length = 0;
 		int bodylength = 0;
 		
 		while((readCount=bis.read(buf))!=-1){
-			length = Utils.byteToInt(buf);
+			length = ServerUtils.byteToInt(buf);
 			byte[] body = new byte[length];
 			bodylength = bis.read(body);
 			
@@ -38,15 +38,15 @@ public class StreamTestServer {
 			System.out.println(length);
 			System.out.println(bodylength);
 			System.out.println(new String(body));
-			System.out.println(Utils.parseJSONMessage(new JSONParser(), new String(body)));
+			System.out.println(ServerUtils.parseJSONMessage(new JSONParser(), new String(body)));
 		}
 		
-		String msgPingString = Utils.makeJSONMessageForPingPong(new JSONObject(), true);
-		byte[] msgPingByte = Utils.makeMessageStringToByte(
-				new byte[Const.HEADER_LENTH+msgPingString.getBytes().length], msgPingString);
-		String msgPongString = Utils.makeJSONMessageForPingPong(new JSONObject(), false);
-		byte[] msgPongByte = Utils.makeMessageStringToByte(
-				new byte[Const.HEADER_LENTH+msgPongString.getBytes().length], msgPongString);
+		String msgPingString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), true);
+		byte[] msgPingByte = ServerUtils.makeMessageStringToByte(
+				new byte[ServerConst.HEADER_LENTH+msgPingString.getBytes().length], msgPingString);
+		String msgPongString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), false);
+		byte[] msgPongByte = ServerUtils.makeMessageStringToByte(
+				new byte[ServerConst.HEADER_LENTH+msgPongString.getBytes().length], msgPongString);
 		
 		/*while((readCount=bis.read(buf))!=-1){
 			length = Utils.byteToInt(buf);

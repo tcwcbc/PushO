@@ -1,24 +1,16 @@
-package server;
+package server.service;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import dao.JDBCTemplate;
-import exception.EmptyResultDataException;
-import res.Const;
-import util.Utils;
+import server.res.ServerConst;
+import server.util.ServerUtils;
 
 /**
  * @author 최병철
@@ -73,14 +65,14 @@ public class ProcessCilentRequest extends Thread {
 	}
 
 	private void startPingPong() throws IOException, InterruptedException {
-		String msgPingString = Utils.makeJSONMessageForPingPong(new JSONObject(), true);
-		msgPingByte = Utils.makeMessageStringToByte(new byte[Const.HEADER_LENTH + msgPingString.getBytes().length],
+		String msgPingString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), true);
+		msgPingByte = ServerUtils.makeMessageStringToByte(new byte[ServerConst.HEADER_LENTH + msgPingString.getBytes().length],
 				msgPingString);
-		String msgPongString = Utils.makeJSONMessageForPingPong(new JSONObject(), false);
-		msgPongByte = Utils.makeMessageStringToByte(new byte[Const.HEADER_LENTH + msgPongString.getBytes().length],
+		String msgPongString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), false);
+		msgPongByte = ServerUtils.makeMessageStringToByte(new byte[ServerConst.HEADER_LENTH + msgPongString.getBytes().length],
 				msgPongString);
 
-		byte[] buf = new byte[Const.HEADER_LENTH];
+		byte[] buf = new byte[ServerConst.HEADER_LENTH];
 		byte[] body;
 		int readCount = 0;
 		int length = 0;
@@ -91,15 +83,15 @@ public class ProcessCilentRequest extends Thread {
 		System.out.println("시작을 위한 Ping 전송");
 
 		while ((readCount = bis.read(buf)) != -1) {
-			length = Utils.byteToInt(buf);
+			length = ServerUtils.byteToInt(buf);
 			body = new byte[length];
 			bodylength = bis.read(body);
-			String pp = Utils.parseJSONMessage(new JSONParser(), new String(body));
-			if (pp.equals(Const.JSON_VALUE_PING)) {
+			String pp = ServerUtils.parseJSONMessage(new JSONParser(), new String(body));
+			if (pp.equals(ServerConst.JSON_VALUE_PING)) {
 				bos.write(msgPongByte);
 				System.out.println("Pong 전송");
 			}
-			if (pp.equals(Const.JSON_VALUE_PONG)) {
+			if (pp.equals(ServerConst.JSON_VALUE_PONG)) {
 				bos.write(msgPingByte);
 				System.out.println("Ping 전송");
 			}
@@ -115,7 +107,7 @@ public class ProcessCilentRequest extends Thread {
 	 */
 	public void setPush(String msg) {
 		try {
-			msgPushByte = Utils.makeMessageStringToByte(new byte[Const.HEADER_LENTH + msg.getBytes().length], msg);
+			msgPushByte = ServerUtils.makeMessageStringToByte(new byte[ServerConst.HEADER_LENTH + msg.getBytes().length], msg);
 
 			bos.write(msgPushByte);
 			bos.flush();

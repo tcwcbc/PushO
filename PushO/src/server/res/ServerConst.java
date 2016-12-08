@@ -1,4 +1,4 @@
-package res;
+package server.res;
 import java.io.File;
 import java.nio.charset.Charset;
 
@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
  * @Description 모든 클래스에서 사용되는 상수 값들을 정리, 한글은 별도의 파일로 관리해야 함
  * TODO			
  */
-public interface Const {
+public interface ServerConst {
 	/**
 	 * Socket Connection
 	 */

@@ -1,16 +1,14 @@
-package observer;
+package server.observer;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.JSONObject;
 
-import dao.JDBCTemplate;
-import model.PushInfo;
-import res.Const;
-import util.Utils;
+import server.dao.JDBCTemplate;
+import server.model.PushInfo;
+import server.util.ServerUtils;
 
 /**
  * 
@@ -48,7 +46,7 @@ public class DBThread extends Thread {
 				Thread.sleep(5000);
 				pushList = db.executeQuery_ORDER(sql);
 
-				if (Utils.isEmpty(pushList)) {
+				if (ServerUtils.isEmpty(pushList)) {
 					System.out.println("푸쉬 데이터 없음");
 				} else {
 					for (PushInfo orderNum : pushList) {
@@ -66,7 +64,7 @@ public class DBThread extends Thread {
 	}
 
 	public void setPush(PushInfo msg) {
-		msgPushJson = Utils.makeJSONMessageForPush(msg, new JSONObject(), new JSONObject());
+		msgPushJson = ServerUtils.makeJSONMessageForPush(msg, new JSONObject(), new JSONObject());
 		//System.out.println("전송 데이터:" + msgPushJson);
 		ob.msgPush(msgPushJson);
 	}

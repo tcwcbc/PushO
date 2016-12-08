@@ -2,10 +2,10 @@ package test;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import dao.JDBCTemplate;
-import exception.EmptyResultDataException;
-import model.UserAuth;
-import server.SetPrepareStatement;
+import server.dao.JDBCTemplate;
+import server.exception.EmptyResultDataException;
+import server.model.UserAuth;
+import server.service.SetPrepareStatement;
 
 public class DBTest {
 	public static void main(String[] args) {

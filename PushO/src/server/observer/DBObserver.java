@@ -1,4 +1,4 @@
-package observer;
+package server.observer;
 
 import java.util.List;
 

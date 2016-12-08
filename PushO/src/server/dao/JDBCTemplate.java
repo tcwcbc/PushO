@@ -1,4 +1,4 @@
-package dao;
+package server.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import exception.EmptyResultDataException;
-import model.ProductList;
-import model.PushInfo;
-import model.UserAuth;
-import res.Const;
-import server.SetPrepareStatement;
+import server.exception.EmptyResultDataException;
+import server.model.ProductList;
+import server.model.PushInfo;
+import server.model.UserAuth;
+import server.res.ServerConst;
+import server.service.SetPrepareStatement;
 
 /**
  * @author		√÷∫¥√∂
@@ -40,9 +40,9 @@ public class JDBCTemplate {
 
 	private void connectDB() {
 		try {
-			Class.forName(Const.CLASS_FOR_NAME);
-			con = DriverManager.getConnection(Const.JDBC_URL+Const.DB_NAME,
-					Const.DB_USER_ID, Const.DB_USER_PASSWORD);
+			Class.forName(ServerConst.CLASS_FOR_NAME);
+			con = DriverManager.getConnection(ServerConst.JDBC_URL+ServerConst.DB_NAME,
+					ServerConst.DB_USER_ID, ServerConst.DB_USER_PASSWORD);
 
 		} catch (SQLException | ClassNotFoundException e) {
 

@@ -1,8 +1,8 @@
-package server;
+package server.service;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import dao.JDBCTemplate;
+import server.dao.JDBCTemplate;
 
 /**
  * @author		√÷∫¥√∂
