@@ -20,6 +20,7 @@ import server.service.OIOServer;
  *              발생시키거나 데이터를 수신 후 가시적으로 보여줄 View
  */
 public class OIOClient {
+	/////
 	private Socket socket;
 	private BufferedOutputStream bos;
 	private BufferedInputStream bis;
