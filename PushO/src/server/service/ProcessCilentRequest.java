@@ -14,9 +14,9 @@ import server.util.ServerUtils;
 
 /**
  * @author 최병철
- * @Description 실제로 각 클라이언트와 소켓통신을 하며 작업을 수행하는 쓰레드 TODO 입출력을 위한 스트림을
- *              문자스트림->바이트스트림 으로 변환 수정된 유틸클래스 사용으로 메시지 작성방식 변경 타임아웃 예외가 발생했을 경우
- *              알림메시지를 전송하고 소켓해제 및 자원회수 매커니즘 예외처리들을 위한 많은 try-catch문을 정리
+ * @Description 실제로 각 클라이언트와 소켓통신을 하며 작업을 수행하는 쓰레드
+ * @TODO 입출력을 위한 스트림을 문자스트림->바이트스트림 으로 변환 수정된 유틸클래스 사용으로 메시지 작성방식 변경 타임아웃 예외가
+ *       발생했을 경우 알림메시지를 전송하고 소켓해제 및 자원회수 매커니즘 예외처리들을 위한 많은 try-catch문을 정리
  */
 public class ProcessCilentRequest extends Thread {
 
@@ -37,9 +37,10 @@ public class ProcessCilentRequest extends Thread {
 		try {
 			bos = new BufferedOutputStream(connectedSocketWithClient.getOutputStream());
 			bis = new BufferedInputStream(connectedSocketWithClient.getInputStream());
-
+			
 			/**
-			 * 실제 데이터를 주고 받는 부분 TODO : 핑퐁뿐만 아니라 실제 데이터를 주고받는 로직
+			 * 실제 데이터를 주고 받는 부분 
+			 * @TODO : 핑퐁뿐만 아니라 실제 데이터를 주고받는 로직
 			 */
 			startPingPong();
 		} catch (SocketTimeoutException timeoutE) {
@@ -66,11 +67,11 @@ public class ProcessCilentRequest extends Thread {
 
 	private void startPingPong() throws IOException, InterruptedException {
 		String msgPingString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), true);
-		msgPingByte = ServerUtils.makeMessageStringToByte(new byte[ServerConst.HEADER_LENTH + msgPingString.getBytes().length],
-				msgPingString);
+		msgPingByte = ServerUtils.makeMessageStringToByte(
+				new byte[ServerConst.HEADER_LENTH + msgPingString.getBytes().length], msgPingString);
 		String msgPongString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), false);
-		msgPongByte = ServerUtils.makeMessageStringToByte(new byte[ServerConst.HEADER_LENTH + msgPongString.getBytes().length],
-				msgPongString);
+		msgPongByte = ServerUtils.makeMessageStringToByte(
+				new byte[ServerConst.HEADER_LENTH + msgPongString.getBytes().length], msgPongString);
 
 		byte[] buf = new byte[ServerConst.HEADER_LENTH];
 		byte[] body;
@@ -107,7 +108,8 @@ public class ProcessCilentRequest extends Thread {
 	 */
 	public void setPush(String msg) {
 		try {
-			msgPushByte = ServerUtils.makeMessageStringToByte(new byte[ServerConst.HEADER_LENTH + msg.getBytes(ServerConst.CHARSET).length], msg);
+			msgPushByte = ServerUtils.makeMessageStringToByte(
+					new byte[ServerConst.HEADER_LENTH + msg.getBytes(ServerConst.CHARSET).length], msg);
 
 			bos.write(msgPushByte);
 			bos.flush();

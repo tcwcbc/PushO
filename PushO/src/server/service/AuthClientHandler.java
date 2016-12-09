@@ -16,7 +16,8 @@ import server.util.ServerUtils;
 
 /**
  * @author 최병철
- * @Description 인증을 위한 프록시 클래스로 싱글톤으로 구현 됨 TODO 싱글톤으로 구현시 멀티쓰레드 환경에서의 동시성 문제 제고
+ * @Description 인증을 위한 프록시 클래스로 싱글톤으로 구현 됨 
+ * @TODO 싱글톤으로 구현시 멀티쓰레드 환경에서의 동시성 문제 제고
  *              인증을 위한 DB입출력 Blocking 시간 고려
  */
 public class AuthClientHandler {
