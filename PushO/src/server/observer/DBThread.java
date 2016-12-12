@@ -22,13 +22,11 @@ public class DBThread extends Thread {
 	private boolean DBThread_flag = true;
 
 	private JDBCTemplate db;
-	
+
 	private String sql;
 	private String msgPushJson;
-	
+
 	private List<PushInfo> pushList = new ArrayList<>();
-
-
 
 	public DBThread(DBObserver ob) {
 		this.ob = ob;
@@ -65,7 +63,7 @@ public class DBThread extends Thread {
 
 	public void setPush(PushInfo msg) {
 		msgPushJson = ServerUtils.makeJSONMessageForPush(msg, new JSONObject(), new JSONObject());
-		//System.out.println("전송 데이터:" + msgPushJson);
+		// System.out.println("전송 데이터:" + msgPushJson);
 		ob.msgPush(msgPushJson);
 	}
 

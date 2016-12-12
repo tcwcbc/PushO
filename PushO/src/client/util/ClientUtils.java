@@ -113,7 +113,8 @@ public class ClientUtils {
 	 * @return merge(byte[] header + byte[] body)
 	 */
 	public static byte[] makeMessageStringToByte(byte[] ret, String msg) {
-		return mergeBytearrays(ret, intTobyte(msg.getBytes(ClientConst.CHARSET).length), msg.getBytes(ClientConst.CHARSET));
+		return mergeBytearrays(ret, intTobyte(msg.getBytes(ClientConst.CHARSET).length),
+				msg.getBytes(ClientConst.CHARSET));
 	}
 
 	/**
@@ -249,7 +250,8 @@ public class ClientUtils {
 			}
 
 			pushData = new PushInfo(object.get(ClientConst.JSON_KEY_ORDER_NUM).toString(),
-					object.get(ClientConst.JSON_KEY_ORDER_DATE).toString(), object.get(ClientConst.JSON_KEY_ORDER_USER).toString(),
+					object.get(ClientConst.JSON_KEY_ORDER_DATE).toString(),
+					object.get(ClientConst.JSON_KEY_ORDER_USER).toString(),
 					object.get(ClientConst.JSON_KEY_ORDER_SELLER).toString(),
 					object.get(ClientConst.JSON_KEY_ORDER_PRICE).toString(), pt);
 
