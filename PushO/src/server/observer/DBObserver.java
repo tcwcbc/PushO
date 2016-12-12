@@ -1,7 +1,5 @@
 package server.observer;
 
-import java.util.List;
-
 /**
  * 
  * @author ±èÀç¿ì

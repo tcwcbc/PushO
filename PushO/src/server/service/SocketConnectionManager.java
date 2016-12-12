@@ -1,0 +1,118 @@
+package server.service;
+
+import java.net.Socket;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import server.observer.DBThread;
+
+/**
+ * @author 최병철
+ * @Description {@link OIOServer}에서는 accept()를 통해 연결에 대한 처리만을 하고
+ *              {@link AuthClientHandler}에서 인증을 거친 후에
+ *              {@link ProcessCilentRequest}를 생성하여 해당 쓰레드를 관리하기 위한 ThreadPool과
+ *              클라이언트들을 관리하는 자료구조가 포함 {@link Pushable}을 구현하여 특정 판매자에게만 보내는 메소드와
+ *              모두에게 보내는 메소드를 구현 
+ * @TODO 클라이언트를 관리하기 위한 자료구조(HashMap->
+ *      				Collection.syncronized() Wrapping->ConcurrentHashMap) 
+ *      Thread pooling {@link Pushable} 구현
+ */
+public class SocketConnectionManager extends Thread implements Pushable {
+	// 매니저 객체는 싱글톤
+	private static SocketConnectionManager instance = null;
+
+	public static SocketConnectionManager getInstance() {
+		if (instance == null) {
+			instance = new SocketConnectionManager();
+		}
+		return instance;
+	}
+
+	// 클라이언트 처리 쓰레드를 Map으로 관리
+	private Map<String, ProcessCilentRequest> conMap = new HashMap<String, ProcessCilentRequest>();
+	// 쓰레드풀 구현부분
+	private ExecutorService executorService = Executors.newCachedThreadPool();
+
+	private DBThread dbThread;
+	// 임시변수
+	private ProcessCilentRequest proClient = null;
+
+	private Iterator<String> keySetIterator;
+
+	public SocketConnectionManager() {
+		dbThread = new DBThread(this);
+		dbThread.start();
+		System.out.println("DB감시 시작...");
+	}
+
+	@Override
+	public void sendPushAll(String msg) {
+		keySetIterator = conMap.keySet().iterator();
+		while (keySetIterator.hasNext()) {
+			String userID = keySetIterator.next();
+			// thread의 setPush
+			conMap.get(userID).setPush(msg);
+		}
+	}
+
+	@Override
+	public void sendPushPartial(String Id, String msg) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			while (!currentThread().isInterrupted()) {
+				Thread.sleep(1000);
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 쓰레드풀과 Map에 추가시키는 메소드 리턴타입으로 Future 객체를 사용할지에 대한 여부 고려
+	 * 
+	 * @param name
+	 *            클라이언트 아이디
+	 * @param clientSocket
+	 *            클라이언트와 연결된 소켓
+	 * @param autorized
+	 *            인증되었는지 여부
+	 */
+	public synchronized void add(String name, Socket clientSocket, boolean autorized) {
+		if (conMap.containsKey(name)) {
+			autorized = false;
+		}
+		if (autorized) {
+			proClient = new ProcessCilentRequest(clientSocket);
+			this.executorService.submit(proClient);
+			conMap.put(name, proClient);
+			proClient = null;
+		} else {
+			// TODO : 인증이 되지 않았다는 메시지를 보내고 소켓을 닫음.
+		}
+	}
+
+	public synchronized void closeAll() {
+		dbThread.interrupt();
+		try {
+			dbThread.db.closeDBSet();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		executorService.shutdown();
+		this.interrupt();
+		conMap = null;
+	}
+
+}

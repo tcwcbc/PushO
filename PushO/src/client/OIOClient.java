@@ -36,7 +36,7 @@ public class OIOClient {
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			// 인증을 위한 JSON 메세지 생성
-			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자5", "비밀번호~?", new JSONObject(), new JSONObject());
+			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자50", "비밀번호~?", new JSONObject(), new JSONObject());
 			byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 					new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length], msgAuthString);
 			bos.write(msgAuthByte);
@@ -120,7 +120,7 @@ public class OIOClient {
 					// 서버가 죽은 경우
 					boolean flag = true;
 					while (flag) {
-						if (connectServer() && !OIOServer.isSurvival()) {
+						if (connectServer()) {
 							processMsg();
 							flag = false;
 						} else {
