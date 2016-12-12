@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 
 import server.dao.JDBCTemplate;
 import server.model.PushInfo;
+import server.service.Pushable;
 import server.util.ServerUtils;
 
 /**
@@ -18,18 +19,16 @@ import server.util.ServerUtils;
  */
 public class DBThread extends Thread {
 
-	private DBObserver ob;
-	private boolean DBThread_flag = true;
-
-	private JDBCTemplate db;
-
+	private Pushable pushable;
+	public JDBCTemplate db;
+	
 	private String sql;
 	private String msgPushJson;
 
 	private List<PushInfo> pushList = new ArrayList<>();
 
-	public DBThread(DBObserver ob) {
-		this.ob = ob;
+	public DBThread(Pushable pushable) {
+		this.pushable = pushable;
 		this.db = new JDBCTemplate();
 	}
 
@@ -38,7 +37,7 @@ public class DBThread extends Thread {
 		sql = "SELECT order_num, order_user, order_seller, order_date, order_price "
 				+ "FROM TB_USER_ORDER WHERE order_push = 'N'";
 
-		while (DBThread_flag) {
+		while (!currentThread().isInterrupted()) {
 			try {
 
 				Thread.sleep(5000);
@@ -54,7 +53,12 @@ public class DBThread extends Thread {
 				}
 			} catch (InterruptedException e) {
 				System.out.println(e.getMessage());
-				obserberStop();
+				try {
+					db.closeDBSet();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			} finally {
 				pushList.clear();
 			}
@@ -63,8 +67,8 @@ public class DBThread extends Thread {
 
 	public void setPush(PushInfo msg) {
 		msgPushJson = ServerUtils.makeJSONMessageForPush(msg, new JSONObject(), new JSONObject());
-		// System.out.println("전송 데이터:" + msgPushJson);
-		ob.msgPush(msgPushJson);
+		//System.out.println("전송 데이터:" + msgPushJson);
+		pushable.sendPushAll(msgPushJson);
 	}
 
 	public String getQuery(String orderNum) {
@@ -73,17 +77,6 @@ public class DBThread extends Thread {
 				+ "' AND a.orderlist_product = b.product_num;";
 
 		return sql;
-	}
-
-	// 쓰레드 종료
-	public void obserberStop() {
-		try {
-			DBThread_flag = false;
-			db.closeDBSet();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }
