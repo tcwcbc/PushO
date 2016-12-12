@@ -22,6 +22,7 @@ import server.util.ServerUtils;
  */
 public class AuthClientHandler {
 
+	private SocketConnectionManager socketConnectionManagerager = SocketConnectionManager.getInstance();
 	private static AuthClientHandler instance = null;
 
 	public static AuthClientHandler getInstance() {
@@ -40,9 +41,7 @@ public class AuthClientHandler {
 	 * @throws EmptyResultDataException
 	 *             등록된 사용자가 아님(인증X)
 	 */
-	public synchronized ProcessCilentRequest getClientSocketThread(Socket socket, DBObserver ob)
-			throws EmptyResultDataException {
-		ProcessCilentRequest thread = null;
+	public synchronized void authClientAndDelegate(Socket socket){
 		BufferedInputStream bis = null;
 
 		try {
@@ -63,11 +62,17 @@ public class AuthClientHandler {
 
 			if (text.contains(ServerConst.JSON_VALUE_AUTH)) {
 				String name = ServerUtils.parseJSONMessage(new JSONParser(), new String(body, ServerConst.CHARSET));
-				// HashMap에 담을 사용자 정보 셋팅
-				ob.setUser(name);
-				checkAuthorization(name);
-
-				thread = new ProcessCilentRequest(socket);
+				boolean authorized = false;
+				try{
+					checkAuthorization(name);
+					authorized = true;
+				} catch(EmptyResultDataException e){
+					e.printStackTrace();
+				}
+				
+				////매니저에 추가해주는 부분.
+				socketConnectionManagerager.add(name, socket, authorized);
+				////
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -79,7 +84,6 @@ public class AuthClientHandler {
 				closeE.printStackTrace();
 			}
 		}
-		return thread;
 	}
 
 	/**
