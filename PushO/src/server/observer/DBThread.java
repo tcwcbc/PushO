@@ -37,7 +37,7 @@ public class DBThread extends Thread {
 		sql = "SELECT order_num, order_user, order_seller, order_date, order_price "
 				+ "FROM TB_USER_ORDER WHERE order_push = 'N'";
 
-		while (!currentThread().isInterrupted()) {
+		while (!this.isInterrupted()) {
 			try {
 
 				Thread.sleep(5000);
@@ -75,7 +75,6 @@ public class DBThread extends Thread {
 		String sql = "SELECT a.orderlist_count, b.product_name "
 				+ "FROM TB_USER_ORDER_LIST AS a INNER JOIN TB_PRODUCT AS b " + "ON a.orderlist_num = '" + orderNum
 				+ "' AND a.orderlist_product = b.product_num;";
-
 		return sql;
 	}
 

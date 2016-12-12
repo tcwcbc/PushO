@@ -36,7 +36,7 @@ public class OIOClient {
 
 			isServerSurvival = true;
 			// 인증을 위한 JSON 메세지 생성
-			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자5", "비밀번호~?", new JSONObject(),
+			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자10", "비밀번호~?", new JSONObject(),
 					new JSONObject());
 			byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 					new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length],
@@ -46,7 +46,7 @@ public class OIOClient {
 			System.out.println("인증 메시지 전송");
 
 			// 입력스트림에 대한 7초 타임아웃 설정
-			socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
+//			socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
 			// 메시지 DATASIZE
 			byte[] header = new byte[ClientConst.HEADER_LENTH];
 			while ((readCount = bis.read(header)) != -1) {
@@ -84,7 +84,7 @@ public class OIOClient {
 		while (status) {
 			try {
 				// 입력스트림에 대한 7초 타임아웃 설정
-				socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
+//				socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
 				while ((readCount = bis.read(header)) != -1) {
 					// 수신된 메시지 DATASIZE
 					dataSize = ClientUtils.byteToInt(header);
@@ -121,7 +121,7 @@ public class OIOClient {
 					System.out.println("ping 전송");
 
 					// 입력스트림에 대한 7초 타임아웃 설정
-					socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
+//					socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
 					while ((readCount = bis.read(header)) != -1) {
 						// 수신된 메시지 DATASIZE
 						dataSize = ClientUtils.byteToInt(header);

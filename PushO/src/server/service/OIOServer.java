@@ -3,6 +3,7 @@ package server.service;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import server.exception.EmptyResultDataException;
 import server.res.ServerConst;
@@ -23,7 +24,7 @@ public class OIOServer {
 	public static void main(String[] args) {
 		new OIOServer();
 	}
-
+	
 	// 소켓 및 해당 쓰레드들을 관리하는 매니저클래스 인스턴스 획득
 	private SocketConnectionManager conManagerager = SocketConnectionManager.getInstance();
 	// 인증을 위한 프록시 클래스의 인스턴스 획득
@@ -34,20 +35,27 @@ public class OIOServer {
 
 	public OIOServer() {
 		try {
-
 			serverSocket = new ServerSocket(ServerConst.PORT_NUM);
 			System.out.println("서버시작...");
 
-			conManagerager.start();
-			System.out.println("매니저시작...");
-
+			authHandler.start();
+			System.out.println("핸들러시작...");
+			
 			while (true) {
+				System.out.println("클라이언트 접속 대기");
 				// 블로킹 구간
 				socket = serverSocket.accept();
 				// 스트림에 대한 타임아웃 설정
 				// socket.setSoTimeout(Const.STREAM_TIME_OUT);
 				System.out.println("서버쪽 소켓 연결");
-				authHandler.authClientAndDelegate(socket);
+				try {
+					ServerConst.SOCKET_QUEUE.put(socket);
+					System.out.println("블로킹큐 put : "+socket.getClass().getName());
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+//				authHandler.authClientAndDelegate(socket);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -55,6 +63,7 @@ public class OIOServer {
 			System.out.println("서버소켓 예외 : " + e.getMessage());
 		} finally {
 			try {
+				ServerConst.SOCKET_QUEUE.clear();
 				socket.close();
 				serverSocket.close();
 				conManagerager.closeAll();

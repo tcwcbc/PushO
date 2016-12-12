@@ -1,7 +1,9 @@
 package server.res;
 
 import java.io.File;
+import java.net.Socket;
 import java.nio.charset.Charset;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * @author √÷∫¥√∂
@@ -64,4 +66,9 @@ public interface ServerConst {
 	 * IO Stream
 	 */
 	Charset CHARSET = Charset.forName("UTF-8");
+	
+	/**
+	 * Thread res
+	 */
+	ArrayBlockingQueue<Socket> SOCKET_QUEUE = new ArrayBlockingQueue<Socket>(5);
 }

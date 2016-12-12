@@ -5,10 +5,12 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.concurrent.Callable;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import server.model.UserAuth;
 import server.res.ServerConst;
 import server.util.ServerUtils;
 
@@ -18,7 +20,7 @@ import server.util.ServerUtils;
  * @TODO 입출력을 위한 스트림을 문자스트림->바이트스트림 으로 변환 수정된 유틸클래스 사용으로 메시지 작성방식 변경 타임아웃 예외가
  *       발생했을 경우 알림메시지를 전송하고 소켓해제 및 자원회수 매커니즘 예외처리들을 위한 많은 try-catch문을 정리
  */
-public class ProcessCilentRequest extends Thread {
+public class ProcessCilentRequest extends Thread{
 
 	private Socket connectedSocketWithClient;
 	private byte[] msgPingByte;

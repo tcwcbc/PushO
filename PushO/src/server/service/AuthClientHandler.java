@@ -20,8 +20,8 @@ import server.util.ServerUtils;
  * @TODO 싱글톤으로 구현시 멀티쓰레드 환경에서의 동시성 문제 제고
  *              인증을 위한 DB입출력 Blocking 시간 고려
  */
-public class AuthClientHandler {
-
+public class AuthClientHandler extends Thread {
+	
 	private SocketConnectionManager socketConnectionManagerager = SocketConnectionManager.getInstance();
 	private static AuthClientHandler instance = null;
 
@@ -31,6 +31,22 @@ public class AuthClientHandler {
 		}
 		return instance;
 	}
+	
+
+	@Override
+	public void run() {
+		while(!this.isInterrupted()){
+			try {
+				Socket socket = ServerConst.SOCKET_QUEUE.take();
+				authClientAndDelegate(socket);
+				System.out.println("블로킹큐 get : "+socket.getClass().getName());
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 
 	/**
 	 * 실제로 인증을 수행하는 메소드
@@ -64,15 +80,19 @@ public class AuthClientHandler {
 				String name = ServerUtils.parseJSONMessage(new JSONParser(), new String(body, ServerConst.CHARSET));
 				boolean authorized = false;
 				try{
+					//인증 실패 시 예외가 발생되는 부분
 					checkAuthorization(name);
 					authorized = true;
+					if(authorized){
+						////매니저에 추가해주는 부분.
+						socketConnectionManagerager.add(name, socket);
+						////
+					}
 				} catch(EmptyResultDataException e){
 					e.printStackTrace();
 				}
 				
-				////매니저에 추가해주는 부분.
-				socketConnectionManagerager.add(name, socket, authorized);
-				////
+				
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
