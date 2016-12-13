@@ -40,7 +40,7 @@ public class AESUtils {
 			cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 			cipher.init(Cipher.ENCRYPT_MODE, newKey, ivSpec);
 
-			result =  Base64.encodeBase64String(cipher.doFinal(textBytes));
+			result = Base64.encodeBase64String(cipher.doFinal(textBytes));
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
@@ -68,14 +68,14 @@ public class AESUtils {
 			SecretKeySpec newKey = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 			cipher.init(Cipher.DECRYPT_MODE, newKey, ivSpec);
-			
+
 			result = new String(cipher.doFinal(textBytes), "UTF-8");
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		return result;
 	}
 
