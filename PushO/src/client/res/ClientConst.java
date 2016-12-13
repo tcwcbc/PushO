@@ -3,6 +3,9 @@ package client.res;
 import java.io.File;
 import java.nio.charset.Charset;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @author 최병철
  * @Description 모든 클래스에서 사용되는 상수 값들을 정리, 한글은 별도의 파일로 관리해야 함 TODO
@@ -66,4 +69,9 @@ public interface ClientConst {
 	 * IO Stream
 	 */
 	Charset CHARSET = Charset.forName("UTF-8");
+	
+	/**
+	 * ClientLogger
+	 */
+	Logger CLIENT_LOGGER = LogManager.getLogger("client");
 }

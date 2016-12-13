@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" monitorInterval="30">
+<Configuration status="DEBUG" monitorInterval="30">
 
 	<Properties>
 		<Property name="name">Push_O</Property>
-		<Property name="pattern">${name} - %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [Class:%C Method:%M Line:%L Thread:%t] Message:%msg%n</Property>
+		<Property name="level">debug</Property>
+		<Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%C %M %L %t] Message:%msg%n</Property>
 	</Properties>
 
 	<Appenders>
@@ -12,25 +13,41 @@
 			<PatternLayout pattern="${pattern}" />
 			<!-- <Pattern>${pattern}<Pattern/> -->
 		</Console>
-		<RollingFile name="file" fileName="log/${name}.log"
-			filePattern="log/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_%d{yyyyMMddHH}.log">
+		<RollingFile name="client_file" fileName="log/client.log"
+			filePattern="log/client/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_client_%d{yyyyMMddHH}.log">
 			<PatternLayout>
 				<pattern>${pattern}</pattern>
 			</PatternLayout>
 			<Policies>
 				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
-				<SizeBasedTriggeringPolicy size="250MB" />
+				<SizeBasedTriggeringPolicy size="10MB" />
 			</Policies>
+			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
+		</RollingFile>
+		<RollingFile name="server_file" fileName="log/server.log"
+			filePattern="log/server/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_server_%d{yyyyMMddHH}.log">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
 		</RollingFile>
 	</Appenders>
 
 	<Loggers>
-		<Logger name="runMode" level="trace">
+		<Logger name="client" level="${level}" additivity="false">
 			<AppenderRef ref="Console" />
-			<AppenderRef ref="file" />
+			<AppenderRef ref="client_file" />
+		</Logger>
+		<Logger name="server" level="${level}" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="server_file" />
 		</Logger>
 		<Root level="trace">
-			<appender-ref ref="file" />
+			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
 </Configuration>

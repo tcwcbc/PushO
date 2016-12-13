@@ -5,14 +5,16 @@ import org.apache.logging.log4j.Logger;
 
 public class Log4jTest {
 //	private final Logger logger = LogManager.getRootLogger();
-	private final Logger logger = LogManager.getLogger("runMode");
+	private final Logger clientLogger = LogManager.getLogger("client");
+	private final Logger severLogger = LogManager.getLogger("server");
 	public static void main(String[] args) {
 		new Log4jTest();
 	}
 	
 	public Log4jTest() {
-		logger.trace("시작");
-		logger.info("가나다라마바사");
-		logger.trace("끝");
+		clientLogger.trace("클라이언트");
+		clientLogger.error("클라이언트 에러");
+		severLogger.trace("서버");
+		severLogger.error("서버 에러");
 	}
 }
