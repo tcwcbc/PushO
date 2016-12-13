@@ -46,7 +46,7 @@ public class OIOClient {
 			isServerSurvival = true;
 
 			// 인증을 위한 JSON 메세지 생성
-			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자10", "비밀번호~?", new JSONObject(),
+			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자9", "비밀번호~?", new JSONObject(),
 					new JSONObject());
 			byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 					new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length],

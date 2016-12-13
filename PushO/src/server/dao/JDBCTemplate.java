@@ -96,7 +96,9 @@ public class JDBCTemplate {
 	 * @param          주문테이블에서 order_push 속성이 N 인것을 SELECT한다.
 	 * @return         상품 상세목록을 제외한 데이터를 반환한다.
 	 */
-	public List<PushInfo> executeQuery_ORDER(String sql) {
+	public List<PushInfo> executeQuery_ORDER() {
+		String sql = "SELECT order_num, order_user, order_seller, order_date, order_price "
+				+ "FROM TB_USER_ORDER WHERE order_push = 'N'";
 		pushList.clear();
 		try {
 			ps = con.prepareStatement(sql);
@@ -121,7 +123,10 @@ public class JDBCTemplate {
 	 * @param sql
 	 * @return 상품이름과 갯수가 하나의 스트링으로 반환된다.
 	 */
-	public List<ProductList> executeQuery_ORDER_LIST(String sql) {
+	public List<ProductList> executeQuery_ORDER_LIST(String orderNum) {
+		String sql = "SELECT a.orderlist_count, b.product_name "
+				+ "FROM TB_USER_ORDER_LIST AS a INNER JOIN TB_PRODUCT AS b " + "ON a.orderlist_num = '" + orderNum
+				+ "' AND a.orderlist_product = b.product_num;";
 		productList.clear();
 		try {
 			ps = con.prepareStatement(sql);
@@ -137,7 +142,17 @@ public class JDBCTemplate {
 		} 
 		
 		return productList;
-		
+	}
+	
+	public void executeQuery_PUSH_STATUS_UPDATE(String orderNum) {
+		String sql = "UPDATE TB_USER_ORDER set order_push = '전송중' where order_num = '"+orderNum+"'";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 

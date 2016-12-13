@@ -21,8 +21,7 @@ public class DBThread extends Thread {
 
 	private Pushable pushable;
 	public JDBCTemplate db;
-	
-	private String sql;
+
 	private String msgPushJson;
 
 	private List<PushInfo> pushList = new ArrayList<>();
@@ -34,20 +33,17 @@ public class DBThread extends Thread {
 
 	@Override
 	public void run() {
-		sql = "SELECT order_num, order_user, order_seller, order_date, order_price "
-				+ "FROM TB_USER_ORDER WHERE order_push = 'N'";
-
 		while (!this.isInterrupted()) {
 			try {
 
 				Thread.sleep(5000);
-				pushList = db.executeQuery_ORDER(sql);
+				pushList = db.executeQuery_ORDER();
 
 				if (ServerUtils.isEmpty(pushList)) {
 					System.out.println("푸쉬 데이터 없음");
 				} else {
 					for (PushInfo orderNum : pushList) {
-						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(getQuery(orderNum.getOrder_num())));
+						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(orderNum.getOrder_num()));
 						setPush(orderNum);
 					}
 				}
@@ -65,17 +61,16 @@ public class DBThread extends Thread {
 		}
 	}
 
+	/**
+	 * 한개의 주문에 대한 정보들이 들어온다 
+	 * @param msg 주문에 대한 정보들
+	 */
 	public void setPush(PushInfo msg) {
+		// 주문정보를 JSON포멧으로 바꾼다.
 		msgPushJson = ServerUtils.makeJSONMessageForPush(msg, new JSONObject(), new JSONObject());
-		//System.out.println("전송 데이터:" + msgPushJson);
+		// 알림을 보내기 전에 DB의 알림상태를 전송중으로 바꾼다.
+		db.executeQuery_PUSH_STATUS_UPDATE(msg.getOrder_num());
+		// 알림메시지를 보낸다.
 		pushable.sendPushAll(msgPushJson);
 	}
-
-	public String getQuery(String orderNum) {
-		String sql = "SELECT a.orderlist_count, b.product_name "
-				+ "FROM TB_USER_ORDER_LIST AS a INNER JOIN TB_PRODUCT AS b " + "ON a.orderlist_num = '" + orderNum
-				+ "' AND a.orderlist_product = b.product_num;";
-		return sql;
-	}
-
 }
