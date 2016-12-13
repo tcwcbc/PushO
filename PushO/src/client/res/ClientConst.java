@@ -11,8 +11,8 @@ public interface ClientConst {
 	/**
 	 * Socket Connection
 	 */
-	String SERVER_IP ="175.115.95.32";
-//	String SERVER_IP ="127.0.0.1";
+//	String SERVER_IP ="175.115.95.32";
+	String SERVER_IP ="127.0.0.1";
 	int PORT_NUM = 9999;
 	int STREAM_TIME_OUT = 30000;
 	int SEND_WATING_TIME = 7000;
@@ -43,6 +43,7 @@ public interface ClientConst {
 	String JSON_KEY_DATA_SIZE = "data_size";
 	String JSON_KEY_AUTH_ID = "id";
 	String JSON_KEY_AUTH_PASSWD = "passwd";
+	String JSON_KEY_AUTH_ENCRY = "key";
 	String JSON_KEY_ORDER_NUM = "order_num";
 	String JSON_KEY_ORDER_DATE = "order_date";
 	String JSON_KEY_ORDER_USER = "order_user";
@@ -56,10 +57,11 @@ public interface ClientConst {
 	String JSON_VALUE_PING = "ping";
 	String JSON_VALUE_PONG = "pong";
 	String JSON_VALUE_PUSH = "push";
+	String JSON_VALUE_ENCRY = "encry";
 
 	String END_LINE = "\n";
 	int HEADER_LENTH = 4;
-
+	int KEY_LENTH = 256;
 	/**
 	 * IO Stream
 	 */

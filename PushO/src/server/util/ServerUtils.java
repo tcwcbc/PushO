@@ -18,6 +18,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import client.res.ClientConst;
 import server.model.ProductList;
 import server.model.PushInfo;
 import server.res.ServerConst;
@@ -112,7 +113,8 @@ public class ServerUtils {
 	 * @return merge(byte[] header + byte[] body)
 	 */
 	public static byte[] makeMessageStringToByte(byte[] ret, String msg) {
-		return mergeBytearrays(ret, intTobyte(msg.getBytes(ServerConst.CHARSET).length), msg.getBytes(ServerConst.CHARSET));
+		return mergeBytearrays(ret, intTobyte(msg.getBytes(ServerConst.CHARSET).length),
+				msg.getBytes(ServerConst.CHARSET));
 	}
 
 	/**
@@ -197,6 +199,37 @@ public class ServerUtils {
 		return parent.toString();
 	}
 
+	public static String makeJSONMessageForEncry(String key, JSONObject parent, JSONObject childData) {
+
+		parent.put(ClientConst.JSON_KEY_SEND_TIME, getTime());
+		parent.put(ClientConst.JSON_KEY_DATA_CATEGORY, ClientConst.JSON_VALUE_ENCRY);
+		childData.put(ClientConst.JSON_KEY_AUTH_ENCRY, key);
+		parent.put(ClientConst.JSON_KEY_DATA, childData);
+
+		return parent.toString();
+	}
+	
+	/**
+	 * 키교환을 위한 파서
+	 * @param jsonParser
+	 * @param msg
+	 * @return
+	 */
+	public static String parseEncryMessage(JSONParser jsonParser, String msg) {
+		String key = null;
+		try {
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
+			JSONObject object = (JSONObject) jsonObject.get(ClientConst.JSON_KEY_DATA);
+
+			key = (String) object.get(ClientConst.JSON_KEY_AUTH_ENCRY);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			key = "JSON 파싱 에러";
+		}
+
+		return key;
+	}
+
 	/**
 	 * String 타입으로 받은 JSON문자열을 파싱하여 특정 데이터를 추출하는 메소드
 	 * 
@@ -248,7 +281,8 @@ public class ServerUtils {
 			}
 
 			pushData = new PushInfo(object.get(ServerConst.JSON_KEY_ORDER_NUM).toString(),
-					object.get(ServerConst.JSON_KEY_ORDER_DATE).toString(), object.get(ServerConst.JSON_KEY_ORDER_USER).toString(),
+					object.get(ServerConst.JSON_KEY_ORDER_DATE).toString(),
+					object.get(ServerConst.JSON_KEY_ORDER_USER).toString(),
 					object.get(ServerConst.JSON_KEY_ORDER_SELLER).toString(),
 					object.get(ServerConst.JSON_KEY_ORDER_PRICE).toString(), pt);
 

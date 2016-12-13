@@ -22,6 +22,7 @@ import org.json.simple.parser.ParseException;
 import client.res.ClientConst;
 import server.model.ProductList;
 import server.model.PushInfo;
+import server.res.ServerConst;
 
 /**
  * @author 최병철
@@ -198,6 +199,16 @@ public class ClientUtils {
 
 		return parent.toString();
 	}
+	
+	public static String makeJSONMessageForEncry(String key, JSONObject parent, JSONObject childData) {
+		
+		parent.put(ClientConst.JSON_KEY_SEND_TIME, getTime());
+		parent.put(ClientConst.JSON_KEY_DATA_CATEGORY, ClientConst.JSON_VALUE_ENCRY);
+		childData.put(ClientConst.JSON_KEY_AUTH_ENCRY, key);
+		parent.put(ClientConst.JSON_KEY_DATA, childData);
+
+		return parent.toString();
+	}
 
 	/**
 	 * String 타입으로 받은 JSON문자열을 파싱하여 특정 데이터를 추출하는 메소드
@@ -220,13 +231,11 @@ public class ClientUtils {
 			} else if (category.equals(ClientConst.JSON_VALUE_PONG)) {
 				result = ClientConst.JSON_VALUE_PONG;
 			} else if (category.equals(ClientConst.JSON_VALUE_AUTH)) {
-				JSONObject object = (JSONObject) jsonObject.get(ClientConst.JSON_KEY_DATA);
-				String id = (String) object.get(ClientConst.JSON_KEY_AUTH_ID);
-				String passwd = (String) object.get(ClientConst.JSON_KEY_AUTH_PASSWD);
-				// result = id + "," + passwd;
-				result = id;
+				result = ClientConst.JSON_VALUE_AUTH;
 			} else if (category.equals(ClientConst.JSON_VALUE_PUSH)) {
 				result = ClientConst.JSON_VALUE_PUSH;
+			} else if (category.equals(ClientConst.JSON_VALUE_ENCRY)) {
+				result = ClientConst.JSON_VALUE_ENCRY;
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -236,6 +245,37 @@ public class ClientUtils {
 		return result;
 	}
 
+	/**
+	 * 키교환을 위한 파서
+	 * @param jsonParser
+	 * @param msg
+	 * @return
+	 */
+	public static String parseEncryMessage(JSONParser jsonParser, String msg) {
+		String key = null;
+		try {
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
+			JSONObject object = (JSONObject) jsonObject.get(ClientConst.JSON_KEY_DATA);
+
+			key = (String) object.get(ClientConst.JSON_KEY_AUTH_ENCRY);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			key = "JSON 파싱 에러";
+		}
+
+		return key;
+	}
+
+	/**
+	 * 
+	 * @param jsonParser
+	 *            JSON 파싱을 위한 Parser 객체
+	 * @param msg
+	 *            String 타입의 JSON문자열
+	 * @param pushData
+	 *            PushInfo로 반환
+	 * @return
+	 */
 	public static PushInfo parsePushMessage(JSONParser jsonParser, String msg, PushInfo pushData) {
 		try {
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);

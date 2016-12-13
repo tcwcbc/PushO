@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.Socket;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import client.encry.KeyExchangeClient;
 import client.res.ClientConst;
 import client.util.ClientUtils;
 import server.model.PushInfo;
@@ -26,6 +28,8 @@ public class OIOClient {
 	private int dataSize;
 	private int bodyLength;
 
+	public String desKey;
+	
 	// 서버에 연결 작업
 	public boolean connectServer() {
 		boolean isServerSurvival = false;
@@ -34,7 +38,13 @@ public class OIOClient {
 			bis = new BufferedInputStream(socket.getInputStream());
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
+			//키교환이 이뤄지는 작업
+			KeyExchangeClient key = new KeyExchangeClient(bis, bos);
+			desKey = key.start();
+			System.out.println("키 교환작업 완료:" + desKey);
+			
 			isServerSurvival = true;
+			
 			// 인증을 위한 JSON 메세지 생성
 			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자10", "비밀번호~?", new JSONObject(),
 					new JSONObject());

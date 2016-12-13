@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import org.json.simple.parser.JSONParser;
 
 import server.dao.JDBCTemplate;
+import server.encry.KeyExchangeServer;
 import server.exception.EmptyResultDataException;
-import server.observer.DBObserver;
 import server.res.ServerConst;
 import server.util.ServerUtils;
 
@@ -24,20 +24,20 @@ public class AuthClientHandler extends Thread {
 	
 	private SocketConnectionManager socketConnectionManagerager = SocketConnectionManager.getInstance();
 	private static AuthClientHandler instance = null;
-
+	
 	public static AuthClientHandler getInstance() {
 		if (instance == null) {
 			instance = new AuthClientHandler();
 		}
 		return instance;
 	}
-	
 
 	@Override
 	public void run() {
 		while(!this.isInterrupted()){
 			try {
 				Socket socket = ServerConst.SOCKET_QUEUE.take();
+				encryptionKeyChange(socket);
 				authClientAndDelegate(socket);
 				System.out.println("블로킹큐 get : "+socket.getClass().getName());
 			} catch (InterruptedException e) {
@@ -45,6 +45,12 @@ public class AuthClientHandler extends Thread {
 				e.printStackTrace();
 			}
 		}
+	}
+
+
+	private void encryptionKeyChange(Socket socket) {
+		KeyExchangeServer kes = new KeyExchangeServer(socket);
+		kes.start();
 	}
 
 
@@ -59,7 +65,7 @@ public class AuthClientHandler extends Thread {
 	 */
 	public synchronized void authClientAndDelegate(Socket socket){
 		BufferedInputStream bis = null;
-
+		
 		try {
 			bis = new BufferedInputStream(socket.getInputStream());
 
