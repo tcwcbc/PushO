@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="DEBUG" monitorInterval="30">
+<Configuration status="WARN" monitorInterval="30">
 
 	<Properties>
 		<Property name="name">Push_O</Property>
+		<Property name="logPath">/home/tcwcbc/</Property>
 		<Property name="level">debug</Property>
 		<Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%C %M %L %t] Message:%msg%n</Property>
 	</Properties>
@@ -24,7 +25,7 @@
 			</Policies>
 			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
 		</RollingFile>
-		<RollingFile name="server_file" fileName="log/server.log"
+		<RollingFile name="server_file" fileName="${logPath}log/server.log"
 			filePattern="log/server/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_server_%d{yyyyMMddHH}.log">
 			<PatternLayout>
 				<pattern>${pattern}</pattern>
