@@ -5,6 +5,9 @@ import java.net.Socket;
 import java.nio.charset.Charset;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @author 최병철
  * @Description 모든 클래스에서 사용되는 상수 값들을 정리, 한글은 별도의 파일로 관리해야 함 TODO
@@ -71,4 +74,9 @@ public interface ServerConst {
 	 * Thread res
 	 */
 	ArrayBlockingQueue<Socket> SOCKET_QUEUE = new ArrayBlockingQueue<Socket>(5);
+	
+	/**
+	 * ServerLogger
+	 */
+	Logger SERVER_LOGGER = LogManager.getLogger("server");
 }
