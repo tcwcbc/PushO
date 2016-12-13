@@ -13,6 +13,12 @@ import org.apache.logging.log4j.Logger;
  * @Description 모든 클래스에서 사용되는 상수 값들을 정리, 한글은 별도의 파일로 관리해야 함 TODO
  */
 public interface ServerConst {
+	
+	/**
+	 * DES256 private key
+	 */
+	String desKey = "1jaewooss1234567";
+	int rsaKey_length = 294;
 	/**
 	 * Socket Connection
 	 */
