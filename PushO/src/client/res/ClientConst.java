@@ -55,6 +55,7 @@ public interface ClientConst {
 	String JSON_KEY_ORDER_LIST = "order_list";
 	String JSON_KEY_ORDER_PRODUCT = "product";
 	String JSON_KEY_ORDER_PRODUCT_COUNT = "product_count";
+	String JSON_KEY_ORDER_RESPONSE= "response";
 
 	String JSON_VALUE_AUTH = "auth";
 	String JSON_VALUE_PING = "ping";

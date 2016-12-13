@@ -166,35 +166,17 @@ public class ClientUtils {
 	}
 
 	/**
-	 * 푸시 데이터들을 Json포멧으로 변환
-	 * 
-	 * @param data
-	 *            주문정보가 담긴 데이터 배열
+	 * 알림 메시지에 대한 결과를 반환하는 포멧
+	 * @param msg
 	 * @param parent
-	 *            상위 Object
 	 * @param childData
-	 *            하위 Object
-	 * @return JSON형식의 String data
+	 * @return
 	 */
-	public static String makeJSONMessageForPush(PushInfo msg, JSONObject parent, JSONObject childData) {
+	public static String makeJSONMessageForPush(String msg, JSONObject parent, JSONObject childData) {
 
 		parent.put(ClientConst.JSON_KEY_SEND_TIME, getTime());
 		parent.put(ClientConst.JSON_KEY_DATA_CATEGORY, ClientConst.JSON_VALUE_PUSH);
-		childData.put(ClientConst.JSON_KEY_ORDER_NUM, msg.getOrder_num());
-		childData.put(ClientConst.JSON_KEY_ORDER_DATE, msg.getOrder_date());
-		childData.put(ClientConst.JSON_KEY_ORDER_USER, msg.getOrder_user());
-		childData.put(ClientConst.JSON_KEY_ORDER_SELLER, msg.getOrder_seller());
-		childData.put(ClientConst.JSON_KEY_ORDER_PRICE, msg.getOrder_price());
-
-		JSONArray array = new JSONArray();
-
-		for (int num = 0; num < msg.getOrder_list().size(); num++) {
-			JSONObject jo = new JSONObject();
-			jo.put(ClientConst.JSON_KEY_ORDER_PRODUCT, msg.getOrder_list().get(num).getProduct());
-			jo.put(ClientConst.JSON_KEY_ORDER_PRODUCT_COUNT, msg.getOrder_list().get(num).getCount());
-			array.add(jo);
-		}
-		childData.put(ClientConst.JSON_KEY_ORDER_LIST, array);
+		childData.put(ClientConst.JSON_KEY_ORDER_RESPONSE, msg);
 		parent.put(ClientConst.JSON_KEY_DATA, childData);
 
 		return parent.toString();

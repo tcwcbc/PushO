@@ -29,7 +29,7 @@ public class OIOClient {
 	private int bodyLength;
 
 	public String desKey;
-	
+
 	// 서버에 연결 작업
 	public boolean connectServer() {
 		boolean isServerSurvival = false;
@@ -38,13 +38,13 @@ public class OIOClient {
 			bis = new BufferedInputStream(socket.getInputStream());
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
-			//키교환이 이뤄지는 작업
+			// 키교환이 이뤄지는 작업
 			KeyExchangeClient key = new KeyExchangeClient(bis, bos);
 			desKey = key.start();
 			System.out.println("키 교환작업 완료:" + desKey);
-			
+
 			isServerSurvival = true;
-			
+
 			// 인증을 위한 JSON 메세지 생성
 			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자10", "비밀번호~?", new JSONObject(),
 					new JSONObject());
@@ -56,7 +56,7 @@ public class OIOClient {
 			System.out.println("인증 메시지 전송");
 
 			// 입력스트림에 대한 7초 타임아웃 설정
-//			socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
+			// socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
 			// 메시지 DATASIZE
 			byte[] header = new byte[ClientConst.HEADER_LENTH];
 			while ((readCount = bis.read(header)) != -1) {
@@ -94,7 +94,7 @@ public class OIOClient {
 		while (status) {
 			try {
 				// 입력스트림에 대한 7초 타임아웃 설정
-//				socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
+				// socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
 				while ((readCount = bis.read(header)) != -1) {
 					// 수신된 메시지 DATASIZE
 					dataSize = ClientUtils.byteToInt(header);
@@ -116,7 +116,11 @@ public class OIOClient {
 					else if (msg.equals(ClientConst.JSON_VALUE_PUSH)) {
 						pushData = ClientUtils.parsePushMessage(new JSONParser(), new String(body, ClientConst.CHARSET),
 								pushData);
-						System.out.println(pushData.getOrder_list().get(0).getProduct().toString());
+						System.out.println("주문번호:" + pushData.getOrder_num() + "확인되었습니다.");
+
+						String msgPushResponse = ClientUtils.makeJSONMessageForPush("sucess", new JSONObject(),
+								new JSONObject());
+						
 					}
 				} // end of while
 			} catch (IOException e) {
@@ -131,7 +135,7 @@ public class OIOClient {
 					System.out.println("ping 전송");
 
 					// 입력스트림에 대한 7초 타임아웃 설정
-//					socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
+					// socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
 					while ((readCount = bis.read(header)) != -1) {
 						// 수신된 메시지 DATASIZE
 						dataSize = ClientUtils.byteToInt(header);
