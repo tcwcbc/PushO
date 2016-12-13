@@ -76,6 +76,7 @@ public class KeyExchangeClient {
 		if (index == 1) {
 			msgEncryString = ClientUtils.makeJSONMessageForEncry(EncryUtils.byteArrayToHex(pubKey), new JSONObject(),
 					new JSONObject());
+			System.out.println(msgEncryString);
 		}
 		// 키 교환이 이루어지고 전문암호화 테스트
 		else if (index == 2) {
