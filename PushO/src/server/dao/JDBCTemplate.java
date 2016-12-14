@@ -130,14 +130,11 @@ public class JDBCTemplate {
 			while (rs.next()) {
 				productList.add(new ProductList(rs.getString("product_name"), rs.getString("orderlist_count")));
 			} 
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		
 		return productList;
-		
 	}
 	
 
