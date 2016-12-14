@@ -44,6 +44,7 @@ public class ProcessCilentRequest extends Thread{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ServerConst.SERVER_LOGGER.debug("ProcessClientRequest 생성");
 	}
 
 	@Override
@@ -98,7 +99,7 @@ public class ProcessCilentRequest extends Thread{
 		int bodylength = 0;
 		bos.write(msgPingByte);
 		bos.flush();
-		System.out.println("인증 성공 메시지 전송");
+		ServerConst.SERVER_LOGGER.debug("인증성공 메시지 전송");
 
 		while (!this.isInterrupted()) {
 			readCount = bis.read(header);
@@ -110,7 +111,7 @@ public class ProcessCilentRequest extends Thread{
 			String msg = ServerUtils.parseJSONMessage(new JSONParser(), bodyDecodeMsg);
 
 			if (msg.equals(ServerConst.JSON_VALUE_PONG)) {
-				System.out.println("ACK");
+				ServerConst.SERVER_LOGGER.debug("응답메시지 수신");
 			}
 			bos.flush();
 		}
@@ -122,6 +123,7 @@ public class ProcessCilentRequest extends Thread{
 	 * @throws PushMessageSendingException 보낼 때 스트림이 닫힌경우 연결이 해제되었음을 인지하고 풀과 맵에서 정리를 알리는 예외
 	 */
 	public void setPush(String msg) throws PushMessageSendingException {
+		ServerConst.SERVER_LOGGER.debug("setPush 메소드 호출");
 		try {
 			msg = AESUtils.AES_Encode(msg, aesKey);
 			msgPushByte = ServerUtils.makeMessageStringToByte(
@@ -129,13 +131,14 @@ public class ProcessCilentRequest extends Thread{
 
 			bos.write(msgPushByte);
 			bos.flush();
-			System.out.println("푸쉬완료:" + this.getName());
+			ServerConst.SERVER_LOGGER.info("푸시완료, "+this.getName());
 		} catch (IOException e) {
 			// 상대 클라이언트 접속이 끊어지면 발생
 			// 그에 따라 HashMap에 저장되어있는 현재 Thread를 지우는 작업이 필요함
-			System.out.println("setPush() 푸쉬발송중 오류" + e.getMessage());
 			this.interrupt();
+			ServerConst.SERVER_LOGGER.error("푸시완료, "+e.getMessage());
 			throw new PushMessageSendingException(e);
 		}
+		ServerConst.SERVER_LOGGER.debug("setPush 메소드 종료");
 	}
 }
