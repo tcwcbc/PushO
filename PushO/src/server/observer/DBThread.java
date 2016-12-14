@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 
 import server.dao.JDBCTemplate;
 import server.model.PushInfo;
+import server.res.ServerConst;
 import server.service.Pushable;
 import server.util.ServerUtils;
 
@@ -40,20 +41,22 @@ public class DBThread extends Thread {
 				pushList = db.executeQuery_ORDER();
 
 				if (ServerUtils.isEmpty(pushList)) {
-					System.out.println("푸쉬 데이터 없음");
+					ServerConst.SERVER_LOGGER.info("발송할 주문정보 없음");
 				} else {
+					ServerConst.SERVER_LOGGER.info("발송할 주문정보 " + pushList.size() + "건 검색" );
 					for (PushInfo orderNum : pushList) {
 						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(orderNum.getOrder_num()));
 						setPushAll(orderNum);
 					}
 				}
 			} catch (InterruptedException e) {
-				System.out.println(e.getMessage());
+				ServerConst.SERVER_LOGGER.error(e.getMessage());
 				try {
 					db.closeDBSet();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					ServerConst.SERVER_LOGGER.error(e1.getMessage());
 				}
 			} finally {
 				pushList.clear();

@@ -43,6 +43,8 @@ public class AuthClientHandler extends Thread {
 				Socket socket = ServerConst.SOCKET_QUEUE.take();
 
 				String aesKey = encryptionKeyChange(socket);
+				ServerConst.SERVER_LOGGER.info(socket.getInetAddress().getHostName() + " 키 교환작업 완료");
+				ServerConst.SERVER_LOGGER.debug("암호화 키 " + aesKey);
 				authClientAndDelegate(socket, aesKey);
 
 				System.out.println("블로킹큐 get : "+socket.getClass().getName());
