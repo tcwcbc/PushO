@@ -96,8 +96,8 @@ public class KeyExchangeServer {
 	 * 이루어지는지 확인후 다시 리스폰스로 클라이언트에게 받은 문장을 암호화해서 보낸다.
 	 */
 	private void sendToClient() throws IOException {
-		String msgEncryString = ServerUtils.makeJSONMessageForEncry(AESUtils.AES_Encode(cipherMsg, aesKey),
-				new JSONObject(), new JSONObject());
+		cipherMsg = AESUtils.AES_Encode(cipherMsg, aesKey);
+		String msgEncryString = ServerUtils.makeJSONMessageForEncry(cipherMsg, new JSONObject(), new JSONObject());
 		byte[] msgEncryByte = ServerUtils.makeMessageStringToByte(
 				new byte[ServerConst.HEADER_LENTH + msgEncryString.getBytes(ServerConst.CHARSET).length],
 				msgEncryString);

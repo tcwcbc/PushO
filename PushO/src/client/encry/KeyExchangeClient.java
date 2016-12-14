@@ -66,14 +66,16 @@ public class KeyExchangeClient {
 	 */
 	private void sendToServer(int index) throws IOException {
 		String msgEncryString = null;
-
+		String hexMsg = null;
 		if (index == 1) {
-			msgEncryString = ClientUtils.makeJSONMessageForEncry(EncryUtils.byteArrayToHex(pubKey), new JSONObject(),
+			hexMsg = EncryUtils.byteArrayToHex(pubKey);
+			msgEncryString = ClientUtils.makeJSONMessageForEncry(hexMsg, new JSONObject(),
 					new JSONObject());
 		}
 		// 키 교환이 이루어지고 전문암호화 테스트
 		else if (index == 2) {
-			msgEncryString = ClientUtils.makeJSONMessageForEncry(AESUtils.AES_Encode("Hello World", desKey),
+			hexMsg = AESUtils.AES_Encode("Hello World", desKey);
+			msgEncryString = ClientUtils.makeJSONMessageForEncry(hexMsg,
 					new JSONObject(), new JSONObject());
 		}
 

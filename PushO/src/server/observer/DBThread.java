@@ -62,7 +62,7 @@ public class DBThread extends Thread {
 	}
 
 	/**
-	 * 한개의 주문에 대한 정보들이 들어온다 
+	 * 재고 알림
 	 * @param msg 주문에 대한 정보들
 	 */
 	public void setPushAll(PushInfo msg) {
@@ -73,17 +73,13 @@ public class DBThread extends Thread {
 	}
 	
 	/**
-	 * 해당 클라이언트에게 푸쉬를 보내기 위함
+	 * 주문 알림
 	 * @param msg
-	 *//*
+	 */
 	public void setPushPartial(PushInfo msg) {
 		msgPushJson = ServerUtils.makeJSONMessageForPush(msg, new JSONObject(), new JSONObject());
-		boolean chkClient = pushable.sendPushPartial(msg.getOrder_seller(), msgPushJson);
-		
-		// True 값을 반환하면 HashMap에 사용자가 있다고 판단
-		if (chkClient) 
-			db.executeQuery_PUSH_STATUS_UPDATE(msg.getOrder_num(), "전송중");
-	}*/
+		pushable.sendPushPartial(msg.getOrder_seller(), msgPushJson);
+	}
 	
 	
 }
