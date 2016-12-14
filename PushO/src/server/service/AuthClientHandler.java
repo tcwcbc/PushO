@@ -37,7 +37,7 @@ public class AuthClientHandler extends Thread {
 		while(!this.isInterrupted()){
 			try {
 				Socket socket = ServerConst.SOCKET_QUEUE.take();
-				encryptionKeyChange(socket);
+				//encryptionKeyChange(socket);
 				authClientAndDelegate(socket);
 				System.out.println("블로킹큐 get : "+socket.getClass().getName());
 			} catch (InterruptedException e) {

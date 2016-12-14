@@ -14,9 +14,9 @@ public interface ClientConst {
 	/**
 	 * Socket Connection
 	 */
-//	String SERVER_IP ="175.115.95.32";
-	String SERVER_IP ="127.0.0.1";
-	int PORT_NUM = 9999;
+	String SERVER_IP = "175.115.95.32";
+	// String SERVER_IP ="127.0.0.1";
+	int PORT_NUM = 9998;
 	int STREAM_TIME_OUT = 30000;
 	int SEND_WATING_TIME = 7000;
 
@@ -69,7 +69,7 @@ public interface ClientConst {
 	 * IO Stream
 	 */
 	Charset CHARSET = Charset.forName("UTF-8");
-	
+
 	/**
 	 * ClientLogger
 	 */
