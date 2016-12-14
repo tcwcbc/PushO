@@ -64,6 +64,7 @@ public class RSAEncryption {
 			return cipherText;
 		} catch (NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException |
 				InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+			e.getStackTrace();
 			ServerConst.SERVER_LOGGER.error(e.getMessage());
 		}
 		return "¿¡·¯".getBytes();

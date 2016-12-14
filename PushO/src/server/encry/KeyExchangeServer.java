@@ -48,6 +48,7 @@ public class KeyExchangeServer {
 			this.bos = new BufferedOutputStream(socket.getOutputStream());
 			this.hostAddress = socket.getInetAddress().getHostAddress();
 		} catch (IOException e) {
+			e.getStackTrace();
 			ServerConst.SERVER_LOGGER.error(e.getMessage());
 		}
 	}
@@ -124,6 +125,7 @@ public class KeyExchangeServer {
 			ServerConst.SERVER_LOGGER.info(hostAddress + "에게 암호키 테스트 'Hello World' 전송");
 
 		} catch (Exception e) {
+			e.getStackTrace();
 			ServerConst.SERVER_LOGGER.error(e.getMessage());
 		}
 

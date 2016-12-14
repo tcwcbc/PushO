@@ -53,7 +53,8 @@ public class EncryUtils {
 			generator = KeyGenerator.getInstance("AES");
 			random = SecureRandom.getInstance("SHA1PRNG");
 		} catch (NoSuchAlgorithmException e) {
-			ServerConst.SERVER_LOGGER.error(e.getMessage());
+			e.printStackTrace();
+			ServerConst.SERVER_LOGGER.error("AES 키 생성 에러 " + e.getMessage());
 		}
 		generator.init(128, random);
 		SecretKey secureKey = generator.generateKey();

@@ -52,8 +52,8 @@ public class KeyExchangeClient {
 			pubKey = encKey.getPublicKey();
 			privKey = encKey.getPrivateKey();
 		} catch (Throwable e) {
-			ClientConst.CLIENT_LOGGER.error(e.getMessage());
-			// RSA 키생성중 에러
+			e.printStackTrace();
+			ClientConst.CLIENT_LOGGER.error("RSA 키 생성 에러 " + e.getMessage());
 		}
 	}
 
@@ -117,7 +117,7 @@ public class KeyExchangeClient {
 			desKey = rd.getDESkey();
 		} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException
 				| NoSuchProviderException | NoSuchPaddingException e) {
-			ClientConst.CLIENT_LOGGER.error(e.getMessage());
+			ClientConst.CLIENT_LOGGER.error("RSA 복호화 에러 " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -144,8 +144,10 @@ public class KeyExchangeClient {
 			receiveForServer(2);
 			ClientConst.CLIENT_LOGGER.info("암호키 테스트 'Hello World'받음");
 		} catch (IOException e) {
+			e.getStackTrace();
 			ClientConst.CLIENT_LOGGER.error(e.getMessage());
 		} catch (Throwable e) {
+			e.getStackTrace();
 			ClientConst.CLIENT_LOGGER.error(e.getMessage());
 			// des키 추출 에러
 		}

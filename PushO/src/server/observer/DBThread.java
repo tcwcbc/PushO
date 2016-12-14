@@ -50,6 +50,7 @@ public class DBThread extends Thread {
 					}
 				}
 			} catch (InterruptedException e) {
+				e.getStackTrace();
 				ServerConst.SERVER_LOGGER.error(e.getMessage());
 				try {
 					db.closeDBSet();

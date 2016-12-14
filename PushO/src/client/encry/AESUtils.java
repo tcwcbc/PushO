@@ -54,7 +54,8 @@ public class AESUtils {
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
-			ClientConst.CLIENT_LOGGER.error(e.getMessage());
+			e.printStackTrace();
+			ClientConst.CLIENT_LOGGER.error("AES 암호화 에러 " + e.getMessage());
 		}
 
 		return result;
@@ -83,7 +84,8 @@ public class AESUtils {
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
-			ClientConst.CLIENT_LOGGER.error(e.getMessage());
+			e.printStackTrace();
+			ClientConst.CLIENT_LOGGER.error("AES 복호화 에러 " + e.getMessage());
 		}
 
 		return result;

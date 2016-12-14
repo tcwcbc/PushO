@@ -64,6 +64,7 @@ public class RSADecryption {
 		try {
 			privateKey = rkeyFactory.generatePrivate(rkeySpec);
 		} catch (InvalidKeySpecException e) {
+			e.getStackTrace();
 			ClientConst.CLIENT_LOGGER.error(e.getMessage());
 		}
 
