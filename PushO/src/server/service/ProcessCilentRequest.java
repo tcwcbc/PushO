@@ -6,12 +6,14 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import server.encry.AESUtils;
 import server.exception.PushMessageSendingException;
+import server.model.PushInfo;
 import server.res.ServerConst;
 import server.util.ServerUtils;
 
@@ -33,10 +35,12 @@ public class ProcessCilentRequest extends Thread{
 	private BufferedInputStream bis;
 	
 	private String aesKey;
+	public LinkedBlockingQueue<PushInfo> receivedAckQueue;
 
-	public ProcessCilentRequest(Socket socket, String aesKey) {
+	public ProcessCilentRequest(Socket socket, String aesKey, LinkedBlockingQueue<PushInfo> receivedAckQueue) {
 		this.connectedSocketWithClient = socket;
 		this.aesKey = aesKey;
+		this.receivedAckQueue = receivedAckQueue;
 		// 스트림에 대한 타임아웃 설정
 		try {
 			connectedSocketWithClient.setSoTimeout(ServerConst.STREAM_TIME_OUT);
@@ -111,6 +115,10 @@ public class ProcessCilentRequest extends Thread{
 			String msg = ServerUtils.parseJSONMessage(new JSONParser(), bodyDecodeMsg);
 
 			if (msg.equals(ServerConst.JSON_VALUE_PONG)) {
+				//TODO 주문내역발송에 대한 응답을 받을 경우 공유자원인 receivedAckQueue에 넣는 로직
+				/*
+				this.receivedAckQueue.put(new PushInfo());
+				*/
 				ServerConst.SERVER_LOGGER.debug("응답메시지 수신");
 			}
 			bos.flush();

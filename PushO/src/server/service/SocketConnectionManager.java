@@ -5,9 +5,11 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import server.exception.AlreadyConnectedSocketException;
 import server.exception.PushMessageSendingException;
+import server.model.PushInfo;
 import server.observer.DBThread;
 import server.res.ServerConst;
 
@@ -42,9 +44,12 @@ public class SocketConnectionManager implements Pushable {
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 	
 	private DBThread dbThread;
-
+	
+	public LinkedBlockingQueue<PushInfo> receivedAckQueue = 
+			new LinkedBlockingQueue<PushInfo>(ServerConst.RECEIVED_ACK_QUEUE_SIZE);
+	
 	private SocketConnectionManager() {
-		dbThread = new DBThread(this);
+		dbThread = new DBThread(this, receivedAckQueue);
 		ServerConst.SERVER_LOGGER.debug("DB쓰레드 생성");
 		dbThread.start();
 		ServerConst.SERVER_LOGGER.debug("DB쓰레드 실행");
@@ -52,13 +57,13 @@ public class SocketConnectionManager implements Pushable {
 
 	@Override
 	public synchronized void sendPushAll(String msg) {
-		ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 시작");
 		Iterator<String> keySetIterator = concurrentHashMap.keySet().iterator();
 		while (keySetIterator.hasNext()) {
 			String userID = keySetIterator.next();
+			ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 시작");
 			sendPushPartial(userID,msg);
+			ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 끝");
 		}
-		ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 끝");
 	}
 	
 	@Override
@@ -93,7 +98,7 @@ public class SocketConnectionManager implements Pushable {
 		}
 		//중복이 아니라면 쓰레드를 생성하고 Map에 담음
 		if (!duplicated) {
-			ProcessCilentRequest proClient = new ProcessCilentRequest(clientSocket, aesKey);
+			ProcessCilentRequest proClient = new ProcessCilentRequest(clientSocket, aesKey, receivedAckQueue);
 			this.executorService.submit(proClient);
 			ServerConst.SERVER_LOGGER.info(proClient+"쓰레드 시작, 클라이언트 이름 : "+name);
 			concurrentHashMap.put(name, proClient);

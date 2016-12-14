@@ -3,10 +3,13 @@ package server.res;
 import java.io.File;
 import java.net.Socket;
 import java.nio.charset.Charset;
+import java.util.Collection;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import server.model.PushInfo;
 
 /**
  * @author √÷∫¥√∂
@@ -79,7 +82,9 @@ public interface ServerConst {
 	/**
 	 * Thread res
 	 */
-	ArrayBlockingQueue<Socket> SOCKET_QUEUE = new ArrayBlockingQueue<Socket>(5);
+//	ArrayBlockingQueue<Socket> SOCKET_QUEUE = new ArrayBlockingQueue<Socket>(5);
+	int SOCKET_QUEUE_SIZE = 5;
+	int RECEIVED_ACK_QUEUE_SIZE = 10;
 	
 	/**
 	 * ServerLogger

@@ -25,20 +25,23 @@ public class OIOServer {
 		new OIOServer();
 	}
 	
+	public ArrayBlockingQueue<Socket> socketQueue = 
+			new ArrayBlockingQueue<Socket>(ServerConst.SOCKET_QUEUE_SIZE);
 	// 소켓 및 해당 쓰레드들을 관리하는 매니저클래스 인스턴스 획득
 	private SocketConnectionManager conManagerager = SocketConnectionManager.getInstance();
 	// 인증을 위한 프록시 클래스의 인스턴스 획득
-	private AuthClientHandler authHandler = AuthClientHandler.getInstance();
+//	private AuthClientHandler authHandler = AuthClientHandler.getInstance();
 
 	private ServerSocket serverSocket;
 	private Socket socket;
+	
 
 	public OIOServer() {
 		try {
 			serverSocket = new ServerSocket(ServerConst.PORT_NUM);
 			ServerConst.SERVER_LOGGER.debug("서버시작");
 
-			authHandler.start();
+			new AuthClientHandler(socketQueue).start();
 			ServerConst.SERVER_LOGGER.debug("핸들러시작");
 			
 			while (true) {
@@ -47,8 +50,8 @@ public class OIOServer {
 				socket = serverSocket.accept();
 				ServerConst.SERVER_LOGGER.debug("클라이언트 접속완료");
 				try {
-					ServerConst.SOCKET_QUEUE.put(socket);
-					ServerConst.SERVER_LOGGER.info("블로킹큐에 넣음, 큐 크기 : "+ServerConst.SOCKET_QUEUE.size());
+					this.socketQueue.put(socket);
+					ServerConst.SERVER_LOGGER.info("블로킹큐에 넣음, 큐 크기 : "+this.socketQueue.size());
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -62,7 +65,7 @@ public class OIOServer {
 		} finally {
 			try {
 				
-				ServerConst.SOCKET_QUEUE.clear();
+				this.socketQueue.clear();
 				socket.close();
 				serverSocket.close();
 				conManagerager.closeAll();

@@ -3,6 +3,7 @@ package server.observer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.simple.JSONObject;
 
@@ -26,9 +27,12 @@ public class DBThread extends Thread {
 	private String msgPushJson;
 
 	private List<PushInfo> pushList = new ArrayList<>();
+	
+	public LinkedBlockingQueue<PushInfo> receivedAckQueue;
 
-	public DBThread(Pushable pushable) {
+	public DBThread(Pushable pushable, LinkedBlockingQueue<PushInfo> receivedAckQueue) {
 		this.pushable = pushable;
+		this.receivedAckQueue = receivedAckQueue;
 		this.db = new JDBCTemplate();
 	}
 
@@ -36,7 +40,13 @@ public class DBThread extends Thread {
 	public void run() {
 		while (!this.isInterrupted()) {
 			try {
-
+				
+				/*
+				//TODO ProcessClientRequest에서 넣은 응답받은 큐에 작업이 있을 경우 그것을 가져와 DB에 상태를 갱신하는 로직
+				if(this.receivedAckQueue.size()!=0){
+					PushInfo receivedAckPushInfo = this.receivedAckQueue.take();
+				}*/
+				
 				Thread.sleep(5000);
 				pushList = db.executeQuery_ORDER();
 
