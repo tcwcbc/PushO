@@ -17,7 +17,7 @@ public class CilentDataProcess {
 	private static byte[] header = new byte[ClientConst.HEADER_LENTH];
 
 	public static void sendAuth(BufferedOutputStream bos) throws IOException {
-		String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자5", "비밀번호~?", new JSONObject(), new JSONObject());
+		String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자1", "비밀번호~?", new JSONObject(), new JSONObject());
 		byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length], msgAuthString);
 		bos.write(msgAuthByte);

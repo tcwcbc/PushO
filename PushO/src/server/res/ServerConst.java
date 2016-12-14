@@ -25,7 +25,7 @@ public interface ServerConst {
 //	String SERVER_IP ="175.115.95.32";
 	String SERVER_IP ="127.0.0.1";
 	int PORT_NUM = 9998;
-	int STREAM_TIME_OUT = 30000;
+	int STREAM_TIME_OUT = 12000;
 	int SEND_WATING_TIME = 7000;
 
 	/**

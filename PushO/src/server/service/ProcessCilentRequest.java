@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.Callable;
 
@@ -34,6 +35,13 @@ public class ProcessCilentRequest extends Thread{
 
 	public ProcessCilentRequest(Socket socket) {
 		this.connectedSocketWithClient = socket;
+		// 스트림에 대한 타임아웃 설정
+		try {
+			connectedSocketWithClient.setSoTimeout(ServerConst.STREAM_TIME_OUT);
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -76,7 +84,9 @@ public class ProcessCilentRequest extends Thread{
 	private void sendSuccessMsg() throws IOException, InterruptedException {
 		String msgPingString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), false);
 		msgPingByte = ServerUtils.makeMessageStringToByte(
-				new byte[ServerConst.HEADER_LENTH + msgPingString.getBytes().length], msgPingString);
+				new byte[ServerConst.HEADER_LENTH + 
+				         msgPingString.getBytes(ServerConst.CHARSET).length],
+				msgPingString);
 
 		byte[] header = new byte[ServerConst.HEADER_LENTH];
 		byte[] body;
@@ -93,7 +103,8 @@ public class ProcessCilentRequest extends Thread{
 			bodySize = ServerUtils.byteToInt(header);
 			body = new byte[bodySize];
 			bodylength = bis.read(body);
-			String msg = ServerUtils.parseJSONMessage(new JSONParser(), new String(body));
+			String msg = ServerUtils.parseJSONMessage(
+					new JSONParser(), new String(body,ServerConst.CHARSET));
 
 			if (msg.equals(ServerConst.JSON_VALUE_PONG)) {
 				System.out.println("ACK");
