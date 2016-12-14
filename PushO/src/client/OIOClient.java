@@ -42,13 +42,10 @@ public class OIOClient {
 			// 키교환이 이뤄지는 작업
 			KeyExchangeClient key = new KeyExchangeClient(bis, bos);
 			aesKey = key.start();
-<<<<<<< HEAD
 			ClientConst.CLIENT_LOGGER.info("키 교환작업 완료:" + aesKey);
 
-=======
 			ClientConst.CLIENT_LOGGER.info("키 교환작업 완료");
 			ClientConst.CLIENT_LOGGER.debug("암호화 키 " + aesKey);
->>>>>>> choi/master
 			isServerSurvival = true;
 
 			CilentDataProcess.sendAuth(bos, aesKey);
