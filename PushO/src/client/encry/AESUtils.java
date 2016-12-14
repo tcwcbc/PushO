@@ -15,6 +15,16 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 
+import client.res.ClientConst;
+
+
+/**
+ * 
+ * 전문을 주고받을때 암호화하고 복호화하기 위한 Utill 클래스
+ * 사전에 키 교환 작업이 이루어저야 사용 가능
+ * @author user
+ *
+ */
 public class AESUtils {
 
 	public static byte[] ivBytes = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -23,9 +33,9 @@ public class AESUtils {
 	/**
 	 * 
 	 * @param str
-	 *            평문
+	 *            암호화 하고자 하는 평문
 	 * @param key
-	 *            암호키
+	 *            서버와 공유한 암호키
 	 * @return
 	 * 
 	 */
@@ -44,7 +54,8 @@ public class AESUtils {
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			ClientConst.CLIENT_LOGGER.error("AES 암호화 에러 " + e.getMessage());
 		}
 
 		return result;
@@ -53,9 +64,9 @@ public class AESUtils {
 	/**
 	 * 
 	 * @param str
-	 *            평문
+	 *            복호화 하고자 하는 암호문
 	 * @param key
-	 *            암호키
+	 *            서버와 공유한 암호키
 	 * @return
 	 * 
 	 */
@@ -73,7 +84,8 @@ public class AESUtils {
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			ClientConst.CLIENT_LOGGER.error("AES 복호화 에러 " + e.getMessage());
 		}
 
 		return result;

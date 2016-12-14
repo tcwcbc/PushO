@@ -13,6 +13,8 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import server.res.ServerConst;
+
 /**
  * RSA 암호화
  * 
@@ -51,6 +53,7 @@ public class RSAEncryption {
 				publicKey = ukeyFactory.generatePublic(ukeySpec);
 			} catch (InvalidKeySpecException e) {
 				e.printStackTrace();
+				ServerConst.SERVER_LOGGER.error(e.getMessage());
 			}
 
 			// 공개키를 전달하여 암호화
@@ -61,7 +64,8 @@ public class RSAEncryption {
 			return cipherText;
 		} catch (NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException |
 				InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-			System.out.println(e.getMessage());
+			e.getStackTrace();
+			ServerConst.SERVER_LOGGER.error(e.getMessage());
 		}
 		return "에러".getBytes();
 	}

@@ -40,14 +40,16 @@ public class KeyExchangeServer {
 
 	private String cipherMsg;
 	private String aesKey;
+	private String hostAddress;
 
 	public KeyExchangeServer(Socket socket) {
 		try {
 			this.bis = new BufferedInputStream(socket.getInputStream());
 			this.bos = new BufferedOutputStream(socket.getOutputStream());
+			this.hostAddress = socket.getInetAddress().getHostAddress();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getStackTrace();
+			ServerConst.SERVER_LOGGER.error(e.getMessage());
 		}
 	}
 
@@ -81,7 +83,8 @@ public class KeyExchangeServer {
 	private void sendEncryDES256KeyToClient() throws IOException {
 		aesKey = Hex.encodeHexString(EncryUtils.get128bitKey().getEncoded());
 		RSAEncryption ec = new RSAEncryption(receiveKey, aesKey);
-		System.out.println("AES키 생성:" + aesKey);
+		ServerConst.SERVER_LOGGER.info("AES 키 생성");
+		ServerConst.SERVER_LOGGER.debug(hostAddress + "/" + aesKey);
 		String msgEncryString = ServerUtils.makeJSONMessageForEncry(EncryUtils.byteArrayToHex(ec.getkey()),
 				new JSONObject(), new JSONObject());
 		byte[] msgEncryByte = ServerUtils.makeMessageStringToByte(
@@ -110,19 +113,20 @@ public class KeyExchangeServer {
 			header = new byte[ServerConst.HEADER_LENTH];
 			// 서버로 부터 RSA 공개키를 받는다
 			receiveForServer(1);
-			System.out.println("클라이언트의 RSA 공개키 받음");
+			ServerConst.SERVER_LOGGER.info(hostAddress + "의 RSA 공개키 받음");
 			// 공개키로 암호화된 DES256 키를 보낸다
 			sendEncryDES256KeyToClient();
-			System.out.println("암호화된 AES암호키 전송");
+			ServerConst.SERVER_LOGGER.info(hostAddress + "에게 암호화된 AES암호키 전송");
 			// 암호화된 Hello World 수신
 			receiveForServer(2);
-			System.out.println("암호키 테스트 'Hello World' 수신");
+			ServerConst.SERVER_LOGGER.info(hostAddress + "의 암호키 테스트 'Hello World' 수신");
 			// Hello World 복호화후 다시 암호화해서 전송
 			sendToClient();
-			System.out.println("암호키 테스트 'Hello World' 전송");
+			ServerConst.SERVER_LOGGER.info(hostAddress + "에게 암호키 테스트 'Hello World' 전송");
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.getStackTrace();
+			ServerConst.SERVER_LOGGER.error(e.getMessage());
 		}
 
 		return aesKey;

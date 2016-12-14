@@ -14,6 +14,8 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import client.res.ClientConst;
+
 /**
  * RSA 복호화
  * 
@@ -62,7 +64,8 @@ public class RSADecryption {
 		try {
 			privateKey = rkeyFactory.generatePrivate(rkeySpec);
 		} catch (InvalidKeySpecException e) {
-			e.printStackTrace();
+			e.getStackTrace();
+			ClientConst.CLIENT_LOGGER.error(e.getMessage());
 		}
 
 		// 개인키를 가지고있는쪽에서 복호화

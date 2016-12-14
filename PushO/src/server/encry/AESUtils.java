@@ -15,6 +15,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 
+import server.res.ServerConst;
+
 public class AESUtils {
 
 	public static byte[] ivBytes = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -44,7 +46,8 @@ public class AESUtils {
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			ServerConst.SERVER_LOGGER.error("AES 암호화 에러 " + e.getMessage());
 		}
 
 		return result;
@@ -73,7 +76,8 @@ public class AESUtils {
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			ServerConst.SERVER_LOGGER.error("AES 복호화 에러 " + e.getMessage());
 		}
 		
 		return result;
