@@ -22,7 +22,7 @@ public class ClientHeartBeat extends TimerTask {
 	public void run() {
 		try {
 			String msgPingString = ClientUtils.makeJSONMessageForPingPong(new JSONObject(), true);
-			msgPingString = AESUtils.AES_Encode(aesKey, msgPingString);
+			msgPingString = AESUtils.AES_Encode(msgPingString, aesKey);
 			byte[] msgPingByte = ClientUtils.makeMessageStringToByte(
 					new byte[ClientConst.HEADER_LENTH + msgPingString.getBytes(ClientConst.CHARSET).length],
 					msgPingString);

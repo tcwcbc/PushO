@@ -86,7 +86,6 @@ public class ProcessCilentRequest extends Thread{
 		int readCount = 0;
 		int bodySize = 0;
 		int bodylength = 0;
-
 		bos.write(msgPingByte);
 		bos.flush();
 		System.out.println("인증 성공 메시지 전송");

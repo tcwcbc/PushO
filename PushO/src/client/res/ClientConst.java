@@ -20,7 +20,7 @@ public interface ClientConst {
 	int PORT_NUM = 9999;
 
 	int STREAM_TIME_OUT = 30000;
-	int SEND_WATING_TIME = 7000;
+	int SEND_WATING_TIME = 10000;
 
 	/**
 	 * File Read & Write
