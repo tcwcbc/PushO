@@ -36,38 +36,41 @@ public class OIOServer {
 	public OIOServer() {
 		try {
 			serverSocket = new ServerSocket(ServerConst.PORT_NUM);
-			System.out.println("서버시작...");
+			ServerConst.SERVER_LOGGER.debug("서버시작");
 
 			authHandler.start();
-			System.out.println("핸들러시작...");
+			ServerConst.SERVER_LOGGER.debug("핸들러시작");
 			
 			while (true) {
-				System.out.println("클라이언트 접속 대기");
+				ServerConst.SERVER_LOGGER.debug("클라이언트 접속요청 대기");
 				// 블로킹 구간
 				socket = serverSocket.accept();
-				System.out.println("서버쪽 소켓 연결");
+				ServerConst.SERVER_LOGGER.debug("클라이언트 접속완료");
 				try {
 					ServerConst.SOCKET_QUEUE.put(socket);
-					System.out.println("블로킹큐 put : "+socket.getClass().getName());
+					ServerConst.SERVER_LOGGER.info("블로킹큐에 넣음, 큐 크기 : "+ServerConst.SOCKET_QUEUE.size());
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					ServerConst.SERVER_LOGGER.error(e.getMessage());
 				}
-//				authHandler.authClientAndDelegate(socket);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("서버소켓 예외 : " + e.getMessage());
+			ServerConst.SERVER_LOGGER.error(e.getMessage());
 		} finally {
 			try {
+				
 				ServerConst.SOCKET_QUEUE.clear();
 				socket.close();
 				serverSocket.close();
 				conManagerager.closeAll();
+				ServerConst.SERVER_LOGGER.debug("모든자원 해제");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				ServerConst.SERVER_LOGGER.error(e.getMessage());
 			}
 		}
 	}

@@ -32,23 +32,27 @@ public class AuthClientHandler extends Thread {
 	public static AuthClientHandler getInstance() {
 		if (instance == null) {
 			instance = new AuthClientHandler();
+			ServerConst.SERVER_LOGGER.debug("핸들러 생성");
 		}
 		return instance;
 	}
 
 	@Override
 	public void run() {
+		ServerConst.SERVER_LOGGER.debug("핸들러 쓰레드 실행");
 		while(!this.isInterrupted()){
 			try {
 				Socket socket = ServerConst.SOCKET_QUEUE.take();
-
+				ServerConst.SERVER_LOGGER.info("블로킹큐에서 작업 가져옴, 큐 크기 : "+ServerConst.SOCKET_QUEUE.size());
 				String aesKey = encryptionKeyChange(socket);
+				ServerConst.SERVER_LOGGER.debug("키 교환 완료");
 				authClientAndDelegate(socket, aesKey);
-
-				System.out.println("블로킹큐 get : "+socket.getClass().getName());
+				ServerConst.SERVER_LOGGER.debug("인증완료");
+				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				ServerConst.SERVER_LOGGER.error(e.getMessage());
 			}
 		}
 	}
@@ -81,7 +85,7 @@ public class AuthClientHandler extends Thread {
 			int readCount = 0;
 			int length = 0;
 			int bodylength = 0;
-			System.out.println("바이트 읽기 시작");
+			ServerConst.SERVER_LOGGER.debug("스트림 읽기 시작");
 
 			readCount = bis.read(buf);
 			length = ServerUtils.byteToInt(buf);
@@ -89,27 +93,33 @@ public class AuthClientHandler extends Thread {
 			bodylength = bis.read(body);
 			String msg = new String(body, ServerConst.CHARSET);
 			msg = AESUtils.AES_Decode(msg, aesKey);
-			System.out.println(msg);
+			ServerConst.SERVER_LOGGER.info("본문 메시지 : "+msg);
 
 			if (msg.contains(ServerConst.JSON_VALUE_AUTH)) {
 				String name = ServerUtils.parseJSONMessage(new JSONParser(), msg);
 				boolean authorized = false;
 				try{
 					//인증 실패 시 예외가 발생되는 부분
+					ServerConst.SERVER_LOGGER.debug("DB등록여부 확인 시작");
 					checkAuthorization(name);
 					authorized = true;
+					ServerConst.SERVER_LOGGER.debug("DB등록 되어있음");
 					if(authorized){
 						////매니저에 추가해주는 부분.
+						ServerConst.SERVER_LOGGER.debug("매니저로 전달 시작");
 						socketConnectionManagerager.addClientSocket(name, socket, aesKey);
+						ServerConst.SERVER_LOGGER.debug("매니저로 전달 끝");
 					}
 				} catch(EmptyResultDataException e){
 					//TODO 클라이언트에게 인증되지 않았다는 메시지를 보냄
 //					bos.write(b);
+					ServerConst.SERVER_LOGGER.error("등록되지 않은 사용자, "+e.getMessage());
 					socket.close();
 					e.printStackTrace();
 				} catch(AlreadyConnectedSocketException e){ 
 					//TODO 클라이언트에게 이미 연결된 아이디라는 메시지를 보냄
 //					bos.write(b);
+					ServerConst.SERVER_LOGGER.error("이미 연결된 사용자, "+e.getMessage());
 					socket.close();
 					e.printStackTrace();
 				}
@@ -117,13 +127,13 @@ public class AuthClientHandler extends Thread {
 				
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			ServerConst.SERVER_LOGGER.error(e.getMessage());
 			try {
 				bis.close();
 			} catch (IOException closeE) {
-				// TODO Auto-generated catch block
 				closeE.printStackTrace();
+				ServerConst.SERVER_LOGGER.error(e.getMessage());
 			}
 		}
 	}
@@ -141,7 +151,7 @@ public class AuthClientHandler extends Thread {
 				new SetPrepareStatement() {
 			@Override
 			public void setFields(PreparedStatement pstm) throws SQLException {
-				System.out.println("디비접속");
+				ServerConst.SERVER_LOGGER.debug("DB접속");
 				pstm.setString(1, name);
 			}
 		});

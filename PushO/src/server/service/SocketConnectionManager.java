@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 import server.exception.AlreadyConnectedSocketException;
 import server.exception.PushMessageSendingException;
 import server.observer.DBThread;
+import server.res.ServerConst;
 
 /**
  * @author 최병철
@@ -28,6 +29,7 @@ public class SocketConnectionManager implements Pushable {
 	public static SocketConnectionManager getInstance() {
 		if (instance == null) {
 			instance = new SocketConnectionManager();
+			ServerConst.SERVER_LOGGER.debug("매니저 생성");
 		}
 		return instance;
 	}
@@ -43,27 +45,33 @@ public class SocketConnectionManager implements Pushable {
 
 	private SocketConnectionManager() {
 		dbThread = new DBThread(this);
+		ServerConst.SERVER_LOGGER.debug("DB쓰레드 생성");
 		dbThread.start();
-		System.out.println("DB감시 시작...");
+		ServerConst.SERVER_LOGGER.debug("DB쓰레드 실행");
 	}
 
 	@Override
 	public synchronized void sendPushAll(String msg) {
+		ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 시작");
 		Iterator<String> keySetIterator = concurrentHashMap.keySet().iterator();
 		while (keySetIterator.hasNext()) {
 			String userID = keySetIterator.next();
 			sendPushPartial(userID,msg);
 		}
+		ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 끝");
 	}
 	
 	@Override
 	public void sendPushPartial(String Id, String msg) {
+		ServerConst.SERVER_LOGGER.debug( Id+", 사용자에게 Push메시지 전송 시작");
 		try {
 			concurrentHashMap.get(Id).setPush(msg);
 		} catch (PushMessageSendingException e) {
 			concurrentHashMap.remove(Id);
-			System.out.println(Id+" 를 맵에서 삭제");
+			e.printStackTrace();
+			ServerConst.SERVER_LOGGER.error(e.getMessage()+", 사용자 "+Id+"를 맵에서 제거");
 		}
+		ServerConst.SERVER_LOGGER.debug( Id+", 사용자에게 Push메시지 전송 끝");
 	}
 
 	/**
@@ -81,14 +89,15 @@ public class SocketConnectionManager implements Pushable {
 		//이미 등록된 사용자인지 검사
 		if (concurrentHashMap.containsKey(name)) {
 			duplicated = true;
+			ServerConst.SERVER_LOGGER.debug(name+"은 이미 맵에 등록됨");
 		}
 		//중복이 아니라면 쓰레드를 생성하고 Map에 담음
 		if (!duplicated) {
 			ProcessCilentRequest proClient = new ProcessCilentRequest(clientSocket, aesKey);
 			this.executorService.submit(proClient);
-			System.out.println("실행 중인 클라이언트의 이름 : "+name);
+			ServerConst.SERVER_LOGGER.info(proClient+"쓰레드 시작, 클라이언트 이름 : "+name);
 			concurrentHashMap.put(name, proClient);
-			System.out.println("연결된 클라이언트 수 : "+concurrentHashMap.size());
+			ServerConst.SERVER_LOGGER.info("연결된 클라이언트 수 : "+concurrentHashMap.size());
 		} else {
 			// TODO : 인증이 되지 않았다는 메시지를 보내고 소켓을 닫는 것을 던짐
 			throw new AlreadyConnectedSocketException(name+"은 이미 존재");
@@ -96,9 +105,11 @@ public class SocketConnectionManager implements Pushable {
 	}
 
 	public synchronized void closeAll() {
+		ServerConst.SERVER_LOGGER.debug("매니저의 자원해제 시작");
 		dbThread.interrupt();
 		executorService.shutdown();
 		concurrentHashMap.clear();
+		ServerConst.SERVER_LOGGER.debug("매니저의 자원해제 끝");
 	}
 
 
