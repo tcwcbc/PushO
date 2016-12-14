@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Timer;
 
-import client.encry.AESUtils;
 import client.encry.KeyExchangeClient;
-
 import client.res.ClientConst;
 
 /**
@@ -44,8 +42,8 @@ public class OIOClient {
 			// 키교환이 이뤄지는 작업
 			KeyExchangeClient key = new KeyExchangeClient(bis, bos);
 			aesKey = key.start();
-			System.out.println("키 교환작업 완료:" + aesKey);
-
+			ClientConst.CLIENT_LOGGER.info("키 교환작업 완료");
+			ClientConst.CLIENT_LOGGER.debug("암호화 키 " + aesKey);
 			isServerSurvival = true;
 
 			CilentDataProcess.sendAuth(bos, aesKey);

@@ -52,7 +52,7 @@ public class KeyExchangeClient {
 			pubKey = encKey.getPublicKey();
 			privKey = encKey.getPrivateKey();
 		} catch (Throwable e) {
-			System.out.println(e.getMessage());
+			ClientConst.CLIENT_LOGGER.error(e.getMessage());
 			// RSA 키생성중 에러
 		}
 	}
@@ -117,7 +117,7 @@ public class KeyExchangeClient {
 			desKey = rd.getDESkey();
 		} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException
 				| NoSuchProviderException | NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
+			ClientConst.CLIENT_LOGGER.error(e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -128,25 +128,25 @@ public class KeyExchangeClient {
 			header = new byte[ClientConst.HEADER_LENTH];
 			// 키 생성후 초기화
 			initialize();
-			System.out.println("RSA 키 생성");
+			ClientConst.CLIENT_LOGGER.info("RSA 키 생성");
 			// 서버로 RSA 공개키 보냄
 			sendToServer(1);
-			System.out.println("RSA 공개키 전송");
+			ClientConst.CLIENT_LOGGER.info("RSA 공개키 전송");
 			// 서버로 부터 RSA 공개키로 암호화된 AES256 비밀키 받음
 			receiveForServer(1);
-			System.out.println("서버로부터 AES256 암호화키 받음");
+			ClientConst.CLIENT_LOGGER.info("서버로부터 AES256 암호화키 받음");
 			// 암호화된 DES256 비밀키 복호화
 			decryptionAes256Key();
 			// Hello World 암호문 전송
 			sendToServer(2);
-			System.out.println("암호키 테스트 'Hello World'전송");
+			ClientConst.CLIENT_LOGGER.info("암호키 테스트 'Hello World'전송");
 			// Hello World 암호문 응답 받기
 			receiveForServer(2);
-			System.out.println("암호키 테스트 'Hello World'받음");
+			ClientConst.CLIENT_LOGGER.info("암호키 테스트 'Hello World'받음");
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			ClientConst.CLIENT_LOGGER.error(e.getMessage());
 		} catch (Throwable e) {
-			System.out.println(e.getMessage());
+			ClientConst.CLIENT_LOGGER.error(e.getMessage());
 			// des키 추출 에러
 		}
 		return desKey;

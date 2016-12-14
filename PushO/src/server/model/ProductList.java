@@ -1,5 +1,10 @@
 package server.model;
 
+/**
+ * 주문 정보를 담을 Model
+ * @author user
+ *
+ */
 public class ProductList {
 	private String product;
 	private String count;

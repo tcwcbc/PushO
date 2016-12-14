@@ -8,7 +8,7 @@ import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
 /**
- * 
+ * RSA 공개키, 개인키 생성
  * @author 김재우
  *
  */
