@@ -1,5 +1,13 @@
 package client.encry;
 
+
+/**
+ * RSA 암복호화를 사용하면 byte배열로 반환하는데 
+ * 이것을 Hex값으로 변환한 다음 보내고 받을때는
+ * Hex값을 byte배열로 변환하여 사용한다.
+ * @author user
+ *
+ */
 public class EncryUtils {
 
 	// hex string to byte[]

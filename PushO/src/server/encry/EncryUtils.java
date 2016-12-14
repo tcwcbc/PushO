@@ -6,6 +6,16 @@ import java.security.SecureRandom;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
+import server.res.ServerConst;
+
+
+/**
+ * RSA 암복호화를 사용하면 byte배열로 반환하는데 
+ * 이것을 Hex값으로 변환한 다음 보내고 받을때는
+ * Hex값을 byte배열로 변환하여 사용한다.
+ * @author user
+ *
+ */
 public class EncryUtils {
 
 	// hex string to byte[]
@@ -43,8 +53,8 @@ public class EncryUtils {
 			generator = KeyGenerator.getInstance("AES");
 			random = SecureRandom.getInstance("SHA1PRNG");
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			ServerConst.SERVER_LOGGER.error("AES 키 생성 에러 " + e.getMessage());
 		}
 		generator.init(128, random);
 		SecretKey secureKey = generator.generateKey();
