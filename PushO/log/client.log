@@ -1,4 +1,26 @@
-2016-12-13 10:09:57.623 TRACE [test.Log4jTest <init> 15 main] Message:클라이언트
-2016-12-13 10:12:19.087 TRACE [test.Log4jTest <init> 15 main] Message:클라이언트
-2016-12-13 10:12:19.091 ERROR [test.Log4jTest <init> 16 main] Message:클라이언트 에러
-2016-12-13 10:13:15.887 ERROR [test.Log4jTest <init> 16 main] Message:클라이언트 에러
+2016-12-14 16:36:44.505 INFO  [client.OIOClient connectServer 40 main] Message:Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=63382]
+2016-12-14 16:37:32.183 INFO  [client.OIOClient connectServer 47 main] Message:키 교환작업 완료:4950182991cf602a5b075d3d12a173b4
+2016-12-14 16:37:32.185 INFO  [client.CilentDataProcess sendAuth 27 main] Message:인증 메시지 전송
+2016-12-14 16:37:32.199 INFO  [client.CilentDataProcess receive 73 main] Message:ACK 도착
+2016-12-14 16:37:32.409 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호1 알림이 도착했습니다
+2016-12-14 16:37:32.411 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호2 알림이 도착했습니다
+2016-12-14 16:37:37.221 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호1 알림이 도착했습니다
+2016-12-14 16:37:37.421 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호2 알림이 도착했습니다
+2016-12-14 16:37:42.202 INFO  [client.ClientHeartBeat run 31 Timer-0] Message:heart beat 전송
+2016-12-14 16:37:42.224 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호1 알림이 도착했습니다
+2016-12-14 16:37:42.426 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호2 알림이 도착했습니다
+2016-12-14 16:37:47.227 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호1 알림이 도착했습니다
+2016-12-14 16:37:47.429 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호2 알림이 도착했습니다
+2016-12-14 16:37:52.202 INFO  [client.ClientHeartBeat run 31 Timer-0] Message:heart beat 전송
+2016-12-14 16:37:52.431 ERROR [client.CilentDataProcess occurTimeout 90 main] Message:Time out 발생...
+2016-12-14 16:37:52.432 INFO  [client.CilentDataProcess occurTimeout 91 main] Message:ping 전송
+2016-12-14 16:37:52.672 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호1 알림이 도착했습니다
+2016-12-14 16:37:52.866 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호2 알림이 도착했습니다
+2016-12-14 16:37:57.672 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호1 알림이 도착했습니다
+2016-12-14 16:37:57.873 INFO  [client.CilentDataProcess receive 81 main] Message:주문번호2 알림이 도착했습니다
+2016-12-14 16:38:02.201 INFO  [client.ClientHeartBeat run 31 Timer-0] Message:heart beat 전송
+2016-12-14 16:38:02.874 ERROR [client.OIOClient main 112 main] Message:Time out 발생...
+2016-12-14 16:38:02.875 INFO  [client.OIOClient connectServer 36 main] Message:Server RE-Connection 시도
+2016-12-14 16:38:02.880 INFO  [client.OIOClient connectServer 40 main] Message:Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=63386]
+2016-12-14 16:38:59.286 INFO  [client.OIOClient connectServer 47 main] Message:키 교환작업 완료:cbdc49a512370bef76121e20250a7572
+2016-12-14 16:38:59.287 INFO  [client.CilentDataProcess sendAuth 27 main] Message:인증 메시지 전송
