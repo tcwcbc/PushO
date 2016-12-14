@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import org.json.simple.parser.JSONParser;
 
@@ -27,7 +28,7 @@ public class AuthClientHandler extends Thread {
 	
 	private SocketConnectionManager socketConnectionManagerager = SocketConnectionManager.getInstance();
 	
-	private static AuthClientHandler instance = null;
+	/*private static AuthClientHandler instance = null;
 	
 	public static AuthClientHandler getInstance() {
 		if (instance == null) {
@@ -35,6 +36,13 @@ public class AuthClientHandler extends Thread {
 			ServerConst.SERVER_LOGGER.debug("핸들러 생성");
 		}
 		return instance;
+	}*/
+	
+	public ArrayBlockingQueue<Socket> socketQueue;
+	
+	public AuthClientHandler(ArrayBlockingQueue<Socket> socketQueue) {
+		this.socketQueue = socketQueue;
+		ServerConst.SERVER_LOGGER.debug("핸들러 생성");
 	}
 
 	@Override
@@ -42,8 +50,8 @@ public class AuthClientHandler extends Thread {
 		ServerConst.SERVER_LOGGER.debug("핸들러 쓰레드 실행");
 		while(!this.isInterrupted()){
 			try {
-				Socket socket = ServerConst.SOCKET_QUEUE.take();
-				ServerConst.SERVER_LOGGER.info("블로킹큐에서 작업 가져옴, 큐 크기 : "+ServerConst.SOCKET_QUEUE.size());
+				Socket socket = this.socketQueue.take();
+				ServerConst.SERVER_LOGGER.info("블로킹큐에서 작업 가져옴, 큐 크기 : "+this.socketQueue.size());
 				String aesKey = encryptionKeyChange(socket);
 				ServerConst.SERVER_LOGGER.info(socket.getInetAddress().getHostName() + " 키 교환작업 완료");
 				ServerConst.SERVER_LOGGER.debug("암호화 키 " + aesKey);

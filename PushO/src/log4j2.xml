@@ -26,7 +26,7 @@
 			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
 		</RollingFile>
 		<RollingFile name="server_file" fileName="${logPath}log/server.log"
-			filePattern="log/server/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_server_%d{yyyyMMddHH}.log">
+			filePattern="${logPath}log/server/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_server_%d{yyyyMMddHH}.log">
 			<PatternLayout>
 				<pattern>${pattern}</pattern>
 			</PatternLayout>
@@ -40,11 +40,11 @@
 
 	<Loggers>
 		<Logger name="client" level="${level}" additivity="false">
-			<AppenderRef ref="Console" />
+			<!-- <AppenderRef ref="Console" /> -->
 			<AppenderRef ref="client_file" />
 		</Logger>
 		<Logger name="server" level="${level}" additivity="false">
-			<AppenderRef ref="Console" />
+			<!-- <AppenderRef ref="Console" /> -->
 			<AppenderRef ref="server_file" />
 		</Logger>
 		<Root level="trace">
