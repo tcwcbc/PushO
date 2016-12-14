@@ -33,39 +33,38 @@ public class OIOClient {
 		try {
 			if (socket != null && socket.isConnected()) {
 				close();
-				System.out.println("Server RE-Connection 시도");
+				ClientConst.CLIENT_LOGGER.info("Server RE-Connection 시도");
 			}
 
 			socket = new Socket(ClientConst.SERVER_IP, ClientConst.PORT_NUM);
-			System.out.println("Socket 정보: " + socket);
+			ClientConst.CLIENT_LOGGER.info("Socket 정보: " + socket);
 			bis = new BufferedInputStream(socket.getInputStream());
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			// 키교환이 이뤄지는 작업
 			KeyExchangeClient key = new KeyExchangeClient(bis, bos);
 			aesKey = key.start();
-			System.out.println("키 교환작업 완료:" + aesKey);
+			ClientConst.CLIENT_LOGGER.info("키 교환작업 완료:" + aesKey);
 
 			isServerSurvival = true;
 
 			CilentDataProcess.sendAuth(bos, aesKey);
-			
 			CilentDataProcess.receive(socket, bis, bos, aesKey);
 
 			return true;
 		} catch (IOException e) {
 			if (isServerSurvival == false) {
-				System.out.println("Server Connection Exception 발생!!");
+				ClientConst.CLIENT_LOGGER.error("Server Connection Exception 발생!!");
 				return false;
 			} else {
-				System.out.println("No Server Response 발생!!");
+				ClientConst.CLIENT_LOGGER.error("No Server Response 발생!!");
 				try {
 					// 인증을 위한 JSON 메세지 생성
 					CilentDataProcess.sendAuth(bos, aesKey);
-					System.out.println("인증 메시지 다시 전송");
+					ClientConst.CLIENT_LOGGER.error("인증 메시지 다시 전송");
 					CilentDataProcess.receive(socket, bis, bos, aesKey);
 				} catch (IOException e1) {
-					System.out.println("No Server Response 발생!!");
+					ClientConst.CLIENT_LOGGER.error("No Server Response 발생!!");
 					return false;
 				}
 				return true;
@@ -110,7 +109,7 @@ public class OIOClient {
 				try {
 					mcc.processMsg();
 				} catch (IOException e) {
-					System.out.println("Time out 발생...");
+					ClientConst.CLIENT_LOGGER.error("Time out 발생...");
 					continue;
 				}
 			}
