@@ -105,7 +105,9 @@ public class ProcessCilentRequest extends Thread{
 			bodySize = ServerUtils.byteToInt(header);
 			body = new byte[bodySize];
 			bodylength = bis.read(body);
-			String msg = ServerUtils.parseJSONMessage(new JSONParser(), AESUtils.AES_Decode(new String(body,ServerConst.CHARSET), aesKey));
+
+			String bodyDecodeMsg = AESUtils.AES_Decode(new String(body), aesKey);
+			String msg = ServerUtils.parseJSONMessage(new JSONParser(), bodyDecodeMsg);
 
 			if (msg.equals(ServerConst.JSON_VALUE_PONG)) {
 				System.out.println("ACK");
