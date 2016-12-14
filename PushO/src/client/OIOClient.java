@@ -37,7 +37,7 @@ public class OIOClient {
 			}
 
 			socket = new Socket(ClientConst.SERVER_IP, ClientConst.PORT_NUM);
-			ClientConst.CLIENT_LOGGER.info("Socket 정보: " + socket);
+			ClientConst.CLIENT_LOGGER.debug("Socket 정보: " + socket);
 			bis = new BufferedInputStream(socket.getInputStream());
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
