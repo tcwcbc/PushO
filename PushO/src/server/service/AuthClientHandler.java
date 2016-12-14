@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import org.json.simple.parser.JSONParser;
 
 import server.dao.JDBCTemplate;
+import server.encry.AESUtils;
 import server.encry.KeyExchangeServer;
 import server.exception.EmptyResultDataException;
 import server.res.ServerConst;
@@ -37,8 +38,8 @@ public class AuthClientHandler extends Thread {
 		while(!this.isInterrupted()){
 			try {
 				Socket socket = ServerConst.SOCKET_QUEUE.take();
-				encryptionKeyChange(socket);
-				authClientAndDelegate(socket);
+				String aesKey = encryptionKeyChange(socket);
+				authClientAndDelegate(socket, aesKey);
 				System.out.println("블로킹큐 get : "+socket.getClass().getName());
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -48,9 +49,10 @@ public class AuthClientHandler extends Thread {
 	}
 
 
-	private void encryptionKeyChange(Socket socket) {
+	private String encryptionKeyChange(Socket socket) {
 		KeyExchangeServer kes = new KeyExchangeServer(socket);
-		kes.start();
+		String key = kes.start();
+		return key;
 	}
 
 
@@ -63,7 +65,7 @@ public class AuthClientHandler extends Thread {
 	 * @throws EmptyResultDataException
 	 *             등록된 사용자가 아님(인증X)
 	 */
-	public synchronized void authClientAndDelegate(Socket socket){
+	public synchronized void authClientAndDelegate(Socket socket, String aesKey){
 		BufferedInputStream bis = null;
 		
 		try {
@@ -79,11 +81,12 @@ public class AuthClientHandler extends Thread {
 			length = ServerUtils.byteToInt(buf);
 			byte[] body = new byte[length];
 			bodylength = bis.read(body);
-			String text = new String(body, ServerConst.CHARSET);
-			System.out.println(text);
+			String msg = new String(body, ServerConst.CHARSET);
+			msg = AESUtils.AES_Decode(msg, aesKey);
+			System.out.println(msg);
 
-			if (text.contains(ServerConst.JSON_VALUE_AUTH)) {
-				String name = ServerUtils.parseJSONMessage(new JSONParser(), new String(body, ServerConst.CHARSET));
+			if (msg.contains(ServerConst.JSON_VALUE_AUTH)) {
+				String name = ServerUtils.parseJSONMessage(new JSONParser(), msg);
 				boolean authorized = false;
 				try{
 					//인증 실패 시 예외가 발생되는 부분
@@ -91,7 +94,7 @@ public class AuthClientHandler extends Thread {
 					authorized = true;
 					if(authorized){
 						////매니저에 추가해주는 부분.
-						socketConnectionManagerager.add(name, socket);
+						socketConnectionManagerager.add(name, socket, aesKey);
 						////
 					}
 				} catch(EmptyResultDataException e){

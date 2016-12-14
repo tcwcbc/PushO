@@ -7,6 +7,7 @@ import java.net.Socket;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import client.encry.AESUtils;
 import client.encry.KeyExchangeClient;
 import client.res.ClientConst;
 import client.util.ClientUtils;
@@ -28,7 +29,7 @@ public class OIOClient {
 	private int dataSize;
 	private int bodyLength;
 
-	public String desKey;
+	public String aesKey;
 
 	// 서버에 연결 작업
 	public boolean connectServer() {
@@ -40,14 +41,16 @@ public class OIOClient {
 
 			// 키교환이 이뤄지는 작업
 			KeyExchangeClient key = new KeyExchangeClient(bis, bos);
-			desKey = key.start();
-			System.out.println("키 교환작업 완료:" + desKey);
+			aesKey = key.start();
+			System.out.println("키 교환작업 완료:" + aesKey);
 
 			isServerSurvival = true;
 
 			// 인증을 위한 JSON 메세지 생성
-			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자9", "비밀번호~?", new JSONObject(),
+			String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자3", "비밀번호~?", new JSONObject(),
 					new JSONObject());
+			// 본문에 대해 암호화
+			msgAuthString = AESUtils.AES_Encode(msgAuthString, aesKey);
 			byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 					new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length],
 					msgAuthString);
@@ -65,7 +68,8 @@ public class OIOClient {
 				// DATA 길이만큼 byte배열 선언
 				byte[] body = new byte[dataSize];
 				bodyLength = bis.read(body);
-				String msg = ClientUtils.parseJSONMessage(new JSONParser(), new String(body, ClientConst.CHARSET));
+				String msg = ClientUtils.parseJSONMessage(new JSONParser(),
+						AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey));
 				// Pong 메시지 일 경우
 				if (msg.equals(ClientConst.JSON_VALUE_PONG)) {
 					System.out.println("인증 성공");
@@ -101,11 +105,12 @@ public class OIOClient {
 					// DATA 길이만큼 byte배열 선언
 					byte[] body = new byte[dataSize];
 					bodyLength = bis.read(body);
-					String msg = ClientUtils.parseJSONMessage(new JSONParser(), new String(body, ClientConst.CHARSET));
-
+					String msg = ClientUtils.parseJSONMessage(new JSONParser(),
+							AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey));
 					// Ping 메시지 일 경우
 					if (msg.equals(ClientConst.JSON_VALUE_PING)) {
 						String msgPongString = ClientUtils.makeJSONMessageForPingPong(new JSONObject(), false);
+						msgPongString = AESUtils.AES_Encode(msgPongString, aesKey);
 						byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
 								new byte[ClientConst.HEADER_LENTH + msgPongString.getBytes(ClientConst.CHARSET).length],
 								msgPongString);
@@ -114,19 +119,20 @@ public class OIOClient {
 					}
 					// Push 메시지 일 경우
 					else if (msg.equals(ClientConst.JSON_VALUE_PUSH)) {
-						pushData = ClientUtils.parsePushMessage(new JSONParser(), new String(body, ClientConst.CHARSET),
-								pushData);
+						pushData = ClientUtils.parsePushMessage(new JSONParser(),
+								AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey), pushData);
 						System.out.println("주문번호:" + pushData.getOrder_num() + "확인되었습니다.");
 
 						String msgPushResponse = ClientUtils.makeJSONMessageForPush("sucess", new JSONObject(),
 								new JSONObject());
-						
+
 					}
 				} // end of while
 			} catch (IOException e) {
 				try {
 					System.out.println("Time out 발생...");
 					String msgPingString = ClientUtils.makeJSONMessageForPingPong(new JSONObject(), true);
+					msgPingString = AESUtils.AES_Encode(msgPingString, aesKey);
 					byte[] msgPingByte = ClientUtils.makeMessageStringToByte(
 							new byte[ClientConst.HEADER_LENTH + msgPingString.getBytes(ClientConst.CHARSET).length],
 							msgPingString);

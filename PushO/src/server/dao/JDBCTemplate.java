@@ -144,8 +144,13 @@ public class JDBCTemplate {
 		return productList;
 	}
 	
-	public void executeQuery_PUSH_STATUS_UPDATE(String orderNum) {
-		String sql = "UPDATE TB_USER_ORDER set order_push = '전송중' where order_num = '"+orderNum+"'";
+	/**
+	 * 
+	 * @param orderNum  주문번호
+	 * @param msg 바꿀내용
+	 */
+	public void executeQuery_PUSH_STATUS_UPDATE(String orderNum, String msg) {
+		String sql = "UPDATE TB_USER_ORDER set order_push = '"+ msg +"' where order_num = '"+orderNum+"'";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();

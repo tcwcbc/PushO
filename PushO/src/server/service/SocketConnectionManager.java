@@ -61,9 +61,8 @@ public class SocketConnectionManager implements Pushable {
 	}
 
 	@Override
-	public void sendPushPartial(String Id, String msg) {
-		// TODO Auto-generated method stub
-		conMap.get(Id).setPush(msg);
+	public void sendPushPartial(String id, String msg) {
+		
 	}
 /*
 	@Override
@@ -87,14 +86,14 @@ public class SocketConnectionManager implements Pushable {
 	 * @param clientSocket
 	 *            클라이언트와 연결된 소켓
 	 */
-	public synchronized void add(String name, Socket clientSocket) {
+	public synchronized void add(String name, Socket clientSocket, String aesKey) {
 		boolean duplicated = false;
 		//이미 등록된 사용자인지 검사
 		if (conMap.containsKey(name)) {
 			duplicated = true;
 		}
 		if (!duplicated) {
-			ProcessCilentRequest proClient = new ProcessCilentRequest(clientSocket);
+			ProcessCilentRequest proClient = new ProcessCilentRequest(clientSocket, aesKey);
 			this.executorService.submit(proClient);
 			System.out.println("실행 중인 클라이언트의 이름 : "+name);
 			conMap.put(name, proClient);
