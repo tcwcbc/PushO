@@ -74,7 +74,8 @@ public class SocketConnectionManager implements Pushable {
 	 * @param clientSocket
 	 *            클라이언트와 연결된 소켓
 	 */
-	public synchronized void addClientSocket(String name, Socket clientSocket, String aesKey) {
+	public synchronized void addClientSocket(String name, Socket clientSocket, String aesKey)
+			throws AlreadyConnectedSocketException{
 
 		boolean duplicated = false;
 		//이미 등록된 사용자인지 검사
