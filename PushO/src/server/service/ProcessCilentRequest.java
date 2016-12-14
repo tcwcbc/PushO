@@ -5,13 +5,12 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.util.concurrent.Callable;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import server.encry.AESUtils;
 import server.exception.PushMessageSendingException;
-import server.model.UserAuth;
 import server.res.ServerConst;
 import server.util.ServerUtils;
 
@@ -31,9 +30,12 @@ public class ProcessCilentRequest extends Thread{
 
 	private BufferedOutputStream bos;
 	private BufferedInputStream bis;
+	
+	private String aesKey;
 
-	public ProcessCilentRequest(Socket socket) {
+	public ProcessCilentRequest(Socket socket, String aesKey) {
 		this.connectedSocketWithClient = socket;
+		this.aesKey = aesKey;
 	}
 
 	@Override
@@ -75,6 +77,7 @@ public class ProcessCilentRequest extends Thread{
 
 	private void sendSuccessMsg() throws IOException, InterruptedException {
 		String msgPingString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), false);
+		msgPingString = AESUtils.AES_Encode(msgPingString, aesKey);
 		msgPingByte = ServerUtils.makeMessageStringToByte(
 				new byte[ServerConst.HEADER_LENTH + msgPingString.getBytes().length], msgPingString);
 
@@ -93,7 +96,7 @@ public class ProcessCilentRequest extends Thread{
 			bodySize = ServerUtils.byteToInt(header);
 			body = new byte[bodySize];
 			bodylength = bis.read(body);
-			String msg = ServerUtils.parseJSONMessage(new JSONParser(), new String(body));
+			String msg = ServerUtils.parseJSONMessage(new JSONParser(), AESUtils.AES_Decode(new String(body), aesKey));
 
 			if (msg.equals(ServerConst.JSON_VALUE_PONG)) {
 				System.out.println("ACK");
@@ -109,6 +112,7 @@ public class ProcessCilentRequest extends Thread{
 	 */
 	public void setPush(String msg) throws PushMessageSendingException {
 		try {
+			msg = AESUtils.AES_Encode(msg, aesKey);
 			msgPushByte = ServerUtils.makeMessageStringToByte(
 					new byte[ServerConst.HEADER_LENTH + msg.getBytes(ServerConst.CHARSET).length], msg);
 

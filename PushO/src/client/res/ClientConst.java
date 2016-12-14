@@ -14,9 +14,11 @@ public interface ClientConst {
 	/**
 	 * Socket Connection
 	 */
-	String SERVER_IP = "175.115.95.32";
-	// String SERVER_IP ="127.0.0.1";
-	int PORT_NUM = 9998;
+
+//	String SERVER_IP ="175.115.95.32";
+	String SERVER_IP ="127.0.0.1";
+	int PORT_NUM = 9999;
+
 	int STREAM_TIME_OUT = 30000;
 	int SEND_WATING_TIME = 7000;
 
@@ -55,6 +57,7 @@ public interface ClientConst {
 	String JSON_KEY_ORDER_LIST = "order_list";
 	String JSON_KEY_ORDER_PRODUCT = "product";
 	String JSON_KEY_ORDER_PRODUCT_COUNT = "product_count";
+	String JSON_KEY_ORDER_RESPONSE= "response";
 
 	String JSON_VALUE_AUTH = "auth";
 	String JSON_VALUE_PING = "ping";

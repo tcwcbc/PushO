@@ -62,13 +62,7 @@ public class KeyExchangeClient {
 	 * @param index
 	 *            인덱스 1 : 서버에게 RSA 공개키 전송할때 
 	 *            인덱스 2 : 키 교환이 이루어지고 Hello World 테스트
-	 * @throws IOException
-	 * @throws InvalidKeyException
-	 * @throws NoSuchAlgorithmException
-	 * @throws NoSuchPaddingException
-	 * @throws InvalidAlgorithmParameterException
-	 * @throws IllegalBlockSizeException
-	 * @throws BadPaddingException
+	 *            
 	 */
 	private void sendToServer(int index) throws IOException {
 		String msgEncryString = null;
@@ -96,13 +90,7 @@ public class KeyExchangeClient {
 	 * @param index
 	 *            인덱스 1 : 서버로부터 RSA 공개키로 암호화된 DES256 비밀키를 받을때 
 	 *            인덱스 2 : 서버로부터 Hello World 테스트에 대한 리스폰스를 받을때
-	 * @throws IOException
-	 * @throws BadPaddingException
-	 * @throws IllegalBlockSizeException
-	 * @throws InvalidAlgorithmParameterException
-	 * @throws NoSuchPaddingException
-	 * @throws NoSuchAlgorithmException
-	 * @throws InvalidKeyException
+	 *            
 	 */
 	private void receiveForServer(int index) throws IOException {
 		readCount = bis.read(header);
@@ -120,12 +108,11 @@ public class KeyExchangeClient {
 
 	}
 
-	private void decryptionDes256Key() {
+	private void decryptionAes256Key() {
 		try {
 			receiveKey = EncryUtils.hexToByteArray(cipherKey);
 			RSADecryption rd = new RSADecryption(receiveKey, privKey);
 			desKey = rd.getDESkey();
-			System.out.println("AES키 : "+desKey);
 		} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException
 				| NoSuchProviderException | NoSuchPaddingException e) {
 			// TODO Auto-generated catch block
@@ -139,16 +126,21 @@ public class KeyExchangeClient {
 			header = new byte[ClientConst.HEADER_LENTH];
 			// 키 생성후 초기화
 			initialize();
+			System.out.println("RSA 키 생성");
 			// 서버로 RSA 공개키 보냄
 			sendToServer(1);
-			// 서버로 부터 RSA 공개키로 암호화된 DES256 비밀키 받음
+			System.out.println("RSA 공개키 전송");
+			// 서버로 부터 RSA 공개키로 암호화된 AES256 비밀키 받음
 			receiveForServer(1);
+			System.out.println("서버로부터 AES256 암호화키 받음");
 			// 암호화된 DES256 비밀키 복호화
-			decryptionDes256Key();
+			decryptionAes256Key();
 			// Hello World 암호문 전송
 			sendToServer(2);
+			System.out.println("암호키 테스트 'Hello World'전송");
 			// Hello World 암호문 응답 받기
 			receiveForServer(2);
+			System.out.println("암호키 테스트 'Hello World'받음");
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		} catch (Throwable e) {

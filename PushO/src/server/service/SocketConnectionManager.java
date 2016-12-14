@@ -55,7 +55,7 @@ public class SocketConnectionManager implements Pushable {
 			sendPushPartial(userID,msg);
 		}
 	}
-
+	
 	@Override
 	public void sendPushPartial(String Id, String msg) {
 		try {
@@ -65,7 +65,7 @@ public class SocketConnectionManager implements Pushable {
 			System.out.println(Id+" 를 맵에서 삭제");
 		}
 	}
-	
+
 	/**
 	 * 쓰레드풀과 Map에 추가시키는 메소드 리턴타입으로 Future 객체를 사용할지에 대한 여부 고려
 	 * 
@@ -74,7 +74,8 @@ public class SocketConnectionManager implements Pushable {
 	 * @param clientSocket
 	 *            클라이언트와 연결된 소켓
 	 */
-	public synchronized void addClientSocket(String name, Socket clientSocket) {
+	public synchronized void addClientSocket(String name, Socket clientSocket, String aesKey) {
+
 		boolean duplicated = false;
 		//이미 등록된 사용자인지 검사
 		if (concurrentHashMap.containsKey(name)) {
@@ -82,7 +83,7 @@ public class SocketConnectionManager implements Pushable {
 		}
 		//중복이 아니라면 쓰레드를 생성하고 Map에 담음
 		if (!duplicated) {
-			ProcessCilentRequest proClient = new ProcessCilentRequest(clientSocket);
+			ProcessCilentRequest proClient = new ProcessCilentRequest(clientSocket, aesKey);
 			this.executorService.submit(proClient);
 			System.out.println("실행 중인 클라이언트의 이름 : "+name);
 			concurrentHashMap.put(name, proClient);
@@ -98,5 +99,6 @@ public class SocketConnectionManager implements Pushable {
 		executorService.shutdown();
 		concurrentHashMap.clear();
 	}
+
 
 }

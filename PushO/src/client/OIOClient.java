@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Timer;
 
+import client.encry.AESUtils;
+import client.encry.KeyExchangeClient;
+
 import client.res.ClientConst;
 
 /**
@@ -21,7 +24,7 @@ public class OIOClient {
 
 	private Timer timer;
 	private ClientHeartBeat heartBeat;
-	public String desKey;
+	public String aesKey;
 	final int timeInterval = 10000;
 
 	// 서버에 연결 작업
@@ -39,16 +42,15 @@ public class OIOClient {
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			// 키교환이 이뤄지는 작업
-			// KeyExchangeClient key = new KeyExchangeClient(bis, bos);
-			// desKey = key.start();
-			// System.out.println("키 교환작업 완료:" + desKey);
+			KeyExchangeClient key = new KeyExchangeClient(bis, bos);
+			aesKey = key.start();
+			System.out.println("키 교환작업 완료:" + aesKey);
 
 			isServerSurvival = true;
 
-			// 인증을 위한 JSON 메세지 생성
-			CilentDataProcess.sendAuth(bos);
-			System.out.println("인증 메시지 전송");
-			CilentDataProcess.receive(socket, bis, bos);
+			CilentDataProcess.sendAuth(bos, aesKey);
+			
+			CilentDataProcess.receive(socket, bis, bos, aesKey);
 
 			return true;
 		} catch (IOException e) {
@@ -59,9 +61,9 @@ public class OIOClient {
 				System.out.println("No Server Response 발생!!");
 				try {
 					// 인증을 위한 JSON 메세지 생성
-					CilentDataProcess.sendAuth(bos);
+					CilentDataProcess.sendAuth(bos, aesKey);
 					System.out.println("인증 메시지 다시 전송");
-					CilentDataProcess.receive(socket, bis, bos);
+					CilentDataProcess.receive(socket, bis, bos, aesKey);
 				} catch (IOException e1) {
 					System.out.println("No Server Response 발생!!");
 					return false;
@@ -76,14 +78,14 @@ public class OIOClient {
 		boolean status = true;
 
 		timer = new Timer();
-		heartBeat = new ClientHeartBeat(bos);
+		heartBeat = new ClientHeartBeat(bos, aesKey);
 		timer.scheduleAtFixedRate(heartBeat, timeInterval, timeInterval);
 
 		while (status) {
 			try {
-				CilentDataProcess.receive(socket, bis, bos);
+				CilentDataProcess.receive(socket, bis, bos, aesKey);
 			} catch (IOException e) {
-				CilentDataProcess.occurTimeout(socket, bis, bos);
+				CilentDataProcess.occurTimeout(socket, bis, bos, aesKey);
 			}
 		}
 	}
