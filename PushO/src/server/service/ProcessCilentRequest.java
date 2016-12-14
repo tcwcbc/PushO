@@ -10,6 +10,7 @@ import java.util.concurrent.Callable;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import server.exception.PushMessageSendingException;
 import server.model.UserAuth;
 import server.res.ServerConst;
 import server.util.ServerUtils;
@@ -87,7 +88,8 @@ public class ProcessCilentRequest extends Thread{
 		bos.flush();
 		System.out.println("인증 성공 메시지 전송");
 
-		while ((readCount = bis.read(header)) != -1) {
+		while (!this.isInterrupted()) {
+			readCount = bis.read(header);
 			bodySize = ServerUtils.byteToInt(header);
 			body = new byte[bodySize];
 			bodylength = bis.read(body);
@@ -102,11 +104,10 @@ public class ProcessCilentRequest extends Thread{
 
 	/**
 	 * 클라이언트에게 알림을 전송하는 메소드 String 데이터를 구분자로 split하여 데이터 형식에 맞게 가공한다.
-	 * 
-	 * @param msg
-	 *            주문정보
+	 * @param msg		주문정보 메시지
+	 * @throws PushMessageSendingException 보낼 때 스트림이 닫힌경우 연결이 해제되었음을 인지하고 풀과 맵에서 정리를 알리는 예외
 	 */
-	public void setPush(String msg) {
+	public void setPush(String msg) throws PushMessageSendingException {
 		try {
 			msgPushByte = ServerUtils.makeMessageStringToByte(
 					new byte[ServerConst.HEADER_LENTH + msg.getBytes(ServerConst.CHARSET).length], msg);
@@ -118,6 +119,8 @@ public class ProcessCilentRequest extends Thread{
 			// 상대 클라이언트 접속이 끊어지면 발생
 			// 그에 따라 HashMap에 저장되어있는 현재 Thread를 지우는 작업이 필요함
 			System.out.println("setPush() 푸쉬발송중 오류" + e.getMessage());
+			this.interrupt();
+			throw new PushMessageSendingException(e);
 		}
 	}
 }

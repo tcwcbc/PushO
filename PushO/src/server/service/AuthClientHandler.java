@@ -1,6 +1,7 @@
 package server.service;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 
 import server.dao.JDBCTemplate;
 import server.encry.KeyExchangeServer;
+import server.exception.AlreadyConnectedSocketException;
 import server.exception.EmptyResultDataException;
 import server.res.ServerConst;
 import server.util.ServerUtils;
@@ -23,6 +25,7 @@ import server.util.ServerUtils;
 public class AuthClientHandler extends Thread {
 	
 	private SocketConnectionManager socketConnectionManagerager = SocketConnectionManager.getInstance();
+	
 	private static AuthClientHandler instance = null;
 	
 	public static AuthClientHandler getInstance() {
@@ -65,9 +68,10 @@ public class AuthClientHandler extends Thread {
 	 */
 	public synchronized void authClientAndDelegate(Socket socket){
 		BufferedInputStream bis = null;
-		
+		BufferedOutputStream bos = null;
 		try {
 			bis = new BufferedInputStream(socket.getInputStream());
+			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			byte[] buf = new byte[ServerConst.HEADER_LENTH];
 			int readCount = 0;
@@ -90,11 +94,18 @@ public class AuthClientHandler extends Thread {
 					checkAuthorization(name);
 					authorized = true;
 					if(authorized){
-						////매니저에 추가해주는 부분.
-						socketConnectionManagerager.add(name, socket);
-						////
+						//매니저에 추가해주는 부분.
+						socketConnectionManagerager.addClientSocket(name, socket);
 					}
 				} catch(EmptyResultDataException e){
+					//TODO 클라이언트에게 인증되지 않았다는 메시지를 보냄
+//					bos.write(b);
+					socket.close();
+					e.printStackTrace();
+				} catch(AlreadyConnectedSocketException e){ 
+					//TODO 클라이언트에게 이미 연결된 아이디라는 메시지를 보냄
+//					bos.write(b);
+					socket.close();
 					e.printStackTrace();
 				}
 				
@@ -121,7 +132,8 @@ public class AuthClientHandler extends Thread {
 	 *             인증이 안되었을 경우 발생
 	 */
 	private void checkAuthorization(String name) throws EmptyResultDataException {
-		new JDBCTemplate().executeQuery("select * from pj_member where mem_name = ?", new SetPrepareStatement() {
+		new JDBCTemplate().executeQuery("select * from pj_member where mem_name = ?", 
+				new SetPrepareStatement() {
 			@Override
 			public void setFields(PreparedStatement pstm) throws SQLException {
 				System.out.println("디비접속");

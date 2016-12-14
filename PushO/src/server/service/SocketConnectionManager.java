@@ -1,16 +1,13 @@
 package server.service;
 
-import java.io.IOException;
 import java.net.Socket;
-import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
-import server.model.UserAuth;
+import server.exception.AlreadyConnectedSocketException;
+import server.exception.PushMessageSendingException;
 import server.observer.DBThread;
 
 /**
@@ -36,49 +33,39 @@ public class SocketConnectionManager implements Pushable {
 	}
 
 	// 클라이언트 처리 쓰레드를 Map으로 관리
-	private Map<String, ProcessCilentRequest> conMap = new HashMap<String, ProcessCilentRequest>();
+//	private Map<String, ProcessCilentRequest> conMap = new HashMap<String, ProcessCilentRequest>();
+	private ConcurrentHashMap<String, ProcessCilentRequest> concurrentHashMap = 
+									new ConcurrentHashMap<String, ProcessCilentRequest>();
 	// 쓰레드풀 구현부분
 	private ExecutorService executorService = Executors.newCachedThreadPool();
-
-	Iterator<String> keySetIterator;
 	
 	private DBThread dbThread;
 
-	public SocketConnectionManager() {
+	private SocketConnectionManager() {
 		dbThread = new DBThread(this);
 		dbThread.start();
 		System.out.println("DB감시 시작...");
 	}
 
 	@Override
-	public void sendPushAll(String msg) {
-		keySetIterator = conMap.keySet().iterator();
+	public synchronized void sendPushAll(String msg) {
+		Iterator<String> keySetIterator = concurrentHashMap.keySet().iterator();
 		while (keySetIterator.hasNext()) {
 			String userID = keySetIterator.next();
-			// thread의 setPush
-			conMap.get(userID).setPush(msg);
+			sendPushPartial(userID,msg);
 		}
 	}
 
 	@Override
 	public void sendPushPartial(String Id, String msg) {
-		// TODO Auto-generated method stub
-		conMap.get(Id).setPush(msg);
-	}
-/*
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
 		try {
-			while (!this.isInterrupted()) {
-				Thread.sleep(1000);
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			concurrentHashMap.get(Id).setPush(msg);
+		} catch (PushMessageSendingException e) {
+			concurrentHashMap.remove(Id);
+			System.out.println(Id+" 를 맵에서 삭제");
 		}
 	}
-*/
+	
 	/**
 	 * 쓰레드풀과 Map에 추가시키는 메소드 리턴타입으로 Future 객체를 사용할지에 대한 여부 고려
 	 * 
@@ -87,41 +74,29 @@ public class SocketConnectionManager implements Pushable {
 	 * @param clientSocket
 	 *            클라이언트와 연결된 소켓
 	 */
-	public synchronized void add(String name, Socket clientSocket) {
+	public synchronized void addClientSocket(String name, Socket clientSocket) {
 		boolean duplicated = false;
 		//이미 등록된 사용자인지 검사
-		if (conMap.containsKey(name)) {
+		if (concurrentHashMap.containsKey(name)) {
 			duplicated = true;
 		}
+		//중복이 아니라면 쓰레드를 생성하고 Map에 담음
 		if (!duplicated) {
 			ProcessCilentRequest proClient = new ProcessCilentRequest(clientSocket);
 			this.executorService.submit(proClient);
 			System.out.println("실행 중인 클라이언트의 이름 : "+name);
-			conMap.put(name, proClient);
-			System.out.println("연결된 클라이언트 수 : "+conMap.size());
+			concurrentHashMap.put(name, proClient);
+			System.out.println("연결된 클라이언트 수 : "+concurrentHashMap.size());
 		} else {
-			// TODO : 인증이 되지 않았다는 메시지를 보내고 소켓을 닫음.
-			System.out.println("이미 존재하는 사용자");
-			try {
-				clientSocket.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			// TODO : 인증이 되지 않았다는 메시지를 보내고 소켓을 닫는 것을 던짐
+			throw new AlreadyConnectedSocketException(name+"은 이미 존재");
 		}
 	}
 
 	public synchronized void closeAll() {
 		dbThread.interrupt();
-		try {
-			dbThread.db.closeDBSet();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		executorService.shutdown();
-//		this.interrupt();
-		conMap = null;
+		concurrentHashMap.clear();
 	}
 
 }
