@@ -18,8 +18,9 @@ public class CilentDataProcess {
 	private static byte[] header = new byte[ClientConst.HEADER_LENTH];
 
 	public static void sendAuth(BufferedOutputStream bos, String aesKey) throws IOException {
+		System.out.println("인증 메시지 전송");
 		String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자5", "비밀번호~?", new JSONObject(), new JSONObject());
-		msgAuthString = AESUtils.AES_Encode(aesKey, msgAuthString);
+		msgAuthString = AESUtils.AES_Encode(msgAuthString,  aesKey);
 		byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length], msgAuthString);
 		bos.write(msgAuthByte);
@@ -28,7 +29,7 @@ public class CilentDataProcess {
 
 	public static void sendPing(BufferedOutputStream bos, String aesKey) throws IOException {
 		String msgPingString = ClientUtils.makeJSONMessageForPingPong(new JSONObject(), true);
-		msgPingString = AESUtils.AES_Encode(aesKey, msgPingString);
+		msgPingString = AESUtils.AES_Encode(msgPingString,  aesKey);
 		byte[] msgPingByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgPingString.getBytes(ClientConst.CHARSET).length], msgPingString);
 		bos.write(msgPingByte);
@@ -38,7 +39,7 @@ public class CilentDataProcess {
 
 	public static void sendPong(BufferedOutputStream bos, String aesKey) throws IOException {
 		String msgPongString = ClientUtils.makeJSONMessageForPingPong(new JSONObject(), false);
-		msgPongString = AESUtils.AES_Encode(aesKey, msgPongString);
+		msgPongString = AESUtils.AES_Encode(msgPongString, aesKey);
 		byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgPongString.getBytes(ClientConst.CHARSET).length], msgPongString);
 		bos.write(msgPongByte);
