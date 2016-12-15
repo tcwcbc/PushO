@@ -257,7 +257,9 @@ public class ServerUtils {
 				// result = id + "," + passwd;
 				result = id;
 			} else if (category.equals(ServerConst.JSON_VALUE_PUSH)) {
-				result = ServerConst.JSON_VALUE_PUSH;
+				JSONObject object = (JSONObject) jsonObject.get(ServerConst.JSON_KEY_DATA);
+				String response = (String) object.get(ServerConst.JSON_KEY_ORDER_RESPONSE);
+				result = ServerConst.JSON_VALUE_PUSH + "/" + response;
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

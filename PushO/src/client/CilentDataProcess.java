@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import client.encry.AESUtils;
 import client.res.ClientConst;
@@ -45,6 +46,26 @@ public class CilentDataProcess {
 		ClientConst.CLIENT_LOGGER.info("pong 전송");
 	}
 
+	public static void sendPushSuccess(BufferedOutputStream bos, String aesKey, String orderNum) throws IOException {
+		String msgPushString = ClientUtils.makeJSONMessageForPushResponse("success/" + orderNum, new JSONObject(),
+				new JSONObject());
+		msgPushString = AESUtils.AES_Encode(msgPushString, aesKey);
+		byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
+				new byte[ClientConst.HEADER_LENTH + msgPushString.getBytes(ClientConst.CHARSET).length], msgPushString);
+		bos.write(msgPongByte);
+		ClientConst.CLIENT_LOGGER.info("push success 전송");
+	}
+
+	public static void sendPushFail(BufferedOutputStream bos, String aesKey, String orderNum) throws IOException {
+		String msgPushString = ClientUtils.makeJSONMessageForPushResponse("fail/" + orderNum, new JSONObject(),
+				new JSONObject());
+		msgPushString = AESUtils.AES_Encode(msgPushString, aesKey);
+		byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
+				new byte[ClientConst.HEADER_LENTH + msgPushString.getBytes(ClientConst.CHARSET).length], msgPushString);
+		bos.write(msgPongByte);
+		ClientConst.CLIENT_LOGGER.info("push fail 전송");
+	}
+
 	public static void receive(Socket socket, BufferedInputStream bis, BufferedOutputStream bos, String aesKey)
 			throws IOException {
 		int readCount;
@@ -76,9 +97,17 @@ public class CilentDataProcess {
 				}
 				// Push 메시지 경우
 				else if (msg.equals(ClientConst.JSON_VALUE_PUSH)) {
-					pushData = ClientUtils.parsePushMessage(new JSONParser(),
-							AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey), pushData);
-					ClientConst.CLIENT_LOGGER.info("주문번호" + pushData.getOrder_num() + " 알림이 도착했습니다");
+					try {
+						pushData = ClientUtils.parsePushMessage(new JSONParser(),
+								AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey), pushData);
+						ClientConst.CLIENT_LOGGER.info("주문번호" + pushData.getOrder_num() + " 알림이 도착했습니다");
+						sendPushSuccess(bos, aesKey, pushData.getOrder_num());
+					} catch (ParseException e) {
+						ClientConst.CLIENT_LOGGER.error("주문푸쉬 파싱에러");
+						sendPushFail(bos, aesKey, pushData.getOrder_num());
+						e.printStackTrace();
+					}
+
 				}
 
 			} // end of while

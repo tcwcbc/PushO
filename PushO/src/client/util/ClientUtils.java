@@ -167,12 +167,13 @@ public class ClientUtils {
 
 	/**
 	 * 알림 메시지에 대한 결과를 반환하는 포멧
+	 * 
 	 * @param msg
 	 * @param parent
 	 * @param childData
 	 * @return
 	 */
-	public static String makeJSONMessageForPush(String msg, JSONObject parent, JSONObject childData) {
+	public static String makeJSONMessageForPushResponse(String msg, JSONObject parent, JSONObject childData) {
 
 		parent.put(ClientConst.JSON_KEY_SEND_TIME, getTime());
 		parent.put(ClientConst.JSON_KEY_DATA_CATEGORY, ClientConst.JSON_VALUE_PUSH);
@@ -181,9 +182,9 @@ public class ClientUtils {
 
 		return parent.toString();
 	}
-	
+
 	public static String makeJSONMessageForEncry(String key, JSONObject parent, JSONObject childData) {
-		
+
 		parent.put(ClientConst.JSON_KEY_SEND_TIME, getTime());
 		parent.put(ClientConst.JSON_KEY_DATA_CATEGORY, ClientConst.JSON_VALUE_ENCRY);
 		childData.put(ClientConst.JSON_KEY_AUTH_ENCRY, key);
@@ -229,6 +230,7 @@ public class ClientUtils {
 
 	/**
 	 * 키교환을 위한 파서
+	 * 
 	 * @param jsonParser
 	 * @param msg
 	 * @return
@@ -257,31 +259,28 @@ public class ClientUtils {
 	 * @param pushData
 	 *            PushInfo로 반환
 	 * @return
+	 * @throws ParseException
 	 */
-	public static PushInfo parsePushMessage(JSONParser jsonParser, String msg, PushInfo pushData) {
-		try {
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
-			JSONObject object = (JSONObject) jsonObject.get(ClientConst.JSON_KEY_DATA);
-			JSONArray array = (JSONArray) object.get(ClientConst.JSON_KEY_ORDER_LIST);
+	public static PushInfo parsePushMessage(JSONParser jsonParser, String msg, PushInfo pushData)
+			throws ParseException {
 
-			List<ProductList> pt = new ArrayList<>();
-			for (int i = 0; i < array.size(); i++) {
-				JSONObject order = (JSONObject) array.get(i);
-				pt.add(new ProductList(order.get(ClientConst.JSON_KEY_ORDER_PRODUCT).toString(),
-						order.get(ClientConst.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
-			}
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
+		JSONObject object = (JSONObject) jsonObject.get(ClientConst.JSON_KEY_DATA);
+		JSONArray array = (JSONArray) object.get(ClientConst.JSON_KEY_ORDER_LIST);
 
-			pushData = new PushInfo(object.get(ClientConst.JSON_KEY_ORDER_NUM).toString(),
-					object.get(ClientConst.JSON_KEY_ORDER_DATE).toString(),
-					object.get(ClientConst.JSON_KEY_ORDER_USER).toString(),
-					object.get(ClientConst.JSON_KEY_ORDER_SELLER).toString(),
-					object.get(ClientConst.JSON_KEY_ORDER_PRICE).toString(), pt);
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("JSON 파싱 에러");
+		List<ProductList> pt = new ArrayList<>();
+		for (int i = 0; i < array.size(); i++) {
+			JSONObject order = (JSONObject) array.get(i);
+			pt.add(new ProductList(order.get(ClientConst.JSON_KEY_ORDER_PRODUCT).toString(),
+					order.get(ClientConst.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
 		}
+
+		pushData = new PushInfo(object.get(ClientConst.JSON_KEY_ORDER_NUM).toString(),
+				object.get(ClientConst.JSON_KEY_ORDER_DATE).toString(),
+				object.get(ClientConst.JSON_KEY_ORDER_USER).toString(),
+				object.get(ClientConst.JSON_KEY_ORDER_SELLER).toString(),
+				object.get(ClientConst.JSON_KEY_ORDER_PRICE).toString(), pt);
+
 		return pushData;
 	}
 
