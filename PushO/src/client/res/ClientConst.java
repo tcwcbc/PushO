@@ -15,7 +15,7 @@ public interface ClientConst {
 	 * Socket Connection
 	 */
 
-	String SERVER_IP ="175.115.95.32";
+	String SERVER_IP ="175.115.95.31";
 //	String SERVER_IP ="127.0.0.1";
 	int PORT_NUM = 9998;
 

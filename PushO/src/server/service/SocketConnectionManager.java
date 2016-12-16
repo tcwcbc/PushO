@@ -60,23 +60,20 @@ public class SocketConnectionManager implements Pushable {
 		Iterator<String> keySetIterator = concurrentHashMap.keySet().iterator();
 		while (keySetIterator.hasNext()) {
 			String userID = keySetIterator.next();
-			ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 시작");
 			sendPushPartial(userID,msg);
-			ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 끝");
 		}
 	}
 	
 	@Override
 	public void sendPushPartial(String Id, String msg) {
-		ServerConst.SERVER_LOGGER.debug( Id+", 사용자에게 Push메시지 전송 시작");
 		try {
 			concurrentHashMap.get(Id).setPush(msg);
+			ServerConst.SERVER_LOGGER.debug( Id+", 사용자에게 Push메시지 전송");
 		} catch (PushMessageSendingException e) {
 			concurrentHashMap.remove(Id);
 			e.printStackTrace();
 			ServerConst.SERVER_LOGGER.error(e.getMessage()+", 사용자 "+Id+"를 맵에서 제거");
 		}
-		ServerConst.SERVER_LOGGER.debug( Id+", 사용자에게 Push메시지 전송 끝");
 	}
 
 	/**
