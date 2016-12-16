@@ -57,10 +57,9 @@ public class SocketConnectionManager implements Pushable {
 	public void sendPushAll(String msg) {
 		//ConcurrentHashMap의 특성상 순회 도중에 다른 스레드의 접근으로 인헌 ConcurrentModificationException 발생 안된다???
 		//그렇다면 메소드단위의 sync 해제해도 무방
-		for(ProcessCilentRequest pcr : concurrentHashMap.values()){
-			pcr.setPush(msg);
+		for(String key : concurrentHashMap.keySet()){
+			sendPushPartial(key,msg);
 		}
-		ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 끝");
 	}
 
 	@Override
@@ -90,9 +89,9 @@ public class SocketConnectionManager implements Pushable {
 			ServerConst.SERVER_LOGGER.info("사용자 [{}]는 이미 존재", name);
 			throw new AlreadyConnectedSocketException("해당사용자는 이미 존재");
 		} else {
-			this.executorService.submit(
-					concurrentHashMap.put(name, 
-							new ProcessCilentRequest(clientSocket, aesKey, receivedAckQueue)));
+			ProcessCilentRequest pcr = new ProcessCilentRequest(clientSocket, aesKey, receivedAckQueue);
+			concurrentHashMap.put(name, pcr);
+			this.executorService.submit(pcr);
 			ServerConst.SERVER_LOGGER.info("쓰레드 시작, 클라이언트 이름 : {}, 연결 수 : {}", name,concurrentHashMap.size());
 		}
 		/*

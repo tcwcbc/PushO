@@ -10,7 +10,7 @@ public class MultiTheadingTest {
 		new MultiTheadingTest();
 	}
 
-	int i=0;
+	int i=1;
 	public MultiTheadingTest() {
 		for (i = 0; i < 12; i++) {
 			new Thread(new Runnable() {
