@@ -51,7 +51,7 @@ public class OIOServer {
 				ServerConst.SERVER_LOGGER.debug("클라이언트 접속완료");
 				try {
 					this.socketQueue.put(socket);
-					ServerConst.SERVER_LOGGER.info("블로킹큐에 넣음, 큐 크기 : "+this.socketQueue.size());
+					ServerConst.SERVER_LOGGER.info("소켓 블로킹 큐에 넣음, 큐 크기 : {}",this.socketQueue.size());
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
