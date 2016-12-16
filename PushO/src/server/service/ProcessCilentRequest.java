@@ -143,7 +143,6 @@ public class ProcessCilentRequest extends Thread {
 	 *             보낼 때 스트림이 닫힌경우 연결이 해제되었음을 인지하고 풀과 맵에서 정리를 알리는 예외
 	 */
 	public void setPush(String msg) throws PushMessageSendingException {
-		ServerConst.SERVER_LOGGER.debug("setPush 메소드 호출");
 		try {
 			msg = AESUtils.AES_Encode(msg, aesKey);
 			msgPushByte = ServerUtils.makeMessageStringToByte(
@@ -156,9 +155,8 @@ public class ProcessCilentRequest extends Thread {
 			// 상대 클라이언트 접속이 끊어지면 발생
 			// 그에 따라 HashMap에 저장되어있는 현재 Thread를 지우는 작업이 필요함
 			this.interrupt();
-			ServerConst.SERVER_LOGGER.error("푸시완료, " + e.getMessage());
+			ServerConst.SERVER_LOGGER.error("푸시에러, "+e.getMessage());
 			throw new PushMessageSendingException(e);
 		}
-		ServerConst.SERVER_LOGGER.debug("setPush 메소드 종료");
 	}
 }
