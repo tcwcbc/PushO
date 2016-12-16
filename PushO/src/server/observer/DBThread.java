@@ -49,6 +49,7 @@ public class DBThread extends Thread {
 				iter = receivedAckQueue.iterator();
 				if(iter.hasNext()){
 					//하나씩 꺼내서 DB 상태값을 전송이 완료되었다고 바꾼다
+					receivedAckQueue.remove();
 					String receiveOrderNum = iter.next();
 					db.executeQuery_PUSH_STATUS_UPDATE(receiveOrderNum, "Y");
 				}
