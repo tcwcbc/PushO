@@ -47,6 +47,13 @@ public class DBThread extends Thread {
 				
 				//큐에 있는 자료를 다 가저온다
 				iter = receivedAckQueue.iterator();
+				
+				/*if(!receivedAckQueue.isEmpty()){
+					while(!receivedAckQueue.isEmpty()){
+						db.executeQuery_PUSH_STATUS_UPDATE(receivedAckQueue.take(), "Y");
+					}
+				}*/
+					
 				if(iter.hasNext()){
 					//하나씩 꺼내서 DB 상태값을 전송이 완료되었다고 바꾼다
 					receivedAckQueue.remove();
