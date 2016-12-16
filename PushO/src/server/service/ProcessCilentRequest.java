@@ -71,7 +71,6 @@ public class ProcessCilentRequest extends Thread{
 			timeoutE.printStackTrace();
 			try {
 				bos.write(msgPingByte);
-				System.out.println("Ping Àü¼Û");
 
 			} catch (IOException e) {
 				e.printStackTrace();

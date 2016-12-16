@@ -1,933 +1,731 @@
-2016-12-16 09:06:32.158 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:33.191 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:34.195 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:37.701 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:38.705 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:39.728 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:40.732 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:41.756 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:42.762 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:43.778 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:44.785 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:06:45.791 ERROR [client.OIOClient connectServer 57 main] Server Connection Exception 발생!!
-2016-12-16 09:07:43.934 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49533]
-2016-12-16 09:07:47.155 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
-2016-12-16 09:07:47.159 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
-2016-12-16 09:08:24.031 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:08:24.751 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
-2016-12-16 09:08:24.769 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
-2016-12-16 09:08:24.769 INFO  [client.OIOClient connectServer 45 main] 키 교환작업 완료:628d664addffa154154e6ef8e1875274
-2016-12-16 09:08:24.769 INFO  [client.OIOClient connectServer 47 main] 키 교환작업 완료
-2016-12-16 09:08:24.770 DEBUG [client.OIOClient connectServer 48 main] 암호화 키 628d664addffa154154e6ef8e1875274
-2016-12-16 09:08:24.774 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
-2016-12-16 09:21:34.018 DEBUG [client.OIOClient connectServer 46 Thread-0] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49564]
-2016-12-16 09:21:34.782 INFO  [client.encry.KeyExchangeClient start 131 Thread-0] RSA 키 생성
-2016-12-16 09:21:34.787 INFO  [client.encry.KeyExchangeClient start 134 Thread-0] RSA 공개키 전송
-2016-12-16 09:21:35.089 INFO  [client.encry.KeyExchangeClient start 137 Thread-0] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:21:35.580 INFO  [client.encry.KeyExchangeClient start 142 Thread-0] 암호키 테스트 'Hello World'전송
-2016-12-16 09:21:35.596 INFO  [client.encry.KeyExchangeClient start 145 Thread-0] 암호키 테스트 'Hello World'받음
-2016-12-16 09:21:35.596 INFO  [client.OIOClient connectServer 53 Thread-0] 키 교환작업 완료:ec70923b4f3a08121ef8a2eba19234de
-2016-12-16 09:21:35.596 INFO  [client.OIOClient connectServer 55 Thread-0] 키 교환작업 완료
-2016-12-16 09:21:35.596 DEBUG [client.OIOClient connectServer 56 Thread-0] 암호화 키 ec70923b4f3a08121ef8a2eba19234de
-2016-12-16 09:21:35.597 INFO  [client.CilentDataProcess sendAuth 27 Thread-0] 인증 메시지 전송
-2016-12-16 09:21:38.596 DEBUG [client.OIOClient connectServer 46 Thread-2] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49565]
-2016-12-16 09:21:40.434 INFO  [client.encry.KeyExchangeClient start 131 Thread-2] RSA 키 생성
-2016-12-16 09:21:40.435 INFO  [client.encry.KeyExchangeClient start 134 Thread-2] RSA 공개키 전송
-2016-12-16 09:21:43.595 DEBUG [client.OIOClient connectServer 46 Thread-3] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49566]
-2016-12-16 09:21:44.090 INFO  [client.encry.KeyExchangeClient start 131 Thread-3] RSA 키 생성
-2016-12-16 09:21:44.091 INFO  [client.encry.KeyExchangeClient start 134 Thread-3] RSA 공개키 전송
-2016-12-16 09:21:45.598 ERROR [client.OIOClient connectServer 68 Thread-0] No Server Response 발생!!
-2016-12-16 09:21:45.601 INFO  [client.CilentDataProcess sendAuth 27 Thread-0] 인증 메시지 전송
-2016-12-16 09:21:45.601 ERROR [client.OIOClient connectServer 72 Thread-0] 인증 메시지 다시 전송
-2016-12-16 09:21:48.595 DEBUG [client.OIOClient connectServer 46 Thread-4] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49567]
-2016-12-16 09:21:50.622 INFO  [client.encry.KeyExchangeClient start 137 Thread-2] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:21:50.684 INFO  [client.encry.KeyExchangeClient start 142 Thread-2] 암호키 테스트 'Hello World'전송
-2016-12-16 09:21:50.688 INFO  [client.encry.KeyExchangeClient start 145 Thread-2] 암호키 테스트 'Hello World'받음
-2016-12-16 09:21:50.689 INFO  [client.OIOClient connectServer 53 Thread-2] 키 교환작업 완료:7ad77a86571ab439183cfd3fa2947723
-2016-12-16 09:21:50.690 INFO  [client.OIOClient connectServer 55 Thread-2] 키 교환작업 완료
-2016-12-16 09:21:50.690 DEBUG [client.OIOClient connectServer 56 Thread-2] 암호화 키 7ad77a86571ab439183cfd3fa2947723
-2016-12-16 09:21:50.691 INFO  [client.CilentDataProcess sendAuth 27 Thread-2] 인증 메시지 전송
-2016-12-16 09:21:53.594 DEBUG [client.OIOClient connectServer 46 Thread-5] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49568]
-2016-12-16 09:21:53.671 INFO  [client.encry.KeyExchangeClient start 131 Thread-4] RSA 키 생성
-2016-12-16 09:21:53.672 INFO  [client.encry.KeyExchangeClient start 134 Thread-4] RSA 공개키 전송
-2016-12-16 09:21:54.206 INFO  [client.encry.KeyExchangeClient start 131 Thread-5] RSA 키 생성
-2016-12-16 09:21:54.206 INFO  [client.encry.KeyExchangeClient start 134 Thread-5] RSA 공개키 전송
-2016-12-16 09:21:58.593 DEBUG [client.OIOClient connectServer 46 Thread-6] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49571]
-2016-12-16 09:22:00.413 INFO  [client.encry.KeyExchangeClient start 131 Thread-6] RSA 키 생성
-2016-12-16 09:22:00.414 INFO  [client.encry.KeyExchangeClient start 134 Thread-6] RSA 공개키 전송
-2016-12-16 09:22:00.692 ERROR [client.OIOClient connectServer 68 Thread-2] No Server Response 발생!!
-2016-12-16 09:22:00.692 INFO  [client.CilentDataProcess sendAuth 27 Thread-2] 인증 메시지 전송
-2016-12-16 09:22:00.693 ERROR [client.OIOClient connectServer 72 Thread-2] 인증 메시지 다시 전송
-2016-12-16 09:22:03.593 DEBUG [client.OIOClient connectServer 46 Thread-7] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49572]
-2016-12-16 09:22:05.053 INFO  [client.encry.KeyExchangeClient start 131 Thread-7] RSA 키 생성
-2016-12-16 09:22:05.053 INFO  [client.encry.KeyExchangeClient start 134 Thread-7] RSA 공개키 전송
-2016-12-16 09:22:05.634 INFO  [client.encry.KeyExchangeClient start 137 Thread-3] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:22:05.640 INFO  [client.CilentDataProcess receive 73 Thread-2] ACK 도착
-2016-12-16 09:22:05.681 INFO  [client.encry.KeyExchangeClient start 142 Thread-3] 암호키 테스트 'Hello World'전송
-2016-12-16 09:22:05.695 INFO  [client.encry.KeyExchangeClient start 145 Thread-3] 암호키 테스트 'Hello World'받음
-2016-12-16 09:22:05.696 INFO  [client.OIOClient connectServer 53 Thread-3] 키 교환작업 완료:0fd3e144de144a4bf23f94d7cd8ca901
-2016-12-16 09:22:05.696 INFO  [client.OIOClient connectServer 55 Thread-3] 키 교환작업 완료
-2016-12-16 09:22:05.696 DEBUG [client.OIOClient connectServer 56 Thread-3] 암호화 키 0fd3e144de144a4bf23f94d7cd8ca901
-2016-12-16 09:22:05.696 INFO  [client.CilentDataProcess sendAuth 27 Thread-3] 인증 메시지 전송
-2016-12-16 09:22:07.967 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:08.167 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:08.596 DEBUG [client.OIOClient connectServer 46 Thread-9] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49573]
-2016-12-16 09:22:09.520 INFO  [client.encry.KeyExchangeClient start 131 Thread-9] RSA 키 생성
-2016-12-16 09:22:09.521 INFO  [client.encry.KeyExchangeClient start 134 Thread-9] RSA 공개키 전송
-2016-12-16 09:22:12.986 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:13.198 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:13.594 DEBUG [client.OIOClient connectServer 46 Thread-10] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49574]
-2016-12-16 09:22:14.445 INFO  [client.encry.KeyExchangeClient start 131 Thread-10] RSA 키 생성
-2016-12-16 09:22:14.445 INFO  [client.encry.KeyExchangeClient start 134 Thread-10] RSA 공개키 전송
-2016-12-16 09:22:15.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:22:15.698 ERROR [client.OIOClient connectServer 68 Thread-3] No Server Response 발생!!
-2016-12-16 09:22:15.698 INFO  [client.CilentDataProcess sendAuth 27 Thread-3] 인증 메시지 전송
-2016-12-16 09:22:15.698 ERROR [client.OIOClient connectServer 72 Thread-3] 인증 메시지 다시 전송
-2016-12-16 09:22:17.999 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:18.201 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:18.595 DEBUG [client.OIOClient connectServer 46 Thread-11] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49575]
-2016-12-16 09:22:20.302 INFO  [client.encry.KeyExchangeClient start 131 Thread-11] RSA 키 생성
-2016-12-16 09:22:20.302 INFO  [client.encry.KeyExchangeClient start 134 Thread-11] RSA 공개키 전송
-2016-12-16 09:22:23.014 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:23.216 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:25.648 INFO  [client.encry.KeyExchangeClient start 137 Thread-4] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:22:25.649 INFO  [client.CilentDataProcess receive 73 Thread-3] ACK 도착
-2016-12-16 09:22:25.679 INFO  [client.encry.KeyExchangeClient start 142 Thread-4] 암호키 테스트 'Hello World'전송
-2016-12-16 09:22:25.680 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:22:25.683 INFO  [client.encry.KeyExchangeClient start 145 Thread-4] 암호키 테스트 'Hello World'받음
-2016-12-16 09:22:25.684 INFO  [client.OIOClient connectServer 53 Thread-4] 키 교환작업 완료:54616562392ca9f53a5f934d6ed88a25
-2016-12-16 09:22:25.684 INFO  [client.OIOClient connectServer 55 Thread-4] 키 교환작업 완료
-2016-12-16 09:22:25.684 DEBUG [client.OIOClient connectServer 56 Thread-4] 암호화 키 54616562392ca9f53a5f934d6ed88a25
-2016-12-16 09:22:25.684 INFO  [client.CilentDataProcess sendAuth 27 Thread-4] 인증 메시지 전송
-2016-12-16 09:22:28.022 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:28.023 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:28.223 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:28.224 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:33.032 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:33.034 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:33.234 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:33.235 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:35.651 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:22:35.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:22:35.685 ERROR [client.OIOClient connectServer 68 Thread-4] No Server Response 발생!!
-2016-12-16 09:22:35.685 INFO  [client.CilentDataProcess sendAuth 27 Thread-4] 인증 메시지 전송
-2016-12-16 09:22:35.685 ERROR [client.OIOClient connectServer 72 Thread-4] 인증 메시지 다시 전송
-2016-12-16 09:22:38.058 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:38.061 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:38.260 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:38.262 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:40.701 INFO  [client.CilentDataProcess receive 73 Thread-4] ACK 도착
-2016-12-16 09:22:40.705 INFO  [client.encry.KeyExchangeClient start 137 Thread-5] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:22:40.740 INFO  [client.encry.KeyExchangeClient start 142 Thread-5] 암호키 테스트 'Hello World'전송
-2016-12-16 09:22:40.744 INFO  [client.encry.KeyExchangeClient start 145 Thread-5] 암호키 테스트 'Hello World'받음
-2016-12-16 09:22:40.744 INFO  [client.OIOClient connectServer 53 Thread-5] 키 교환작업 완료:1bbd897b0034e4731924173c812f0d21
-2016-12-16 09:22:40.744 INFO  [client.OIOClient connectServer 55 Thread-5] 키 교환작업 완료
-2016-12-16 09:22:40.744 DEBUG [client.OIOClient connectServer 56 Thread-5] 암호화 키 1bbd897b0034e4731924173c812f0d21
-2016-12-16 09:22:40.745 INFO  [client.CilentDataProcess sendAuth 27 Thread-5] 인증 메시지 전송
-2016-12-16 09:22:43.071 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:43.072 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:43.073 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:43.272 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:43.273 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:43.274 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:45.650 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:22:45.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:22:48.093 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:48.093 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:48.094 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:48.296 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:48.296 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:48.296 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:50.703 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:22:50.746 ERROR [client.OIOClient connectServer 68 Thread-5] No Server Response 발생!!
-2016-12-16 09:22:50.746 INFO  [client.CilentDataProcess sendAuth 27 Thread-5] 인증 메시지 전송
-2016-12-16 09:22:50.746 ERROR [client.OIOClient connectServer 72 Thread-5] 인증 메시지 다시 전송
-2016-12-16 09:22:53.104 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:53.107 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:53.110 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:53.307 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:53.312 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:53.316 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:55.651 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:22:55.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:22:55.714 INFO  [client.CilentDataProcess receive 73 Thread-5] ACK 도착
-2016-12-16 09:22:55.717 INFO  [client.encry.KeyExchangeClient start 137 Thread-6] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:22:55.748 INFO  [client.encry.KeyExchangeClient start 142 Thread-6] 암호키 테스트 'Hello World'전송
-2016-12-16 09:22:55.754 INFO  [client.encry.KeyExchangeClient start 145 Thread-6] 암호키 테스트 'Hello World'받음
-2016-12-16 09:22:55.754 INFO  [client.OIOClient connectServer 53 Thread-6] 키 교환작업 완료:2737bafd1905ff6b730b2a9bddb5eeca
-2016-12-16 09:22:55.754 INFO  [client.OIOClient connectServer 55 Thread-6] 키 교환작업 완료
-2016-12-16 09:22:55.754 DEBUG [client.OIOClient connectServer 56 Thread-6] 암호화 키 2737bafd1905ff6b730b2a9bddb5eeca
-2016-12-16 09:22:55.754 INFO  [client.CilentDataProcess sendAuth 27 Thread-6] 인증 메시지 전송
-2016-12-16 09:22:58.128 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:58.129 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:58.129 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:58.132 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:22:58.329 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:58.330 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:58.331 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:22:58.334 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:00.730 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:23:03.155 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:03.155 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:03.156 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:03.157 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:03.356 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:03.359 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:03.360 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:03.366 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:05.651 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:23:05.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:23:05.716 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:23:05.755 ERROR [client.OIOClient connectServer 68 Thread-6] No Server Response 발생!!
-2016-12-16 09:23:05.756 INFO  [client.CilentDataProcess sendAuth 27 Thread-6] 인증 메시지 전송
-2016-12-16 09:23:05.756 ERROR [client.OIOClient connectServer 72 Thread-6] 인증 메시지 다시 전송
-2016-12-16 09:23:08.167 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:08.168 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:08.170 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:08.170 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:08.369 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:08.370 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:08.371 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:08.382 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:10.703 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:23:13.195 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:13.197 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:13.198 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:13.200 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:13.397 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:13.400 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:13.401 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:13.407 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:15.650 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:23:15.666 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:23:15.715 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:23:15.728 INFO  [client.CilentDataProcess receive 73 Thread-6] ACK 도착
-2016-12-16 09:23:15.729 INFO  [client.encry.KeyExchangeClient start 137 Thread-7] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:23:15.761 INFO  [client.encry.KeyExchangeClient start 142 Thread-7] 암호키 테스트 'Hello World'전송
-2016-12-16 09:23:15.765 INFO  [client.encry.KeyExchangeClient start 145 Thread-7] 암호키 테스트 'Hello World'받음
-2016-12-16 09:23:15.765 INFO  [client.OIOClient connectServer 53 Thread-7] 키 교환작업 완료:6f2e507c3fe40b381ac60c2a6ef6f137
-2016-12-16 09:23:15.765 INFO  [client.OIOClient connectServer 55 Thread-7] 키 교환작업 완료
-2016-12-16 09:23:15.765 DEBUG [client.OIOClient connectServer 56 Thread-7] 암호화 키 6f2e507c3fe40b381ac60c2a6ef6f137
-2016-12-16 09:23:15.765 INFO  [client.CilentDataProcess sendAuth 27 Thread-7] 인증 메시지 전송
-2016-12-16 09:23:18.210 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:18.211 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:18.212 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:18.214 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:18.214 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:18.412 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:18.413 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:18.413 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:18.415 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:18.416 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:20.702 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:23:23.230 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:23.231 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:23.231 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:23.232 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:23.233 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:23.433 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:23.433 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:23.433 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:23.434 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:23.435 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:25.651 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:23:25.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:23:25.716 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:23:25.730 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:23:25.767 ERROR [client.OIOClient connectServer 68 Thread-7] No Server Response 발생!!
-2016-12-16 09:23:25.767 INFO  [client.CilentDataProcess sendAuth 27 Thread-7] 인증 메시지 전송
-2016-12-16 09:23:25.767 ERROR [client.OIOClient connectServer 72 Thread-7] 인증 메시지 다시 전송
-2016-12-16 09:23:28.254 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:28.255 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:28.256 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:28.257 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:28.258 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:28.456 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:28.456 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:28.458 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:28.461 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:28.468 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:30.703 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:23:30.782 INFO  [client.encry.KeyExchangeClient start 137 Thread-9] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:23:30.783 INFO  [client.CilentDataProcess receive 73 Thread-7] ACK 도착
-2016-12-16 09:23:30.813 INFO  [client.encry.KeyExchangeClient start 142 Thread-9] 암호키 테스트 'Hello World'전송
-2016-12-16 09:23:30.818 INFO  [client.encry.KeyExchangeClient start 145 Thread-9] 암호키 테스트 'Hello World'받음
-2016-12-16 09:23:30.818 INFO  [client.OIOClient connectServer 53 Thread-9] 키 교환작업 완료:616604424e16d7914a3e453b5ac6fc9e
-2016-12-16 09:23:30.818 INFO  [client.OIOClient connectServer 55 Thread-9] 키 교환작업 완료
-2016-12-16 09:23:30.818 DEBUG [client.OIOClient connectServer 56 Thread-9] 암호화 키 616604424e16d7914a3e453b5ac6fc9e
-2016-12-16 09:23:30.818 INFO  [client.CilentDataProcess sendAuth 27 Thread-9] 인증 메시지 전송
-2016-12-16 09:23:33.267 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:33.268 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:33.269 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:33.270 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:33.271 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:33.272 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:33.469 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:33.470 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:33.471 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:33.471 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:33.473 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:33.476 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:35.650 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:23:35.666 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:23:35.715 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:23:35.729 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:23:38.300 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:38.300 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:38.300 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:38.302 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:38.303 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:38.303 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:38.505 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:38.505 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:38.505 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:38.506 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:38.507 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:38.507 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:40.703 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:23:40.784 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:23:40.819 ERROR [client.OIOClient connectServer 68 Thread-9] No Server Response 발생!!
-2016-12-16 09:23:40.819 INFO  [client.CilentDataProcess sendAuth 27 Thread-9] 인증 메시지 전송
-2016-12-16 09:23:40.819 ERROR [client.OIOClient connectServer 72 Thread-9] 인증 메시지 다시 전송
-2016-12-16 09:23:43.318 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:43.319 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:43.320 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:43.321 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:43.322 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:43.323 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:43.524 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:43.524 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:43.524 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:43.524 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:43.524 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:43.525 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:45.651 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:23:45.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:23:45.716 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:23:45.730 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:23:45.800 INFO  [client.encry.KeyExchangeClient start 137 Thread-10] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:23:45.802 INFO  [client.CilentDataProcess receive 73 Thread-9] ACK 도착
-2016-12-16 09:23:45.831 INFO  [client.encry.KeyExchangeClient start 142 Thread-10] 암호키 테스트 'Hello World'전송
-2016-12-16 09:23:45.836 INFO  [client.encry.KeyExchangeClient start 145 Thread-10] 암호키 테스트 'Hello World'받음
-2016-12-16 09:23:45.836 INFO  [client.OIOClient connectServer 53 Thread-10] 키 교환작업 완료:0a3ff3289789b103f8fae808d8a05445
-2016-12-16 09:23:45.836 INFO  [client.OIOClient connectServer 55 Thread-10] 키 교환작업 완료
-2016-12-16 09:23:45.836 DEBUG [client.OIOClient connectServer 56 Thread-10] 암호화 키 0a3ff3289789b103f8fae808d8a05445
-2016-12-16 09:23:45.836 INFO  [client.CilentDataProcess sendAuth 27 Thread-10] 인증 메시지 전송
-2016-12-16 09:23:48.335 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:48.335 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:48.335 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:48.336 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:48.338 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:48.338 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:48.338 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:48.539 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:48.539 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:48.540 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:48.540 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:48.546 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:48.546 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:48.600 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:50.702 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:23:50.783 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:23:53.353 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:53.353 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:53.354 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:53.356 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:53.357 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:53.358 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:53.359 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:53.556 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:53.557 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:53.558 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:53.560 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:53.566 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:53.567 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:53.567 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:55.653 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:23:55.666 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:23:55.716 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:23:55.730 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:23:55.804 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
-2016-12-16 09:23:55.838 ERROR [client.OIOClient connectServer 68 Thread-10] No Server Response 발생!!
-2016-12-16 09:23:55.838 INFO  [client.CilentDataProcess sendAuth 27 Thread-10] 인증 메시지 전송
-2016-12-16 09:23:55.838 ERROR [client.OIOClient connectServer 72 Thread-10] 인증 메시지 다시 전송
-2016-12-16 09:23:58.370 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:58.370 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:58.371 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:58.371 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:58.371 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:58.372 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:58.372 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:23:58.576 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:58.576 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:58.576 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:58.577 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:58.577 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:58.577 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:23:58.576 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:00.703 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:24:00.784 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:24:03.393 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:03.394 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:03.395 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:03.396 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:03.397 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:03.398 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:03.399 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:03.595 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:03.595 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:03.597 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:03.597 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:03.602 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:03.605 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:03.607 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:05.651 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:24:05.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:24:05.715 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:24:05.729 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:24:05.802 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
-2016-12-16 09:24:05.808 INFO  [client.encry.KeyExchangeClient start 137 Thread-11] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:24:05.828 INFO  [client.CilentDataProcess receive 73 Thread-10] ACK 도착
-2016-12-16 09:24:05.838 INFO  [client.encry.KeyExchangeClient start 142 Thread-11] 암호키 테스트 'Hello World'전송
-2016-12-16 09:24:05.844 INFO  [client.encry.KeyExchangeClient start 145 Thread-11] 암호키 테스트 'Hello World'받음
-2016-12-16 09:24:05.844 INFO  [client.OIOClient connectServer 53 Thread-11] 키 교환작업 완료:bf45e916cb09682885760c58ccbac3fc
-2016-12-16 09:24:05.844 INFO  [client.OIOClient connectServer 55 Thread-11] 키 교환작업 완료
-2016-12-16 09:24:05.844 DEBUG [client.OIOClient connectServer 56 Thread-11] 암호화 키 bf45e916cb09682885760c58ccbac3fc
-2016-12-16 09:24:05.845 INFO  [client.CilentDataProcess sendAuth 27 Thread-11] 인증 메시지 전송
-2016-12-16 09:24:08.410 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:08.411 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:08.411 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:08.413 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:08.413 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:08.414 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:08.415 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:08.417 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:08.611 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:08.611 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:08.612 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:08.612 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:08.614 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:08.614 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:08.614 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:08.616 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:10.702 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:24:10.783 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:24:13.434 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:13.436 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:13.437 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:13.438 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:13.439 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:13.439 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:13.440 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:13.440 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:13.636 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:13.636 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:13.639 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:13.639 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:13.639 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:13.642 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:13.646 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:13.647 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:15.651 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:24:15.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:24:15.716 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:24:15.730 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:24:15.803 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
-2016-12-16 09:24:15.829 INFO  [client.ClientHeartBeat run 31 Timer-7] heart beat 전송
-2016-12-16 09:24:15.846 ERROR [client.OIOClient connectServer 68 Thread-11] No Server Response 발생!!
-2016-12-16 09:24:15.846 INFO  [client.CilentDataProcess sendAuth 27 Thread-11] 인증 메시지 전송
-2016-12-16 09:24:15.846 ERROR [client.OIOClient connectServer 72 Thread-11] 인증 메시지 다시 전송
-2016-12-16 09:24:18.456 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:18.457 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:18.457 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:18.461 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:18.462 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:18.462 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:18.464 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:18.464 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:18.657 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:18.662 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:18.661 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:18.662 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:18.663 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:18.667 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:18.667 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:18.668 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:20.703 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:24:20.784 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:24:20.864 INFO  [client.CilentDataProcess receive 73 Thread-11] ACK 도착
-2016-12-16 09:24:23.480 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:23.480 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:23.481 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:23.483 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:23.484 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:23.484 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:23.485 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:23.488 INFO  [client.CilentDataProcess receive 81 Thread-11] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:23.489 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:23.681 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:23.682 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:23.681 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:23.683 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:23.684 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:23.684 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:23.691 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:23.691 INFO  [client.CilentDataProcess receive 81 Thread-11] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:23.697 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:25.650 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:24:25.666 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:24:25.715 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:24:25.729 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:24:25.802 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
-2016-12-16 09:24:25.828 INFO  [client.ClientHeartBeat run 31 Timer-7] heart beat 전송
-2016-12-16 09:24:28.510 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:28.511 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:28.511 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:28.511 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:28.512 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:28.512 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:28.514 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:28.514 INFO  [client.CilentDataProcess receive 81 Thread-11] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:28.517 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:28.717 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:28.717 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:28.719 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:28.719 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:28.722 INFO  [client.CilentDataProcess receive 81 Thread-11] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:28.722 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:28.724 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:28.724 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:28.724 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:30.703 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:24:30.784 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:24:30.866 INFO  [client.ClientHeartBeat run 31 Timer-8] heart beat 전송
-2016-12-16 09:24:33.540 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:33.541 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:33.541 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:33.542 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:33.543 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:33.543 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:33.544 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:33.544 INFO  [client.CilentDataProcess receive 81 Thread-11] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:33.545 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:33.743 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:33.743 INFO  [client.CilentDataProcess receive 81 Thread-11] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:33.743 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:33.744 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:33.744 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:33.744 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:33.744 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:33.744 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:33.745 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:35.651 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:24:35.667 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:24:35.716 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:24:35.730 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:24:35.803 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
-2016-12-16 09:24:35.829 INFO  [client.ClientHeartBeat run 31 Timer-7] heart beat 전송
-2016-12-16 09:24:38.568 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:38.569 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:38.570 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:38.571 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:38.572 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:38.573 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:38.573 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:38.574 INFO  [client.CilentDataProcess receive 81 Thread-11] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:38.575 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호1 알림이 도착했습니다
-2016-12-16 09:24:38.770 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:38.770 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:38.771 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:38.771 INFO  [client.CilentDataProcess receive 81 Thread-11] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:38.773 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:38.773 INFO  [client.CilentDataProcess receive 81 Thread-10] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:38.773 INFO  [client.CilentDataProcess receive 81 Thread-9] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:38.773 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:38.774 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:24:40.702 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:24:40.783 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:24:40.864 INFO  [client.ClientHeartBeat run 31 Timer-8] heart beat 전송
-2016-12-16 09:43:50.491 DEBUG [client.OIOClient connectServer 46 Thread-0] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49615]
-2016-12-16 09:43:52.368 INFO  [client.encry.KeyExchangeClient start 131 Thread-0] RSA 키 생성
-2016-12-16 09:43:52.372 INFO  [client.encry.KeyExchangeClient start 134 Thread-0] RSA 공개키 전송
-2016-12-16 09:43:53.058 DEBUG [client.OIOClient connectServer 46 Thread-2] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49616]
-2016-12-16 09:43:56.055 DEBUG [client.OIOClient connectServer 46 Thread-3] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49618]
-2016-12-16 09:43:57.452 INFO  [client.encry.KeyExchangeClient start 131 Thread-3] RSA 키 생성
-2016-12-16 09:43:57.452 INFO  [client.encry.KeyExchangeClient start 134 Thread-3] RSA 공개키 전송
-2016-12-16 09:43:57.899 INFO  [client.encry.KeyExchangeClient start 131 Thread-2] RSA 키 생성
-2016-12-16 09:43:57.900 INFO  [client.encry.KeyExchangeClient start 134 Thread-2] RSA 공개키 전송
-2016-12-16 09:43:59.073 DEBUG [client.OIOClient connectServer 46 Thread-4] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49619]
-2016-12-16 09:43:59.693 INFO  [client.encry.KeyExchangeClient start 131 Thread-4] RSA 키 생성
-2016-12-16 09:43:59.694 INFO  [client.encry.KeyExchangeClient start 134 Thread-4] RSA 공개키 전송
-2016-12-16 09:44:02.072 DEBUG [client.OIOClient connectServer 46 Thread-5] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49620]
-2016-12-16 09:44:02.429 INFO  [client.encry.KeyExchangeClient start 131 Thread-5] RSA 키 생성
-2016-12-16 09:44:02.430 INFO  [client.encry.KeyExchangeClient start 134 Thread-5] RSA 공개키 전송
-2016-12-16 09:44:05.081 DEBUG [client.OIOClient connectServer 46 Thread-6] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49621]
-2016-12-16 09:44:05.175 INFO  [client.encry.KeyExchangeClient start 137 Thread-0] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:44:05.574 INFO  [client.encry.KeyExchangeClient start 131 Thread-6] RSA 키 생성
-2016-12-16 09:44:05.575 INFO  [client.encry.KeyExchangeClient start 134 Thread-6] RSA 공개키 전송
-2016-12-16 09:44:05.629 INFO  [client.encry.KeyExchangeClient start 142 Thread-0] 암호키 테스트 'Hello World'전송
-2016-12-16 09:44:05.647 INFO  [client.encry.KeyExchangeClient start 145 Thread-0] 암호키 테스트 'Hello World'받음
-2016-12-16 09:44:05.647 INFO  [client.OIOClient connectServer 53 Thread-0] 키 교환작업 완료:822c6094f050b8b3b291411aff4a63c0
-2016-12-16 09:44:05.648 INFO  [client.OIOClient connectServer 55 Thread-0] 키 교환작업 완료
-2016-12-16 09:44:05.648 DEBUG [client.OIOClient connectServer 56 Thread-0] 암호화 키 822c6094f050b8b3b291411aff4a63c0
-2016-12-16 09:44:05.649 INFO  [client.CilentDataProcess sendAuth 27 Thread-0] 인증 메시지 전송
-2016-12-16 09:44:08.073 DEBUG [client.OIOClient connectServer 46 Thread-7] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49623]
-2016-12-16 09:44:09.555 INFO  [client.encry.KeyExchangeClient start 131 Thread-7] RSA 키 생성
-2016-12-16 09:44:09.555 INFO  [client.encry.KeyExchangeClient start 134 Thread-7] RSA 공개키 전송
-2016-12-16 09:44:11.076 DEBUG [client.OIOClient connectServer 46 Thread-8] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49625]
-2016-12-16 09:44:13.429 INFO  [client.encry.KeyExchangeClient start 131 Thread-8] RSA 키 생성
-2016-12-16 09:44:13.429 INFO  [client.encry.KeyExchangeClient start 134 Thread-8] RSA 공개키 전송
-2016-12-16 09:44:14.074 DEBUG [client.OIOClient connectServer 46 Thread-9] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49626]
-2016-12-16 09:44:15.649 ERROR [client.OIOClient connectServer 68 Thread-0] No Server Response 발생!!
-2016-12-16 09:44:15.650 INFO  [client.CilentDataProcess sendAuth 27 Thread-0] 인증 메시지 전송
-2016-12-16 09:44:15.650 ERROR [client.OIOClient connectServer 72 Thread-0] 인증 메시지 다시 전송
-2016-12-16 09:44:15.897 INFO  [client.encry.KeyExchangeClient start 131 Thread-9] RSA 키 생성
-2016-12-16 09:44:15.897 INFO  [client.encry.KeyExchangeClient start 134 Thread-9] RSA 공개키 전송
-2016-12-16 09:44:17.086 DEBUG [client.OIOClient connectServer 46 Thread-10] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49630]
-2016-12-16 09:44:19.925 INFO  [client.encry.KeyExchangeClient start 131 Thread-10] RSA 키 생성
-2016-12-16 09:44:19.925 INFO  [client.encry.KeyExchangeClient start 134 Thread-10] RSA 공개키 전송
-2016-12-16 09:44:20.087 DEBUG [client.OIOClient connectServer 46 Thread-11] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49631]
-2016-12-16 09:44:20.668 INFO  [client.encry.KeyExchangeClient start 137 Thread-2] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:44:20.701 INFO  [client.encry.KeyExchangeClient start 142 Thread-2] 암호키 테스트 'Hello World'전송
-2016-12-16 09:44:20.706 INFO  [client.encry.KeyExchangeClient start 145 Thread-2] 암호키 테스트 'Hello World'받음
-2016-12-16 09:44:20.707 INFO  [client.OIOClient connectServer 53 Thread-2] 키 교환작업 완료:8e853c66d636d7e536a8b142ff006666
-2016-12-16 09:44:20.707 INFO  [client.OIOClient connectServer 55 Thread-2] 키 교환작업 완료
-2016-12-16 09:44:20.707 DEBUG [client.OIOClient connectServer 56 Thread-2] 암호화 키 8e853c66d636d7e536a8b142ff006666
-2016-12-16 09:44:20.708 INFO  [client.CilentDataProcess sendAuth 27 Thread-2] 인증 메시지 전송
-2016-12-16 09:44:20.737 INFO  [client.encry.KeyExchangeClient start 131 Thread-11] RSA 키 생성
-2016-12-16 09:44:20.738 INFO  [client.encry.KeyExchangeClient start 134 Thread-11] RSA 공개키 전송
-2016-12-16 09:44:23.085 DEBUG [client.OIOClient connectServer 46 Thread-12] Socket 정보: Socket[addr=/175.115.95.31,port=9998,localport=49632]
-2016-12-16 09:44:23.831 INFO  [client.encry.KeyExchangeClient start 131 Thread-12] RSA 키 생성
-2016-12-16 09:44:23.832 INFO  [client.encry.KeyExchangeClient start 134 Thread-12] RSA 공개키 전송
-2016-12-16 09:44:30.708 ERROR [client.OIOClient connectServer 68 Thread-2] No Server Response 발생!!
-2016-12-16 09:44:30.709 INFO  [client.CilentDataProcess sendAuth 27 Thread-2] 인증 메시지 전송
-2016-12-16 09:44:30.709 ERROR [client.OIOClient connectServer 72 Thread-2] 인증 메시지 다시 전송
-2016-12-16 09:44:35.700 INFO  [client.encry.KeyExchangeClient start 137 Thread-3] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:44:35.703 INFO  [client.CilentDataProcess receive 73 Thread-2] ACK 도착
-2016-12-16 09:44:35.730 INFO  [client.encry.KeyExchangeClient start 142 Thread-3] 암호키 테스트 'Hello World'전송
-2016-12-16 09:44:35.735 INFO  [client.encry.KeyExchangeClient start 145 Thread-3] 암호키 테스트 'Hello World'받음
-2016-12-16 09:44:35.735 INFO  [client.OIOClient connectServer 53 Thread-3] 키 교환작업 완료:8565a82cb6160500650fb8eb49af357a
-2016-12-16 09:44:35.735 INFO  [client.OIOClient connectServer 55 Thread-3] 키 교환작업 완료
-2016-12-16 09:44:35.736 DEBUG [client.OIOClient connectServer 56 Thread-3] 암호화 키 8565a82cb6160500650fb8eb49af357a
-2016-12-16 09:44:35.737 INFO  [client.CilentDataProcess sendAuth 27 Thread-3] 인증 메시지 전송
-2016-12-16 09:44:40.212 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:44:40.412 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:44:45.248 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:44:45.451 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:44:45.706 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:44:45.738 ERROR [client.OIOClient connectServer 68 Thread-3] No Server Response 발생!!
-2016-12-16 09:44:45.738 INFO  [client.CilentDataProcess sendAuth 27 Thread-3] 인증 메시지 전송
-2016-12-16 09:44:45.738 ERROR [client.OIOClient connectServer 72 Thread-3] 인증 메시지 다시 전송
-2016-12-16 09:44:50.256 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:44:50.457 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:44:50.682 INFO  [client.encry.KeyExchangeClient start 137 Thread-4] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:44:50.683 INFO  [client.CilentDataProcess receive 73 Thread-3] ACK 도착
-2016-12-16 09:44:50.714 INFO  [client.encry.KeyExchangeClient start 142 Thread-4] 암호키 테스트 'Hello World'전송
-2016-12-16 09:44:50.719 INFO  [client.encry.KeyExchangeClient start 145 Thread-4] 암호키 테스트 'Hello World'받음
-2016-12-16 09:44:50.719 INFO  [client.OIOClient connectServer 53 Thread-4] 키 교환작업 완료:e32062dcfd193e5d720f42393d7da5ca
-2016-12-16 09:44:50.719 INFO  [client.OIOClient connectServer 55 Thread-4] 키 교환작업 완료
-2016-12-16 09:44:50.719 DEBUG [client.OIOClient connectServer 56 Thread-4] 암호화 키 e32062dcfd193e5d720f42393d7da5ca
-2016-12-16 09:44:50.720 INFO  [client.CilentDataProcess sendAuth 27 Thread-4] 인증 메시지 전송
-2016-12-16 09:44:55.272 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:44:55.273 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:44:55.477 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:44:55.477 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:44:55.705 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:45:00.280 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:00.281 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:00.486 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:00.492 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:00.685 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:45:00.721 ERROR [client.OIOClient connectServer 68 Thread-4] No Server Response 발생!!
-2016-12-16 09:45:00.721 INFO  [client.CilentDataProcess sendAuth 27 Thread-4] 인증 메시지 전송
-2016-12-16 09:45:00.721 ERROR [client.OIOClient connectServer 72 Thread-4] 인증 메시지 다시 전송
-2016-12-16 09:45:05.286 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:05.292 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:05.488 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:05.494 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:05.704 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:45:10.306 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:10.306 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:10.508 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:10.509 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:10.684 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:45:10.701 INFO  [client.encry.KeyExchangeClient start 137 Thread-5] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:45:10.705 INFO  [client.CilentDataProcess receive 73 Thread-4] ACK 도착
-2016-12-16 09:45:10.733 INFO  [client.encry.KeyExchangeClient start 142 Thread-5] 암호키 테스트 'Hello World'전송
-2016-12-16 09:45:10.737 INFO  [client.encry.KeyExchangeClient start 145 Thread-5] 암호키 테스트 'Hello World'받음
-2016-12-16 09:45:10.737 INFO  [client.OIOClient connectServer 53 Thread-5] 키 교환작업 완료:f876da02b6b2e418eab802ac3351bda0
-2016-12-16 09:45:10.737 INFO  [client.OIOClient connectServer 55 Thread-5] 키 교환작업 완료
-2016-12-16 09:45:10.737 DEBUG [client.OIOClient connectServer 56 Thread-5] 암호화 키 f876da02b6b2e418eab802ac3351bda0
-2016-12-16 09:45:10.738 INFO  [client.CilentDataProcess sendAuth 27 Thread-5] 인증 메시지 전송
-2016-12-16 09:45:15.318 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:15.318 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:15.518 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:15.519 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:15.563 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:15.706 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:45:15.769 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:20.327 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:20.327 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:20.328 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:20.529 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:20.529 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:20.529 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:20.685 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:45:20.707 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:45:20.739 ERROR [client.OIOClient connectServer 68 Thread-5] No Server Response 발생!!
-2016-12-16 09:45:20.739 INFO  [client.CilentDataProcess sendAuth 27 Thread-5] 인증 메시지 전송
-2016-12-16 09:45:20.739 ERROR [client.OIOClient connectServer 72 Thread-5] 인증 메시지 다시 전송
-2016-12-16 09:45:25.333 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:25.333 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:25.334 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:25.534 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:25.534 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:25.535 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:25.705 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:45:25.757 INFO  [client.encry.KeyExchangeClient start 137 Thread-6] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:45:25.777 INFO  [client.CilentDataProcess receive 73 Thread-5] ACK 도착
-2016-12-16 09:45:25.790 INFO  [client.encry.KeyExchangeClient start 142 Thread-6] 암호키 테스트 'Hello World'전송
-2016-12-16 09:45:25.795 INFO  [client.encry.KeyExchangeClient start 145 Thread-6] 암호키 테스트 'Hello World'받음
-2016-12-16 09:45:25.795 INFO  [client.OIOClient connectServer 53 Thread-6] 키 교환작업 완료:7674f2166fd35c1b39a90557b5a06675
-2016-12-16 09:45:25.795 INFO  [client.OIOClient connectServer 55 Thread-6] 키 교환작업 완료
-2016-12-16 09:45:25.795 DEBUG [client.OIOClient connectServer 56 Thread-6] 암호화 키 7674f2166fd35c1b39a90557b5a06675
-2016-12-16 09:45:25.796 INFO  [client.CilentDataProcess sendAuth 27 Thread-6] 인증 메시지 전송
-2016-12-16 09:45:30.345 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:30.356 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:30.356 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:30.357 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:30.546 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:30.557 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:30.559 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:30.559 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:30.685 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:45:30.707 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:45:35.363 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:35.372 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:35.373 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:35.373 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:35.565 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:35.574 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:35.575 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:35.577 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:35.705 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:45:35.779 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:45:35.797 ERROR [client.OIOClient connectServer 68 Thread-6] No Server Response 발생!!
-2016-12-16 09:45:35.797 INFO  [client.CilentDataProcess sendAuth 27 Thread-6] 인증 메시지 전송
-2016-12-16 09:45:35.797 ERROR [client.OIOClient connectServer 72 Thread-6] 인증 메시지 다시 전송
-2016-12-16 09:45:40.390 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:40.393 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:40.400 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:40.400 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:40.604 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:40.604 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:40.604 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:40.604 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:40.684 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:45:40.706 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:45:40.771 INFO  [client.encry.KeyExchangeClient start 137 Thread-7] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:45:40.776 INFO  [client.CilentDataProcess receive 73 Thread-6] ACK 도착
-2016-12-16 09:45:40.801 INFO  [client.encry.KeyExchangeClient start 142 Thread-7] 암호키 테스트 'Hello World'전송
-2016-12-16 09:45:40.806 INFO  [client.encry.KeyExchangeClient start 145 Thread-7] 암호키 테스트 'Hello World'받음
-2016-12-16 09:45:40.806 INFO  [client.OIOClient connectServer 53 Thread-7] 키 교환작업 완료:6152b9d3119efe81242888a288b270ec
-2016-12-16 09:45:40.806 INFO  [client.OIOClient connectServer 55 Thread-7] 키 교환작업 완료
-2016-12-16 09:45:40.806 DEBUG [client.OIOClient connectServer 56 Thread-7] 암호화 키 6152b9d3119efe81242888a288b270ec
-2016-12-16 09:45:40.807 INFO  [client.CilentDataProcess sendAuth 27 Thread-7] 인증 메시지 전송
-2016-12-16 09:45:45.399 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:45.399 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:45.399 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:45.399 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:45.402 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:45.608 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:45.608 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:45.608 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:45.608 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:45.618 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:45.704 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:45:45.778 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:45:50.433 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:50.434 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:50.434 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:50.435 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:50.435 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:50.644 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:50.644 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:50.644 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:50.644 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:50.645 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:50.686 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:45:50.707 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:45:50.777 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:45:50.808 ERROR [client.OIOClient connectServer 68 Thread-7] No Server Response 발생!!
-2016-12-16 09:45:50.808 INFO  [client.CilentDataProcess sendAuth 27 Thread-7] 인증 메시지 전송
-2016-12-16 09:45:50.808 ERROR [client.OIOClient connectServer 72 Thread-7] 인증 메시지 다시 전송
-2016-12-16 09:45:55.442 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:55.443 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:55.443 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:55.445 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:55.445 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:45:55.656 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:55.656 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:55.657 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:55.657 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:55.657 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:45:55.705 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:45:55.779 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:46:00.452 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:00.452 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:00.453 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:00.454 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:00.454 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:00.656 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:00.657 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:00.660 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:00.661 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:00.661 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:00.685 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:46:00.706 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:46:00.776 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:46:00.783 INFO  [client.encry.KeyExchangeClient start 137 Thread-8] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:46:00.814 INFO  [client.encry.KeyExchangeClient start 142 Thread-8] 암호키 테스트 'Hello World'전송
-2016-12-16 09:46:00.814 INFO  [client.CilentDataProcess receive 73 Thread-7] ACK 도착
-2016-12-16 09:46:00.818 INFO  [client.encry.KeyExchangeClient start 145 Thread-8] 암호키 테스트 'Hello World'받음
-2016-12-16 09:46:00.818 INFO  [client.OIOClient connectServer 53 Thread-8] 키 교환작업 완료:52524c39c0877f02863ae3222480d4e6
-2016-12-16 09:46:00.818 INFO  [client.OIOClient connectServer 55 Thread-8] 키 교환작업 완료
-2016-12-16 09:46:00.819 DEBUG [client.OIOClient connectServer 56 Thread-8] 암호화 키 52524c39c0877f02863ae3222480d4e6
-2016-12-16 09:46:00.819 INFO  [client.CilentDataProcess sendAuth 27 Thread-8] 인증 메시지 전송
-2016-12-16 09:46:05.463 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:05.476 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:05.476 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:05.476 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:05.477 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:05.477 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:05.664 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:05.674 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:05.677 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:05.678 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:05.678 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:05.679 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:05.705 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:46:05.779 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:46:10.487 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:10.495 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:10.495 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:10.495 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:10.497 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:10.497 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:10.685 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:46:10.688 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:10.689 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:10.697 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:10.698 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:10.698 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:10.700 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:10.707 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:46:10.777 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:46:10.818 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:46:10.820 ERROR [client.OIOClient connectServer 68 Thread-8] No Server Response 발생!!
-2016-12-16 09:46:10.820 INFO  [client.CilentDataProcess sendAuth 27 Thread-8] 인증 메시지 전송
-2016-12-16 09:46:10.820 ERROR [client.OIOClient connectServer 72 Thread-8] 인증 메시지 다시 전송
-2016-12-16 09:46:15.512 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:15.512 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:15.512 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:15.513 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:15.513 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:15.514 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:15.704 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:46:15.706 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:15.716 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:15.716 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:15.716 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:15.716 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:15.716 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:15.778 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:46:15.834 INFO  [client.encry.KeyExchangeClient start 137 Thread-9] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:46:15.850 INFO  [client.CilentDataProcess receive 73 Thread-8] ACK 도착
-2016-12-16 09:46:15.895 INFO  [client.encry.KeyExchangeClient start 142 Thread-9] 암호키 테스트 'Hello World'전송
-2016-12-16 09:46:15.899 INFO  [client.encry.KeyExchangeClient start 145 Thread-9] 암호키 테스트 'Hello World'받음
-2016-12-16 09:46:15.900 INFO  [client.OIOClient connectServer 53 Thread-9] 키 교환작업 완료:66fa2011312b2b2cb1acd3486c265751
-2016-12-16 09:46:15.900 INFO  [client.OIOClient connectServer 55 Thread-9] 키 교환작업 완료
-2016-12-16 09:46:15.900 DEBUG [client.OIOClient connectServer 56 Thread-9] 암호화 키 66fa2011312b2b2cb1acd3486c265751
-2016-12-16 09:46:15.901 INFO  [client.CilentDataProcess sendAuth 27 Thread-9] 인증 메시지 전송
-2016-12-16 09:46:20.525 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:20.536 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:20.536 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:20.537 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:20.538 INFO  [client.CilentDataProcess receive 81 Thread-8] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:20.538 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:20.538 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:20.684 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:46:20.686 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:20.706 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:46:20.712 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:20.738 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:20.739 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:20.742 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:20.743 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:20.743 INFO  [client.CilentDataProcess receive 81 Thread-8] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:20.776 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:46:20.816 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:46:25.549 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:25.549 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:25.550 INFO  [client.CilentDataProcess receive 81 Thread-8] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:25.551 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:25.551 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:25.552 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:25.552 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:25.705 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:46:25.707 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:25.747 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:25.747 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:25.752 INFO  [client.CilentDataProcess receive 81 Thread-8] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:25.753 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:25.762 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:25.762 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:25.779 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:46:25.851 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
-2016-12-16 09:46:25.902 ERROR [client.OIOClient connectServer 68 Thread-9] No Server Response 발생!!
-2016-12-16 09:46:25.902 INFO  [client.CilentDataProcess sendAuth 27 Thread-9] 인증 메시지 전송
-2016-12-16 09:46:25.902 ERROR [client.OIOClient connectServer 72 Thread-9] 인증 메시지 다시 전송
-2016-12-16 09:46:30.569 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:30.569 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:30.569 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:30.570 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:30.570 INFO  [client.CilentDataProcess receive 81 Thread-8] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:30.570 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:30.571 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호1 알림이 도착했습니다
-2016-12-16 09:46:30.685 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:46:30.687 INFO  [client.CilentDataProcess receive 81 Thread-3] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:30.707 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:46:30.710 INFO  [client.CilentDataProcess receive 81 Thread-4] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:30.764 INFO  [client.CilentDataProcess receive 81 Thread-2] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:30.773 INFO  [client.CilentDataProcess receive 81 Thread-6] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:30.773 INFO  [client.CilentDataProcess receive 81 Thread-7] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:30.773 INFO  [client.CilentDataProcess receive 81 Thread-5] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:30.773 INFO  [client.CilentDataProcess receive 81 Thread-8] 주문번호2 알림이 도착했습니다
-2016-12-16 09:46:30.777 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:46:30.817 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:46:30.852 INFO  [client.CilentDataProcess receive 73 Thread-9] ACK 도착
-2016-12-16 09:46:30.854 INFO  [client.encry.KeyExchangeClient start 137 Thread-10] 서버로부터 AES256 암호화키 받음
-2016-12-16 09:46:30.885 INFO  [client.encry.KeyExchangeClient start 142 Thread-10] 암호키 테스트 'Hello World'전송
-2016-12-16 09:46:30.889 INFO  [client.encry.KeyExchangeClient start 145 Thread-10] 암호키 테스트 'Hello World'받음
-2016-12-16 09:46:30.889 INFO  [client.OIOClient connectServer 53 Thread-10] 키 교환작업 완료:38ff58452115fc3873a59756ee0eeb14
-2016-12-16 09:46:30.889 INFO  [client.OIOClient connectServer 55 Thread-10] 키 교환작업 완료
-2016-12-16 09:46:30.889 DEBUG [client.OIOClient connectServer 56 Thread-10] 암호화 키 38ff58452115fc3873a59756ee0eeb14
-2016-12-16 09:46:30.890 INFO  [client.CilentDataProcess sendAuth 27 Thread-10] 인증 메시지 전송
-2016-12-16 09:46:31.880 ERROR [client.encry.KeyExchangeClient start 148 Thread-11] Connection reset
-2016-12-16 09:46:31.880 INFO  [client.OIOClient connectServer 53 Thread-11] 키 교환작업 완료:null
-2016-12-16 09:46:31.880 INFO  [client.OIOClient connectServer 55 Thread-11] 키 교환작업 완료
-2016-12-16 09:46:31.880 DEBUG [client.OIOClient connectServer 56 Thread-11] 암호화 키 null
-2016-12-16 09:46:31.929 ERROR [client.OIOClient connectServer 68 Thread-10] No Server Response 발생!!
-2016-12-16 09:46:31.929 ERROR [client.OIOClient connectServer 75 Thread-10] No Server Response 발생!!
-2016-12-16 09:46:31.930 ERROR [client.encry.KeyExchangeClient start 148 Thread-12] Connection reset
-2016-12-16 09:46:31.930 INFO  [client.OIOClient connectServer 53 Thread-12] 키 교환작업 완료:null
-2016-12-16 09:46:31.930 INFO  [client.OIOClient connectServer 55 Thread-12] 키 교환작업 완료
-2016-12-16 09:46:31.930 DEBUG [client.OIOClient connectServer 56 Thread-12] 암호화 키 null
-2016-12-16 09:46:35.906 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
-2016-12-16 09:46:35.926 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
-2016-12-16 09:46:35.983 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
-2016-12-16 09:46:40.773 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
-2016-12-16 09:46:40.830 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
-2016-12-16 09:46:40.854 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
-2016-12-16 09:46:40.959 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
-2016-12-16 09:46:41.193 INFO  [client.ClientHeartBeat run 31 Timer-7] heart beat 전송
+2016-12-16 12:35:57.941 DEBUG [client.OIOClient connectServer 46 Thread-0] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51435]
+2016-12-16 12:35:59.428 INFO  [client.encry.KeyExchangeClient start 131 Thread-0] RSA 키 생성
+2016-12-16 12:35:59.432 INFO  [client.encry.KeyExchangeClient start 134 Thread-0] RSA 공개키 전송
+2016-12-16 12:36:00.408 DEBUG [client.OIOClient connectServer 46 Thread-2] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51436]
+2016-12-16 12:36:02.009 INFO  [client.encry.KeyExchangeClient start 131 Thread-2] RSA 키 생성
+2016-12-16 12:36:02.009 INFO  [client.encry.KeyExchangeClient start 134 Thread-2] RSA 공개키 전송
+2016-12-16 12:36:03.408 DEBUG [client.OIOClient connectServer 46 Thread-3] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51437]
+2016-12-16 12:36:04.981 INFO  [client.encry.KeyExchangeClient start 131 Thread-3] RSA 키 생성
+2016-12-16 12:36:04.982 INFO  [client.encry.KeyExchangeClient start 134 Thread-3] RSA 공개키 전송
+2016-12-16 12:36:06.410 DEBUG [client.OIOClient connectServer 46 Thread-4] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51438]
+2016-12-16 12:36:07.700 INFO  [client.encry.KeyExchangeClient start 137 Thread-0] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:36:07.883 INFO  [client.encry.KeyExchangeClient start 131 Thread-4] RSA 키 생성
+2016-12-16 12:36:07.883 INFO  [client.encry.KeyExchangeClient start 134 Thread-4] RSA 공개키 전송
+2016-12-16 12:36:08.435 INFO  [client.encry.KeyExchangeClient start 142 Thread-0] 암호키 테스트 'Hello World'전송
+2016-12-16 12:36:08.455 INFO  [client.encry.KeyExchangeClient start 145 Thread-0] 암호키 테스트 'Hello World'받음
+2016-12-16 12:36:08.455 INFO  [client.OIOClient connectServer 53 Thread-0] 키 교환작업 완료:690ad67e941a5d7a2df1eeba5ea7bbbc
+2016-12-16 12:36:08.455 INFO  [client.OIOClient connectServer 55 Thread-0] 키 교환작업 완료
+2016-12-16 12:36:08.455 DEBUG [client.OIOClient connectServer 56 Thread-0] 암호화 키 690ad67e941a5d7a2df1eeba5ea7bbbc
+2016-12-16 12:36:08.457 INFO  [client.CilentDataProcess sendAuth 28 Thread-0] 인증 메시지 전송
+2016-12-16 12:36:09.410 DEBUG [client.OIOClient connectServer 46 Thread-5] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51439]
+2016-12-16 12:36:12.407 DEBUG [client.OIOClient connectServer 46 Thread-6] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51440]
+2016-12-16 12:36:13.393 INFO  [client.encry.KeyExchangeClient start 131 Thread-5] RSA 키 생성
+2016-12-16 12:36:13.393 INFO  [client.encry.KeyExchangeClient start 134 Thread-5] RSA 공개키 전송
+2016-12-16 12:36:14.224 INFO  [client.encry.KeyExchangeClient start 131 Thread-6] RSA 키 생성
+2016-12-16 12:36:14.225 INFO  [client.encry.KeyExchangeClient start 134 Thread-6] RSA 공개키 전송
+2016-12-16 12:36:15.410 DEBUG [client.OIOClient connectServer 46 Thread-7] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51442]
+2016-12-16 12:36:17.782 INFO  [client.encry.KeyExchangeClient start 131 Thread-7] RSA 키 생성
+2016-12-16 12:36:17.782 INFO  [client.encry.KeyExchangeClient start 134 Thread-7] RSA 공개키 전송
+2016-12-16 12:36:18.410 DEBUG [client.OIOClient connectServer 46 Thread-8] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51443]
+2016-12-16 12:36:18.457 ERROR [client.OIOClient connectServer 68 Thread-0] No Server Response 발생!!
+2016-12-16 12:36:18.458 INFO  [client.CilentDataProcess sendAuth 28 Thread-0] 인증 메시지 전송
+2016-12-16 12:36:18.458 ERROR [client.OIOClient connectServer 72 Thread-0] 인증 메시지 다시 전송
+2016-12-16 12:36:19.649 INFO  [client.encry.KeyExchangeClient start 131 Thread-8] RSA 키 생성
+2016-12-16 12:36:19.650 INFO  [client.encry.KeyExchangeClient start 134 Thread-8] RSA 공개키 전송
+2016-12-16 12:36:21.409 DEBUG [client.OIOClient connectServer 46 Thread-9] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51444]
+2016-12-16 12:36:22.961 INFO  [client.encry.KeyExchangeClient start 131 Thread-9] RSA 키 생성
+2016-12-16 12:36:22.961 INFO  [client.encry.KeyExchangeClient start 134 Thread-9] RSA 공개키 전송
+2016-12-16 12:36:23.486 INFO  [client.encry.KeyExchangeClient start 137 Thread-2] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:36:23.540 INFO  [client.encry.KeyExchangeClient start 142 Thread-2] 암호키 테스트 'Hello World'전송
+2016-12-16 12:36:23.544 INFO  [client.encry.KeyExchangeClient start 145 Thread-2] 암호키 테스트 'Hello World'받음
+2016-12-16 12:36:23.544 INFO  [client.OIOClient connectServer 53 Thread-2] 키 교환작업 완료:23737d18b463cc6b4422802f2eca8a02
+2016-12-16 12:36:23.544 INFO  [client.OIOClient connectServer 55 Thread-2] 키 교환작업 완료
+2016-12-16 12:36:23.544 DEBUG [client.OIOClient connectServer 56 Thread-2] 암호화 키 23737d18b463cc6b4422802f2eca8a02
+2016-12-16 12:36:23.545 INFO  [client.CilentDataProcess sendAuth 28 Thread-2] 인증 메시지 전송
+2016-12-16 12:36:24.408 DEBUG [client.OIOClient connectServer 46 Thread-10] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51445]
+2016-12-16 12:36:26.093 INFO  [client.encry.KeyExchangeClient start 131 Thread-10] RSA 키 생성
+2016-12-16 12:36:26.094 INFO  [client.encry.KeyExchangeClient start 134 Thread-10] RSA 공개키 전송
+2016-12-16 12:36:27.408 DEBUG [client.OIOClient connectServer 46 Thread-11] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51446]
+2016-12-16 12:36:28.568 INFO  [client.encry.KeyExchangeClient start 131 Thread-11] RSA 키 생성
+2016-12-16 12:36:28.568 INFO  [client.encry.KeyExchangeClient start 134 Thread-11] RSA 공개키 전송
+2016-12-16 12:36:30.408 DEBUG [client.OIOClient connectServer 46 Thread-12] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=51447]
+2016-12-16 12:36:31.461 INFO  [client.encry.KeyExchangeClient start 131 Thread-12] RSA 키 생성
+2016-12-16 12:36:31.462 INFO  [client.encry.KeyExchangeClient start 134 Thread-12] RSA 공개키 전송
+2016-12-16 12:36:33.545 ERROR [client.OIOClient connectServer 68 Thread-2] No Server Response 발생!!
+2016-12-16 12:36:33.545 INFO  [client.CilentDataProcess sendAuth 28 Thread-2] 인증 메시지 전송
+2016-12-16 12:36:33.546 ERROR [client.OIOClient connectServer 72 Thread-2] 인증 메시지 다시 전송
+2016-12-16 12:36:38.511 INFO  [client.encry.KeyExchangeClient start 137 Thread-3] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:36:38.516 INFO  [client.CilentDataProcess receive 94 Thread-2] ACK 도착
+2016-12-16 12:36:38.543 INFO  [client.encry.KeyExchangeClient start 142 Thread-3] 암호키 테스트 'Hello World'전송
+2016-12-16 12:36:38.547 INFO  [client.encry.KeyExchangeClient start 145 Thread-3] 암호키 테스트 'Hello World'받음
+2016-12-16 12:36:38.547 INFO  [client.OIOClient connectServer 53 Thread-3] 키 교환작업 완료:7b2f8ef5d1220db4c4d513b9ca662207
+2016-12-16 12:36:38.547 INFO  [client.OIOClient connectServer 55 Thread-3] 키 교환작업 완료
+2016-12-16 12:36:38.548 DEBUG [client.OIOClient connectServer 56 Thread-3] 암호화 키 7b2f8ef5d1220db4c4d513b9ca662207
+2016-12-16 12:36:38.548 INFO  [client.CilentDataProcess sendAuth 28 Thread-3] 인증 메시지 전송
+2016-12-16 12:36:42.744 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:36:42.745 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:36:42.942 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:36:42.943 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:36:47.747 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:36:47.748 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:36:47.948 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:36:47.949 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:36:48.518 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:36:48.549 ERROR [client.OIOClient connectServer 68 Thread-3] No Server Response 발생!!
+2016-12-16 12:36:48.549 INFO  [client.CilentDataProcess sendAuth 28 Thread-3] 인증 메시지 전송
+2016-12-16 12:36:48.549 ERROR [client.OIOClient connectServer 72 Thread-3] 인증 메시지 다시 전송
+2016-12-16 12:36:52.753 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:36:52.753 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:36:52.955 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:36:52.956 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:36:57.761 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:36:57.761 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:36:57.962 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:36:57.964 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:36:58.501 INFO  [client.encry.KeyExchangeClient start 137 Thread-4] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:36:58.502 INFO  [client.CilentDataProcess receive 94 Thread-3] ACK 도착
+2016-12-16 12:36:58.532 INFO  [client.encry.KeyExchangeClient start 142 Thread-4] 암호키 테스트 'Hello World'전송
+2016-12-16 12:36:58.533 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:36:58.536 INFO  [client.encry.KeyExchangeClient start 145 Thread-4] 암호키 테스트 'Hello World'받음
+2016-12-16 12:36:58.537 INFO  [client.OIOClient connectServer 53 Thread-4] 키 교환작업 완료:21328e4d257435da54e66fc7f234fae9
+2016-12-16 12:36:58.537 INFO  [client.OIOClient connectServer 55 Thread-4] 키 교환작업 완료
+2016-12-16 12:36:58.537 DEBUG [client.OIOClient connectServer 56 Thread-4] 암호화 키 21328e4d257435da54e66fc7f234fae9
+2016-12-16 12:36:58.537 INFO  [client.CilentDataProcess sendAuth 28 Thread-4] 인증 메시지 전송
+2016-12-16 12:37:02.767 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:02.768 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:02.769 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:02.770 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:02.970 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:02.970 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:02.979 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:02.980 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:07.784 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:07.785 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:07.788 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:07.789 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:07.986 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:07.986 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:07.986 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:07.986 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:08.502 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:37:08.517 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:37:08.537 ERROR [client.OIOClient connectServer 68 Thread-4] No Server Response 발생!!
+2016-12-16 12:37:08.538 INFO  [client.CilentDataProcess sendAuth 28 Thread-4] 인증 메시지 전송
+2016-12-16 12:37:08.538 ERROR [client.OIOClient connectServer 72 Thread-4] 인증 메시지 다시 전송
+2016-12-16 12:37:12.798 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:12.798 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:12.799 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:12.799 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:12.999 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:13.000 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:13.009 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:13.010 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:13.555 INFO  [client.encry.KeyExchangeClient start 137 Thread-5] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:37:13.586 INFO  [client.encry.KeyExchangeClient start 142 Thread-5] 암호키 테스트 'Hello World'전송
+2016-12-16 12:37:13.586 INFO  [client.CilentDataProcess receive 94 Thread-4] ACK 도착
+2016-12-16 12:37:13.590 INFO  [client.encry.KeyExchangeClient start 145 Thread-5] 암호키 테스트 'Hello World'받음
+2016-12-16 12:37:13.590 INFO  [client.OIOClient connectServer 53 Thread-5] 키 교환작업 완료:c200d9c8c4f69874ed0068e6975b2d23
+2016-12-16 12:37:13.591 INFO  [client.OIOClient connectServer 55 Thread-5] 키 교환작업 완료
+2016-12-16 12:37:13.591 DEBUG [client.OIOClient connectServer 56 Thread-5] 암호화 키 c200d9c8c4f69874ed0068e6975b2d23
+2016-12-16 12:37:13.591 INFO  [client.CilentDataProcess sendAuth 28 Thread-5] 인증 메시지 전송
+2016-12-16 12:37:17.809 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:17.809 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:17.809 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:17.809 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:17.810 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:17.810 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:18.009 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:18.010 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:18.020 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:18.021 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:18.021 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:18.022 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:18.503 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:37:18.518 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:37:22.816 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:22.816 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:22.817 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:22.817 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:22.817 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:22.817 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:23.018 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:23.018 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:23.018 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:23.018 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:23.019 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:23.019 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:23.587 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:37:23.592 ERROR [client.OIOClient connectServer 68 Thread-5] No Server Response 발생!!
+2016-12-16 12:37:23.592 INFO  [client.CilentDataProcess sendAuth 28 Thread-5] 인증 메시지 전송
+2016-12-16 12:37:23.592 ERROR [client.OIOClient connectServer 72 Thread-5] 인증 메시지 다시 전송
+2016-12-16 12:37:27.824 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:27.825 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:27.825 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:27.825 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:27.826 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:27.826 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:28.029 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:28.030 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:28.030 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:28.030 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:28.030 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:28.030 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:28.502 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:37:28.518 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:37:28.569 INFO  [client.encry.KeyExchangeClient start 137 Thread-6] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:37:28.571 INFO  [client.CilentDataProcess receive 94 Thread-5] ACK 도착
+2016-12-16 12:37:28.600 INFO  [client.encry.KeyExchangeClient start 142 Thread-6] 암호키 테스트 'Hello World'전송
+2016-12-16 12:37:28.604 INFO  [client.encry.KeyExchangeClient start 145 Thread-6] 암호키 테스트 'Hello World'받음
+2016-12-16 12:37:28.604 INFO  [client.OIOClient connectServer 53 Thread-6] 키 교환작업 완료:12f193a0dda8cdceb825459ce6551dd6
+2016-12-16 12:37:28.605 INFO  [client.OIOClient connectServer 55 Thread-6] 키 교환작업 완료
+2016-12-16 12:37:28.605 DEBUG [client.OIOClient connectServer 56 Thread-6] 암호화 키 12f193a0dda8cdceb825459ce6551dd6
+2016-12-16 12:37:28.605 INFO  [client.CilentDataProcess sendAuth 28 Thread-6] 인증 메시지 전송
+2016-12-16 12:37:32.832 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:32.832 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:32.832 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:32.832 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:32.833 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:32.833 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:32.833 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:32.833 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:33.034 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:33.034 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:33.035 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:33.035 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:33.036 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:33.036 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:33.036 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:33.036 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:33.587 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:37:37.840 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:37.841 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:37.841 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:37.842 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:37.842 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:37.842 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:37.843 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:37.843 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:38.048 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:38.048 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:38.048 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:38.048 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:38.050 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:38.073 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:38.051 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:38.076 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:38.503 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:37:38.518 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:37:38.572 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
+2016-12-16 12:37:38.606 ERROR [client.OIOClient connectServer 68 Thread-6] No Server Response 발생!!
+2016-12-16 12:37:38.606 INFO  [client.CilentDataProcess sendAuth 28 Thread-6] 인증 메시지 전송
+2016-12-16 12:37:38.606 ERROR [client.OIOClient connectServer 72 Thread-6] 인증 메시지 다시 전송
+2016-12-16 12:37:42.856 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:42.857 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:42.857 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:42.857 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:42.858 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:42.858 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:42.859 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:42.862 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:43.058 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:43.058 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:43.059 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:43.059 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:43.059 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:43.059 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:43.059 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:43.060 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:43.586 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:37:47.869 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:47.869 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:47.870 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:47.870 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:47.870 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:47.871 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:47.871 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:47.871 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:48.071 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:48.072 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:48.072 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:48.072 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:48.078 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:48.078 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:48.079 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:48.079 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:48.502 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:37:48.517 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:37:48.571 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
+2016-12-16 12:37:48.576 INFO  [client.encry.KeyExchangeClient start 137 Thread-7] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:37:48.578 INFO  [client.CilentDataProcess receive 94 Thread-6] ACK 도착
+2016-12-16 12:37:48.612 INFO  [client.encry.KeyExchangeClient start 142 Thread-7] 암호키 테스트 'Hello World'전송
+2016-12-16 12:37:48.617 INFO  [client.encry.KeyExchangeClient start 145 Thread-7] 암호키 테스트 'Hello World'받음
+2016-12-16 12:37:48.617 INFO  [client.OIOClient connectServer 53 Thread-7] 키 교환작업 완료:63dc4f327b2cf1429a5b47409e8c98d4
+2016-12-16 12:37:48.617 INFO  [client.OIOClient connectServer 55 Thread-7] 키 교환작업 완료
+2016-12-16 12:37:48.617 DEBUG [client.OIOClient connectServer 56 Thread-7] 암호화 키 63dc4f327b2cf1429a5b47409e8c98d4
+2016-12-16 12:37:48.618 INFO  [client.CilentDataProcess sendAuth 28 Thread-7] 인증 메시지 전송
+2016-12-16 12:37:52.879 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:52.879 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:52.896 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:52.897 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:52.897 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:52.897 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:52.898 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:52.898 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:37:52.899 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:52.899 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:53.081 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:53.081 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:53.096 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:53.097 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:53.097 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:53.100 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:53.100 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:53.100 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:53.139 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:53.139 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:37:53.589 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:37:57.916 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:57.916 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:57.917 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:57.917 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:57.918 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:57.918 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:57.919 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:57.919 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:37:57.919 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:37:57.920 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:58.120 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:58.120 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:58.121 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:58.121 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:37:58.122 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:37:58.122 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:58.122 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:37:58.123 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:37:58.129 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:37:58.130 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:37:58.503 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:37:58.518 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:37:58.572 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
+2016-12-16 12:37:58.582 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
+2016-12-16 12:37:58.619 ERROR [client.OIOClient connectServer 68 Thread-7] No Server Response 발생!!
+2016-12-16 12:37:58.619 INFO  [client.CilentDataProcess sendAuth 28 Thread-7] 인증 메시지 전송
+2016-12-16 12:37:58.619 ERROR [client.OIOClient connectServer 72 Thread-7] 인증 메시지 다시 전송
+2016-12-16 12:38:02.931 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:02.932 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:02.938 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:02.938 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:02.939 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:02.939 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:02.940 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:02.940 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:02.941 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:02.941 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:03.133 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:03.134 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:03.141 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:03.141 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:03.142 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:03.142 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:03.143 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:03.143 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:03.150 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:03.150 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:03.586 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:38:03.635 INFO  [client.CilentDataProcess receive 94 Thread-7] ACK 도착
+2016-12-16 12:38:03.638 INFO  [client.encry.KeyExchangeClient start 137 Thread-8] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:38:03.669 INFO  [client.encry.KeyExchangeClient start 142 Thread-8] 암호키 테스트 'Hello World'전송
+2016-12-16 12:38:03.673 INFO  [client.encry.KeyExchangeClient start 145 Thread-8] 암호키 테스트 'Hello World'받음
+2016-12-16 12:38:03.673 INFO  [client.OIOClient connectServer 53 Thread-8] 키 교환작업 완료:ee0c63799c8b4d742ca016c744a87fbd
+2016-12-16 12:38:03.673 INFO  [client.OIOClient connectServer 55 Thread-8] 키 교환작업 완료
+2016-12-16 12:38:03.673 DEBUG [client.OIOClient connectServer 56 Thread-8] 암호화 키 ee0c63799c8b4d742ca016c744a87fbd
+2016-12-16 12:38:03.674 INFO  [client.CilentDataProcess sendAuth 28 Thread-8] 인증 메시지 전송
+2016-12-16 12:38:07.950 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:07.950 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:07.954 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:07.955 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:07.955 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:07.955 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:07.956 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:07.956 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:07.957 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:07.958 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:07.959 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:07.959 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:08.149 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:08.150 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:08.154 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:08.154 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:08.155 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:08.155 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:08.159 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:08.159 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:08.161 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:08.161 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:08.161 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:08.161 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:08.503 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:38:08.518 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:38:08.572 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
+2016-12-16 12:38:08.579 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
+2016-12-16 12:38:12.963 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:12.963 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:12.964 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:12.964 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:12.964 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:12.964 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:12.964 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:12.965 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:12.965 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:12.965 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:12.966 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:12.966 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:13.166 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:13.166 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:13.166 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:13.166 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:13.167 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:13.167 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:13.167 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:13.167 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:13.167 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:13.167 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:13.168 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:13.168 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:13.587 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:38:13.637 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
+2016-12-16 12:38:13.675 ERROR [client.OIOClient connectServer 68 Thread-8] No Server Response 발생!!
+2016-12-16 12:38:13.675 INFO  [client.CilentDataProcess sendAuth 28 Thread-8] 인증 메시지 전송
+2016-12-16 12:38:13.675 ERROR [client.OIOClient connectServer 72 Thread-8] 인증 메시지 다시 전송
+2016-12-16 12:38:18.008 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:18.008 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:18.009 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:18.009 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:18.009 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:18.009 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:18.010 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:18.010 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:18.011 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:18.011 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:18.011 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:18.011 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:18.210 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:18.210 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:18.211 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:18.211 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:18.211 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:18.211 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:18.212 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:18.213 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:18.220 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:18.220 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:18.221 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:18.221 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:18.502 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:38:18.517 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:38:18.571 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
+2016-12-16 12:38:18.578 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
+2016-12-16 12:38:18.650 INFO  [client.encry.KeyExchangeClient start 137 Thread-9] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:38:18.653 INFO  [client.CilentDataProcess receive 94 Thread-8] ACK 도착
+2016-12-16 12:38:18.681 INFO  [client.encry.KeyExchangeClient start 142 Thread-9] 암호키 테스트 'Hello World'전송
+2016-12-16 12:38:18.684 INFO  [client.encry.KeyExchangeClient start 145 Thread-9] 암호키 테스트 'Hello World'받음
+2016-12-16 12:38:18.685 INFO  [client.OIOClient connectServer 53 Thread-9] 키 교환작업 완료:8794b1d9fb7f16f8283dad6071919551
+2016-12-16 12:38:18.685 INFO  [client.OIOClient connectServer 55 Thread-9] 키 교환작업 완료
+2016-12-16 12:38:18.685 DEBUG [client.OIOClient connectServer 56 Thread-9] 암호화 키 8794b1d9fb7f16f8283dad6071919551
+2016-12-16 12:38:18.685 INFO  [client.CilentDataProcess sendAuth 28 Thread-9] 인증 메시지 전송
+2016-12-16 12:38:23.020 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:23.020 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:23.020 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:23.020 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:23.020 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:23.021 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:23.020 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:23.021 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:23.022 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:23.022 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:23.022 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:23.022 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:23.022 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:23.023 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:23.227 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:23.228 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:23.232 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:23.233 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:23.233 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:23.233 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:23.234 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:23.234 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:23.234 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:23.234 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:23.233 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:23.234 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:23.234 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:23.235 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:23.586 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:38:23.636 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
+2016-12-16 12:38:28.028 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:28.028 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:28.046 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:28.047 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:28.047 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:28.047 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:28.047 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:28.048 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:28.048 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:28.048 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:28.048 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:28.048 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:28.048 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:28.049 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:28.230 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:28.230 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:28.248 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:28.248 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:28.248 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:28.248 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:28.252 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:28.252 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:28.252 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:28.252 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:28.253 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:28.253 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:28.303 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:28.303 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:28.503 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:38:28.518 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:38:28.572 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
+2016-12-16 12:38:28.579 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
+2016-12-16 12:38:28.654 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
+2016-12-16 12:38:28.686 ERROR [client.OIOClient connectServer 68 Thread-9] No Server Response 발생!!
+2016-12-16 12:38:28.686 INFO  [client.CilentDataProcess sendAuth 28 Thread-9] 인증 메시지 전송
+2016-12-16 12:38:28.686 ERROR [client.OIOClient connectServer 72 Thread-9] 인증 메시지 다시 전송
+2016-12-16 12:38:33.053 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:33.054 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:33.066 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:33.066 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:33.066 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:33.066 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:33.067 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:33.067 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:33.067 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:33.067 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:33.068 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:33.068 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:33.068 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:33.069 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:33.255 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:33.255 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:33.265 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:33.265 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:33.266 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:33.266 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:33.266 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:33.266 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:33.267 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:33.267 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:33.267 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:33.267 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:33.269 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:33.269 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:33.589 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:38:33.637 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
+2016-12-16 12:38:38.074 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:38.074 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:38.081 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:38.081 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:38.081 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:38.081 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:38.082 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:38.082 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:38.083 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:38.083 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:38.083 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:38.083 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:38.083 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:38.084 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:38.276 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:38.276 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:38.282 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:38.282 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:38.282 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:38.282 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:38.285 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:38.285 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:38.286 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:38.286 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:38.292 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:38.292 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:38.293 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:38.293 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:38.502 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:38:38.517 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:38:38.572 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
+2016-12-16 12:38:38.578 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
+2016-12-16 12:38:38.653 INFO  [client.encry.KeyExchangeClient start 137 Thread-10] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:38:38.654 INFO  [client.CilentDataProcess receive 94 Thread-9] ACK 도착
+2016-12-16 12:38:38.653 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
+2016-12-16 12:38:38.687 INFO  [client.encry.KeyExchangeClient start 142 Thread-10] 암호키 테스트 'Hello World'전송
+2016-12-16 12:38:38.691 INFO  [client.encry.KeyExchangeClient start 145 Thread-10] 암호키 테스트 'Hello World'받음
+2016-12-16 12:38:38.691 INFO  [client.OIOClient connectServer 53 Thread-10] 키 교환작업 완료:bedfd51b461630565499c38dd9652389
+2016-12-16 12:38:38.691 INFO  [client.OIOClient connectServer 55 Thread-10] 키 교환작업 완료
+2016-12-16 12:38:38.691 DEBUG [client.OIOClient connectServer 56 Thread-10] 암호화 키 bedfd51b461630565499c38dd9652389
+2016-12-16 12:38:38.691 INFO  [client.CilentDataProcess sendAuth 28 Thread-10] 인증 메시지 전송
+2016-12-16 12:38:43.090 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:43.090 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:43.097 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:43.097 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:43.097 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:43.098 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:43.098 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:43.098 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:43.099 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:43.099 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:43.099 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:43.099 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:43.100 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:43.100 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:43.101 INFO  [client.CilentDataProcess receive 103 Thread-9] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:43.101 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-9] push success 전송
+2016-12-16 12:38:43.292 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:43.292 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:43.294 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:43.295 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:43.295 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:43.296 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:43.299 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:43.299 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:43.299 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:43.300 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:43.301 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:43.301 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:43.302 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:43.303 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:43.312 INFO  [client.CilentDataProcess receive 103 Thread-9] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:43.312 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-9] push success 전송
+2016-12-16 12:38:43.587 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:38:43.637 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
+2016-12-16 12:38:48.106 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:48.107 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:48.112 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:48.112 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:48.113 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:48.113 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:48.114 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:48.114 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:48.116 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:48.116 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:48.116 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:48.116 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:48.116 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:48.117 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:48.117 INFO  [client.CilentDataProcess receive 103 Thread-9] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:48.117 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-9] push success 전송
+2016-12-16 12:38:48.308 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:48.308 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:48.315 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:48.315 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:48.315 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:48.315 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:48.318 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:48.318 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:48.319 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:48.319 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:48.319 INFO  [client.CilentDataProcess receive 103 Thread-9] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:48.319 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-9] push success 전송
+2016-12-16 12:38:48.319 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:48.319 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:48.320 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:48.320 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:48.503 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:38:48.518 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:38:48.572 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
+2016-12-16 12:38:48.579 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
+2016-12-16 12:38:48.654 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
+2016-12-16 12:38:48.657 INFO  [client.ClientHeartBeat run 31 Timer-7] heart beat 전송
+2016-12-16 12:38:48.692 ERROR [client.OIOClient connectServer 68 Thread-10] No Server Response 발생!!
+2016-12-16 12:38:48.693 INFO  [client.CilentDataProcess sendAuth 28 Thread-10] 인증 메시지 전송
+2016-12-16 12:38:48.693 ERROR [client.OIOClient connectServer 72 Thread-10] 인증 메시지 다시 전송
+2016-12-16 12:38:53.122 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:53.122 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:53.122 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:53.122 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:53.123 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:53.123 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:53.124 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:53.124 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:53.124 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:53.124 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:53.125 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:53.125 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:53.125 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:53.125 INFO  [client.CilentDataProcess receive 103 Thread-9] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:53.125 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:53.125 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-9] push success 전송
+2016-12-16 12:38:53.323 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:53.323 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:53.324 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:53.324 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:53.324 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:53.324 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:53.324 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:53.324 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:53.325 INFO  [client.CilentDataProcess receive 103 Thread-9] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:53.325 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-9] push success 전송
+2016-12-16 12:38:53.326 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:53.326 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:53.326 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:53.326 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:53.327 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:53.327 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:53.586 INFO  [client.ClientHeartBeat run 31 Timer-2] heart beat 전송
+2016-12-16 12:38:53.636 INFO  [client.ClientHeartBeat run 31 Timer-5] heart beat 전송
+2016-12-16 12:38:53.706 INFO  [client.CilentDataProcess receive 94 Thread-10] ACK 도착
+2016-12-16 12:38:53.708 INFO  [client.encry.KeyExchangeClient start 137 Thread-11] 서버로부터 AES256 암호화키 받음
+2016-12-16 12:38:53.739 INFO  [client.encry.KeyExchangeClient start 142 Thread-11] 암호키 테스트 'Hello World'전송
+2016-12-16 12:38:53.743 INFO  [client.encry.KeyExchangeClient start 145 Thread-11] 암호키 테스트 'Hello World'받음
+2016-12-16 12:38:53.744 INFO  [client.OIOClient connectServer 53 Thread-11] 키 교환작업 완료:462d1610ed66d69c7663cffcdfac3ef3
+2016-12-16 12:38:53.744 INFO  [client.OIOClient connectServer 55 Thread-11] 키 교환작업 완료
+2016-12-16 12:38:53.744 DEBUG [client.OIOClient connectServer 56 Thread-11] 암호화 키 462d1610ed66d69c7663cffcdfac3ef3
+2016-12-16 12:38:53.744 INFO  [client.CilentDataProcess sendAuth 28 Thread-11] 인증 메시지 전송
+2016-12-16 12:38:58.129 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:58.129 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:58.152 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:58.152 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:58.152 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:58.153 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:58.153 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:58.154 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:58.155 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:58.155 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:58.155 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:58.155 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:58.155 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:58.155 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:58.156 INFO  [client.CilentDataProcess receive 103 Thread-10] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:58.156 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-10] push success 전송
+2016-12-16 12:38:58.156 INFO  [client.CilentDataProcess receive 103 Thread-9] 주문번호1 알림이 도착했습니다
+2016-12-16 12:38:58.157 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-9] push success 전송
+2016-12-16 12:38:58.331 INFO  [client.CilentDataProcess receive 103 Thread-4] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:58.331 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-4] push success 전송
+2016-12-16 12:38:58.354 INFO  [client.CilentDataProcess receive 103 Thread-2] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:58.354 INFO  [client.CilentDataProcess receive 103 Thread-3] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:58.354 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-2] push success 전송
+2016-12-16 12:38:58.354 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-3] push success 전송
+2016-12-16 12:38:58.356 INFO  [client.CilentDataProcess receive 103 Thread-6] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:58.356 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-6] push success 전송
+2016-12-16 12:38:58.358 INFO  [client.CilentDataProcess receive 103 Thread-7] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:58.358 INFO  [client.CilentDataProcess receive 103 Thread-8] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:58.358 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-7] push success 전송
+2016-12-16 12:38:58.358 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-8] push success 전송
+2016-12-16 12:38:58.361 INFO  [client.CilentDataProcess receive 103 Thread-9] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:58.362 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-9] push success 전송
+2016-12-16 12:38:58.362 INFO  [client.CilentDataProcess receive 103 Thread-5] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:58.362 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-5] push success 전송
+2016-12-16 12:38:58.363 INFO  [client.CilentDataProcess receive 103 Thread-10] 주문번호2 알림이 도착했습니다
+2016-12-16 12:38:58.363 INFO  [client.CilentDataProcess sendPushSuccess 56 Thread-10] push success 전송
+2016-12-16 12:38:58.502 INFO  [client.ClientHeartBeat run 31 Timer-1] heart beat 전송
+2016-12-16 12:38:58.517 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-16 12:38:58.571 INFO  [client.ClientHeartBeat run 31 Timer-3] heart beat 전송
+2016-12-16 12:38:58.578 INFO  [client.ClientHeartBeat run 31 Timer-4] heart beat 전송
+2016-12-16 12:38:58.657 INFO  [client.ClientHeartBeat run 31 Timer-6] heart beat 전송
+2016-12-16 12:38:58.671 INFO  [client.ClientHeartBeat run 31 Timer-7] heart beat 전송

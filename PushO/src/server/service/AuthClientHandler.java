@@ -25,10 +25,10 @@ import server.util.ServerUtils;
  *              인증을 위한 DB입출력 Blocking 시간 고려
  */
 public class AuthClientHandler extends Thread {
-	
 	private SocketConnectionManager socketConnectionManagerager = SocketConnectionManager.getInstance();
 	
-	/*private static AuthClientHandler instance = null;
+	/*
+	private static AuthClientHandler instance = null;
 	
 	public static AuthClientHandler getInstance() {
 		if (instance == null) {
@@ -51,10 +51,10 @@ public class AuthClientHandler extends Thread {
 		while(!this.isInterrupted()){
 			try {
 				Socket socket = this.socketQueue.take();
-				ServerConst.SERVER_LOGGER.info("블로킹큐에서 작업 가져옴, 큐 크기 : "+this.socketQueue.size());
+				ServerConst.SERVER_LOGGER.info("소켓 블로킹 큐 에서 작업 가져옴, 큐 크기 : {}",this.socketQueue.size());
 				String aesKey = encryptionKeyChange(socket);
-				ServerConst.SERVER_LOGGER.info(socket.getInetAddress().getHostName() + " 키 교환작업 완료");
-				ServerConst.SERVER_LOGGER.debug("암호화 키 " + aesKey);
+				ServerConst.SERVER_LOGGER.info(" 키 교환작업 완료 [{}]",socket.getInetAddress().getHostName());
+				ServerConst.SERVER_LOGGER.debug("암호화 키 : {} ", aesKey);
 				authClientAndDelegate(socket, aesKey);
 				ServerConst.SERVER_LOGGER.debug("인증완료");
 				
@@ -102,14 +102,13 @@ public class AuthClientHandler extends Thread {
 			bodylength = bis.read(body);
 			String msg = new String(body, ServerConst.CHARSET);
 			msg = AESUtils.AES_Decode(msg, aesKey);
-			ServerConst.SERVER_LOGGER.info("본문 메시지 : "+msg);
+			ServerConst.SERVER_LOGGER.info("본문 메시지 : {}",msg);
 
 			if (msg.contains(ServerConst.JSON_VALUE_AUTH)) {
 				String name = ServerUtils.parseJSONMessage(new JSONParser(), msg);
 				boolean authorized = false;
 				try{
 					//인증 실패 시 예외가 발생되는 부분
-					ServerConst.SERVER_LOGGER.debug("DB등록여부 확인 시작");
 					checkAuthorization(name);
 					authorized = true;
 					ServerConst.SERVER_LOGGER.debug("DB등록 되어있음");
@@ -122,13 +121,13 @@ public class AuthClientHandler extends Thread {
 				} catch(EmptyResultDataException e){
 					//TODO 클라이언트에게 인증되지 않았다는 메시지를 보냄
 //					bos.write(b);
-					ServerConst.SERVER_LOGGER.error("등록되지 않은 사용자, "+e.getMessage());
+					ServerConst.SERVER_LOGGER.error("등록되지 않은 사용자 {}",e.getMessage());
 					socket.close();
 					e.printStackTrace();
 				} catch(AlreadyConnectedSocketException e){ 
 					//TODO 클라이언트에게 이미 연결된 아이디라는 메시지를 보냄
 //					bos.write(b);
-					ServerConst.SERVER_LOGGER.error("이미 연결된 사용자, "+e.getMessage());
+					ServerConst.SERVER_LOGGER.error("이미 연결된 사용자 {} ",e.getMessage());
 					socket.close();
 					e.printStackTrace();
 				}
