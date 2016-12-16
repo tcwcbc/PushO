@@ -23,7 +23,7 @@ import server.util.ServerUtils;
  * @TODO 입출력을 위한 스트림을 문자스트림->바이트스트림 으로 변환 수정된 유틸클래스 사용으로 메시지 작성방식 변경 타임아웃 예외가
  *       발생했을 경우 알림메시지를 전송하고 소켓해제 및 자원회수 매커니즘 예외처리들을 위한 많은 try-catch문을 정리
  */
-public class ProcessCilentRequest extends Thread{
+public class ProcessCilentRequest extends Thread {
 
 	private Socket connectedSocketWithClient;
 	private byte[] msgPingByte;
@@ -33,11 +33,11 @@ public class ProcessCilentRequest extends Thread{
 
 	private BufferedOutputStream bos;
 	private BufferedInputStream bis;
-	
-	private String aesKey;
-	public LinkedBlockingQueue<PushInfo> receivedAckQueue;
 
-	public ProcessCilentRequest(Socket socket, String aesKey, LinkedBlockingQueue<PushInfo> receivedAckQueue) {
+	private String aesKey;
+	public LinkedBlockingQueue<String> receivedAckQueue;
+
+	public ProcessCilentRequest(Socket socket, String aesKey, LinkedBlockingQueue<String> receivedAckQueue) {
 		this.connectedSocketWithClient = socket;
 		this.aesKey = aesKey;
 		this.receivedAckQueue = receivedAckQueue;
@@ -92,9 +92,7 @@ public class ProcessCilentRequest extends Thread{
 		String msgPingString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), false);
 		msgPingString = AESUtils.AES_Encode(msgPingString, aesKey);
 		msgPingByte = ServerUtils.makeMessageStringToByte(
-				new byte[ServerConst.HEADER_LENTH + 
-				         msgPingString.getBytes(ServerConst.CHARSET).length],
-				msgPingString);
+				new byte[ServerConst.HEADER_LENTH + msgPingString.getBytes(ServerConst.CHARSET).length], msgPingString);
 
 		byte[] header = new byte[ServerConst.HEADER_LENTH];
 		byte[] body;
@@ -115,11 +113,22 @@ public class ProcessCilentRequest extends Thread{
 			String msg = ServerUtils.parseJSONMessage(new JSONParser(), bodyDecodeMsg);
 
 			if (msg.equals(ServerConst.JSON_VALUE_PONG)) {
-				//TODO 주문내역발송에 대한 응답을 받을 경우 공유자원인 receivedAckQueue에 넣는 로직
+				// TODO 주문내역발송에 대한 응답을 받을 경우 공유자원인 receivedAckQueue에 넣는 로직
 				/*
-				this.receivedAckQueue.put(new PushInfo());
-				*/
+				 * this.receivedAckQueue.put(new PushInfo());
+				 */
 				ServerConst.SERVER_LOGGER.debug("응답메시지 수신");
+			} else if (msg.contains(ServerConst.JSON_VALUE_PUSH)) {
+				String[] response = msg.split("/");
+				/**
+				 * 응답 형식 response/fail or success/주문번호
+				 */
+				if (response[1].equals("success")) {
+					ServerConst.SERVER_LOGGER.info(response[2] + "번 주문 응답결과 success");
+				} else if (response[1].equals("fail")) {
+					ServerConst.SERVER_LOGGER.info(response[2] + "번 주문 응답결과 fail");
+					this.receivedAckQueue.put(response[2]);
+				}
 			}
 			bos.flush();
 		}
@@ -127,8 +136,11 @@ public class ProcessCilentRequest extends Thread{
 
 	/**
 	 * 클라이언트에게 알림을 전송하는 메소드 String 데이터를 구분자로 split하여 데이터 형식에 맞게 가공한다.
-	 * @param msg		주문정보 메시지
-	 * @throws PushMessageSendingException 보낼 때 스트림이 닫힌경우 연결이 해제되었음을 인지하고 풀과 맵에서 정리를 알리는 예외
+	 * 
+	 * @param msg
+	 *            주문정보 메시지
+	 * @throws PushMessageSendingException
+	 *             보낼 때 스트림이 닫힌경우 연결이 해제되었음을 인지하고 풀과 맵에서 정리를 알리는 예외
 	 */
 	public void setPush(String msg) throws PushMessageSendingException {
 		ServerConst.SERVER_LOGGER.debug("setPush 메소드 호출");
@@ -139,12 +151,12 @@ public class ProcessCilentRequest extends Thread{
 
 			bos.write(msgPushByte);
 			bos.flush();
-			ServerConst.SERVER_LOGGER.info("푸시완료, "+this.getName());
+			ServerConst.SERVER_LOGGER.info("푸시완료, " + this.getName());
 		} catch (IOException e) {
 			// 상대 클라이언트 접속이 끊어지면 발생
 			// 그에 따라 HashMap에 저장되어있는 현재 Thread를 지우는 작업이 필요함
 			this.interrupt();
-			ServerConst.SERVER_LOGGER.error("푸시완료, "+e.getMessage());
+			ServerConst.SERVER_LOGGER.error("푸시완료, " + e.getMessage());
 			throw new PushMessageSendingException(e);
 		}
 		ServerConst.SERVER_LOGGER.debug("setPush 메소드 종료");

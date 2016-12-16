@@ -45,8 +45,8 @@ public class SocketConnectionManager implements Pushable {
 	
 	private DBThread dbThread;
 	
-	public LinkedBlockingQueue<PushInfo> receivedAckQueue = 
-			new LinkedBlockingQueue<PushInfo>(ServerConst.RECEIVED_ACK_QUEUE_SIZE);
+	public LinkedBlockingQueue<String> receivedAckQueue = 
+			new LinkedBlockingQueue<String>(ServerConst.RECEIVED_ACK_QUEUE_SIZE);
 	
 	private SocketConnectionManager() {
 		dbThread = new DBThread(this, receivedAckQueue);
@@ -58,12 +58,22 @@ public class SocketConnectionManager implements Pushable {
 	@Override
 	public synchronized void sendPushAll(String msg) {
 		Iterator<String> keySetIterator = concurrentHashMap.keySet().iterator();
+		// 몇명의 사용자에게 보낸것인지 명시하기위해 추가
+		int size = 0;
+		int sizeTotal = 0;
+		// 총 사용자 체크
 		while (keySetIterator.hasNext()) {
-			String userID = keySetIterator.next();
-			ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 시작");
-			sendPushPartial(userID,msg);
-			ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 끝");
+			sizeTotal++;
 		}
+		
+		ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 시작");
+		while (keySetIterator.hasNext()) {
+			size++;
+			String userID = keySetIterator.next();
+			ServerConst.SERVER_LOGGER.debug("모든 사용자에게 전송중" + "(" + size + "/" + sizeTotal + ")");
+			sendPushPartial(userID,msg);
+		}
+		ServerConst.SERVER_LOGGER.debug("모든 사용자에게 Push메시지 전송 끝");
 	}
 	
 	@Override
