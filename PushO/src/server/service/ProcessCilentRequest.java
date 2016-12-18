@@ -124,9 +124,9 @@ public class ProcessCilentRequest extends Thread {
 				 */
 				if (response[1].equals("success")) {
 					ServerConst.SERVER_LOGGER.info(response[2] + "번 주문 응답결과 success");
+					this.receivedAckQueue.put(response[2]);
 				} else if (response[1].equals("fail")) {
 					ServerConst.SERVER_LOGGER.info(response[2] + "번 주문 응답결과 fail");
-					this.receivedAckQueue.put(response[2]);
 				}
 			}
 			bos.flush();
