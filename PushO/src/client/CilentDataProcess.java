@@ -76,7 +76,7 @@ public class CilentDataProcess {
 		OrderInfo orderData = null;
 		PushInfo stockData = null;
 
-		socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
+		//socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
 		while (status) {
 			while ((readCount = bis.read(header)) != -1) {
 				// 수신된 메시지 DATASIZE

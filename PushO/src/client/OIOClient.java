@@ -53,7 +53,6 @@ public class OIOClient {
 			System.out.println("키 교환작업 완료:" + aesKey);
 			ClientConst.CLIENT_LOGGER.info("키 교환작업 완료:" + aesKey);
 
-			ClientConst.CLIENT_LOGGER.info("키 교환작업 완료");
 			ClientConst.CLIENT_LOGGER.debug("암호화 키 " + aesKey);
 			isServerSurvival = true;
 

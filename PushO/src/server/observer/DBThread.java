@@ -70,7 +70,7 @@ public class DBThread extends Thread {
 				}
 				
 				// 재고 정보를 조회
-				pushInfo = db.executeQuery_STOCK();
+				//pushInfo = db.executeQuery_STOCK();
 				if (ServerUtils.isEmpty(pushInfo)) {
 					ServerConst.MESSAGE_LOGGER.debug("Push Message is not Exist");
 				} else {
