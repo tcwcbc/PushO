@@ -156,16 +156,21 @@ public class JDBCTemplate {
 	}
 
 	public PushInfo executeQuery_STOCK() {
-		String sql = "SELECT oi_no, mem_no , st_no , oi_orderdate, oi_totalprice  "
-				+ "FROM pj_orderinfo  WHERE oi_push = 'N'";
-		pushList.clear();
+		String sql = "SELECT DISTINCT pd_name, pd_stock "
+				+ "FROM pj_product "
+				+ "WHERE pd_stock < '6' AND st_no = '16';";
+		pushInfo = null;
+		productList.clear();
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				pushList.add(new OrderInfo(rs.getString("oi_no"), rs.getString("oi_orderdate"), rs.getString("mem_no"),
-						rs.getString("st_no"), rs.getString("oi_totalprice")));
+				productList.add(new ProductList(rs.getString("pd_stock"), rs.getString("pd_name")));
+			}
+			
+			if (!productList.isEmpty()) {
+				pushInfo = new PushInfo(productList);
 			}
 
 		} catch (SQLException e) {
