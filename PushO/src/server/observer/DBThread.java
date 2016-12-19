@@ -36,11 +36,11 @@ public class DBThread extends Thread {
 	private PushInfo pushInfo;
 	
 	private Iterator<String> iter;
-	public LinkedBlockingQueue<String> unreceivedAckQueue;
+	public LinkedBlockingQueue<String> receivedAckQueue;
 
-	public DBThread(Pushable pushable, LinkedBlockingQueue<String> unreceivedAckQueue) {
+	public DBThread(Pushable pushable, LinkedBlockingQueue<String> receivedAckQueue) {
 		this.pushable = pushable;
-		this.unreceivedAckQueue = unreceivedAckQueue;
+		this.receivedAckQueue = receivedAckQueue;
 		this.db = new JDBCTemplate();
 	}
 
@@ -49,8 +49,8 @@ public class DBThread extends Thread {
 		while (!this.isInterrupted()) {
 			try {
 				// 큐에 데이터가 있으면 처리하는 부분
-				while(!unreceivedAckQueue.isEmpty()){
-					db.executeQuery_PUSH_STATUS_UPDATE(unreceivedAckQueue.take(), "N");
+				while(!receivedAckQueue.isEmpty()){
+					db.executeQuery_PUSH_STATUS_UPDATE(receivedAckQueue.take(), "Y");
 				}
 				
 				// 주문 정보를 조회
@@ -62,7 +62,7 @@ public class DBThread extends Thread {
 					for (OrderInfo orderNum : orderList) {
 						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(orderNum.getOrder_num()));
 						//TODO 이 부분은 특정 사용자에게 알림을 보내므로 setPushPartial 바꿔야함 
-						setPushPartial(orderNum);
+							setPushPartial(orderNum);
 					}
 				}
 				

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.simple.JSONObject;
@@ -36,12 +37,13 @@ public class ProcessCilentRequest extends Thread {
 	private BufferedInputStream bis;
 
 	private String aesKey;
-	public LinkedBlockingQueue<String> unreceivedAckQueue;
+	private ArrayList<String> orderNums = new ArrayList<String>();
+	public LinkedBlockingQueue<String> receivedAckQueue;
 
-	public ProcessCilentRequest(Socket socket, String aesKey, LinkedBlockingQueue<String> unreceivedAckQueue) {
+	public ProcessCilentRequest(Socket socket, String aesKey, LinkedBlockingQueue<String> receivedAckQueue) {
 		this.connectedSocketWithClient = socket;
 		this.aesKey = aesKey;
-		this.unreceivedAckQueue = unreceivedAckQueue;
+		this.receivedAckQueue = receivedAckQueue;
 		// 스트림에 대한 타임아웃 설정
 		try {
 			connectedSocketWithClient.setSoTimeout(ServerConst.STREAM_TIME_OUT);
@@ -74,6 +76,9 @@ public class ProcessCilentRequest extends Thread {
 				bos.write(msgPingByte);
 //				ServerConst.MESSAGE_LOGGER.info("NACK Message Receive, orderNum:[{}]",response[2]);
 			} catch (IOException e) {
+				if(!orderNums.isEmpty()){
+					this.receivedAckQueue.addAll(orderNums);
+				}
 				e.printStackTrace();
 				try {
 					bis.close();
@@ -125,12 +130,14 @@ public class ProcessCilentRequest extends Thread {
 				 */
 				if (response[1].equals("success")) {
 					ServerConst.MESSAGE_LOGGER.info("ACK Message Receive, orderNum:[{}]",response[2]);
+					orderNums.add(response[2]);
 				} else if (response[1].equals("fail")) {
-					this.unreceivedAckQueue.put(response[2]);
 					ServerConst.MESSAGE_LOGGER.info("NACK Message Receive, orderNum:[{}]",response[2]);
 				}
 			}
-			bos.flush();
+			if(!orderNums.isEmpty()){
+				this.receivedAckQueue.addAll(orderNums);
+			}
 		}
 	}
 
