@@ -90,7 +90,7 @@ public class JDBCTemplate {
 		}
 		// 인증이 되지 않음을 발생
 		if (userAuthResult == null) {
-			throw new EmptyResultDataException("등록된 사용자 아님");
+			throw new EmptyResultDataException("Not Registered Client!");
 		}
 		return userAuthResult;
 	}

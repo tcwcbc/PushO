@@ -134,6 +134,10 @@ public class AuthClientHandler extends Thread {
 					ServerConst.ACCESS_LOGGER.error("Aleady Connected Client ERROR : {} ",e.getMessage());
 					socket.close();
 					e.printStackTrace();
+				} catch(PasswordAuthFailException e){
+					ServerConst.ACCESS_LOGGER.error("Password not Correct ERROR : {} ",e.getMessage());
+					socket.close();
+					e.printStackTrace();
 				}
 
 			}
@@ -176,7 +180,7 @@ public class AuthClientHandler extends Thread {
 	private void checkPassword(String userPwd) throws PasswordAuthFailException {
 		userPasswd = ServerUtils.getEncryptValue(userInfo.getPasswd() + userInfo.getPasswd_salt());
 		
-		if (userPwd == userPasswd) {
+		if (userPwd.equals(userPasswd)) {
 			//인증 완료
 		} else {
 			throw new PasswordAuthFailException("비밀번호가 일치하지 않음");
