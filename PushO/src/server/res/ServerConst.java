@@ -9,7 +9,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import server.model.PushInfo;
+import server.model.OrderInfo;
 
 /**
  * @author √÷∫¥√∂
@@ -24,8 +24,8 @@ public interface ServerConst {
 	/**
 	 * Socket Connection
 	 */
-//	String SERVER_IP ="175.115.95.32";
-	String SERVER_IP ="127.0.0.1";
+//	String SERVER_IP ="175.115.95.34";
+//	String SERVER_IP ="127.0.0.1";
 	int PORT_NUM = 9998;
 	int STREAM_TIME_OUT = 30000;
 	int SEND_WATING_TIME = 7000;
@@ -42,10 +42,10 @@ public interface ServerConst {
 	 * DB Connection
 	 */
 	String CLASS_FOR_NAME = "com.mysql.jdbc.Driver";
-	String JDBC_URL = "jdbc:mysql://175.115.95.32:3306/";
-	String DB_NAME = "push_o?useUnicode=true&characterEncoding=UTF-8";
-	String DB_USER_ID = "wodn4131";
-	String DB_USER_PASSWORD = "wogud00";
+	String JDBC_URL = "jdbc:mysql://175.115.95.34:3306/";
+	String DB_NAME = "pj?useUnicode=true&characterEncoding=UTF-8";
+	String DB_USER_ID = "root";
+	String DB_USER_PASSWORD = "1234";
 
 	/**
 	 * JSON
@@ -65,12 +65,14 @@ public interface ServerConst {
 	String JSON_KEY_ORDER_PRODUCT = "product";
 	String JSON_KEY_ORDER_PRODUCT_COUNT = "product_count";
 	String JSON_KEY_ORDER_RESPONSE= "response";
+	String JSON_KEY_STOCK_LIST = "stock_list";
 
 	String JSON_VALUE_AUTH = "auth";
 	String JSON_VALUE_PING = "ping";
 	String JSON_VALUE_PONG = "pong";
-	String JSON_VALUE_PUSH = "push";
-
+	String JSON_VALUE_PUSH_ORDER = "pushOrder";
+	String JSON_VALUE_PUSH_STOCK = "pushStock";
+	
 	String END_LINE = "\n";
 	int HEADER_LENTH = 4;
 

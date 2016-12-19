@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 
 import server.encry.AESUtils;
 import server.exception.PushMessageSendingException;
+import server.model.OrderInfo;
 import server.model.PushInfo;
 import server.res.ServerConst;
 import server.util.ServerUtils;
@@ -117,7 +118,7 @@ public class ProcessCilentRequest extends Thread {
 				 * this.receivedAckQueue.put(new PushInfo());
 				 */
 				ServerConst.SERVER_LOGGER.debug("응답메시지 수신");
-			} else if (msg.contains(ServerConst.JSON_VALUE_PUSH)) {
+			} else if (msg.contains(ServerConst.JSON_VALUE_PUSH_ORDER)) {
 				String[] response = msg.split("/");
 				/**
 				 * 응답 형식 response/fail or success/주문번호
@@ -141,8 +142,9 @@ public class ProcessCilentRequest extends Thread {
 	 * @throws PushMessageSendingException
 	 *             보낼 때 스트림이 닫힌경우 연결이 해제되었음을 인지하고 풀과 맵에서 정리를 알리는 예외
 	 */
-	public void setPush(String msg) throws PushMessageSendingException {
+	public void setPushPartial(OrderInfo infoMsg) throws PushMessageSendingException {
 		try {
+			String msg = ServerUtils.makeJSONMessageForPush(infoMsg, new JSONObject(), new JSONObject());
 			msg = AESUtils.AES_Encode(msg, aesKey);
 			msgPushByte = ServerUtils.makeMessageStringToByte(
 					new byte[ServerConst.HEADER_LENTH + msg.getBytes(ServerConst.CHARSET).length], msg);
@@ -156,6 +158,21 @@ public class ProcessCilentRequest extends Thread {
 			this.interrupt();
 			ServerConst.SERVER_LOGGER.error("푸시에러, "+e.getMessage());
 			throw new PushMessageSendingException(e);
+		}
+	}
+	
+	public void setPushAll(PushInfo pushInfo) {
+		try {
+			String msg = ServerUtils.makeJSONMessageForPushAll(pushInfo, new JSONObject(), new JSONObject());
+			msg = AESUtils.AES_Encode(msg, aesKey);
+			msgPushByte = ServerUtils.makeMessageStringToByte(
+					new byte[ServerConst.HEADER_LENTH + msg.getBytes(ServerConst.CHARSET).length], msg);
+
+			bos.write(msgPushByte);
+			bos.flush();
+			ServerConst.SERVER_LOGGER.info("푸시완료, " + this.getName());
+		} catch (IOException e) {
+			ServerConst.SERVER_LOGGER.error("푸시에러, "+e.getMessage());
 		}
 	}
 }

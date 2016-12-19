@@ -10,16 +10,18 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import client.encry.AESUtils;
+import client.model.OrderInfo;
+import client.model.PushInfo;
 import client.res.ClientConst;
 import client.util.ClientUtils;
-import server.model.PushInfo;
 
 public class CilentDataProcess {
 
 	private static byte[] header = new byte[ClientConst.HEADER_LENTH];
 
 	public static void sendAuth(BufferedOutputStream bos, String aesKey, int num) throws IOException {
-		String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자"+String.valueOf(num), "비밀번호~?", new JSONObject(), new JSONObject());
+		String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자" + String.valueOf(num), "비밀번호~?",
+				new JSONObject(), new JSONObject());
 		msgAuthString = AESUtils.AES_Encode(msgAuthString, aesKey);
 		byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length], msgAuthString);
@@ -72,7 +74,8 @@ public class CilentDataProcess {
 		int dataSize;
 		int bodyLength;
 		boolean status = true;
-		PushInfo pushData = null;
+		OrderInfo orderData = null;
+		PushInfo stockData = null;
 
 		socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
 		while (status) {
@@ -95,19 +98,29 @@ public class CilentDataProcess {
 					status = false;
 					break;
 				}
-				// Push 메시지 경우
-				else if (msg.equals(ClientConst.JSON_VALUE_PUSH)) {
+				// 주문알림
+				else if (msg.equals(ClientConst.JSON_VALUE_PUSH_ORDER)) {
 					try {
-						pushData = ClientUtils.parsePushMessage(new JSONParser(),
-								AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey), pushData);
-						ClientConst.CLIENT_LOGGER.info("주문번호" + pushData.getOrder_num() + " 알림이 도착했습니다");
-						sendPushSuccess(bos, aesKey, pushData.getOrder_num());
+						String encryMsg = AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey);
+						orderData = ClientUtils.parseOrderPushMessage(new JSONParser(), encryMsg, orderData);
+						ClientConst.CLIENT_LOGGER.info("주문번호" + orderData.getOrder_num() + " 알림이 도착했습니다");
+						sendPushSuccess(bos, aesKey, orderData.getOrder_num());
 					} catch (ParseException e) {
 						ClientConst.CLIENT_LOGGER.error("주문푸쉬 파싱에러");
-						sendPushFail(bos, aesKey, pushData.getOrder_num());
+						sendPushFail(bos, aesKey, orderData.getOrder_num());
 						e.printStackTrace();
 					}
-
+				}
+				// 재고알림
+				else if (msg.equals(ClientConst.JSON_VALUE_PUSH_STOCK)) {
+					try {
+						String encryMsg = AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey);
+						stockData = ClientUtils.parseStockPushMessage(new JSONParser(), encryMsg, stockData);
+					} catch (ParseException e) {
+						ClientConst.CLIENT_LOGGER.error("재고푸쉬 파싱에러");
+						e.printStackTrace();
+					}
+					
 				}
 
 			} // end of while
