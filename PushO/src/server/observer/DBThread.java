@@ -9,6 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import org.json.simple.JSONObject;
 
 import server.dao.JDBCTemplate;
+import server.model.OrderInfo;
 import server.model.PushInfo;
 import server.res.ServerConst;
 import server.service.AuthClientHandler;
@@ -29,7 +30,10 @@ public class DBThread extends Thread {
 
 	private String msgPushJson;
 
-	private List<PushInfo> pushList = new ArrayList<>();
+	// 주문알림 정보
+	private List<OrderInfo> orderList = new ArrayList<>();
+	// 재고알림 정보
+	private PushInfo pushInfo;
 	
 	private Iterator<String> iter;
 	public LinkedBlockingQueue<String> receivedAckQueue;
@@ -44,35 +48,35 @@ public class DBThread extends Thread {
 	public void run() {
 		while (!this.isInterrupted()) {
 			try {
-				
-				//큐에 있는 자료를 다 가저온다
-				iter = receivedAckQueue.iterator();
-				
-				/*if(!receivedAckQueue.isEmpty()){
+				// 큐에 데이터가 있으면 처리하는 부분
+				if(!receivedAckQueue.isEmpty()){
 					while(!receivedAckQueue.isEmpty()){
 						db.executeQuery_PUSH_STATUS_UPDATE(receivedAckQueue.take(), "Y");
 					}
-				}*/
-					
-				if(iter.hasNext()){
-					//하나씩 꺼내서 DB 상태값을 전송이 완료되었다고 바꾼다
-					receivedAckQueue.remove();
-					String receiveOrderNum = iter.next();
-					db.executeQuery_PUSH_STATUS_UPDATE(receiveOrderNum, "Y");
 				}
 				
-				pushList = db.executeQuery_ORDER();
-
-				if (ServerUtils.isEmpty(pushList)) {
+				// 주문 정보를 조회
+				orderList = db.executeQuery_ORDER();
+				if (ServerUtils.isEmpty(orderList)) {
 					ServerConst.SERVER_LOGGER.info("발송할 주문정보 없음");
 				} else {
-					ServerConst.SERVER_LOGGER.info("발송할 주문정보 " + pushList.size() + "건 검색" );
-					for (PushInfo orderNum : pushList) {
+					ServerConst.SERVER_LOGGER.info("발송할 주문정보 " + orderList.size() + "건 검색" );
+					for (OrderInfo orderNum : orderList) {
 						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(orderNum.getOrder_num()));
 						//TODO 이 부분은 특정 사용자에게 알림을 보내므로 setPushPartial 바꿔야함 
-						setPushAll(orderNum);
+						setPushPartial(orderNum);
 					}
 				}
+				
+				// 재고 정보를 조회
+				pushInfo = db.executeQuery_STOCK();
+				if (ServerUtils.isEmpty(pushInfo)) {
+					ServerConst.SERVER_LOGGER.info("발송할 재고정보 없음");
+				} else {
+					//모든 사용자에게 전송
+					setPushAll(pushInfo);
+				}
+				
 				
 				// 5초 간격으로 쓰레드가 실행된다.
 				Thread.sleep(ServerConst.DB_THREAD_OBSERVER_TIME);
@@ -87,7 +91,8 @@ public class DBThread extends Thread {
 					ServerConst.SERVER_LOGGER.error(e1.getMessage());
 				}
 			} finally {
-				pushList.clear();
+				pushInfo = null;
+				orderList.clear();
 			}
 		}
 	}
@@ -97,19 +102,15 @@ public class DBThread extends Thread {
 	 * @param msg PushInfo 타입의 주문 정보들
 	 */
 	public void setPushAll(PushInfo msg) {
-		// 주문정보를 JSON포멧으로 바꾼다.
-		msgPushJson = ServerUtils.makeJSONMessageForPush(msg, new JSONObject(), new JSONObject());
-		// 알림메시지를 보낸다.
-		pushable.sendPushAll(msgPushJson);
+		pushable.sendPushAll(msg);
 	}
 	
 	/**
 	 * HashMap에 등록된 특정사용자에게 알림을 보낼때 사용하는 메소드
 	 * @param msg PushInfo 타입의 주문 정보들
 	 */
-	public void setPushPartial(PushInfo msg) {
-		msgPushJson = ServerUtils.makeJSONMessageForPush(msg, new JSONObject(), new JSONObject());
-		pushable.sendPushPartial(msg.getOrder_seller(), msgPushJson);
+	public void setPushPartial(OrderInfo msg) {
+		pushable.sendPushPartial(msg);
 	}
 	
 	

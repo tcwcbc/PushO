@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,10 +18,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import client.model.OrderInfo;
+import client.model.ProductList;
+import client.model.PushInfo;
 import client.res.ClientConst;
-import server.model.ProductList;
-import server.model.PushInfo;
-import server.res.ServerConst;
+
 
 /**
  * @author √÷∫¥√∂
@@ -176,7 +176,7 @@ public class ClientUtils {
 	public static String makeJSONMessageForPushResponse(String msg, JSONObject parent, JSONObject childData) {
 
 		parent.put(ClientConst.JSON_KEY_SEND_TIME, getTime());
-		parent.put(ClientConst.JSON_KEY_DATA_CATEGORY, ClientConst.JSON_VALUE_PUSH);
+		parent.put(ClientConst.JSON_KEY_DATA_CATEGORY, ClientConst.JSON_VALUE_PUSH_ORDER);
 		childData.put(ClientConst.JSON_KEY_ORDER_RESPONSE, msg);
 		parent.put(ClientConst.JSON_KEY_DATA, childData);
 
@@ -215,10 +215,12 @@ public class ClientUtils {
 				result = ClientConst.JSON_VALUE_PONG;
 			} else if (category.equals(ClientConst.JSON_VALUE_AUTH)) {
 				result = ClientConst.JSON_VALUE_AUTH;
-			} else if (category.equals(ClientConst.JSON_VALUE_PUSH)) {
-				result = ClientConst.JSON_VALUE_PUSH;
+			} else if (category.equals(ClientConst.JSON_VALUE_PUSH_ORDER)) {
+				result = ClientConst.JSON_VALUE_PUSH_ORDER;
 			} else if (category.equals(ClientConst.JSON_VALUE_ENCRY)) {
 				result = ClientConst.JSON_VALUE_ENCRY;
+			} else if (category.equals(ClientConst.JSON_VALUE_PUSH_STOCK)) {
+				result = ClientConst.JSON_VALUE_PUSH_STOCK;
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -261,7 +263,7 @@ public class ClientUtils {
 	 * @return
 	 * @throws ParseException
 	 */
-	public static PushInfo parsePushMessage(JSONParser jsonParser, String msg, PushInfo pushData)
+	public static OrderInfo parseOrderPushMessage(JSONParser jsonParser, String msg, OrderInfo pushData)
 			throws ParseException {
 
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
@@ -275,7 +277,7 @@ public class ClientUtils {
 					order.get(ClientConst.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
 		}
 
-		pushData = new PushInfo(object.get(ClientConst.JSON_KEY_ORDER_NUM).toString(),
+		pushData = new OrderInfo(object.get(ClientConst.JSON_KEY_ORDER_NUM).toString(),
 				object.get(ClientConst.JSON_KEY_ORDER_DATE).toString(),
 				object.get(ClientConst.JSON_KEY_ORDER_USER).toString(),
 				object.get(ClientConst.JSON_KEY_ORDER_SELLER).toString(),
@@ -283,6 +285,27 @@ public class ClientUtils {
 
 		return pushData;
 	}
+	
+	public static PushInfo parseStockPushMessage(JSONParser jsonParser, String msg, PushInfo stockData)
+			throws ParseException {
+
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
+		JSONObject object = (JSONObject) jsonObject.get(ClientConst.JSON_KEY_DATA);
+		JSONArray array = (JSONArray) object.get(ClientConst.JSON_KEY_ORDER_LIST);
+
+		List<ProductList> pt = new ArrayList<>();
+		for (int i = 0; i < array.size(); i++) {
+			JSONObject order = (JSONObject) array.get(i);
+			pt.add(new ProductList(order.get(ClientConst.JSON_KEY_ORDER_PRODUCT).toString(),
+					order.get(ClientConst.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
+		}
+
+		stockData = new PushInfo(pt);
+
+		return stockData;
+	}
+	
+
 
 	/**
 	 * int«¸¿ª byteπËø≠∑Œ πŸ≤ﬁ
@@ -362,5 +385,6 @@ public class ClientUtils {
 
 		return str;
 	}
+
 
 }

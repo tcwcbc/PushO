@@ -9,7 +9,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import server.model.PushInfo;
+import server.model.OrderInfo;
 
 /**
  * @author √÷∫¥√∂
@@ -65,12 +65,14 @@ public interface ServerConst {
 	String JSON_KEY_ORDER_PRODUCT = "product";
 	String JSON_KEY_ORDER_PRODUCT_COUNT = "product_count";
 	String JSON_KEY_ORDER_RESPONSE= "response";
+	String JSON_KEY_STOCK_LIST = "stock_list";
 
 	String JSON_VALUE_AUTH = "auth";
 	String JSON_VALUE_PING = "ping";
 	String JSON_VALUE_PONG = "pong";
-	String JSON_VALUE_PUSH = "push";
-
+	String JSON_VALUE_PUSH_ORDER = "pushOrder";
+	String JSON_VALUE_PUSH_STOCK = "pushStock";
+	
 	String END_LINE = "\n";
 	int HEADER_LENTH = 4;
 

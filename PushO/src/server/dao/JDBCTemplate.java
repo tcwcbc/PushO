@@ -10,6 +10,7 @@ import java.util.List;
 import server.exception.EmptyResultDataException;
 import server.model.ProductList;
 import server.model.PushInfo;
+import server.model.OrderInfo;
 import server.model.UserAuth;
 import server.res.ServerConst;
 import server.service.SetPrepareStatement;
@@ -29,8 +30,9 @@ public class JDBCTemplate {
 	private PreparedStatement ps = null;
 	private ResultSet rs;
 	
-	private List<PushInfo> pushList = new ArrayList<>();
+	private List<OrderInfo> pushList = new ArrayList<>();
 	private List<ProductList> productList = new ArrayList<>();
+	private PushInfo pushInfo;
 	
 	public JDBCTemplate() {
 		if (con == null) {
@@ -96,7 +98,7 @@ public class JDBCTemplate {
 	 * @param          주문테이블에서 order_push 속성이 N 인것을 SELECT한다.
 	 * @return         상품 상세목록을 제외한 데이터를 반환한다.
 	 */
-	public List<PushInfo> executeQuery_ORDER() {
+	public List<OrderInfo> executeQuery_ORDER() {
 		String sql = "SELECT oi_no, mem_no , st_no , oi_orderdate, oi_totalprice  "
 				+ "FROM pj_orderinfo  WHERE oi_push = 'N'";
 		pushList.clear();
@@ -105,7 +107,7 @@ public class JDBCTemplate {
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				pushList.add(new PushInfo(rs.getString("oi_no"), rs.getString("oi_orderdate"),
+				pushList.add(new OrderInfo(rs.getString("oi_no"), rs.getString("oi_orderdate"),
 						rs.getString("mem_no"), rs.getString("st_no"), rs.getString("oi_totalprice")));
 			} 
 			
@@ -140,6 +142,27 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		} 
 		return productList;
+	}
+	
+	public PushInfo executeQuery_STOCK() {
+		String sql = "SELECT oi_no, mem_no , st_no , oi_orderdate, oi_totalprice  "
+				+ "FROM pj_orderinfo  WHERE oi_push = 'N'";
+		pushList.clear();
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				pushList.add(new OrderInfo(rs.getString("oi_no"), rs.getString("oi_orderdate"),
+						rs.getString("mem_no"), rs.getString("st_no"), rs.getString("oi_totalprice")));
+			} 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		return pushInfo;
 	}
 	
 	/**

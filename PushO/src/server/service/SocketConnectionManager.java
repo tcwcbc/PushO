@@ -9,6 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import server.exception.AlreadyConnectedSocketException;
 import server.exception.PushMessageSendingException;
+import server.model.OrderInfo;
 import server.model.PushInfo;
 import server.observer.DBThread;
 import server.res.ServerConst;
@@ -54,22 +55,22 @@ public class SocketConnectionManager implements Pushable {
 	}
 
 	@Override
-	public void sendPushAll(String msg) {
+	public void sendPushAll(PushInfo msg) {
 		//ConcurrentHashMap의 특성상 순회 도중에 다른 스레드의 접근으로 인헌 ConcurrentModificationException 발생 안된다???
 		//그렇다면 메소드단위의 sync 해제해도 무방
 		for(String key : concurrentHashMap.keySet()){
-			sendPushPartial(key,msg);
+			concurrentHashMap.get(key).setPushAll(msg);
 		}
 	}
 
 	@Override
-	public void sendPushPartial(String id, String msg) {
+	public void sendPushPartial(OrderInfo msg) {
 		try {
-			concurrentHashMap.get(id).setPush(msg);
-			ServerConst.SERVER_LOGGER.debug("사용자 [{}]에게 Push메시지 전송", id);
+			concurrentHashMap.get(msg.getOrder_seller()).setPushPartial(msg);
+			ServerConst.SERVER_LOGGER.debug("사용자 [{}]에게 Push메시지 전송", msg.getOrder_seller());
 		} catch (PushMessageSendingException e) {
-			concurrentHashMap.remove(id);
-			ServerConst.SERVER_LOGGER.error("사용자 [{}] 를 맵에서 제거", id);
+			concurrentHashMap.remove(msg.getOrder_seller());
+			ServerConst.SERVER_LOGGER.error("사용자 [{}] 를 맵에서 제거", msg.getOrder_seller());
 		}
 	}
 
