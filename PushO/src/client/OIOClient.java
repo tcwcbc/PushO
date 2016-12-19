@@ -39,21 +39,19 @@ public class OIOClient {
 		try {
 			if (socket != null && socket.isConnected()) {
 				close();
-				ClientConst.CLIENT_LOGGER.info("Server RE-Connection 시도");
+				ClientConst.CLIENT_LOGGER.debug("Re-try Server Connection");
 			}
 
 			socket = new Socket(ClientConst.SERVER_IP, ClientConst.PORT_NUM);
-			ClientConst.CLIENT_LOGGER.debug("Socket 정보: " + socket);
+			ClientConst.CLIENT_LOGGER.info("Socket information : [{}]",socket);
 			bis = new BufferedInputStream(socket.getInputStream());
 			bos = new BufferedOutputStream(socket.getOutputStream());
 
 			// 키교환이 이뤄지는 작업
 			KeyExchangeClient key = new KeyExchangeClient(bis, bos);
 			aesKey = key.start();
-			System.out.println("키 교환작업 완료:" + aesKey);
-			ClientConst.CLIENT_LOGGER.info("키 교환작업 완료:" + aesKey);
+			ClientConst.CLIENT_LOGGER.info("Complete Key Exchange, AESKey : [{}]", aesKey);
 
-			ClientConst.CLIENT_LOGGER.debug("암호화 키 " + aesKey);
 			isServerSurvival = true;
 
 			CilentDataProcess.sendAuth(bos, aesKey, num);
@@ -62,17 +60,17 @@ public class OIOClient {
 			return true;
 		} catch (IOException e) {
 			if (isServerSurvival == false) {
-				ClientConst.CLIENT_LOGGER.error("Server Connection Exception 발생!!");
+				ClientConst.CLIENT_LOGGER.error("Server Connection Exception!!");
 				return false;
 			} else {
-				ClientConst.CLIENT_LOGGER.error("No Server Response 발생!!");
+				ClientConst.CLIENT_LOGGER.error("No Server Response !!");
 				try {
 					// 인증을 위한 JSON 메세지 생성
 					CilentDataProcess.sendAuth(bos, aesKey,num);
-					ClientConst.CLIENT_LOGGER.error("인증 메시지 다시 전송");
+					ClientConst.CLIENT_LOGGER.debug("Re-send Auth Message");
 					CilentDataProcess.receive(socket, bis, bos, aesKey);
 				} catch (IOException e1) {
-					ClientConst.CLIENT_LOGGER.error("No Server Response 발생!!");
+					ClientConst.CLIENT_LOGGER.error("No Server Response!!");
 					return false;
 				}
 				return true;
@@ -117,7 +115,7 @@ public class OIOClient {
 				try {
 					mcc.processMsg();
 				} catch (IOException e) {
-					ClientConst.CLIENT_LOGGER.error("Time out 발생...");
+					ClientConst.CLIENT_LOGGER.error("Time out Exception!!");
 					continue;
 				}
 			}

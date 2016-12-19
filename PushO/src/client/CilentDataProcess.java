@@ -20,13 +20,13 @@ public class CilentDataProcess {
 	private static byte[] header = new byte[ClientConst.HEADER_LENTH];
 
 	public static void sendAuth(BufferedOutputStream bos, String aesKey, int num) throws IOException {
-		String msgAuthString = ClientUtils.makeJSONMessageForAuth("daoumart3"/*+String.valueOf(num)*/, "wogud00!", new JSONObject(), new JSONObject());
+		String msgAuthString = ClientUtils.makeJSONMessageForAuth("daoumart1"/*+String.valueOf(num)*/, "wogud00!", new JSONObject(), new JSONObject());
 		msgAuthString = AESUtils.AES_Encode(msgAuthString, aesKey);
 		byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length], msgAuthString);
 		bos.write(msgAuthByte);
 		bos.flush();
-		ClientConst.CLIENT_LOGGER.info("인증 메시지 전송");
+		ClientConst.CLIENT_LOGGER.debug("Send Auth Message");
 	}
 
 	public static void sendPing(BufferedOutputStream bos, String aesKey) throws IOException {
@@ -36,6 +36,7 @@ public class CilentDataProcess {
 				new byte[ClientConst.HEADER_LENTH + msgPingString.getBytes(ClientConst.CHARSET).length], msgPingString);
 		bos.write(msgPingByte);
 		bos.flush();
+		ClientConst.CLIENT_LOGGER.debug("Send Ping Message");
 	}
 
 	public static void sendPong(BufferedOutputStream bos, String aesKey) throws IOException {
@@ -44,7 +45,7 @@ public class CilentDataProcess {
 		byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgPongString.getBytes(ClientConst.CHARSET).length], msgPongString);
 		bos.write(msgPongByte);
-		ClientConst.CLIENT_LOGGER.info("pong 전송");
+		ClientConst.CLIENT_LOGGER.debug("Send Pong Message");
 	}
 
 	public static void sendPushSuccess(BufferedOutputStream bos, String aesKey, String orderNum) throws IOException {
@@ -54,7 +55,7 @@ public class CilentDataProcess {
 		byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgPushString.getBytes(ClientConst.CHARSET).length], msgPushString);
 		bos.write(msgPongByte);
-		ClientConst.CLIENT_LOGGER.info("push success 전송");
+		ClientConst.CLIENT_LOGGER.debug("Send Push ACK Message");
 	}
 
 	public static void sendPushFail(BufferedOutputStream bos, String aesKey, String orderNum) throws IOException {
@@ -64,7 +65,7 @@ public class CilentDataProcess {
 		byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgPushString.getBytes(ClientConst.CHARSET).length], msgPushString);
 		bos.write(msgPongByte);
-		ClientConst.CLIENT_LOGGER.info("push fail 전송");
+		ClientConst.CLIENT_LOGGER.debug("Send Push Fail Message");
 	}
 
 	public static void receive(Socket socket, BufferedInputStream bis, BufferedOutputStream bos, String aesKey)
@@ -93,7 +94,7 @@ public class CilentDataProcess {
 				}
 				// pong 메시지 경우
 				else if (msg.equals(ClientConst.JSON_VALUE_PONG)) {
-					ClientConst.CLIENT_LOGGER.info("ACK 도착");
+					ClientConst.CLIENT_LOGGER.debug("Receive ACK");
 					status = false;
 					break;
 				}
@@ -102,10 +103,10 @@ public class CilentDataProcess {
 					try {
 						String encryMsg = AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey);
 						orderData = ClientUtils.parseOrderPushMessage(new JSONParser(), encryMsg, orderData);
-						ClientConst.CLIENT_LOGGER.info("주문번호" + orderData.getOrder_num() + " 알림이 도착했습니다");
+						ClientConst.CLIENT_LOGGER.info("Receive Order Information, orderNum : [{}]", orderData.getOrder_num());
 						sendPushSuccess(bos, aesKey, orderData.getOrder_num());
 					} catch (ParseException e) {
-						ClientConst.CLIENT_LOGGER.error("주문푸쉬 파싱에러");
+						ClientConst.CLIENT_LOGGER.error("Order Message Parsing Exception!");
 						sendPushFail(bos, aesKey, orderData.getOrder_num());
 						e.printStackTrace();
 					}
@@ -115,9 +116,9 @@ public class CilentDataProcess {
 					try {
 						String encryMsg = AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey);
 						stockData = ClientUtils.parseStockPushMessage(new JSONParser(), encryMsg, stockData);
-						ClientConst.CLIENT_LOGGER.info("재고부족 알림이 도착했습니다");
+						ClientConst.CLIENT_LOGGER.info("Receive Push Message");
 					} catch (ParseException e) {
-						ClientConst.CLIENT_LOGGER.error("재고푸쉬 파싱에러");
+						ClientConst.CLIENT_LOGGER.error("Push Message Parsing Exception!");
 						e.printStackTrace();
 					}
 					
@@ -129,8 +130,8 @@ public class CilentDataProcess {
 
 	public static void occurTimeout(Socket socket, BufferedInputStream bis, BufferedOutputStream bos, String aesKey)
 			throws IOException {
-		ClientConst.CLIENT_LOGGER.error("Time out 발생...");
-		ClientConst.CLIENT_LOGGER.info("ping 전송");
+		ClientConst.CLIENT_LOGGER.error("Time out Exception !");
+		ClientConst.CLIENT_LOGGER.info("Send Ping Message");
 		sendPing(bos, aesKey);
 		receive(socket, bis, bos, aesKey);
 	}

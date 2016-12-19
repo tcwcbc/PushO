@@ -28,7 +28,7 @@ public class ClientHeartBeat extends TimerTask {
 					msgPingString);
 			bos.write(msgPingByte);
 			bos.flush();
-			ClientConst.CLIENT_LOGGER.info("heart beat Àü¼Û");
+			ClientConst.CLIENT_LOGGER.info("Send Ping Message");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
