@@ -19,7 +19,7 @@ public class CilentDataProcess {
 	private static byte[] header = new byte[ClientConst.HEADER_LENTH];
 
 	public static void sendAuth(BufferedOutputStream bos, String aesKey, int num) throws IOException {
-		String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자"+String.valueOf(num), "비밀번호~?", new JSONObject(), new JSONObject());
+		String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자5"/*+String.valueOf(num)*/, "비밀번호~?", new JSONObject(), new JSONObject());
 		msgAuthString = AESUtils.AES_Encode(msgAuthString, aesKey);
 		byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length], msgAuthString);
