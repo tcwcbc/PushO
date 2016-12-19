@@ -20,7 +20,6 @@ public interface ServerConst {
 	/**
 	 * DES256 private key
 	 */
-	String desKey = "1jaewooss1234567";
 	int rsaKey_length = 294;
 	/**
 	 * Socket Connection
