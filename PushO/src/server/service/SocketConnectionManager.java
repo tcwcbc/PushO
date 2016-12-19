@@ -57,13 +57,15 @@ public class SocketConnectionManager implements Pushable {
 	}
 	
 	@Override
-	public void sendPushPartial(String Id, String msg) {
+	public boolean sendPushPartial(String Id, String msg) {
+		boolean chkUserClient = false;
 		try {
 			concurrentHashMap.get(Id).setPush(msg);
 		} catch (PushMessageSendingException e) {
 			concurrentHashMap.remove(Id);
 			System.out.println(Id+" 를 맵에서 삭제");
 		}
+		return chkUserClient;
 	}
 
 	/**
