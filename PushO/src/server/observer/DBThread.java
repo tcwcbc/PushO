@@ -49,6 +49,7 @@ public class DBThread extends Thread {
 		while (!this.isInterrupted()) {
 			try {
 				// 큐에 데이터가 있으면 처리하는 부분
+				// oi_push 값을 N -> Y로 처리
 				if(!receivedAckQueue.isEmpty()){
 					while(!receivedAckQueue.isEmpty()){
 						db.executeQuery_PUSH_STATUS_UPDATE(receivedAckQueue.take(), "Y");

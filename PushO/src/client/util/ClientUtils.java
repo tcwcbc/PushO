@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +24,6 @@ import client.model.OrderInfo;
 import client.model.ProductList;
 import client.model.PushInfo;
 import client.res.ClientConst;
-
 
 /**
  * @author ÃÖº´Ã¶
@@ -285,7 +286,7 @@ public class ClientUtils {
 
 		return pushData;
 	}
-	
+
 	public static PushInfo parseStockPushMessage(JSONParser jsonParser, String msg, PushInfo stockData)
 			throws ParseException {
 
@@ -304,8 +305,6 @@ public class ClientUtils {
 
 		return stockData;
 	}
-	
-
 
 	/**
 	 * intÇüÀ» byte¹è¿­·Î ¹Ù²Þ
@@ -385,6 +384,5 @@ public class ClientUtils {
 
 		return str;
 	}
-
 
 }
