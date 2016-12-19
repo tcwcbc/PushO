@@ -12,7 +12,7 @@ import server.util.ServerUtils;
 
 public class StreamTestClient {
 	public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
-		Socket socket = new Socket(ServerConst.SERVER_IP, ServerConst.PORT_NUM);
+		Socket socket = new Socket("", ServerConst.PORT_NUM);
 		BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
 //		BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
 		

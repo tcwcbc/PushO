@@ -24,8 +24,8 @@ public interface ServerConst {
 	/**
 	 * Socket Connection
 	 */
-//	String SERVER_IP ="175.115.95.32";
-	String SERVER_IP ="127.0.0.1";
+//	String SERVER_IP ="175.115.95.34";
+//	String SERVER_IP ="127.0.0.1";
 	int PORT_NUM = 9998;
 	int STREAM_TIME_OUT = 30000;
 	int SEND_WATING_TIME = 7000;
@@ -42,10 +42,10 @@ public interface ServerConst {
 	 * DB Connection
 	 */
 	String CLASS_FOR_NAME = "com.mysql.jdbc.Driver";
-	String JDBC_URL = "jdbc:mysql://175.115.95.32:3306/";
-	String DB_NAME = "push_o?useUnicode=true&characterEncoding=UTF-8";
-	String DB_USER_ID = "wodn4131";
-	String DB_USER_PASSWORD = "wogud00";
+	String JDBC_URL = "jdbc:mysql://175.115.95.34:3306/";
+	String DB_NAME = "pj?useUnicode=true&characterEncoding=UTF-8";
+	String DB_USER_ID = "root";
+	String DB_USER_PASSWORD = "1234";
 
 	/**
 	 * JSON
