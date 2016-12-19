@@ -1,0 +1,325 @@
+2016-12-15 09:22:53.983 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49806]
+2016-12-15 09:22:55.208 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:22:55.212 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:02.345 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49807]
+2016-12-15 09:23:05.609 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:05.613 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:11.102 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49809]
+2016-12-15 09:23:15.852 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:15.857 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:20.693 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49810]
+2016-12-15 09:23:21.967 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:21.973 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:23.077 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-15 09:23:23.931 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-15 09:23:23.950 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-15 09:23:23.950 INFO  [client.OIOClient connectServer 45 main] 키 교환작업 완료:7c531067131419d5103af91adaf0f5ea
+2016-12-15 09:23:23.950 INFO  [client.OIOClient connectServer 47 main] 키 교환작업 완료
+2016-12-15 09:23:23.950 DEBUG [client.OIOClient connectServer 48 main] 암호화 키 7c531067131419d5103af91adaf0f5ea
+2016-12-15 09:23:23.954 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:23:25.311 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49812]
+2016-12-15 09:23:30.110 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49813]
+2016-12-15 09:23:30.747 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:30.752 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:33.194 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:33.199 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:33.988 ERROR [client.OIOClient connectServer 60 main] No Server Response 발생!!
+2016-12-15 09:23:33.989 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:23:33.989 ERROR [client.OIOClient connectServer 64 main] 인증 메시지 다시 전송
+2016-12-15 09:23:36.036 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49814]
+2016-12-15 09:23:38.973 INFO  [client.CilentDataProcess receive 73 main] ACK 도착
+2016-12-15 09:23:38.978 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-15 09:23:39.567 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-15 09:23:39.573 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-15 09:23:39.573 INFO  [client.OIOClient connectServer 45 main] 키 교환작업 완료:ede9b7e122eaaecd4334388de646cd6d
+2016-12-15 09:23:39.573 INFO  [client.OIOClient connectServer 47 main] 키 교환작업 완료
+2016-12-15 09:23:39.573 DEBUG [client.OIOClient connectServer 48 main] 암호화 키 ede9b7e122eaaecd4334388de646cd6d
+2016-12-15 09:23:39.574 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:23:41.017 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:41.023 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:41.035 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49816]
+2016-12-15 09:23:41.422 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:23:41.626 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:23:42.356 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:42.362 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:46.002 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49817]
+2016-12-15 09:23:46.429 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:23:46.630 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:23:48.262 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:48.268 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:49.047 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:23:49.575 ERROR [client.OIOClient connectServer 60 main] No Server Response 발생!!
+2016-12-15 09:23:49.577 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:23:49.577 ERROR [client.OIOClient connectServer 64 main] 인증 메시지 다시 전송
+2016-12-15 09:23:51.429 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49819]
+2016-12-15 09:23:51.439 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:23:51.642 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:23:52.721 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:52.726 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:54.017 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-15 09:23:54.036 INFO  [client.CilentDataProcess receive 73 main] ACK 도착
+2016-12-15 09:23:54.428 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-15 09:23:54.581 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-15 09:23:54.581 INFO  [client.OIOClient connectServer 45 main] 키 교환작업 완료:46965aab567425b57f8db354776e9ba4
+2016-12-15 09:23:54.582 INFO  [client.OIOClient connectServer 47 main] 키 교환작업 완료
+2016-12-15 09:23:54.582 DEBUG [client.OIOClient connectServer 48 main] 암호화 키 46965aab567425b57f8db354776e9ba4
+2016-12-15 09:23:54.593 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:23:56.453 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:23:56.462 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:23:56.654 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:23:56.655 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:23:57.147 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49820]
+2016-12-15 09:23:58.912 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:23:58.917 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:23:59.021 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:01.473 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:01.474 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:01.675 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:01.675 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:02.192 DEBUG [client.OIOClient connectServer 38 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=49821]
+2016-12-15 09:24:03.213 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-15 09:24:03.219 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-15 09:24:04.038 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:04.594 ERROR [client.OIOClient connectServer 60 main] No Server Response 발생!!
+2016-12-15 09:24:04.597 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:24:04.598 ERROR [client.OIOClient connectServer 64 main] 인증 메시지 다시 전송
+2016-12-15 09:24:06.494 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:06.498 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:06.693 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:06.693 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:08.992 INFO  [client.CilentDataProcess receive 73 main] ACK 도착
+2016-12-15 09:24:08.999 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-15 09:24:09.019 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:09.414 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-15 09:24:09.419 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-15 09:24:09.419 INFO  [client.OIOClient connectServer 45 main] 키 교환작업 완료:f5ee8ded5981a2cc6bea10df6a59d346
+2016-12-15 09:24:09.419 INFO  [client.OIOClient connectServer 47 main] 키 교환작업 완료
+2016-12-15 09:24:09.419 DEBUG [client.OIOClient connectServer 48 main] 암호화 키 f5ee8ded5981a2cc6bea10df6a59d346
+2016-12-15 09:24:09.423 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:24:11.509 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:11.511 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:11.520 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:11.710 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:11.712 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:11.722 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:14.039 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:16.528 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:16.531 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:16.539 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:16.731 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:16.734 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:16.740 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:18.999 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:19.021 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:19.424 ERROR [client.OIOClient connectServer 60 main] No Server Response 발생!!
+2016-12-15 09:24:19.427 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:24:19.427 ERROR [client.OIOClient connectServer 64 main] 인증 메시지 다시 전송
+2016-12-15 09:24:21.548 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:21.549 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:21.551 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:21.750 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:21.750 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:21.760 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:24.038 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:26.567 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:26.569 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:26.570 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:26.769 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:26.770 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:26.771 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:28.997 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:28.999 INFO  [client.CilentDataProcess receive 73 main] ACK 도착
+2016-12-15 09:24:29.012 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-15 09:24:29.021 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:29.425 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-15 09:24:29.430 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-15 09:24:29.430 INFO  [client.OIOClient connectServer 45 main] 키 교환작업 완료:40bd84958fec585c8fde09244d86f5ee
+2016-12-15 09:24:29.430 INFO  [client.OIOClient connectServer 47 main] 키 교환작업 완료
+2016-12-15 09:24:29.430 DEBUG [client.OIOClient connectServer 48 main] 암호화 키 40bd84958fec585c8fde09244d86f5ee
+2016-12-15 09:24:29.431 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:24:31.586 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:31.590 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:31.593 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:31.602 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:31.790 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:31.792 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:31.794 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:31.800 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:34.039 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:36.616 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:36.619 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:36.621 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:36.629 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:36.818 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:36.818 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:36.820 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:36.828 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:38.996 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:39.004 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:39.020 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:39.431 ERROR [client.OIOClient connectServer 60 main] No Server Response 발생!!
+2016-12-15 09:24:39.434 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:24:39.434 ERROR [client.OIOClient connectServer 64 main] 인증 메시지 다시 전송
+2016-12-15 09:24:41.639 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:41.642 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:41.641 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:41.644 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:41.840 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:41.843 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:41.851 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:41.851 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:44.038 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:44.469 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-15 09:24:44.952 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-15 09:24:44.956 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-15 09:24:44.956 INFO  [client.OIOClient connectServer 45 main] 키 교환작업 완료:777a69279a77a35afb34f4fe8f6ee481
+2016-12-15 09:24:44.957 INFO  [client.OIOClient connectServer 47 main] 키 교환작업 완료
+2016-12-15 09:24:44.957 DEBUG [client.OIOClient connectServer 48 main] 암호화 키 777a69279a77a35afb34f4fe8f6ee481
+2016-12-15 09:24:44.958 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:24:46.658 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:46.659 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:46.660 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:46.660 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:46.861 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:46.861 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:46.862 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:46.874 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:48.996 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:49.003 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:49.020 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:51.679 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:51.679 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:51.680 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:51.680 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:51.880 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:51.881 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:51.881 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:51.882 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:54.038 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:54.958 ERROR [client.OIOClient connectServer 60 main] No Server Response 발생!!
+2016-12-15 09:24:54.961 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:24:54.961 ERROR [client.OIOClient connectServer 64 main] 인증 메시지 다시 전송
+2016-12-15 09:24:56.697 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:56.698 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:56.703 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:56.704 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:24:56.900 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:56.900 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:56.909 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:56.909 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:24:58.995 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:59.002 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:59.020 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:24:59.463 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-15 09:25:00.062 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-15 09:25:00.067 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-15 09:25:00.067 INFO  [client.OIOClient connectServer 45 main] 키 교환작업 완료:b0152d32787fb9ab5dc6225e4346a62e
+2016-12-15 09:25:00.067 INFO  [client.OIOClient connectServer 47 main] 키 교환작업 완료
+2016-12-15 09:25:00.067 DEBUG [client.OIOClient connectServer 48 main] 암호화 키 b0152d32787fb9ab5dc6225e4346a62e
+2016-12-15 09:25:00.068 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:25:01.721 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:01.721 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:01.722 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:01.722 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:01.925 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:01.927 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:01.927 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:01.978 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:04.038 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:06.740 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:06.741 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:06.744 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:06.745 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:06.948 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:06.979 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:07.028 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:07.028 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:08.996 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:09.003 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:09.020 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:10.070 ERROR [client.OIOClient connectServer 60 main] No Server Response 발생!!
+2016-12-15 09:25:10.071 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:25:10.071 ERROR [client.OIOClient connectServer 64 main] 인증 메시지 다시 전송
+2016-12-15 09:25:11.765 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:11.767 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:11.768 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:11.769 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:11.968 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:11.979 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:12.029 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:12.029 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:14.037 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:16.792 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:16.793 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:16.794 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:16.796 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:17.000 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:17.027 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:17.028 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:17.080 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:18.995 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:19.002 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:19.019 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:19.475 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-15 09:25:20.108 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-15 09:25:20.112 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-15 09:25:20.112 INFO  [client.OIOClient connectServer 45 main] 키 교환작업 완료:0245176ff296c7c8ef5315bb6c0be9aa
+2016-12-15 09:25:20.112 INFO  [client.OIOClient connectServer 47 main] 키 교환작업 완료
+2016-12-15 09:25:20.112 DEBUG [client.OIOClient connectServer 48 main] 암호화 키 0245176ff296c7c8ef5315bb6c0be9aa
+2016-12-15 09:25:20.114 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:25:21.812 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:21.814 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:21.814 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:21.816 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:22.016 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:22.028 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:22.029 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:22.079 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:24.038 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:26.823 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:26.824 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:26.824 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:26.825 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:27.029 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:27.034 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:27.034 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:27.079 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:28.996 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:29.003 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:29.020 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:30.114 ERROR [client.OIOClient connectServer 60 main] No Server Response 발생!!
+2016-12-15 09:25:30.115 INFO  [client.CilentDataProcess sendAuth 27 main] 인증 메시지 전송
+2016-12-15 09:25:30.115 ERROR [client.OIOClient connectServer 64 main] 인증 메시지 다시 전송
+2016-12-15 09:25:31.843 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:31.845 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:31.845 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:31.846 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:32.047 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:32.079 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:32.128 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:32.130 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:34.040 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:35.158 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-15 09:25:36.867 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:36.868 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:36.868 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:36.869 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:37.067 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:37.079 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:37.128 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:37.129 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:39.006 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:39.139 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:39.140 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:41.887 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:41.889 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:41.890 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:41.891 INFO  [client.CilentDataProcess receive 81 main] 주문번호1 알림이 도착했습니다
+2016-12-15 09:25:42.128 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:42.129 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:42.169 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:42.179 INFO  [client.CilentDataProcess receive 81 main] 주문번호2 알림이 도착했습니다
+2016-12-15 09:25:44.223 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:49.094 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:49.097 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-15 09:25:49.098 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송

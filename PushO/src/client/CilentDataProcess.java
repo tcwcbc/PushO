@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import client.encry.AESUtils;
 import client.res.ClientConst;
@@ -17,24 +18,23 @@ public class CilentDataProcess {
 
 	private static byte[] header = new byte[ClientConst.HEADER_LENTH];
 
-	public static void sendAuth(BufferedOutputStream bos, String aesKey) throws IOException {
-		System.out.println("인증 메시지 전송");
-		String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자5", "비밀번호~?", new JSONObject(), new JSONObject());
-		msgAuthString = AESUtils.AES_Encode(msgAuthString,  aesKey);
+	public static void sendAuth(BufferedOutputStream bos, String aesKey, int num) throws IOException {
+		String msgAuthString = ClientUtils.makeJSONMessageForAuth("판매자"+String.valueOf(num), "비밀번호~?", new JSONObject(), new JSONObject());
+		msgAuthString = AESUtils.AES_Encode(msgAuthString, aesKey);
 		byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length], msgAuthString);
 		bos.write(msgAuthByte);
 		bos.flush();
+		ClientConst.CLIENT_LOGGER.info("인증 메시지 전송");
 	}
 
 	public static void sendPing(BufferedOutputStream bos, String aesKey) throws IOException {
 		String msgPingString = ClientUtils.makeJSONMessageForPingPong(new JSONObject(), true);
-		msgPingString = AESUtils.AES_Encode(msgPingString,  aesKey);
+		msgPingString = AESUtils.AES_Encode(msgPingString, aesKey);
 		byte[] msgPingByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgPingString.getBytes(ClientConst.CHARSET).length], msgPingString);
 		bos.write(msgPingByte);
 		bos.flush();
-		System.out.println("ping 전송");
 	}
 
 	public static void sendPong(BufferedOutputStream bos, String aesKey) throws IOException {
@@ -43,7 +43,27 @@ public class CilentDataProcess {
 		byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgPongString.getBytes(ClientConst.CHARSET).length], msgPongString);
 		bos.write(msgPongByte);
-		System.out.println("pong 전송");
+		ClientConst.CLIENT_LOGGER.info("pong 전송");
+	}
+
+	public static void sendPushSuccess(BufferedOutputStream bos, String aesKey, String orderNum) throws IOException {
+		String msgPushString = ClientUtils.makeJSONMessageForPushResponse("success/" + orderNum, new JSONObject(),
+				new JSONObject());
+		msgPushString = AESUtils.AES_Encode(msgPushString, aesKey);
+		byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
+				new byte[ClientConst.HEADER_LENTH + msgPushString.getBytes(ClientConst.CHARSET).length], msgPushString);
+		bos.write(msgPongByte);
+		ClientConst.CLIENT_LOGGER.info("push success 전송");
+	}
+
+	public static void sendPushFail(BufferedOutputStream bos, String aesKey, String orderNum) throws IOException {
+		String msgPushString = ClientUtils.makeJSONMessageForPushResponse("fail/" + orderNum, new JSONObject(),
+				new JSONObject());
+		msgPushString = AESUtils.AES_Encode(msgPushString, aesKey);
+		byte[] msgPongByte = ClientUtils.makeMessageStringToByte(
+				new byte[ClientConst.HEADER_LENTH + msgPushString.getBytes(ClientConst.CHARSET).length], msgPushString);
+		bos.write(msgPongByte);
+		ClientConst.CLIENT_LOGGER.info("push fail 전송");
 	}
 
 	public static void receive(Socket socket, BufferedInputStream bis, BufferedOutputStream bos, String aesKey)
@@ -54,7 +74,6 @@ public class CilentDataProcess {
 		boolean status = true;
 		PushInfo pushData = null;
 
-		// 입력스트림에 대한 7초 타임아웃 설정
 		socket.setSoTimeout(ClientConst.SEND_WATING_TIME);
 		while (status) {
 			while ((readCount = bis.read(header)) != -1) {
@@ -72,23 +91,33 @@ public class CilentDataProcess {
 				}
 				// pong 메시지 경우
 				else if (msg.equals(ClientConst.JSON_VALUE_PONG)) {
-					System.out.println("ACK 도착");
+					ClientConst.CLIENT_LOGGER.info("ACK 도착");
 					status = false;
 					break;
 				}
 				// Push 메시지 경우
 				else if (msg.equals(ClientConst.JSON_VALUE_PUSH)) {
-					pushData = ClientUtils.parsePushMessage(new JSONParser(),
-							AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey), pushData);
-					System.out.println("주문번호" + pushData.getOrder_num() + " 알림이 도착했습니다");
+					try {
+						pushData = ClientUtils.parsePushMessage(new JSONParser(),
+								AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey), pushData);
+						ClientConst.CLIENT_LOGGER.info("주문번호" + pushData.getOrder_num() + " 알림이 도착했습니다");
+						sendPushSuccess(bos, aesKey, pushData.getOrder_num());
+					} catch (ParseException e) {
+						ClientConst.CLIENT_LOGGER.error("주문푸쉬 파싱에러");
+						sendPushFail(bos, aesKey, pushData.getOrder_num());
+						e.printStackTrace();
+					}
+
 				}
+
 			} // end of while
 		}
 	}
 
 	public static void occurTimeout(Socket socket, BufferedInputStream bis, BufferedOutputStream bos, String aesKey)
 			throws IOException {
-		System.out.println("Time out 발생...");
+		ClientConst.CLIENT_LOGGER.error("Time out 발생...");
+		ClientConst.CLIENT_LOGGER.info("ping 전송");
 		sendPing(bos, aesKey);
 		receive(socket, bis, bos, aesKey);
 	}

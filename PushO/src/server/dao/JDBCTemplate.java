@@ -97,16 +97,16 @@ public class JDBCTemplate {
 	 * @return         상품 상세목록을 제외한 데이터를 반환한다.
 	 */
 	public List<PushInfo> executeQuery_ORDER() {
-		String sql = "SELECT order_num, order_user, order_seller, order_date, order_price "
-				+ "FROM TB_USER_ORDER WHERE order_push = 'N'";
+		String sql = "SELECT oi_no, mem_no , st_no , oi_orderdate, oi_totalprice  "
+				+ "FROM pj_orderinfo  WHERE oi_push = 'N'";
 		pushList.clear();
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				pushList.add(new PushInfo(rs.getString("order_num"), rs.getString("order_date"),
-						rs.getString("order_user"), rs.getString("order_seller"), rs.getString("order_price")));
+				pushList.add(new PushInfo(rs.getString("oi_no"), rs.getString("oi_orderdate"),
+						rs.getString("mem_no"), rs.getString("st_no"), rs.getString("oi_totalprice")));
 			} 
 			
 		} catch (SQLException e) {
@@ -148,7 +148,7 @@ public class JDBCTemplate {
 	 * @param msg 바꿀내용
 	 */
 	public void executeQuery_PUSH_STATUS_UPDATE(String orderNum, String msg) {
-		String sql = "UPDATE TB_USER_ORDER set order_push = '"+ msg +"' where order_num = '"+orderNum+"'";
+		String sql = "UPDATE pj_orderinfo set oi_push = '"+ msg +"' where oi_no = '"+orderNum+"'";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();

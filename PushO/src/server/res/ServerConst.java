@@ -3,10 +3,13 @@ package server.res;
 import java.io.File;
 import java.net.Socket;
 import java.nio.charset.Charset;
+import java.util.Collection;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import server.model.PushInfo;
 
 /**
  * @author √÷∫¥√∂
@@ -17,17 +20,16 @@ public interface ServerConst {
 	/**
 	 * DES256 private key
 	 */
-	String desKey = "1jaewooss1234567";
 	int rsaKey_length = 294;
 	/**
 	 * Socket Connection
 	 */
 //	String SERVER_IP ="175.115.95.32";
 	String SERVER_IP ="127.0.0.1";
-	int PORT_NUM = 9999;
+	int PORT_NUM = 9998;
 	int STREAM_TIME_OUT = 30000;
 	int SEND_WATING_TIME = 7000;
-
+	int DB_THREAD_OBSERVER_TIME = 5000;
 	/**
 	 * File Read & Write
 	 */
@@ -62,6 +64,7 @@ public interface ServerConst {
 	String JSON_KEY_ORDER_LIST = "order_list";
 	String JSON_KEY_ORDER_PRODUCT = "product";
 	String JSON_KEY_ORDER_PRODUCT_COUNT = "product_count";
+	String JSON_KEY_ORDER_RESPONSE= "response";
 
 	String JSON_VALUE_AUTH = "auth";
 	String JSON_VALUE_PING = "ping";
@@ -79,7 +82,9 @@ public interface ServerConst {
 	/**
 	 * Thread res
 	 */
-	ArrayBlockingQueue<Socket> SOCKET_QUEUE = new ArrayBlockingQueue<Socket>(5);
+//	ArrayBlockingQueue<Socket> SOCKET_QUEUE = new ArrayBlockingQueue<Socket>(5);
+	int SOCKET_QUEUE_SIZE = 5;
+	int RECEIVED_ACK_QUEUE_SIZE = 10;
 	
 	/**
 	 * ServerLogger

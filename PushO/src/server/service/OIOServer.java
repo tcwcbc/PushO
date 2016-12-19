@@ -25,49 +25,55 @@ public class OIOServer {
 		new OIOServer();
 	}
 	
+	public ArrayBlockingQueue<Socket> socketQueue = 
+			new ArrayBlockingQueue<Socket>(ServerConst.SOCKET_QUEUE_SIZE);
 	// 소켓 및 해당 쓰레드들을 관리하는 매니저클래스 인스턴스 획득
 	private SocketConnectionManager conManagerager = SocketConnectionManager.getInstance();
 	// 인증을 위한 프록시 클래스의 인스턴스 획득
-	private AuthClientHandler authHandler = AuthClientHandler.getInstance();
+//	private AuthClientHandler authHandler = AuthClientHandler.getInstance();
 
 	private ServerSocket serverSocket;
 	private Socket socket;
+	
 
 	public OIOServer() {
 		try {
 			serverSocket = new ServerSocket(ServerConst.PORT_NUM);
-			System.out.println("서버시작...");
+			ServerConst.SERVER_LOGGER.debug("서버시작");
 
-			authHandler.start();
-			System.out.println("핸들러시작...");
+			new AuthClientHandler(socketQueue).start();
+			ServerConst.SERVER_LOGGER.debug("핸들러시작");
 			
 			while (true) {
-				System.out.println("클라이언트 접속 대기");
+				ServerConst.SERVER_LOGGER.debug("클라이언트 접속요청 대기");
 				// 블로킹 구간
 				socket = serverSocket.accept();
-				System.out.println("서버쪽 소켓 연결");
+				ServerConst.SERVER_LOGGER.debug("클라이언트 접속완료");
 				try {
-					ServerConst.SOCKET_QUEUE.put(socket);
-					System.out.println("블로킹큐 put : "+socket.getClass().getName());
+					this.socketQueue.put(socket);
+					ServerConst.SERVER_LOGGER.info("소켓 블로킹 큐에 넣음, 큐 크기 : {}",this.socketQueue.size());
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					ServerConst.SERVER_LOGGER.error(e.getMessage());
 				}
-//				authHandler.authClientAndDelegate(socket);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("서버소켓 예외 : " + e.getMessage());
+			ServerConst.SERVER_LOGGER.error(e.getMessage());
 		} finally {
 			try {
-				ServerConst.SOCKET_QUEUE.clear();
+				
+				this.socketQueue.clear();
 				socket.close();
 				serverSocket.close();
 				conManagerager.closeAll();
+				ServerConst.SERVER_LOGGER.debug("모든자원 해제");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				ServerConst.SERVER_LOGGER.error(e.getMessage());
 			}
 		}
 	}

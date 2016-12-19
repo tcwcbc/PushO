@@ -1,9 +1,0 @@
-Push_O - 2016-12-13 09:05:45.842 TRACE [Class:test.Log4jTest Method:<init> Line:14 Thread:main] Message:시작
-Push_O - 2016-12-13 09:05:45.963 INFO  [Class:test.Log4jTest Method:<init> Line:15 Thread:main] Message:가나다라마바사
-Push_O - 2016-12-13 09:05:45.963 TRACE [Class:test.Log4jTest Method:<init> Line:16 Thread:main] Message:끝
-Push_O - 2016-12-13 09:29:04.163 TRACE [Class:test.Log4jTest Method:<init> Line:14 Thread:main] Message:시작
-Push_O - 2016-12-13 09:29:04.166 INFO  [Class:test.Log4jTest Method:<init> Line:15 Thread:main] Message:가나다라마바사
-Push_O - 2016-12-13 09:29:04.167 TRACE [Class:test.Log4jTest Method:<init> Line:16 Thread:main] Message:끝
-Push_O - 2016-12-13 09:31:06.188 TRACE [Class:test.Log4jTest Method:<init> Line:14 Thread:main] Message:시작
-Push_O - 2016-12-13 09:31:06.192 INFO  [Class:test.Log4jTest Method:<init> Line:15 Thread:main] Message:가나다라마바사
-Push_O - 2016-12-13 09:31:06.193 TRACE [Class:test.Log4jTest Method:<init> Line:16 Thread:main] Message:끝

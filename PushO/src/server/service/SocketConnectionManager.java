@@ -5,10 +5,13 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import server.exception.AlreadyConnectedSocketException;
 import server.exception.PushMessageSendingException;
+import server.model.PushInfo;
 import server.observer.DBThread;
+import server.res.ServerConst;
 
 /**
  * @author 최병철
@@ -16,10 +19,9 @@ import server.observer.DBThread;
  *              {@link AuthClientHandler}에서 인증을 거친 후에
  *              {@link ProcessCilentRequest}를 생성하여 해당 쓰레드를 관리하기 위한 ThreadPool과
  *              클라이언트들을 관리하는 자료구조가 포함 {@link Pushable}을 구현하여 특정 판매자에게만 보내는 메소드와
- *              모두에게 보내는 메소드를 구현 
- * @TODO 클라이언트를 관리하기 위한 자료구조(HashMap->
- *      				Collection.syncronized() Wrapping->ConcurrentHashMap) 
- *      Thread pooling {@link Pushable} 구현
+ *              모두에게 보내는 메소드를 구현
+ * @TODO 클라이언트를 관리하기 위한 자료구조(HashMap-> Collection.syncronized()
+ *       Wrapping->ConcurrentHashMap) Thread pooling {@link Pushable} 구현
  */
 public class SocketConnectionManager implements Pushable {
 	// 매니저 객체는 싱글톤
@@ -28,44 +30,47 @@ public class SocketConnectionManager implements Pushable {
 	public static SocketConnectionManager getInstance() {
 		if (instance == null) {
 			instance = new SocketConnectionManager();
+			ServerConst.SERVER_LOGGER.debug("매니저 생성");
 		}
 		return instance;
 	}
 
 	// 클라이언트 처리 쓰레드를 Map으로 관리
-//	private Map<String, ProcessCilentRequest> conMap = new HashMap<String, ProcessCilentRequest>();
-	private ConcurrentHashMap<String, ProcessCilentRequest> concurrentHashMap = 
-									new ConcurrentHashMap<String, ProcessCilentRequest>();
+	// private Map<String, ProcessCilentRequest> conMap = new HashMap<String,
+	// ProcessCilentRequest>();
+	private ConcurrentHashMap<String, ProcessCilentRequest> concurrentHashMap = new ConcurrentHashMap<String, ProcessCilentRequest>();
 	// 쓰레드풀 구현부분
 	private ExecutorService executorService = Executors.newCachedThreadPool();
-	
+
 	private DBThread dbThread;
-
-	private SocketConnectionManager() {
-		dbThread = new DBThread(this);
-		dbThread.start();
-		System.out.println("DB감시 시작...");
-	}
-
-	@Override
-	public synchronized void sendPushAll(String msg) {
-		Iterator<String> keySetIterator = concurrentHashMap.keySet().iterator();
-		while (keySetIterator.hasNext()) {
-			String userID = keySetIterator.next();
-			sendPushPartial(userID,msg);
-		}
-	}
 	
+	public LinkedBlockingQueue<String> receivedAckQueue = 
+			new LinkedBlockingQueue<String>(ServerConst.RECEIVED_ACK_QUEUE_SIZE);
+	private SocketConnectionManager() {
+		dbThread = new DBThread(this, receivedAckQueue);
+		ServerConst.SERVER_LOGGER.debug("DB쓰레드 생성");
+		dbThread.start();
+		ServerConst.SERVER_LOGGER.debug("DB쓰레드 실행");
+	}
+
 	@Override
-	public boolean sendPushPartial(String Id, String msg) {
-		boolean chkUserClient = false;
-		try {
-			concurrentHashMap.get(Id).setPush(msg);
-		} catch (PushMessageSendingException e) {
-			concurrentHashMap.remove(Id);
-			System.out.println(Id+" 를 맵에서 삭제");
+	public void sendPushAll(String msg) {
+		//ConcurrentHashMap의 특성상 순회 도중에 다른 스레드의 접근으로 인헌 ConcurrentModificationException 발생 안된다???
+		//그렇다면 메소드단위의 sync 해제해도 무방
+		for(String key : concurrentHashMap.keySet()){
+			sendPushPartial(key,msg);
 		}
-		return chkUserClient;
+	}
+
+	@Override
+	public void sendPushPartial(String id, String msg) {
+		try {
+			concurrentHashMap.get(id).setPush(msg);
+			ServerConst.SERVER_LOGGER.debug("사용자 [{}]에게 Push메시지 전송", id);
+		} catch (PushMessageSendingException e) {
+			concurrentHashMap.remove(id);
+			ServerConst.SERVER_LOGGER.error("사용자 [{}] 를 맵에서 제거", id);
+		}
 	}
 
 	/**
@@ -76,32 +81,37 @@ public class SocketConnectionManager implements Pushable {
 	 * @param clientSocket
 	 *            클라이언트와 연결된 소켓
 	 */
-	public synchronized void addClientSocket(String name, Socket clientSocket, String aesKey)
-			throws AlreadyConnectedSocketException{
-
-		boolean duplicated = false;
-		//이미 등록된 사용자인지 검사
+	public void addClientSocket(String name, Socket clientSocket, String aesKey)
+											throws AlreadyConnectedSocketException {
+		// 중복이 아니라면 쓰레드를 생성하고 Map에 담음
 		if (concurrentHashMap.containsKey(name)) {
-			duplicated = true;
-		}
-		//중복이 아니라면 쓰레드를 생성하고 Map에 담음
-		if (!duplicated) {
-			ProcessCilentRequest proClient = new ProcessCilentRequest(clientSocket, aesKey);
-			this.executorService.submit(proClient);
-			System.out.println("실행 중인 클라이언트의 이름 : "+name);
-			concurrentHashMap.put(name, proClient);
-			System.out.println("연결된 클라이언트 수 : "+concurrentHashMap.size());
-		} else {
 			// TODO : 인증이 되지 않았다는 메시지를 보내고 소켓을 닫는 것을 던짐
-			throw new AlreadyConnectedSocketException(name+"은 이미 존재");
+			ServerConst.SERVER_LOGGER.info("사용자 [{}]는 이미 존재", name);
+			throw new AlreadyConnectedSocketException("해당사용자는 이미 존재");
+		} else {
+			ProcessCilentRequest pcr = new ProcessCilentRequest(clientSocket, aesKey, receivedAckQueue);
+			concurrentHashMap.put(name, pcr);
+			this.executorService.submit(pcr);
+			ServerConst.SERVER_LOGGER.info("쓰레드 시작, 클라이언트 이름 : {}, 연결 수 : {}", name,concurrentHashMap.size());
 		}
+		/*
+		 //이렇게 한다면 메소드 단위의 sync 안해줘도 될지도? 
+		 try {
+			this.executorService.submit(
+					concurrentHashMap.putIfAbsent(
+							name, new ProcessCilentRequest(clientSocket, aesKey, receivedAckQueue)));
+		} catch (NullPointerException e) {
+			
+		}*/
+		
 	}
 
 	public synchronized void closeAll() {
+		ServerConst.SERVER_LOGGER.debug("매니저의 자원해제 시작");
 		dbThread.interrupt();
 		executorService.shutdown();
 		concurrentHashMap.clear();
+		ServerConst.SERVER_LOGGER.debug("매니저의 자원해제 끝");
 	}
-
 
 }

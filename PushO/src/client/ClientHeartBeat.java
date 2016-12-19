@@ -28,8 +28,7 @@ public class ClientHeartBeat extends TimerTask {
 					msgPingString);
 			bos.write(msgPingByte);
 			bos.flush();
-			System.out.println("heart beat 전송");
-
+			ClientConst.CLIENT_LOGGER.info("heart beat 전송");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

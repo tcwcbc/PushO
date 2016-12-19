@@ -17,5 +17,5 @@ public interface Pushable {
 	 * @param Id	클라이언트 아이디(Map<K,V>의 K값)
 	 * @param msg	전송할 푸시 메시지
 	 */
-	public boolean sendPushPartial(String Id, String msg);
+	public void sendPushPartial(String Id, String msg);
 }
