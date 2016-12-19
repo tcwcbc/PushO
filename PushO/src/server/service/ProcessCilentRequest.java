@@ -48,7 +48,7 @@ public class ProcessCilentRequest extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ServerConst.SERVER_LOGGER.debug("ProcessClientRequest 생성");
+		ServerConst.ACCESS_LOGGER.debug("ProcessClientRequest Created!");
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class ProcessCilentRequest extends Thread {
 			timeoutE.printStackTrace();
 			try {
 				bos.write(msgPingByte);
-
+//				ServerConst.MESSAGE_LOGGER.info("NACK Message Receive, orderNum:[{}]",response[2]);
 			} catch (IOException e) {
 				e.printStackTrace();
 				try {
@@ -100,7 +100,7 @@ public class ProcessCilentRequest extends Thread {
 		int bodylength = 0;
 		bos.write(msgPingByte);
 		bos.flush();
-		ServerConst.SERVER_LOGGER.debug("인증성공 메시지 전송");
+		ServerConst.MESSAGE_LOGGER.info("Send Message Authorization Complete, Msg:[{}]", msgPingString);
 
 		while (!this.isInterrupted()) {
 			readCount = bis.read(header);
@@ -116,17 +116,17 @@ public class ProcessCilentRequest extends Thread {
 				/*
 				 * this.receivedAckQueue.put(new PushInfo());
 				 */
-				ServerConst.SERVER_LOGGER.debug("응답메시지 수신");
+				ServerConst.MESSAGE_LOGGER.info("Receive Message Authorization Complete, Msg:[{}]",msg);
 			} else if (msg.contains(ServerConst.JSON_VALUE_PUSH)) {
 				String[] response = msg.split("/");
 				/**
 				 * 응답 형식 response/fail or success/주문번호
 				 */
 				if (response[1].equals("success")) {
-					ServerConst.SERVER_LOGGER.info(response[2] + "번 주문 응답결과 success");
-					this.receivedAckQueue.put(response[2]);
+					ServerConst.MESSAGE_LOGGER.info("ACK Message Receive, orderNum:[{}]",response[2]);
 				} else if (response[1].equals("fail")) {
-					ServerConst.SERVER_LOGGER.info(response[2] + "번 주문 응답결과 fail");
+					this.receivedAckQueue.put(response[2]);
+					ServerConst.MESSAGE_LOGGER.info("NACK Message Receive, orderNum:[{}]",response[2]);
 				}
 			}
 			bos.flush();
@@ -149,12 +149,12 @@ public class ProcessCilentRequest extends Thread {
 
 			bos.write(msgPushByte);
 			bos.flush();
-			ServerConst.SERVER_LOGGER.info("푸시완료, " + this.getName());
+			ServerConst.MESSAGE_LOGGER.info("Complete Sending Message to : [{}] ",this.getName());
 		} catch (IOException e) {
 			// 상대 클라이언트 접속이 끊어지면 발생
 			// 그에 따라 HashMap에 저장되어있는 현재 Thread를 지우는 작업이 필요함
 			this.interrupt();
-			ServerConst.SERVER_LOGGER.error("푸시에러, "+e.getMessage());
+			ServerConst.MESSAGE_LOGGER.info("Fail Sending Message to : [{}] ",this.getName());
 			throw new PushMessageSendingException(e);
 		}
 	}

@@ -58,15 +58,15 @@ public class DBThread extends Thread {
 					//하나씩 꺼내서 DB 상태값을 전송이 완료되었다고 바꾼다
 					receivedAckQueue.remove();
 					String receiveOrderNum = iter.next();
-					db.executeQuery_PUSH_STATUS_UPDATE(receiveOrderNum, "Y");
+					db.executeQuery_PUSH_STATUS_UPDATE(receiveOrderNum, "N");
 				}
 				
 				pushList = db.executeQuery_ORDER();
 
 				if (ServerUtils.isEmpty(pushList)) {
-					ServerConst.SERVER_LOGGER.info("발송할 주문정보 없음");
+					ServerConst.MESSAGE_LOGGER.info("Push Message is not Exist");
 				} else {
-					ServerConst.SERVER_LOGGER.info("발송할 주문정보 " + pushList.size() + "건 검색" );
+					ServerConst.MESSAGE_LOGGER.info("Push Message is Exist, msgNum : [{}]", pushList.size());
 					for (PushInfo orderNum : pushList) {
 						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(orderNum.getOrder_num()));
 						//TODO 이 부분은 특정 사용자에게 알림을 보내므로 setPushPartial 바꿔야함 
@@ -78,13 +78,13 @@ public class DBThread extends Thread {
 				Thread.sleep(ServerConst.DB_THREAD_OBSERVER_TIME);
 			} catch (InterruptedException e) {
 				e.getStackTrace();
-				ServerConst.SERVER_LOGGER.error(e.getMessage());
+				ServerConst.MESSAGE_LOGGER.error(e.getMessage());
 				try {
 					db.closeDBSet();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					ServerConst.SERVER_LOGGER.error(e1.getMessage());
+					ServerConst.MESSAGE_LOGGER.error(e1.getMessage());
 				}
 			} finally {
 				pushList.clear();

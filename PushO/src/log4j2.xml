@@ -5,7 +5,9 @@
 		<Property name="name">Push_O</Property>
 		<Property name="logPath">/home/tcwcbc/</Property>
 		<Property name="level">debug</Property>
-		<Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%C %M %L %t] %msg%n</Property>
+		<Property name="error_pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%C %M %L %t] %msg%n</Property>
+		<Property name="debug_pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%C %M %L %t] %msg%n</Property>
+		<Property name="info_pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%C] %msg%n</Property>
 	</Properties>
 
 	<Appenders>
@@ -27,10 +29,10 @@
 			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
 		</RollingFile>
 		
-		<RollingFile name="server_file_debug" fileName="${logPath}log/debug/server_debug.log"
-			filePattern="${logPath}log/server/$${date:yyyy}/$${date:MM}/$${date:dd}/debug/${name}_server_debug_%d{yyyyMMddHH}.log">
+		<RollingFile name="access_debug" fileName="${logPath}log/access/debug/access_debug.log"
+			filePattern="${logPath}log/server/access/$${date:yyyy}/$${date:MM}/$${date:dd}/debug/${name}_access_debug_%d{yyyyMMddHH}.log">
 			<PatternLayout>
-				<pattern>${pattern}</pattern>
+				<pattern>${debug_pattern}</pattern>
 			</PatternLayout>
 			<Policies>
 				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
@@ -39,10 +41,10 @@
 			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
 		</RollingFile>
 		
-		<RollingFile name="server_file_error" fileName="${logPath}log/error/server_error.log"
-			filePattern="${logPath}log/server/$${date:yyyy}/$${date:MM}/$${date:dd}/error/${name}_server_error_%d{yyyyMMddHH}.log">
+		<RollingFile name="access_error" fileName="${logPath}log/access/error/server_error.log"
+			filePattern="${logPath}log/server/access/$${date:yyyy}/$${date:MM}/$${date:dd}/error/${name}_access_error_%d{yyyyMMddHH}.log">
 			<PatternLayout>
-				<pattern>${pattern}</pattern>
+				<pattern>${error_pattern}</pattern>
 			</PatternLayout>
 			<Policies>
 				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
@@ -51,10 +53,46 @@
 			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
 		</RollingFile>
 		
-		<RollingFile name="server_file_info" fileName="${logPath}log/info/server_info.log"
-			filePattern="${logPath}log/server/$${date:yyyy}/$${date:MM}/$${date:dd}/info/${name}_server_info_%d{yyyyMMddHH}.log">
+		<RollingFile name="access_info" fileName="${logPath}log/access/info/server_info.log"
+			filePattern="${logPath}log/server/access/$${date:yyyy}/$${date:MM}/$${date:dd}/info/${name}_access_info_%d{yyyyMMddHH}.log">
 			<PatternLayout>
-				<pattern>${pattern}</pattern>
+				<pattern>${info_pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
+		</RollingFile>
+		
+		<RollingFile name="message_debug" fileName="${logPath}log/message/debug/server_debug.log"
+			filePattern="${logPath}log/server/message/$${date:yyyy}/$${date:MM}/$${date:dd}/debug/${name}_message_debug_%d{yyyyMMddHH}.log">
+			<PatternLayout>
+				<pattern>${debug_pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
+		</RollingFile>
+		
+		<RollingFile name="message_error" fileName="${logPath}log/message/error/server_error.log"
+			filePattern="${logPath}log/server/message/$${date:yyyy}/$${date:MM}/$${date:dd}/error/${name}_message_error_%d{yyyyMMddHH}.log">
+			<PatternLayout>
+				<pattern>${error_pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="1000" fileIndex="min"/>
+		</RollingFile>
+		
+		<RollingFile name="message_info" fileName="${logPath}log/message/info/server_info.log"
+			filePattern="${logPath}log/server/message/$${date:yyyy}/$${date:MM}/$${date:dd}/info/${name}_message_info_%d{yyyyMMddHH}.log">
+			<PatternLayout>
+				<pattern>${info_pattern}</pattern>
 			</PatternLayout>
 			<Policies>
 				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
@@ -70,11 +108,17 @@
 			<!-- <AppenderRef ref="Console" /> -->
 			<AppenderRef ref="client_file" />
 		</Logger>
-		<Logger name="server" level="${level}" additivity="false">
+		<Logger name="access" level="${level}" additivity="false">
 			<!-- <AppenderRef ref="Console" /> -->
-			<AppenderRef ref="server_file_debug" level="debug" />
-			<AppenderRef ref="server_file_info" level="info" />
-			<AppenderRef ref="server_file_error" level="error" />
+			<AppenderRef ref="access_debug" level="debug" />
+			<AppenderRef ref="access_info" level="info" />
+			<AppenderRef ref="access_error" level="error" />
+		</Logger>
+		<Logger name="message" level="${level}" additivity="false">
+			<!-- <AppenderRef ref="Console" /> -->
+			<AppenderRef ref="message_debug" level="debug" />
+			<AppenderRef ref="message_info" level="info" />
+			<AppenderRef ref="message_error" level="error" />
 		</Logger>
 		<Root level="trace">
 			<AppenderRef ref="Console" />

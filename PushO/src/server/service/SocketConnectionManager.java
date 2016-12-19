@@ -30,7 +30,7 @@ public class SocketConnectionManager implements Pushable {
 	public static SocketConnectionManager getInstance() {
 		if (instance == null) {
 			instance = new SocketConnectionManager();
-			ServerConst.SERVER_LOGGER.debug("매니저 생성");
+			ServerConst.ACCESS_LOGGER.debug("Create ConnectionManager");
 		}
 		return instance;
 	}
@@ -48,28 +48,30 @@ public class SocketConnectionManager implements Pushable {
 			new LinkedBlockingQueue<String>(ServerConst.RECEIVED_ACK_QUEUE_SIZE);
 	private SocketConnectionManager() {
 		dbThread = new DBThread(this, receivedAckQueue);
-		ServerConst.SERVER_LOGGER.debug("DB쓰레드 생성");
+		ServerConst.ACCESS_LOGGER.debug("DBThread Created!");
 		dbThread.start();
-		ServerConst.SERVER_LOGGER.debug("DB쓰레드 실행");
+		ServerConst.ACCESS_LOGGER.debug("DBThread Running...");
 	}
 
 	@Override
 	public void sendPushAll(String msg) {
 		//ConcurrentHashMap의 특성상 순회 도중에 다른 스레드의 접근으로 인헌 ConcurrentModificationException 발생 안된다???
 		//그렇다면 메소드단위의 sync 해제해도 무방
+		ServerConst.MESSAGE_LOGGER.debug("Push Message Sending Start...");
 		for(String key : concurrentHashMap.keySet()){
 			sendPushPartial(key,msg);
 		}
+		ServerConst.MESSAGE_LOGGER.debug("Push Message Sending End!");
 	}
 
 	@Override
 	public void sendPushPartial(String id, String msg) {
 		try {
 			concurrentHashMap.get(id).setPush(msg);
-			ServerConst.SERVER_LOGGER.debug("사용자 [{}]에게 Push메시지 전송", id);
+			ServerConst.MESSAGE_LOGGER.debug("Order Message Send to [{}]", id);
 		} catch (PushMessageSendingException e) {
 			concurrentHashMap.remove(id);
-			ServerConst.SERVER_LOGGER.error("사용자 [{}] 를 맵에서 제거", id);
+			ServerConst.MESSAGE_LOGGER.error("Remove Client [{}] Connection in HashMap", id);
 		}
 	}
 
@@ -86,13 +88,13 @@ public class SocketConnectionManager implements Pushable {
 		// 중복이 아니라면 쓰레드를 생성하고 Map에 담음
 		if (concurrentHashMap.containsKey(name)) {
 			// TODO : 인증이 되지 않았다는 메시지를 보내고 소켓을 닫는 것을 던짐
-			ServerConst.SERVER_LOGGER.info("사용자 [{}]는 이미 존재", name);
-			throw new AlreadyConnectedSocketException("해당사용자는 이미 존재");
+			ServerConst.ACCESS_LOGGER.info("Client [{}] is aleady Connected", name);
+			throw new AlreadyConnectedSocketException("Aleady Connected Exception");
 		} else {
 			ProcessCilentRequest pcr = new ProcessCilentRequest(clientSocket, aesKey, receivedAckQueue);
 			concurrentHashMap.put(name, pcr);
 			this.executorService.submit(pcr);
-			ServerConst.SERVER_LOGGER.info("쓰레드 시작, 클라이언트 이름 : {}, 연결 수 : {}", name,concurrentHashMap.size());
+			ServerConst.ACCESS_LOGGER.info("ProcessClientRequest Thread Start, Client Name : [{}], Connection total Number : [{}]", name,concurrentHashMap.size());
 		}
 		/*
 		 //이렇게 한다면 메소드 단위의 sync 안해줘도 될지도? 
@@ -107,11 +109,10 @@ public class SocketConnectionManager implements Pushable {
 	}
 
 	public synchronized void closeAll() {
-		ServerConst.SERVER_LOGGER.debug("매니저의 자원해제 시작");
 		dbThread.interrupt();
 		executorService.shutdown();
 		concurrentHashMap.clear();
-		ServerConst.SERVER_LOGGER.debug("매니저의 자원해제 끝");
+		ServerConst.ACCESS_LOGGER.debug("Manager's Resourcese Closed");
 	}
 
 }
