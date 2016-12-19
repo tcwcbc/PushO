@@ -50,6 +50,7 @@ public class OIOClient {
 			// 키교환이 이뤄지는 작업
 			KeyExchangeClient key = new KeyExchangeClient(bis, bos);
 			aesKey = key.start();
+			System.out.println("키 교환작업 완료:" + aesKey);
 			ClientConst.CLIENT_LOGGER.info("키 교환작업 완료:" + aesKey);
 
 			ClientConst.CLIENT_LOGGER.info("키 교환작업 완료");
