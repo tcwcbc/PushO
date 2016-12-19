@@ -61,7 +61,7 @@ public class SocketConnectionManager implements Pushable {
 		ServerConst.MESSAGE_LOGGER.debug("Push Message Sending Start...");
 		for(String key : concurrentHashMap.keySet()){
 			try{
-			concurrentHashMap.get(key).setPushAll(msg);
+				concurrentHashMap.get(key).setPushAll(msg);
 			} catch(PushMessageSendingException e){
 				concurrentHashMap.remove(key);
 				ServerConst.MESSAGE_LOGGER.error("Remove Client [{}] Connection in HashMap", key);
