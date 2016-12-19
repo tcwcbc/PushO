@@ -36,11 +36,11 @@ public class DBThread extends Thread {
 	private PushInfo pushInfo;
 	
 	private Iterator<String> iter;
-	public LinkedBlockingQueue<String> receivedAckQueue;
+	public LinkedBlockingQueue<String> unreceivedAckQueue;
 
-	public DBThread(Pushable pushable, LinkedBlockingQueue<String> receivedAckQueue) {
+	public DBThread(Pushable pushable, LinkedBlockingQueue<String> unreceivedAckQueue) {
 		this.pushable = pushable;
-		this.receivedAckQueue = receivedAckQueue;
+		this.unreceivedAckQueue = unreceivedAckQueue;
 		this.db = new JDBCTemplate();
 	}
 
@@ -49,18 +49,16 @@ public class DBThread extends Thread {
 		while (!this.isInterrupted()) {
 			try {
 				// 큐에 데이터가 있으면 처리하는 부분
-				if(!receivedAckQueue.isEmpty()){
-					while(!receivedAckQueue.isEmpty()){
-						db.executeQuery_PUSH_STATUS_UPDATE(receivedAckQueue.take(), "Y");
-					}
+				while(!unreceivedAckQueue.isEmpty()){
+					db.executeQuery_PUSH_STATUS_UPDATE(unreceivedAckQueue.take(), "N");
 				}
 				
 				// 주문 정보를 조회
 				orderList = db.executeQuery_ORDER();
 				if (ServerUtils.isEmpty(orderList)) {
-					ServerConst.SERVER_LOGGER.info("발송할 주문정보 없음");
+					ServerConst.MESSAGE_LOGGER.info("Order Message is not Exist");
 				} else {
-					ServerConst.SERVER_LOGGER.info("발송할 주문정보 " + orderList.size() + "건 검색" );
+					ServerConst.MESSAGE_LOGGER.info("Order Message is Exist, msgNum : [{}]", orderList.size());
 					for (OrderInfo orderNum : orderList) {
 						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(orderNum.getOrder_num()));
 						//TODO 이 부분은 특정 사용자에게 알림을 보내므로 setPushPartial 바꿔야함 
@@ -71,8 +69,9 @@ public class DBThread extends Thread {
 				// 재고 정보를 조회
 				pushInfo = db.executeQuery_STOCK();
 				if (ServerUtils.isEmpty(pushInfo)) {
-					ServerConst.SERVER_LOGGER.info("발송할 재고정보 없음");
+					ServerConst.MESSAGE_LOGGER.debug("Push Message is not Exist");
 				} else {
+					ServerConst.MESSAGE_LOGGER.debug("Push Message is Exist");
 					//모든 사용자에게 전송
 					setPushAll(pushInfo);
 				}
@@ -82,13 +81,13 @@ public class DBThread extends Thread {
 				Thread.sleep(ServerConst.DB_THREAD_OBSERVER_TIME);
 			} catch (InterruptedException e) {
 				e.getStackTrace();
-				ServerConst.SERVER_LOGGER.error(e.getMessage());
+				ServerConst.MESSAGE_LOGGER.error(e.getMessage());
 				try {
 					db.closeDBSet();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					ServerConst.SERVER_LOGGER.error(e1.getMessage());
+					ServerConst.MESSAGE_LOGGER.error(e1.getMessage());
 				}
 			} finally {
 				pushInfo = null;
