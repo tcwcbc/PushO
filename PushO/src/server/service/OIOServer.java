@@ -39,29 +39,29 @@ public class OIOServer {
 	public OIOServer() {
 		try {
 			serverSocket = new ServerSocket(ServerConst.PORT_NUM);
-			ServerConst.SERVER_LOGGER.debug("서버시작");
+			ServerConst.ACCESS_LOGGER.debug("Server Start, port:{}",ServerConst.PORT_NUM);
 
 			new AuthClientHandler(socketQueue).start();
-			ServerConst.SERVER_LOGGER.debug("핸들러시작");
+			ServerConst.ACCESS_LOGGER.debug("AuthHandler Start");
 			
 			while (true) {
-				ServerConst.SERVER_LOGGER.debug("클라이언트 접속요청 대기");
+				ServerConst.ACCESS_LOGGER.debug("Wating Client Request..");
 				// 블로킹 구간
 				socket = serverSocket.accept();
-				ServerConst.SERVER_LOGGER.debug("클라이언트 접속완료");
+				ServerConst.ACCESS_LOGGER.debug("Client Access!");
 				try {
 					this.socketQueue.put(socket);
-					ServerConst.SERVER_LOGGER.info("소켓 블로킹 큐에 넣음, 큐 크기 : {}",this.socketQueue.size());
+					ServerConst.ACCESS_LOGGER.info("Put Element into BlockingQueue for Authorization, Blocking Queue Size : {}",this.socketQueue.size());
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					ServerConst.SERVER_LOGGER.error(e.getMessage());
+					ServerConst.ACCESS_LOGGER.error(e.getMessage());
 				}
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			ServerConst.SERVER_LOGGER.error(e.getMessage());
+			ServerConst.ACCESS_LOGGER.error(e.getMessage());
 		} finally {
 			try {
 				
@@ -69,11 +69,11 @@ public class OIOServer {
 				socket.close();
 				serverSocket.close();
 				conManagerager.closeAll();
-				ServerConst.SERVER_LOGGER.debug("모든자원 해제");
+				ServerConst.ACCESS_LOGGER.debug("Close All Resource");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				ServerConst.SERVER_LOGGER.error(e.getMessage());
+				ServerConst.ACCESS_LOGGER.error(e.getMessage());
 			}
 		}
 	}

@@ -49,7 +49,7 @@ public class KeyExchangeServer {
 			this.hostAddress = socket.getInetAddress().getHostAddress();
 		} catch (IOException e) {
 			e.getStackTrace();
-			ServerConst.SERVER_LOGGER.error(e.getMessage());
+			ServerConst.ACCESS_LOGGER.error(e.getMessage());
 		}
 	}
 
@@ -83,8 +83,8 @@ public class KeyExchangeServer {
 	private void sendEncryDES256KeyToClient() throws IOException {
 		aesKey = Hex.encodeHexString(EncryUtils.get128bitKey().getEncoded());
 		RSAEncryption ec = new RSAEncryption(receiveKey, aesKey);
-		ServerConst.SERVER_LOGGER.info("AES 키 생성");
-		ServerConst.SERVER_LOGGER.debug(hostAddress + "/" + aesKey);
+		ServerConst.ACCESS_LOGGER.debug("AES Key Generating Start");
+		ServerConst.ACCESS_LOGGER.info("Received AESkey[{}] from [{}] ",aesKey, hostAddress);
 		String msgEncryString = ServerUtils.makeJSONMessageForEncry(EncryUtils.byteArrayToHex(ec.getkey()),
 				new JSONObject(), new JSONObject());
 		byte[] msgEncryByte = ServerUtils.makeMessageStringToByte(
@@ -106,6 +106,7 @@ public class KeyExchangeServer {
 				msgEncryString);
 		bos.write(msgEncryByte);
 		bos.flush();
+		ServerConst.ACCESS_LOGGER.info("Send Encryption data [{}] to [{}]", aesKey, hostAddress);
 	}
 
 	public String start() {
@@ -113,20 +114,20 @@ public class KeyExchangeServer {
 			header = new byte[ServerConst.HEADER_LENTH];
 			// 서버로 부터 RSA 공개키를 받는다
 			receiveForServer(1);
-			ServerConst.SERVER_LOGGER.info(hostAddress + "의 RSA 공개키 받음");
+			ServerConst.ACCESS_LOGGER.debug("Received RSAKey from [{}]", hostAddress);
 			// 공개키로 암호화된 DES256 키를 보낸다
 			sendEncryDES256KeyToClient();
-			ServerConst.SERVER_LOGGER.info(hostAddress + "에게 암호화된 AES암호키 전송");
+			ServerConst.ACCESS_LOGGER.debug("Send Encrypted AESKey by Reecived RSAKey to [{}]", hostAddress);
 			// 암호화된 Hello World 수신
 			receiveForServer(2);
-			ServerConst.SERVER_LOGGER.info(hostAddress + "의 암호키 테스트 'Hello World' 수신");
+			ServerConst.ACCESS_LOGGER.debug("Receive Encrypted data 'Hello World' for test from [{}]", hostAddress);
 			// Hello World 복호화후 다시 암호화해서 전송
 			sendToClient();
-			ServerConst.SERVER_LOGGER.info(hostAddress + "에게 암호키 테스트 'Hello World' 전송");
+			ServerConst.ACCESS_LOGGER.debug("Send Encrypted data 'Hello World' for test to [{}]", hostAddress);
 
 		} catch (Exception e) {
 			e.getStackTrace();
-			ServerConst.SERVER_LOGGER.error(e.getMessage());
+			ServerConst.ACCESS_LOGGER.error(e.getMessage());
 		}
 
 		return aesKey;

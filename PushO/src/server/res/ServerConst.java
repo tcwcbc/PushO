@@ -91,5 +91,6 @@ public interface ServerConst {
 	/**
 	 * ServerLogger
 	 */
-	Logger SERVER_LOGGER = LogManager.getLogger("server");
+	Logger ACCESS_LOGGER = LogManager.getLogger("access");
+	Logger MESSAGE_LOGGER = LogManager.getLogger("message");
 }
