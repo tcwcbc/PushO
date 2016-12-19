@@ -59,6 +59,7 @@ public class DBThread extends Thread {
 				if (ServerUtils.isEmpty(orderList)) {
 					ServerConst.MESSAGE_LOGGER.info("Order Message is not Exist");
 				} else {
+					System.out.println(orderList.size());
 					ServerConst.MESSAGE_LOGGER.info("Order Message is Exist, msgNum : [{}]", orderList.size());
 					for (OrderInfo orderNum : orderList) {
 						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(orderNum.getOrder_num()));

@@ -76,7 +76,7 @@ public class JDBCTemplate {
 
 			// 결과 값이 없다면 다음의 문장은 수행되지 않는다.
 			if (rs.next()) {
-				userAuthResult = new UserAuth(rs.getString("mem_id"), rs.getString("mem_name"),
+				userAuthResult = new UserAuth(rs.getString("mem_id"), rs.getString("mem_salt"),
 						rs.getString("mem_pwd"));
 			}
 
@@ -187,7 +187,7 @@ public class JDBCTemplate {
 		String sql = "UPDATE pj_orderinfo set oi_push = '" + msg + "' where oi_no = '" + orderNum + "'";
 		try {
 			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

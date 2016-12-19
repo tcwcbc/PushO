@@ -113,6 +113,7 @@ public class AuthClientHandler extends Thread {
 				try {
 					// 인증 실패 시 예외가 발생되는 부분
 					checkAuthorization(userInfo[0]);
+					System.out.println(userInfo[1]);
 					checkPassword(userInfo[1]);
 					authorized = true;
 
@@ -174,9 +175,9 @@ public class AuthClientHandler extends Thread {
 	 * @throws PasswordAuthFailException
 	 */
 	private void checkPassword(String userPwd) throws PasswordAuthFailException {
-		userPasswd = ServerUtils.getEncryptValue(userInfo.getPasswd() + userInfo.getPasswd_salt());
-		
-		if (userPwd == userPasswd) {
+		userPasswd = ServerUtils.getEncryptValue(userPwd + userInfo.getPasswd_salt());
+		System.out.println(userPasswd + "/" + userInfo.getPasswd());
+		if (userInfo.getPasswd().equals(userPasswd)) {
 			//인증 완료
 		} else {
 			throw new PasswordAuthFailException("비밀번호가 일치하지 않음");
