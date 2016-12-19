@@ -1,0 +1,91 @@
+2016-12-19 17:35:16.800 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:17.816 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:18.816 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:19.821 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:20.823 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:21.825 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:22.827 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:23.830 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:24.823 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:25.825 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:26.831 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:27.834 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:28.835 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:29.837 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:42.007 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:43.010 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:44.022 ERROR [client.OIOClient connectServer 66 main] Server Connection Exception 발생!!
+2016-12-19 17:35:56.438 DEBUG [client.OIOClient connectServer 46 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=63306]
+2016-12-19 17:35:57.706 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-19 17:35:57.712 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-19 17:35:58.025 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-19 17:35:58.501 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-19 17:35:58.524 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-19 17:35:58.526 INFO  [client.OIOClient connectServer 54 main] 키 교환작업 완료:e164759f197370ff71ef7b743ce8388b
+2016-12-19 17:35:58.528 INFO  [client.OIOClient connectServer 56 main] 키 교환작업 완료
+2016-12-19 17:35:58.528 DEBUG [client.OIOClient connectServer 57 main] 암호화 키 e164759f197370ff71ef7b743ce8388b
+2016-12-19 17:35:58.530 INFO  [client.CilentDataProcess sendAuth 29 main] 인증 메시지 전송
+2016-12-19 17:36:08.530 ERROR [client.OIOClient connectServer 69 main] No Server Response 발생!!
+2016-12-19 17:36:08.533 INFO  [client.CilentDataProcess sendAuth 29 main] 인증 메시지 전송
+2016-12-19 17:36:08.533 ERROR [client.OIOClient connectServer 73 main] 인증 메시지 다시 전송
+2016-12-19 17:36:13.550 INFO  [client.CilentDataProcess receive 96 main] ACK 도착
+2016-12-19 17:36:13.750 INFO  [client.CilentDataProcess receive 105 main] 주문번호22 알림이 도착했습니다
+2016-12-19 17:36:13.751 INFO  [client.CilentDataProcess sendPushSuccess 57 main] push success 전송
+2016-12-19 17:36:18.744 INFO  [client.CilentDataProcess receive 105 main] 주문번호22 알림이 도착했습니다
+2016-12-19 17:36:18.745 INFO  [client.CilentDataProcess sendPushSuccess 57 main] push success 전송
+2016-12-19 17:36:23.557 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-19 17:36:28.745 ERROR [client.CilentDataProcess occurTimeout 131 main] Time out 발생...
+2016-12-19 17:36:28.746 INFO  [client.CilentDataProcess occurTimeout 132 main] ping 전송
+2016-12-19 17:36:33.557 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-19 17:36:38.749 ERROR [client.OIOClient main 121 main] Time out 발생...
+2016-12-19 17:36:38.750 INFO  [client.OIOClient connectServer 42 main] Server RE-Connection 시도
+2016-12-19 17:36:38.755 DEBUG [client.OIOClient connectServer 46 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=63307]
+2016-12-19 17:36:40.613 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-19 17:36:40.616 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-19 17:36:40.621 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-19 17:36:40.653 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-19 17:36:40.658 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-19 17:36:40.658 INFO  [client.OIOClient connectServer 54 main] 키 교환작업 완료:a5466fe0afe50cbd1fb946a599f1464a
+2016-12-19 17:36:40.658 INFO  [client.OIOClient connectServer 56 main] 키 교환작업 완료
+2016-12-19 17:36:40.659 DEBUG [client.OIOClient connectServer 57 main] 암호화 키 a5466fe0afe50cbd1fb946a599f1464a
+2016-12-19 17:36:40.659 INFO  [client.CilentDataProcess sendAuth 29 main] 인증 메시지 전송
+2016-12-19 17:36:50.660 ERROR [client.OIOClient connectServer 69 main] No Server Response 발생!!
+2016-12-19 17:36:50.661 INFO  [client.CilentDataProcess sendAuth 29 main] 인증 메시지 전송
+2016-12-19 17:36:50.661 ERROR [client.OIOClient connectServer 73 main] 인증 메시지 다시 전송
+2016-12-19 17:38:08.600 DEBUG [client.OIOClient connectServer 46 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=63310]
+2016-12-19 17:38:11.497 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-19 17:38:11.503 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-19 17:38:17.599 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-19 17:38:18.063 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-19 17:38:18.091 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-19 17:38:18.091 INFO  [client.OIOClient connectServer 54 main] 키 교환작업 완료:5975a023b53015369af4d4c02f3d9e61
+2016-12-19 17:38:18.092 INFO  [client.OIOClient connectServer 56 main] 키 교환작업 완료
+2016-12-19 17:38:18.092 DEBUG [client.OIOClient connectServer 57 main] 암호화 키 5975a023b53015369af4d4c02f3d9e61
+2016-12-19 17:38:18.094 INFO  [client.CilentDataProcess sendAuth 29 main] 인증 메시지 전송
+2016-12-19 17:38:28.095 ERROR [client.OIOClient connectServer 69 main] No Server Response 발생!!
+2016-12-19 17:38:28.097 INFO  [client.CilentDataProcess sendAuth 29 main] 인증 메시지 전송
+2016-12-19 17:38:28.098 ERROR [client.OIOClient connectServer 73 main] 인증 메시지 다시 전송
+2016-12-19 17:38:33.114 INFO  [client.CilentDataProcess receive 96 main] ACK 도착
+2016-12-19 17:38:35.131 INFO  [client.CilentDataProcess receive 105 main] 주문번호23 알림이 도착했습니다
+2016-12-19 17:38:35.133 INFO  [client.CilentDataProcess sendPushSuccess 57 main] push success 전송
+2016-12-19 17:38:40.135 INFO  [client.CilentDataProcess receive 105 main] 주문번호23 알림이 도착했습니다
+2016-12-19 17:38:40.137 INFO  [client.CilentDataProcess sendPushSuccess 57 main] push success 전송
+2016-12-19 17:38:43.119 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-19 17:38:50.139 ERROR [client.CilentDataProcess occurTimeout 131 main] Time out 발생...
+2016-12-19 17:38:50.140 INFO  [client.CilentDataProcess occurTimeout 132 main] ping 전송
+2016-12-19 17:38:53.119 INFO  [client.ClientHeartBeat run 31 Timer-0] heart beat 전송
+2016-12-19 17:39:00.143 ERROR [client.OIOClient main 121 main] Time out 발생...
+2016-12-19 17:39:00.144 INFO  [client.OIOClient connectServer 42 main] Server RE-Connection 시도
+2016-12-19 17:39:00.149 DEBUG [client.OIOClient connectServer 46 main] Socket 정보: Socket[addr=/175.115.95.32,port=9998,localport=63311]
+2016-12-19 17:39:01.503 INFO  [client.encry.KeyExchangeClient start 131 main] RSA 키 생성
+2016-12-19 17:39:01.505 INFO  [client.encry.KeyExchangeClient start 134 main] RSA 공개키 전송
+2016-12-19 17:39:01.514 INFO  [client.encry.KeyExchangeClient start 137 main] 서버로부터 AES256 암호화키 받음
+2016-12-19 17:39:01.545 INFO  [client.encry.KeyExchangeClient start 142 main] 암호키 테스트 'Hello World'전송
+2016-12-19 17:39:01.555 INFO  [client.encry.KeyExchangeClient start 145 main] 암호키 테스트 'Hello World'받음
+2016-12-19 17:39:01.555 INFO  [client.OIOClient connectServer 54 main] 키 교환작업 완료:e9640ae0ea480fb788dcd19a52a1a901
+2016-12-19 17:39:01.556 INFO  [client.OIOClient connectServer 56 main] 키 교환작업 완료
+2016-12-19 17:39:01.556 DEBUG [client.OIOClient connectServer 57 main] 암호화 키 e9640ae0ea480fb788dcd19a52a1a901
+2016-12-19 17:39:01.556 INFO  [client.CilentDataProcess sendAuth 29 main] 인증 메시지 전송
+2016-12-19 17:39:11.558 ERROR [client.OIOClient connectServer 69 main] No Server Response 발생!!
+2016-12-19 17:39:11.561 INFO  [client.CilentDataProcess sendAuth 29 main] 인증 메시지 전송
+2016-12-19 17:39:11.561 ERROR [client.OIOClient connectServer 73 main] 인증 메시지 다시 전송
