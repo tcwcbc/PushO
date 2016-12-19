@@ -7,7 +7,7 @@ public class BlockingQueueTest {
 	public static void main(String[] args) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			md.update("daoutest1".getBytes());
+			md.update(("daoutest1" + "sadsad").getBytes());
 			
 			byte byteData[] = md.digest();
 			

@@ -36,8 +36,10 @@ public class ProcessCilentRequest extends Thread {
 	private BufferedOutputStream bos;
 	private BufferedInputStream bis;
 
+
 	private String aesKey;
 	private ArrayList<String> orderNums = new ArrayList<String>();
+
 	public LinkedBlockingQueue<String> receivedAckQueue;
 
 	public ProcessCilentRequest(Socket socket, String aesKey, LinkedBlockingQueue<String> receivedAckQueue) {

@@ -1,7 +1,9 @@
 package server.service;
 
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -44,9 +46,13 @@ public class SocketConnectionManager implements Pushable {
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 
 	private DBThread dbThread;
-	
-	public LinkedBlockingQueue<String> unreceivedAckQueue = 
-			new LinkedBlockingQueue<String>(ServerConst.RECEIVED_ACK_QUEUE_SIZE);
+
+	// 주문알림 정보
+	private List<OrderInfo> orderList = new ArrayList<>();
+
+	public LinkedBlockingQueue<String> unreceivedAckQueue = new LinkedBlockingQueue<String>(
+			ServerConst.RECEIVED_ACK_QUEUE_SIZE);
+
 	private SocketConnectionManager() {
 		dbThread = new DBThread(this, unreceivedAckQueue);
 		ServerConst.ACCESS_LOGGER.debug("DBThread Created!");
@@ -56,13 +62,14 @@ public class SocketConnectionManager implements Pushable {
 
 	@Override
 	public void sendPushAll(PushInfo msg) {
-		//ConcurrentHashMap의 특성상 순회 도중에 다른 스레드의 접근으로 인헌 ConcurrentModificationException 발생 안된다???
-		//그렇다면 메소드단위의 sync 해제해도 무방
+		// ConcurrentHashMap의 특성상 순회 도중에 다른 스레드의 접근으로 인헌
+		// ConcurrentModificationException 발생 안된다???
+		// 그렇다면 메소드단위의 sync 해제해도 무방
 		ServerConst.MESSAGE_LOGGER.debug("Push Message Sending Start...");
-		for(String key : concurrentHashMap.keySet()){
-			try{
+		for (String key : concurrentHashMap.keySet()) {
+			try {
 				concurrentHashMap.get(key).setPushAll(msg);
-			} catch(PushMessageSendingException e){
+			} catch (PushMessageSendingException e) {
 				concurrentHashMap.remove(key);
 				ServerConst.MESSAGE_LOGGER.error("Remove Client [{}] Connection in HashMap", key);
 			}
@@ -71,14 +78,19 @@ public class SocketConnectionManager implements Pushable {
 	}
 
 	@Override
-	public void sendPushPartial(OrderInfo msg) {
-		try {
-			concurrentHashMap.get(msg.getOrder_seller()).setPushPartial(msg);
-			ServerConst.MESSAGE_LOGGER.debug("Order Message Send to [{}]", msg.getOrder_seller());
-		} catch (PushMessageSendingException e) {
-			concurrentHashMap.remove(msg.getOrder_seller());
-			ServerConst.MESSAGE_LOGGER.error("Remove Client [{}] Connection in HashMap", msg.getOrder_seller());
+	public void sendPushPartial(List<OrderInfo> orderList) {
+		for (OrderInfo orderinfo : orderList) {
+			if (concurrentHashMap.containsKey(orderinfo.getOrder_seller())) {
+				try {
+					concurrentHashMap.get(orderinfo.getOrder_seller()).setPushPartial(orderinfo);
+					ServerConst.MESSAGE_LOGGER.debug("Order Message Send to [{}]", orderinfo.getOrder_seller());
+				} catch (PushMessageSendingException e) {
+					concurrentHashMap.remove(orderinfo.getOrder_seller());
+					ServerConst.MESSAGE_LOGGER.error("Remove Client [{}] Connection in HashMap", orderinfo.getOrder_seller());
+				}
+			}
 		}
+
 	}
 
 	/**
@@ -90,7 +102,7 @@ public class SocketConnectionManager implements Pushable {
 	 *            클라이언트와 연결된 소켓
 	 */
 	public void addClientSocket(String name, Socket clientSocket, String aesKey)
-											throws AlreadyConnectedSocketException {
+			throws AlreadyConnectedSocketException {
 		// 중복이 아니라면 쓰레드를 생성하고 Map에 담음
 		if (concurrentHashMap.containsKey(name)) {
 			// TODO : 인증이 되지 않았다는 메시지를 보내고 소켓을 닫는 것을 던짐
@@ -100,18 +112,19 @@ public class SocketConnectionManager implements Pushable {
 			ProcessCilentRequest pcr = new ProcessCilentRequest(clientSocket, aesKey, unreceivedAckQueue);
 			concurrentHashMap.put(name, pcr);
 			this.executorService.submit(pcr);
-			ServerConst.ACCESS_LOGGER.info("ProcessClientRequest Thread Start, Client Name : [{}], Connection total Number : [{}]", name,concurrentHashMap.size());
+			ServerConst.ACCESS_LOGGER.info(
+					"ProcessClientRequest Thread Start, Client Name : [{}], Connection total Number : [{}]", name,
+					concurrentHashMap.size());
 		}
 		/*
-		 //이렇게 한다면 메소드 단위의 sync 안해줘도 될지도? 
-		 try {
-			this.executorService.submit(
-					concurrentHashMap.putIfAbsent(
-							name, new ProcessCilentRequest(clientSocket, aesKey, receivedAckQueue)));
-		} catch (NullPointerException e) {
-			
-		}*/
-		
+		 * //이렇게 한다면 메소드 단위의 sync 안해줘도 될지도? try { this.executorService.submit(
+		 * concurrentHashMap.putIfAbsent( name, new
+		 * ProcessCilentRequest(clientSocket, aesKey, receivedAckQueue))); }
+		 * catch (NullPointerException e) {
+		 * 
+		 * }
+		 */
+
 	}
 
 	public synchronized void closeAll() {
