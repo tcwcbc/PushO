@@ -20,7 +20,7 @@ public class CilentDataProcess {
 	private static byte[] header = new byte[ClientConst.HEADER_LENTH];
 
 	public static void sendAuth(BufferedOutputStream bos, String aesKey, int num) throws IOException {
-		String msgAuthString = ClientUtils.makeJSONMessageForAuth("daoumart1"/*+String.valueOf(num)*/, "wogud00!", new JSONObject(), new JSONObject());
+		String msgAuthString = ClientUtils.makeJSONMessageForAuth("daoumart3"/*+String.valueOf(num)*/, "wogud00!", new JSONObject(), new JSONObject());
 		msgAuthString = AESUtils.AES_Encode(msgAuthString, aesKey);
 		byte[] msgAuthByte = ClientUtils.makeMessageStringToByte(
 				new byte[ClientConst.HEADER_LENTH + msgAuthString.getBytes(ClientConst.CHARSET).length], msgAuthString);
@@ -115,6 +115,7 @@ public class CilentDataProcess {
 					try {
 						String encryMsg = AESUtils.AES_Decode(new String(body, ClientConst.CHARSET), aesKey);
 						stockData = ClientUtils.parseStockPushMessage(new JSONParser(), encryMsg, stockData);
+						ClientConst.CLIENT_LOGGER.info("재고부족 알림이 도착했습니다");
 					} catch (ParseException e) {
 						ClientConst.CLIENT_LOGGER.error("재고푸쉬 파싱에러");
 						e.printStackTrace();
