@@ -180,11 +180,9 @@ public class AuthClientHandler extends Thread {
 	 */
 	private void checkPassword(String userPwd) throws PasswordAuthFailException {
 		userPasswd = ServerUtils.getEncryptValue(userPwd + userInfo.getPasswd_salt());
-		if (userInfo.getPasswd().equals(userPasswd)) {
-			//인증 완료
-		} else {
+		if (!userInfo.getPasswd().equals(userPasswd)) {
 			throw new PasswordAuthFailException("비밀번호가 일치하지 않음");
-		}
+		} 
 	}
 	
 	
