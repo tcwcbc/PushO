@@ -1,5 +1,7 @@
 package server.service;
 
+import java.util.List;
+
 import server.model.OrderInfo;
 import server.model.PushInfo;
 
@@ -19,5 +21,5 @@ public interface Pushable {
 	 * 특정 클라이언트에게 메시지를 보내는 메소드
 	 * @param msg	OrderInfo 타입의 메시지
 	 */
-	public void sendPushPartial(OrderInfo msg);
+	public void sendPushPartial(List<OrderInfo> orderList);
 }

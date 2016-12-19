@@ -107,7 +107,7 @@ public class JDBCTemplate {
 				+ "FROM pj_orderinfo AS A INNER JOIN pj_member AS B "
 				+ "INNER JOIN (SELECT A.mem_id as 'seller_id', B.st_no   "
 				+ "FROM pj_member AS A INNER JOIN pj_store AS B "
-				+ "ON A.mem_no = B.mem_no) AS C"
+				+ "ON A.mem_no = B.mem_no) AS C "
 				+ "ON A.mem_no = B.mem_no "
 				+ "AND A.oi_push = 'N' AND A.st_no = C.st_no "
 						+ "ORDER BY A.oi_no";
@@ -146,7 +146,7 @@ public class JDBCTemplate {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				productList.add(new ProductList(rs.getString("product_name"), rs.getString("orderlist_count")));
+				productList.add(new ProductList(rs.getString("op_productcnt"), rs.getString("pd_name")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

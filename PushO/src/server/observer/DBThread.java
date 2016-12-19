@@ -63,8 +63,9 @@ public class DBThread extends Thread {
 					for (OrderInfo orderNum : orderList) {
 						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(orderNum.getOrder_num()));
 						//TODO 이 부분은 특정 사용자에게 알림을 보내므로 setPushPartial 바꿔야함 
-							setPushPartial(orderNum);
 					}
+					//주문정보 리스트를 넘김
+					pushable.sendPushPartial(orderList);
 				}
 				
 				// 재고 정보를 조회
@@ -74,7 +75,7 @@ public class DBThread extends Thread {
 				} else {
 					ServerConst.MESSAGE_LOGGER.debug("Push Message is Exist");
 					//모든 사용자에게 전송
-					setPushAll(pushInfo);
+					pushable.sendPushAll(pushInfo);
 				}
 				
 				
@@ -96,22 +97,5 @@ public class DBThread extends Thread {
 			}
 		}
 	}
-
-	/**  
-	 * HashMap에 등록된 모든사용자에게 알림을 보낼때 사용하는 메소드 
-	 * @param msg PushInfo 타입의 주문 정보들
-	 */
-	public void setPushAll(PushInfo msg) {
-		pushable.sendPushAll(msg);
-	}
-	
-	/**
-	 * HashMap에 등록된 특정사용자에게 알림을 보낼때 사용하는 메소드
-	 * @param msg PushInfo 타입의 주문 정보들
-	 */
-	public void setPushPartial(OrderInfo msg) {
-		pushable.sendPushPartial(msg);
-	}
-	
 	
 }
