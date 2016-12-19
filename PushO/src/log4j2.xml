@@ -13,14 +13,14 @@
 	<Appenders>
 
 		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout pattern="${pattern}" />
+			<PatternLayout pattern="${debug_pattern}" />
 			<!-- <Pattern>${pattern}<Pattern/> -->
 		</Console>
 		
 		<RollingFile name="client_file" fileName="log/client.log"
 			filePattern="log/client/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_client_%d{yyyyMMddHH}.log">
 			<PatternLayout>
-				<pattern>${pattern}</pattern>
+				<pattern>${debug_pattern}</pattern>
 			</PatternLayout>
 			<Policies>
 				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
@@ -105,17 +105,17 @@
 
 	<Loggers>
 		<Logger name="client" level="${level}" additivity="false">
-			<!-- <AppenderRef ref="Console" /> -->
+			<AppenderRef ref="Console" level="debug"/>
 			<AppenderRef ref="client_file" />
 		</Logger>
 		<Logger name="access" level="${level}" additivity="false">
-			<!-- <AppenderRef ref="Console" /> -->
+			<AppenderRef ref="Console" level="debug"/>
 			<AppenderRef ref="access_debug" level="debug" />
 			<AppenderRef ref="access_info" level="info" />
 			<AppenderRef ref="access_error" level="error" />
 		</Logger>
 		<Logger name="message" level="${level}" additivity="false">
-			<!-- <AppenderRef ref="Console" /> -->
+			<AppenderRef ref="Console" level="debug"/>
 			<AppenderRef ref="message_debug" level="debug" />
 			<AppenderRef ref="message_info" level="info" />
 			<AppenderRef ref="message_error" level="error" />
