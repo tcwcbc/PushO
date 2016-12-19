@@ -47,9 +47,9 @@ public class AESUtils {
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
 			e.printStackTrace();
-			ServerConst.ACCESS_LOGGER.error("AES Encryption ERROR : {}" , e.getMessage());
+			ServerConst.MESSAGE_LOGGER.error("AES Encryption ERROR : {}" , e.getMessage());
 		}
-		ServerConst.ACCESS_LOGGER.info("AES Encryption result : [{}]", result);
+		ServerConst.MESSAGE_LOGGER.info("AES Encryption result : [{}]", result);
 		return result;
 	}
 
@@ -77,9 +77,9 @@ public class AESUtils {
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
 			e.printStackTrace();
-			ServerConst.ACCESS_LOGGER.error("AES Decryption ERROR : {}" , e.getMessage());
+			ServerConst.MESSAGE_LOGGER.error("AES Decryption ERROR : {}" , e.getMessage());
 		}
-		ServerConst.ACCESS_LOGGER.info("AES Decryption result : [{}]", result);
+		ServerConst.MESSAGE_LOGGER.info("AES Decryption result : [{}]", result);
 		return result;
 	}
 

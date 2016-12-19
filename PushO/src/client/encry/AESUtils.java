@@ -55,8 +55,9 @@ public class AESUtils {
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
 			e.printStackTrace();
-			ClientConst.CLIENT_LOGGER.error("AES 암호화 에러 " + e.getMessage());
+			ClientConst.CLIENT_LOGGER.error("AES Encryption ERROR : {}" , e.getMessage());
 		}
+		ClientConst.CLIENT_LOGGER.info("AES Encryption result : [{}]", result);
 
 		return result;
 	}
@@ -85,8 +86,9 @@ public class AESUtils {
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
 				| UnsupportedEncodingException e) {
 			e.printStackTrace();
-			ClientConst.CLIENT_LOGGER.error("AES 복호화 에러 " + e.getMessage());
+			ClientConst.CLIENT_LOGGER.error("AES Decryption ERROR : {}" , e.getMessage());
 		}
+		ClientConst.CLIENT_LOGGER.info("AES Decryption result : [{}]", result);
 
 		return result;
 	}

@@ -57,10 +57,10 @@ public class DBThread extends Thread {
 				// 주문 정보를 조회
 				orderList = db.executeQuery_ORDER();
 				if (ServerUtils.isEmpty(orderList)) {
-					ServerConst.MESSAGE_LOGGER.info("Order Message is not Exist");
+					ServerConst.MESSAGE_LOGGER.debug("Order Message is not Exist");
 				} else {
 					System.out.println(orderList.size());
-					ServerConst.MESSAGE_LOGGER.info("Order Message is Exist, msgNum : [{}]", orderList.size());
+					ServerConst.MESSAGE_LOGGER.debug("Order Message is Exist, msgNum : [{}]", orderList.size());
 					for (OrderInfo orderNum : orderList) {
 						orderNum.setOrder_list(db.executeQuery_ORDER_LIST(orderNum.getOrder_num()));
 						//TODO 이 부분은 특정 사용자에게 알림을 보내므로 setPushPartial 바꿔야함 
