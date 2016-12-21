@@ -28,7 +28,8 @@ import server.util.ServerUtils;
  * @TODO 싱글톤으로 구현시 멀티쓰레드 환경에서의 동시성 문제 제고 인증을 위한 DB입출력 Blocking 시간 고려
  */
 public class AuthClientHandler extends Thread {
-	private SocketConnectionManager socketConnectionManagerager = SocketConnectionManager.getInstance();
+	private SocketConnectionManager socketConnectionManagerager = 
+									SocketConnectionManager.getInstance();
 
 	/*
 	 * private static AuthClientHandler instance = null;
@@ -163,7 +164,8 @@ public class AuthClientHandler extends Thread {
 	 *             인증이 안되었을 경우 발생
 	 */
 	private void checkAuthorization(String id) throws EmptyResultDataException {
-		userInfo = new JDBCTemplate().executeQuery("select mem_id, mem_pwd, mem_salt from pj_member where mem_id = ?",
+		userInfo = new JDBCTemplate().executeQuery(
+				"select mem_id, mem_pwd, mem_salt from pj_member where mem_id = ?",
 				new SetPrepareStatement() {
 					@Override
 					public void setFields(PreparedStatement pstm) throws SQLException {

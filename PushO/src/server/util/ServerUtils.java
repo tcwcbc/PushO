@@ -28,9 +28,9 @@ import server.res.ServerConst;
 
 /**
  * @author 최병철
- * @Description 모든 클래스에서 공통적으로 사용되는 메소드들을 정의 TODO File 읽기 및 쓰기에 대한 부분 수정필요 멀티쓰레드
- *              환경에서의 활용을 고려하여 동시성 제고 메시지 전문의 형식이 Fix되지 않았음으로 메시지를 만들고 파싱하는 부분
- *              수정 가능
+ * @Description 모든 클래스에서 공통적으로 사용되는 메소드들을 정의
+ * @TODO File 읽기 및 쓰기에 대한 부분 수정필요 멀티쓰레드 환경에서의 활용을 고려하여 동시성 제고 메시지 전문의 형식이 Fix되지
+ *       않았음으로 메시지를 만들고 파싱하는 부분 수정 가능
  */
 public class ServerUtils {
 
@@ -133,7 +133,10 @@ public class ServerUtils {
 	 *            실질적인 data를 담고 있는 JSONObject
 	 * @return JSON형식의 String data
 	 */
-	public static String makeJSONMessageForAuth(String name, String passwd, JSONObject parent, JSONObject childData) {
+	public static String makeJSONMessageForAuth(String name, 
+												String passwd, 
+												JSONObject parent, 
+												JSONObject childData) {
 		// getLong
 		parent.put(ServerConst.JSON_KEY_SEND_TIME, getTime());
 		// auth, pp, push getString
@@ -168,91 +171,6 @@ public class ServerUtils {
 	}
 
 	/**
-	 * 푸시 데이터들을 Json포멧으로 변환
-	 * 
-	 * @param data
-	 *            주문정보가 담긴 데이터 배열
-	 * @param parent
-	 *            상위 Object
-	 * @param childData
-	 *            하위 Object
-	 * @return JSON형식의 String data
-	 */
-	public static String makeJSONMessageForPush(OrderInfo msg, JSONObject parent, JSONObject childData) {
-
-		parent.put(ServerConst.JSON_KEY_SEND_TIME, getTime());
-		parent.put(ServerConst.JSON_KEY_DATA_CATEGORY, ServerConst.JSON_VALUE_PUSH_ORDER);
-		childData.put(ServerConst.JSON_KEY_ORDER_NUM, msg.getOrder_num());
-		childData.put(ServerConst.JSON_KEY_ORDER_DATE, msg.getOrder_date());
-		childData.put(ServerConst.JSON_KEY_ORDER_USER, msg.getOrder_user());
-		childData.put(ServerConst.JSON_KEY_ORDER_SELLER, msg.getOrder_seller());
-		childData.put(ServerConst.JSON_KEY_ORDER_PRICE, msg.getOrder_price());
-
-		JSONArray array = new JSONArray();
-
-		for (int num = 0; num < msg.getOrder_list().size(); num++) {
-			JSONObject jo = new JSONObject();
-			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT, msg.getOrder_list().get(num).getProduct());
-			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT_COUNT, msg.getOrder_list().get(num).getCount());
-			array.add(jo);
-		}
-		childData.put(ServerConst.JSON_KEY_ORDER_LIST, array);
-		parent.put(ServerConst.JSON_KEY_DATA, childData);
-
-		return parent.toString();
-	}
-	
-	public static String makeJSONMessageForPushAll(PushInfo msg, JSONObject parent, JSONObject childData) {
-
-		parent.put(ServerConst.JSON_KEY_SEND_TIME, getTime());
-		parent.put(ServerConst.JSON_KEY_DATA_CATEGORY, ServerConst.JSON_VALUE_PUSH_STOCK);
-	
-		JSONArray array = new JSONArray();
-
-		for (int num = 0; num < msg.getOrder_list().size(); num++) {
-			JSONObject jo = new JSONObject();
-			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT, msg.getOrder_list().get(num).getProduct());
-			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT_COUNT, msg.getOrder_list().get(num).getCount());
-			array.add(jo);
-		}
-		childData.put(ServerConst.JSON_KEY_ORDER_LIST, array);
-		parent.put(ServerConst.JSON_KEY_DATA, childData);
-
-		return parent.toString();
-	}
-
-	public static String makeJSONMessageForEncry(String key, JSONObject parent, JSONObject childData) {
-
-		parent.put(ClientConst.JSON_KEY_SEND_TIME, getTime());
-		parent.put(ClientConst.JSON_KEY_DATA_CATEGORY, ClientConst.JSON_VALUE_ENCRY);
-		childData.put(ClientConst.JSON_KEY_AUTH_ENCRY, key);
-		parent.put(ClientConst.JSON_KEY_DATA, childData);
-
-		return parent.toString();
-	}
-	
-	/**
-	 * 키교환을 위한 파서
-	 * @param jsonParser
-	 * @param msg
-	 * @return
-	 */
-	public static String parseEncryMessage(JSONParser jsonParser, String msg) {
-		String key = null;
-		try {
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
-			JSONObject object = (JSONObject) jsonObject.get(ClientConst.JSON_KEY_DATA);
-
-			key = (String) object.get(ClientConst.JSON_KEY_AUTH_ENCRY);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			key = "JSON 파싱 에러";
-		}
-
-		return key;
-	}
-
-	/**
 	 * String 타입으로 받은 JSON문자열을 파싱하여 특정 데이터를 추출하는 메소드
 	 * 
 	 * @param jsonParser
@@ -277,7 +195,7 @@ public class ServerUtils {
 				String id = (String) object.get(ServerConst.JSON_KEY_AUTH_ID);
 				String passwd = (String) object.get(ServerConst.JSON_KEY_AUTH_PASSWD);
 				result = id + "/" + passwd;
-				//result = id;
+				// result = id;
 			} else if (category.equals(ServerConst.JSON_VALUE_PUSH_ORDER)) {
 				JSONObject object = (JSONObject) jsonObject.get(ServerConst.JSON_KEY_DATA);
 				String response = (String) object.get(ServerConst.JSON_KEY_ORDER_RESPONSE);
@@ -290,34 +208,7 @@ public class ServerUtils {
 		}
 		return result;
 	}
-
-	public static OrderInfo parsePushMessage(JSONParser jsonParser, String msg, OrderInfo pushData) {
-		try {
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
-			JSONObject object = (JSONObject) jsonObject.get(ServerConst.JSON_KEY_DATA);
-			JSONArray array = (JSONArray) object.get(ServerConst.JSON_KEY_ORDER_LIST);
-
-			List<ProductList> pt = new ArrayList<>();
-			for (int i = 0; i < array.size(); i++) {
-				JSONObject order = (JSONObject) array.get(i);
-				pt.add(new ProductList(order.get(ServerConst.JSON_KEY_ORDER_PRODUCT).toString(),
-						order.get(ServerConst.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
-			}
-
-			pushData = new OrderInfo(object.get(ServerConst.JSON_KEY_ORDER_NUM).toString(),
-					object.get(ServerConst.JSON_KEY_ORDER_DATE).toString(),
-					object.get(ServerConst.JSON_KEY_ORDER_USER).toString(),
-					object.get(ServerConst.JSON_KEY_ORDER_SELLER).toString(),
-					object.get(ServerConst.JSON_KEY_ORDER_PRICE).toString(), pt);
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("JSON 파싱 에러");
-		}
-		return pushData;
-	}
-
+	
 	/**
 	 * int형을 byte배열로 바꿈
 	 * 
@@ -389,6 +280,122 @@ public class ServerUtils {
 		return ret;
 	}
 
+	////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * 푸시 데이터들을 Json포멧으로 변환
+	 * 
+	 * @param data
+	 *            주문정보가 담긴 데이터 배열
+	 * @param parent
+	 *            상위 Object
+	 * @param childData
+	 *            하위 Object
+	 * @return JSON형식의 String data
+	 */
+	public static String makeJSONMessageForPush(OrderInfo msg, JSONObject parent, JSONObject childData) {
+
+		parent.put(ServerConst.JSON_KEY_SEND_TIME, getTime());
+		parent.put(ServerConst.JSON_KEY_DATA_CATEGORY, ServerConst.JSON_VALUE_PUSH_ORDER);
+		childData.put(ServerConst.JSON_KEY_ORDER_NUM, msg.getOrder_num());
+		childData.put(ServerConst.JSON_KEY_ORDER_DATE, msg.getOrder_date());
+		childData.put(ServerConst.JSON_KEY_ORDER_USER, msg.getOrder_user());
+		childData.put(ServerConst.JSON_KEY_ORDER_SELLER, msg.getOrder_seller());
+		childData.put(ServerConst.JSON_KEY_ORDER_PRICE, msg.getOrder_price());
+
+		JSONArray array = new JSONArray();
+
+		for (int num = 0; num < msg.getOrder_list().size(); num++) {
+			JSONObject jo = new JSONObject();
+			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT, msg.getOrder_list().get(num).getProduct());
+			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT_COUNT, msg.getOrder_list().get(num).getCount());
+			array.add(jo);
+		}
+		childData.put(ServerConst.JSON_KEY_ORDER_LIST, array);
+		parent.put(ServerConst.JSON_KEY_DATA, childData);
+
+		return parent.toString();
+	}
+
+	public static String makeJSONMessageForPushAll(PushInfo msg, JSONObject parent, JSONObject childData) {
+
+		parent.put(ServerConst.JSON_KEY_SEND_TIME, getTime());
+		parent.put(ServerConst.JSON_KEY_DATA_CATEGORY, ServerConst.JSON_VALUE_PUSH_STOCK);
+
+		JSONArray array = new JSONArray();
+
+		for (int num = 0; num < msg.getOrder_list().size(); num++) {
+			JSONObject jo = new JSONObject();
+			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT, msg.getOrder_list().get(num).getProduct());
+			jo.put(ServerConst.JSON_KEY_ORDER_PRODUCT_COUNT, msg.getOrder_list().get(num).getCount());
+			array.add(jo);
+		}
+		childData.put(ServerConst.JSON_KEY_ORDER_LIST, array);
+		parent.put(ServerConst.JSON_KEY_DATA, childData);
+
+		return parent.toString();
+	}
+
+	public static String makeJSONMessageForEncry(String key, JSONObject parent, JSONObject childData) {
+
+		parent.put(ClientConst.JSON_KEY_SEND_TIME, getTime());
+		parent.put(ClientConst.JSON_KEY_DATA_CATEGORY, ClientConst.JSON_VALUE_ENCRY);
+		childData.put(ClientConst.JSON_KEY_AUTH_ENCRY, key);
+		parent.put(ClientConst.JSON_KEY_DATA, childData);
+
+		return parent.toString();
+	}
+
+	/**
+	 * 키교환을 위한 파서
+	 * 
+	 * @param jsonParser
+	 * @param msg
+	 * @return
+	 */
+	public static String parseEncryMessage(JSONParser jsonParser, String msg) {
+		String key = null;
+		try {
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
+			JSONObject object = (JSONObject) jsonObject.get(ClientConst.JSON_KEY_DATA);
+
+			key = (String) object.get(ClientConst.JSON_KEY_AUTH_ENCRY);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			key = "JSON 파싱 에러";
+		}
+
+		return key;
+	}
+
+	
+	public static OrderInfo parsePushMessage(JSONParser jsonParser, String msg, OrderInfo pushData) {
+		try {
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(msg);
+			JSONObject object = (JSONObject) jsonObject.get(ServerConst.JSON_KEY_DATA);
+			JSONArray array = (JSONArray) object.get(ServerConst.JSON_KEY_ORDER_LIST);
+
+			List<ProductList> pt = new ArrayList<>();
+			for (int i = 0; i < array.size(); i++) {
+				JSONObject order = (JSONObject) array.get(i);
+				pt.add(new ProductList(order.get(ServerConst.JSON_KEY_ORDER_PRODUCT).toString(),
+						order.get(ServerConst.JSON_KEY_ORDER_PRODUCT_COUNT).toString()));
+			}
+
+			pushData = new OrderInfo(object.get(ServerConst.JSON_KEY_ORDER_NUM).toString(),
+					object.get(ServerConst.JSON_KEY_ORDER_DATE).toString(),
+					object.get(ServerConst.JSON_KEY_ORDER_USER).toString(),
+					object.get(ServerConst.JSON_KEY_ORDER_SELLER).toString(),
+					object.get(ServerConst.JSON_KEY_ORDER_PRICE).toString(), pt);
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("JSON 파싱 에러");
+		}
+		return pushData;
+	}
+
 	public static String getTime() {
 		long time = System.currentTimeMillis();
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMddhhmmss");
@@ -399,7 +406,7 @@ public class ServerUtils {
 
 	public static String getEncryptValue(String pwd) {
 		String value = null;
-		
+
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(pwd.getBytes());
@@ -411,9 +418,9 @@ public class ServerUtils {
 				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
 			}
 			value = sb.toString();
-	
+
 		} catch (NoSuchAlgorithmException e) {
-			//Sha256 해싱 오류
+			// Sha256 해싱 오류
 			e.printStackTrace();
 		}
 

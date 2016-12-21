@@ -9,14 +9,13 @@ public class MultiTheadingTest {
 	public static void main(String[] args) {
 		new MultiTheadingTest();
 	}
-
-	int i=1;
+	int i =41;
 	public MultiTheadingTest() {
-		for (i = 0; i < 12; i++) {
+		for (i = 41; i < 50; i++) {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					OIOClient mcc = new OIOClient(i);
+					OIOClient mcc = new OIOClient(i,"test1!");
 					boolean flag = true;
 					while (flag) {
 						if (mcc.connectServer()) {

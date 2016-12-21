@@ -41,17 +41,15 @@ public class SocketConnectionManager implements Pushable {
 	// 클라이언트 처리 쓰레드를 Map으로 관리
 	// private Map<String, ProcessCilentRequest> conMap = new HashMap<String,
 	// ProcessCilentRequest>();
-	private ConcurrentHashMap<String, ProcessCilentRequest> concurrentHashMap = new ConcurrentHashMap<String, ProcessCilentRequest>();
+	private ConcurrentHashMap<String, ProcessCilentRequest> concurrentHashMap =
+								new ConcurrentHashMap<String, ProcessCilentRequest>();
 	// 쓰레드풀 구현부분
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 
 	private DBThread dbThread;
 
-	// 주문알림 정보
-	private List<OrderInfo> orderList = new ArrayList<>();
-
-	public LinkedBlockingQueue<String> unreceivedAckQueue = new LinkedBlockingQueue<String>(
-			ServerConst.RECEIVED_ACK_QUEUE_SIZE);
+	public LinkedBlockingQueue<String> unreceivedAckQueue = 
+			new LinkedBlockingQueue<String>(ServerConst.RECEIVED_ACK_QUEUE_SIZE);
 
 	private SocketConnectionManager() {
 		dbThread = new DBThread(this, unreceivedAckQueue);
@@ -83,10 +81,12 @@ public class SocketConnectionManager implements Pushable {
 			if (concurrentHashMap.containsKey(orderinfo.getOrder_seller())) {
 				try {
 					concurrentHashMap.get(orderinfo.getOrder_seller()).setPushPartial(orderinfo);
-					ServerConst.MESSAGE_LOGGER.debug("Order Message Send to [{}]", orderinfo.getOrder_seller());
+					ServerConst.MESSAGE_LOGGER.debug("Order Message Send to [{}]",
+							orderinfo.getOrder_seller());
 				} catch (PushMessageSendingException e) {
 					concurrentHashMap.remove(orderinfo.getOrder_seller());
-					ServerConst.MESSAGE_LOGGER.error("Remove Client [{}] Connection in HashMap", orderinfo.getOrder_seller());
+					ServerConst.MESSAGE_LOGGER.error("Remove Client [{}] Connection in HashMap",
+							orderinfo.getOrder_seller());
 				}
 			}
 		}

@@ -26,12 +26,14 @@ public class OIOClient {
 	final int timeInterval = 10000;
 
 	public int num =0;
+	public String passwd;
 	public OIOClient() {
 		// TODO Auto-generated constructor stub
 	}
-	public OIOClient(int num) {
+	public OIOClient(int num,String passwd) {
 		// TODO Auto-generated constructor stub
 		this.num = num;
+		this.passwd = passwd;
 	}
 	// 서버에 연결 작업
 	public boolean connectServer() {
@@ -54,7 +56,7 @@ public class OIOClient {
 
 			isServerSurvival = true;
 
-			CilentDataProcess.sendAuth(bos, aesKey, num);
+			CilentDataProcess.sendAuth(bos, aesKey, num, passwd);
 			CilentDataProcess.receive(socket, bis, bos, aesKey);
 
 			return true;
@@ -66,7 +68,7 @@ public class OIOClient {
 				ClientConst.CLIENT_LOGGER.error("No Server Response !!");
 				try {
 					// 인증을 위한 JSON 메세지 생성
-					CilentDataProcess.sendAuth(bos, aesKey,num);
+					CilentDataProcess.sendAuth(bos, aesKey,num,passwd);
 					ClientConst.CLIENT_LOGGER.debug("Re-send Auth Message");
 					CilentDataProcess.receive(socket, bis, bos, aesKey);
 				} catch (IOException e1) {

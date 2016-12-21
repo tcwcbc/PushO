@@ -99,7 +99,8 @@ public class ProcessCilentRequest extends Thread {
 		String msgPingString = ServerUtils.makeJSONMessageForPingPong(new JSONObject(), false);
 		msgPingString = AESUtils.AES_Encode(msgPingString, aesKey);
 		msgPingByte = ServerUtils.makeMessageStringToByte(
-				new byte[ServerConst.HEADER_LENTH + msgPingString.getBytes(ServerConst.CHARSET).length], msgPingString);
+				new byte[ServerConst.HEADER_LENTH + msgPingString.getBytes(ServerConst.CHARSET).length],
+				msgPingString);
 
 		byte[] header = new byte[ServerConst.HEADER_LENTH];
 		byte[] body;

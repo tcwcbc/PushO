@@ -17,8 +17,8 @@
 			<!-- <Pattern>${pattern}<Pattern/> -->
 		</Console>
 		
-		<RollingFile name="client_file" fileName="log/client.log"
-			filePattern="log/client/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_client_%d{yyyyMMddHH}.log">
+		<RollingFile name="client_file" fileName="${logPath}log/client.log"
+			filePattern="${logPath}log/client/$${date:yyyy}/$${date:MM}/$${date:dd}/${name}_client_%d{yyyyMMddHH}.log">
 			<PatternLayout>
 				<pattern>${debug_pattern}</pattern>
 			</PatternLayout>
